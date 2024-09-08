@@ -9,12 +9,20 @@ import { IoMdOpen } from "react-icons/io";
 function Navbar() {
   return (
     <div className="sticky top-0 right-0 z-40">
-      <div className="w-full md:flex hidden bg-white z-50 justify-end items-end">
-        <div className="px-20 h-10 text-sm bg-[#68B030]/20 z-50 rounded-tl-full flex justify-start items-center gap-10">
-          <Link href="#">About Us</Link>
-          <Link href="#">Transparency</Link>
-          <Link href="#">Press</Link>
-          <Link href="#">Sign In</Link>
+      <div className="w-full flex bg-white z-50 justify-end items-end">
+        <div className="lg:px-20 px-5 lg:w-auto w-full h-10 text-sm bg-[#68B030]/20 z-50 lg:rounded-tl-full flex justify-end items-center gap-10">
+          <Link className="lg:block hidden" href="#">
+            About Us
+          </Link>
+          <Link className="lg:block hidden" href="#">
+            Transparency
+          </Link>
+          <Link className="lg:block hidden" href="#">
+            Press
+          </Link>
+          <Link className="lg:block hidden" href="#">
+            Sign In
+          </Link>
           <Link
             href="#"
             className="bg-white p-4 text-xs rounded-full py-[6px] font-bold text-green-900 flex justify-center items-center gap-2"

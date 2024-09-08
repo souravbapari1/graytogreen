@@ -24,20 +24,6 @@ function Loading({
           className="w-auto object-cover md:h-28 h-20 py-3"
         />
       </div>
-      <Image
-        src="/icons/Person.svg"
-        width={1200}
-        height={1200}
-        alt="logo"
-        className="w-auto object-cover h-96 -mb-10 absolute right-0 bottom-0 py-3  md:block hidden"
-      />
-      <Image
-        src="/icons/Trees.svg"
-        width={1200}
-        height={1200}
-        alt="logo"
-        className="w-auto object-cover h-96 -mb-10 absolute left-0 bottom-0 py-3  md:block hidden"
-      />
     </div>
   );
 }

@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import { Inter, Lora, Open_Sans } from "next/font/google";
-import "./globals.css";
 import "react-slideshow-image/dist/styles.css";
+import "./globals.css";
 import NextTopLoader from "nextjs-toploader";
 import Client from "./client";
 import { Toaster } from "@/components/ui/toaster";

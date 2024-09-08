@@ -5,9 +5,9 @@ import { Fade } from "react-slideshow-image";
 
 function HomeHeaderSlide() {
   return (
-    <div className="w-full">
+    <div className="w-full ">
       <Fade
-        cssClass="w-full"
+        cssClass="w-full "
         transitionDuration={500}
         indicators={true}
         autoplay={false}
@@ -16,10 +16,10 @@ function HomeHeaderSlide() {
         {Array.from({ length: 4 }).map((_, i) => {
           return (
             <div
-              className="each-slide md:h-[700px] h-60 overflow-hidden "
+              className="each-slide md:h-[400px] h-60 w-full overflow-hidden "
               key={"s" + i}
             >
-              <div className="h-full relative">
+              <div className="h-full relative w-full">
                 <div className="w-full h-full  z-10 absolute text-white flex justify-center items-center ">
                   <video
                     src="https://cdn.pixabay.com/video/2020/03/04/33212-395657672_medium.mp4"

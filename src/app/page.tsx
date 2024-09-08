@@ -34,7 +34,6 @@ async function page() {
       <ProtectingAndRestoring />
       <FooterTop />
       <Footer />
-      <Loading className="" slide={true} />
     </div>
   );
 }
