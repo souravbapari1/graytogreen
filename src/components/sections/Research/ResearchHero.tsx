@@ -48,14 +48,6 @@ function ResearchHero() {
               alt=""
               className="md:w-full w-[90%]  md:h-[480px]  rounded-2xl object-cover h-48  "
             />
-            <div className="">
-              <Image
-                alt=""
-                width={2000}
-                height={2000}
-                src="https://media.istockphoto.com/id/964163202/photo/young-handsome-hispanic-man-against-green-background.jpg?s=612x612&w=0&k=20&c=mvdrdVwFDEPDlv6vRdm_wdB5Q7e1UFb-U1lCek26ZY4="
-              />
-            </div>
           </div>
         </div>
       </div>
