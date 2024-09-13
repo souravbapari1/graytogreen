@@ -34,15 +34,17 @@ function Navbar() {
       </div>
       <div className="w-full h-16 overflow-hidden bg-white  border-b border-b-green-950/5 z-40 ">
         <div className="container flex justify-between items-center w-full h-full">
-          <div className="lg:w-28 flex justify-start items-center gap-3 h-full">
+          <div className="lg:w-44 flex justify-start items-center gap-3 h-full ">
             <MobileMenuBar />
-            <Image
-              src="/logo/main-logo.png"
-              width={200}
-              height={200}
-              alt="logo"
-              className="w-auto object-contain md:h-16 h-14 py-3"
-            />
+            <Link href="/">
+              <Image
+                src="/logo/main-logo.png"
+                width={200}
+                height={200}
+                alt="logo"
+                className="w-auto object-contain md:h-20 h-16 py-3 pb-5"
+              />
+            </Link>
           </div>
 
           <DesktopMenuBar />

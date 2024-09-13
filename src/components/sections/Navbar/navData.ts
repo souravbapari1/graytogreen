@@ -150,7 +150,12 @@ export const navData = [
   },
   {
     title: "About",
-    href: "/",
+    href: "/about-us",
+    isSubmenu: false,
+  },
+  {
+    title: "Academies",
+    href: "/academies",
     isSubmenu: false,
   },
   {
@@ -163,20 +168,19 @@ export const navData = [
   },
   {
     title: "Research",
-    href: "#",
-    isSubmenu: true,
+    href: "/research",
+    isSubmenu: false,
     image:
       "https://www.plant-for-the-planet.org/wp-content/uploads/2022/10/20191015_ac_curitiba_rethoricalpractice_3.jpg",
-    submenu: servicesMenuItems,
   },
   {
     title: "Support Us",
-    href: "/",
+    href: "/support",
     isSubmenu: false,
   },
   {
     title: "Blog",
-    href: "/",
+    href: "/blogs",
     isSubmenu: false,
   },
 ];

@@ -92,6 +92,9 @@
   .donateBtn {
     @apply bg-gradient-to-r from-green-500 to-emerald-600 rounded-full shadow-md shadow-green-400/60 border-none md:px-8 px-5   font-extrabold text-white/85;
   }
+  .arrow_path {
+    clip-path: polygon(0% 0%, 90% 0%, 100% 55%, 90% 100%, 0% 100%);
+  }
 }
 
 .slide-top-hide {
@@ -172,4 +175,13 @@ a.ytp-impression-link {
 }
 .ytp-chrome-top.ytp-show-cards-title {
   display: none !important;
+}
+
+.img-hor {
+  -moz-transform: scaleX(-1);
+  -o-transform: scaleX(-1);
+  -webkit-transform: scaleX(-1);
+  transform: scaleX(-1);
+  filter: FlipH;
+  -ms-filter: "FlipH";
 }

@@ -3,19 +3,24 @@ import Link from "next/link";
 import React from "react";
 import { RiArrowUpSLine } from "react-icons/ri";
 import { navData } from "./navData";
+import NavLink from "./NavLink";
 
 function DesktopMenuBar() {
   return (
-    <div className="lg:flex lg:gap-12 gap-5 font-medium text-gray-500 hidden h-full bg-white w-full justify-center items-center">
+    <div className="lg:flex lg:gap-8 gap-5 font-medium text-gray-500 hidden h-full bg-white w-full justify-center items-center">
       {navData.map((e, i) => {
         return (
-          <div className="relative group">
-            <div className="flex items-center gap-2 group-hover:text-green-600 cursor-pointer h-full">
+          <div className="relative group" key={"NavLink-" + i}>
+            <NavLink
+              exact
+              href={e.href}
+              className="flex items-center gap-2 group-hover:text-green-600 cursor-pointer h-full"
+            >
               {e.title}
               {e.isSubmenu && (
                 <RiArrowUpSLine className="rotate-180 group-hover:rotate-0 transition-all duration-300 mt-1" />
               )}
-            </div>
+            </NavLink>
             {e.isSubmenu && (
               <div className="w-full h-72 -z-10 bg-green-50 fixed shadow-md shadow-gray-50 top-16 right-0 transition-all duration-500 transform -translate-y-96 group-hover:translate-y-10 ">
                 <div className="container h-full flex justify-evenly items-start  macAir:px-40 gap-3">
@@ -37,7 +42,7 @@ function DesktopMenuBar() {
                         <div className="flex flex-col  justify-start gap-3">
                           {menu.list.map((e, i) => {
                             return (
-                              <Link
+                              <NavLink
                                 href={e.href}
                                 className="opacity-85 hover:opacity-100 transition-all macAir:text-sm text-xs font-semibold"
                               >
@@ -52,7 +57,7 @@ function DesktopMenuBar() {
                                     {e.subtitle}
                                   </p>
                                 )}
-                              </Link>
+                              </NavLink>
                             );
                           })}
                         </div>
