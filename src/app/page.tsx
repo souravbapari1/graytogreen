@@ -2,7 +2,7 @@ import React from "react";
 
 import Navbar from "@/components/sections/Navbar/Navbar";
 import HomeHeaderSlide from "@/components/sections/Home/slides/HomeHeaderSlide";
-import OurPartners from "@/components/sections/Home/OurPartners/OurPartners";
+import OurPartners from "@/components/sections/Home/OurSponsor/OurSponsor";
 import DonateBanner from "@/components/sections/Home/DonateBanner/DonateBanner";
 import PlatformToolsBanner from "@/components/sections/Home/PlatformToolsBanner/PlatformToolsBanner";
 import PartnerWithUs from "@/components/sections/Home/PartnerWithUs/PartnerWithUs";
@@ -15,6 +15,7 @@ import Footer from "@/components/sections/Footer/Footer";
 
 import { montserrat } from "@/fonts/font";
 import GGMapBox from "@/components/GMapBox/GGMapBox";
+import Faq from "@/components/sections/Home/Faq/Faq";
 
 async function page() {
   return (
@@ -34,12 +35,13 @@ async function page() {
       </div>
       <OurPartners />
       <DonateBanner />
-      <PlatformToolsBanner />
       <PartnerWithUs />
-      <BlogsBanner />
       <OurStory />
-      <LatestVideos />
+      <PlatformToolsBanner />
       <ProtectingAndRestoring />
+      <LatestVideos />
+      <BlogsBanner />
+      <Faq />
       <FooterTop />
       <Footer />
     </div>

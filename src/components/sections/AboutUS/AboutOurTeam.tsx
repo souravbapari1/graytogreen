@@ -8,7 +8,7 @@ import { FaLinkedinIn } from "react-icons/fa";
 
 function AboutOurTeam() {
   return (
-    <div className="flex flex-col justify-center items-center text-center mt-10 container">
+    <div className="flex flex-col justify-center items-center text-center mt-40 container">
       <h1
         className={`${montserrat.className} text-2xl lg:text-5xl font-bold text-center capitalize`}
       >

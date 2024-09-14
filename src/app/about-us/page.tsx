@@ -16,8 +16,8 @@ function AboutUs() {
     <div>
       <Navbar />
       <AboutHero />
-      <AboutPatrons />
       <FoundationSecretariatBanner />
+      <AboutPatrons />
       <AboutOurTeam />
       <Foundation />
       <BordOfDirectors />

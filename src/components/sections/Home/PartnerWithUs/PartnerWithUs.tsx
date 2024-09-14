@@ -4,7 +4,7 @@ import React from "react";
 
 function PartnerWithUs() {
   return (
-    <div className="container flex justify-center items-center flex-col gap-5 overflow-hidden">
+    <div className="container flex justify-center items-center flex-col mt-20 gap-5 overflow-hidden">
       <h1
         className={`capitalize lg:text-5xl text-3xl font-bold text-center ${montserrat.className}`}
       >

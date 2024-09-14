@@ -7,7 +7,7 @@ import { RiArrowDropRightLine } from "react-icons/ri";
 
 function PlatformToolsBanner() {
   return (
-    <div className="py-20">
+    <div className="pt-20">
       <div className="container grid lg:grid-cols-2 gap-10 ">
         <div className="flex flex-col gap-5">
           <h1
@@ -36,7 +36,7 @@ function PlatformToolsBanner() {
           className="h-80 object-contain"
         />
       </div>
-      <div className=" mt-32 w-full relative bg-gradient-to-r from-green-500 to-emerald-700  mb-10 lg:h-64 py-8">
+      <div className=" mt-32 w-full relative bg-gradient-to-r from-green-500 to-emerald-700   lg:h-64 py-8">
         <div className="container  flex justify-evenly lg:flex-row flex-col items-center ">
           <Image
             src="/assets/kid_cut_out.webp"

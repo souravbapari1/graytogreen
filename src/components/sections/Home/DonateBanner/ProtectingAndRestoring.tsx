@@ -4,7 +4,7 @@ import React from "react";
 
 function ProtectingAndRestoring() {
   return (
-    <div className="w-full  shadow-lg bg-gradient-to-br from-[rgba(160,249,138,0.2)] via-[rgba(219,255,213,0)] to-[rgba(187,249,138,0.2)] mt-20 py-10">
+    <div className="w-full  shadow-lg bg-gradient-to-br from-[rgba(160,249,138,0.2)] via-[rgba(219,255,213,0)] to-[rgba(187,249,138,0.2)]  py-10">
       <div className="container flex justify-center items-center text-center flex-col md:gap-6 gap-4 py-10">
         <h1
           className={`lg:text-5xl text-2xl font-bold capitalize max-w-[1000px] ${montserrat.className}`}

@@ -10,11 +10,11 @@ import { FaRegHeart } from "react-icons/fa";
 import { MdOutlineLocationOn } from "react-icons/md";
 import { Button } from "@/components/ui/button";
 
-function OurPartners() {
+function OurSponsor() {
   return (
     <div className={` ${montserrat.className} container overflow-hidden`}>
       <h1 className="md:text-5xl text-3xl md:mt-16 mt-10 font-extrabold text-center">
-        Our <span className="text-main ">Partners</span>
+        Our <span className="text-main ">Sponsor</span>
       </h1>
       <Marquee className="">
         <div className="flex  justify-center md:mt-14 mt-5 md:mb-20 items-center ">
@@ -119,43 +119,9 @@ function OurPartners() {
             </div>
           </div>
         </div>
-        <div className="grid lg:grid-cols-2 gap-10 mt-12">
-          <div className="md:text-left text-center md:mt-5">
-            <h1
-              className={`${montserrat.className} font-extrabold uppercase lg:text-3xl text-xl`}
-            >
-              Climate Justice Ambassadors: <br />
-              <span className="text-main">We Make Ourselves Heard</span>
-            </h1>
-            <p className="md:text-xl  mt-5">
-              Over 100,273 children and youth have already been trained at 1,866
-              academies in 76 countries, where we teach each other about the
-              climate crisis. As Climate Justice Ambassadors we fight for our
-              future by planting trees, giving speeches, protesting, and much
-              more.
-            </p>
-            <Link
-              href="#"
-              className="capitalize font-bold text-main mt-5 flex md:justify-start justify-center items-center"
-            >
-              Learn More About Our Academics <RiArrowDropRightLine size={35} />
-            </Link>
-          </div>
-
-          <div className="relative md:p-10 flex justify-center items-center">
-            <div className="w-[90%] h-48 md:h-[380px] bg-green-700/20 absolute -z-[1] lg:ml-12 ml-10 rounded-2xl mb-10"></div>
-            <Image
-              src="https://www.plant-for-the-planet.org/wp-content/uploads/2022/06/Trillion-Trees-Map.jpg"
-              width={1200}
-              height={1200}
-              alt=""
-              className="md:w-full w-[90%]  md:h-[380px]  rounded-2xl object-cover h-48  "
-            />
-          </div>
-        </div>
       </div>
     </div>
   );
 }
 
-export default OurPartners;
+export default OurSponsor;

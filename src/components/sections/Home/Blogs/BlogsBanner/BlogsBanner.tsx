@@ -27,7 +27,7 @@ function BlogsBanner() {
     };
   }, []);
   return (
-    <div className="relative mt-20 w-full" style={{ height: bannerHeight }}>
+    <div className="relative mt-28 w-full" style={{ height: bannerHeight }}>
       <div className="absolute top-0 right-0 left-0 mx-auto w-full z-10">
         <Image
           width={2000}
@@ -45,7 +45,7 @@ function BlogsBanner() {
         <h1
           className={`${montserrat.className} font-bold text-4xl  text-white  text-center`}
         >
-          The Plant for the Planet Blog
+          The Gray To Green Blog
         </h1>
         <p
           className={`${montserrat.className} font-semibold mt-5 text-xl  text-white  text-center mb-20`}

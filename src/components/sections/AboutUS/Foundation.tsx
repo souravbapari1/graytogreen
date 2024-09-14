@@ -2,6 +2,9 @@ import { Button } from "@/components/ui/button";
 import { lora, montserrat } from "@/fonts/font";
 import Image from "next/image";
 import React from "react";
+import { FaLinkedinIn } from "react-icons/fa";
+import { FaSquareFacebook, FaSquareXTwitter } from "react-icons/fa6";
+import { PiInstagramLogoFill } from "react-icons/pi";
 
 function Foundation() {
   return (
@@ -42,6 +45,15 @@ function Foundation() {
                   Chairman of the Foundation Council of the Plant-for-the-Planet
                   Foundation
                 </p>
+                <div className="flex  flex-row gap-4 mt-5 text-gray-500 ">
+                  <FaSquareFacebook className="hover:text-gray-900" size={18} />
+                  <PiInstagramLogoFill
+                    className="hover:text-gray-900"
+                    size={19}
+                  />
+                  <FaSquareXTwitter className="hover:text-gray-900" size={18} />
+                  <FaLinkedinIn className="hover:text-gray-900" size={18} />
+                </div>
               </div>
             );
           })}
