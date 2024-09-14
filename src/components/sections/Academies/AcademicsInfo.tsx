@@ -39,13 +39,13 @@ function AcademicsInfo() {
           </p>
           <Link
             href="#"
-            className="uppercase font-bold  md:text-lg text-sm text-main mt-11 flex md:justify-start justify-center items-center"
+            className="uppercase font-bold  md:text-lg text-xs text-main mt-11 flex md:justify-start justify-center items-center"
           >
             What is an Academy <RiArrowDropRightLine size={35} />
           </Link>
           <Link
             href="#"
-            className="uppercase font-bold md:text-lg text-sm mb-8 text-main flex md:justify-start justify-center items-center"
+            className="uppercase font-bold md:text-lg text-xs mb-8 text-main flex md:justify-start justify-center items-center"
           >
             Information for participants and parents{" "}
             <RiArrowDropRightLine size={35} />

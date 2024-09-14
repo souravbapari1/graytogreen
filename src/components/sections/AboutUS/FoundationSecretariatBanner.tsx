@@ -19,7 +19,7 @@ function FoundationSecretariatBanner() {
           <h1 className="lg:text-3xl text-xl font-bold text-white">
             Plant-for-the-Planet Foundation Secretariat
           </h1>
-          <p className="pr-20 lg:text-xl  mt-10 text-white/75 ">
+          <p className="lg:pr-20 lg:text-xl  mt-10 text-white/75 ">
             As the secretariat of the Plant-for-the-Planet Foundation, we
             support young people in achieving their ambitious goals. Our main
             activities are: partnerships and donor support, events, academies,

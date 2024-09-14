@@ -10,15 +10,15 @@ function AboutOurTeam() {
   return (
     <div className="flex flex-col justify-center items-center text-center mt-10 container">
       <h1
-        className={`${montserrat.className} text-5xl font-bold text-center capitalize`}
+        className={`${montserrat.className} text-2xl lg:text-5xl font-bold text-center capitalize`}
       >
         our team shaping the <span className="text-main">earth</span>
       </h1>
-      <p className="text-center text-xl max-w-[800px] mt-8 ">
+      <p className="text-center md:text-xl text-md max-w-[800px] mt-8 ">
         Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
         tempor incididunt ut labore et dolore magna aliqua.
       </p>
-      <div className="grid xl:grid-cols-4 grid-cols-2  md:gap-14 gap-8 mt-24">
+      <div className="grid xl:grid-cols-4 md:grid-cols-2  md:gap-14 gap-8 mt-24">
         {Array.from({ length: 4 }).map((e, i) => {
           return (
             <div className="">

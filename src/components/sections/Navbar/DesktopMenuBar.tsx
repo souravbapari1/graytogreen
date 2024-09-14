@@ -4,6 +4,8 @@ import React from "react";
 import { RiArrowUpSLine } from "react-icons/ri";
 import { navData } from "./navData";
 import NavLink from "./NavLink";
+import { cn } from "@/lib/utils";
+import { montserrat } from "@/fonts/font";
 
 function DesktopMenuBar() {
   return (
@@ -39,7 +41,12 @@ function DesktopMenuBar() {
                         <h1 className="text-gray-600/40 uppercase font-semibold mb-2 macAir:text-sm text-xs">
                           {menu.title}
                         </h1>
-                        <div className="flex flex-col  justify-start gap-3">
+                        <div
+                          className={cn(
+                            "flex flex-col  justify-start gap-3",
+                            e.className
+                          )}
+                        >
                           {menu.list.map((e, i) => {
                             return (
                               <NavLink
@@ -49,11 +56,13 @@ function DesktopMenuBar() {
                                 <p>
                                   <span className="text-sm mr-3 ">
                                     {e.icon}
-                                  </span>{" "}
+                                  </span>
                                   {e.title}
                                 </p>
-                                {e.subtitle != "" && (
-                                  <p className="font-semibold mt-1 text-xs text-gray-700">
+                                {e.subtitle && (
+                                  <p
+                                    className={` mt-1 font-light text-xs text-gray-600 mb-5 ${montserrat.className}`}
+                                  >
                                     {e.subtitle}
                                   </p>
                                 )}

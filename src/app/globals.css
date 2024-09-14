@@ -185,3 +185,45 @@ a.ytp-impression-link {
   filter: FlipH;
   -ms-filter: "FlipH";
 }
+/* width */
+::-webkit-scrollbar {
+  width: 2px;
+  position: fixed;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  border-radius: 0px;
+  background-color: transparent;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: rgb(95, 149, 95);
+  border-radius: 50px;
+}
+/* MApBox Css */
+
+.mapboxgl-popup.mapboxgl-popup-anchor-bottom {
+  max-width: 100% !important;
+  background-color: transparent !important;
+  box-shadow: none !important;
+}
+.mapboxgl-popup-content {
+  padding: 0px !important;
+  background-color: transparent !important;
+  box-shadow: none !important;
+}
+
+*,
+*:focus,
+*:hover {
+  outline: none !important;
+}
+
+button.mapboxgl-popup-close-button {
+  display: none !important;
+}
+
+button.nav.default-nav {
+}

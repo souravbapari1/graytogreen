@@ -6,7 +6,9 @@ import React from "react";
 function FunctionalDiversityRestoration() {
   return (
     <div className="container">
-      <h1 className={`text-4xl font-bold text-center ${montserrat.className}`}>
+      <h1
+        className={`md:text-4xl text-2xl font-bold text-center ${montserrat.className}`}
+      >
         Functional Diversity <span className="text-main">Restoration</span>
       </h1>
       <div className="grid md:grid-cols-2 gap-10 mt-10">
@@ -22,7 +24,7 @@ function FunctionalDiversityRestoration() {
             />
           </div>
         </div>
-        <p className={`text-xl mt-10 ${montserrat.className}`}>
+        <p className={`md:text-xl mt-10 ${montserrat.className}`}>
           How can we build optimal species mixes that catalyze the recovery of
           resilient forests and help ensure that the right trees are planted in
           the right places? <br />
@@ -41,9 +43,7 @@ function FunctionalDiversityRestoration() {
           biodiversity, provisioning of ecosystem services, and in the
         </p>
       </div>
-      <p
-        className={`md:text-2xl text-lg mb-5 mt-5 ${montserrat.className} lg:p-8`}
-      >
+      <p className={`md:text-2xl  mb-5 mt-5 ${montserrat.className} lg:p-8`}>
         long-term, stand-level resilience to climate change. This will provide
         insights into patterns of ecosystem recovery under different
         compositions and combinations of planted tree species. By grouping
@@ -70,12 +70,12 @@ function FunctionalDiversityRestoration() {
 
         <div className="">
           <h1
-            className={`text-3xl font-bold uppercase ${montserrat.className}`}
+            className={`md:text-3xl text-2xl font-bold uppercase ${montserrat.className}`}
           >
             Neutral vs Niche Theory: What drives tree diversity in secondary
             forests?
           </h1>
-          <p className={`text-xl mt-10 ${montserrat.className}`}>
+          <p className={`md:text-xl mt-10 ${montserrat.className}`}>
             What are the underlying processes that generate tree diversity in
             tropical dry forests that have been impacted by human land use? Anna
             Gee, a Ph.D. student from Imperial College, London aims to answer

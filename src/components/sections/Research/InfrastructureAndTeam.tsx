@@ -6,7 +6,7 @@ function InfrastructureAndTeam() {
   return (
     <div className=" py-32">
       <h1
-        className={`md:text-5xl text-3xl font-bold ${montserrat.className} text-center`}
+        className={`md:text-5xl text-2xl font-bold ${montserrat.className} text-center`}
       >
         Infrastructure & Team
       </h1>

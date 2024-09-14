@@ -8,12 +8,12 @@ function Foundation() {
     <div className="w-full  shadow-lg bg-gradient-to-br from-[rgba(160,249,138,0.2)] via-[rgba(219,255,213,0)] to-[rgba(187,249,138,0.2)] mt-20 py-10">
       <div className="container flex justify-center items-center flex-col">
         <h1
-          className={`${montserrat.className} text-4xl font-bold text-center`}
+          className={`${montserrat.className} md:text-4xl text-2xl font-bold text-center`}
         >
           The <span className="text-gray-700">Grey</span> to{" "}
           <span className="text-main">Green</span> Foundation
         </h1>
-        <p className="text-center text-xl max-w-[800px] mt-2 ">
+        <p className="text-center md:text-xl max-w-[800px] mt-2 ">
           The Foundation Council oversees and reviews the Foundation in
           strategic and operational matters.
         </p>

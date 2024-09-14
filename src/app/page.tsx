@@ -1,9 +1,6 @@
 import React from "react";
 
 import Navbar from "@/components/sections/Navbar/Navbar";
-const delay = (ms: number) => new Promise((resolve) => setTimeout(resolve, ms));
-
-import Loading from "./loading";
 import HomeHeaderSlide from "@/components/sections/Home/slides/HomeHeaderSlide";
 import OurPartners from "@/components/sections/Home/OurPartners/OurPartners";
 import DonateBanner from "@/components/sections/Home/DonateBanner/DonateBanner";
@@ -16,13 +13,25 @@ import ProtectingAndRestoring from "@/components/sections/Home/DonateBanner/Prot
 import FooterTop from "@/components/sections/Footer/FooterTop";
 import Footer from "@/components/sections/Footer/Footer";
 
-async function page() {
-  await delay(3000);
+import { montserrat } from "@/fonts/font";
+import GGMapBox from "@/components/GMapBox/GGMapBox";
 
+async function page() {
   return (
     <div>
       <Navbar />
       <HomeHeaderSlide />
+      <div className="container my-20">
+        <h1
+          className={`lg:text-5xl text-2xl font-bold text-center mb-20 mt-20 ${montserrat.className}`}
+        >
+          295+ Projects united{" "}
+          <span className="text-main">to bring back a Trillion Trees.</span>
+          <p className="mt-2 ">Donate Now!</p>
+        </h1>
+
+        <GGMapBox disableScroll />
+      </div>
       <OurPartners />
       <DonateBanner />
       <PlatformToolsBanner />

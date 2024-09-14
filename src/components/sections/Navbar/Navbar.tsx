@@ -42,7 +42,7 @@ function Navbar() {
                 width={200}
                 height={200}
                 alt="logo"
-                className="w-auto object-contain md:h-20 h-16 py-3 pb-5"
+                className="w-auto object-contain md:h-20 h-16 py-3 mb:pb-5"
               />
             </Link>
           </div>

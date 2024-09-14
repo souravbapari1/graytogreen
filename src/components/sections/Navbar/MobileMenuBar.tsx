@@ -2,7 +2,7 @@
 
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
 import { RiMenu2Line } from "react-icons/ri";
-import { navData, subMenuDataType } from "./navData";
+import { navData, ServicesMenuItems } from "./navData";
 import Link from "next/link";
 import {
   MdKeyboardArrowRight,
@@ -11,7 +11,7 @@ import {
 import { useState } from "react";
 
 function MobileMenuBar() {
-  const [index, setIndex] = useState<null | subMenuDataType>(null);
+  const [index, setIndex] = useState<null | ServicesMenuItems[]>(null);
 
   return (
     <Sheet>

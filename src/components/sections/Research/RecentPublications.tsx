@@ -9,7 +9,7 @@ function RecentPublications() {
     <>
       <div className="container py-20 flex flex-col justify-center items-center">
         <h1
-          className={`${montserrat.className} text-4xl font-bold text-center`}
+          className={`${montserrat.className} md:text-4xl text-3xl font-bold text-center`}
         >
           Recent <span className="text-main">Publications</span>
         </h1>

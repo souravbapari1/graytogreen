@@ -7,7 +7,7 @@ function OngoingResearch() {
     <div className="bg-green-50/50 w-full  shadow-md py-20 mt-10">
       <div className="container gap-10 ">
         <h1
-          className={`${montserrat.className} text-4xl text-center font-bold `}
+          className={`${montserrat.className} md:text-4xl text-3xl text-center font-bold `}
         >
           <span className="text-main">Ongoing</span> Research
         </h1>
@@ -26,7 +26,7 @@ function OngoingResearch() {
           </div>
           <div className="flex justify-center flex-col items-start gap-5">
             <h1
-              className={`${montserrat.className} text-3xl uppercase text-center font-bold `}
+              className={`${montserrat.className} md:text-3xl text-2xl uppercase text-center font-bold `}
             >
               Planting Density Optimisation
             </h1>

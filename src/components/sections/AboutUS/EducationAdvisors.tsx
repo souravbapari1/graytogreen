@@ -6,10 +6,12 @@ import React from "react";
 function EducationAdvisors() {
   return (
     <div className="container flex justify-center items-center flex-col my-32">
-      <h1 className={`${montserrat.className} text-4xl font-bold text-center`}>
+      <h1
+        className={`${montserrat.className} md:text-4xl text-2xl font-bold text-center`}
+      >
         <span className="text-main">Educational</span> Advisors
       </h1>
-      <p className="text-center text-xl max-w-[800px] mt-2 ">
+      <p className="text-center md:text-xl max-w-[800px] mt-2 ">
         The Board of Directors exercises overall responsibility for the
         policies, programs, and direction of Plant-for-the-Planet Foundation.
       </p>

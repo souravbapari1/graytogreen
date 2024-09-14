@@ -9,10 +9,12 @@ function RestorationAdviceTeam() {
     <div className="bg-green-50/50 md:py-20 py-5 mt-10">
       <div className="container grid lg:grid-cols-2 gap-8">
         <div className="mt-16">
-          <h1 className={`text-4xl font-bold ${montserrat.className}`}>
+          <h1
+            className={`md:text-4xl text-2xl font-bold ${montserrat.className}`}
+          >
             <span className={` text-main`}>Restoration</span> Advice Team
           </h1>
-          <p className="text-xl mt-5">
+          <p className="md:text-xl mt-5">
             Nested within the Empowerment & Restoration Research Park is our
             Restoration Advice Team. We are building this team of experienced
             restoration ecologists to provide actionable restoration advice for
