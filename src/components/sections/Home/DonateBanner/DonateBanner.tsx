@@ -68,7 +68,7 @@ function DonateBanner() {
             Climate Justice Ambassadors: <br />
             <span className="text-main">We Make Ourselves Heard</span>
           </h1>
-          <p className="md:text-xl  mt-5">
+          <p className="md:text-lg  mt-5">
             Over 100,273 children and youth have already been trained at 1,866
             academies in 76 countries, where we teach each other about the
             climate crisis. As Climate Justice Ambassadors we fight for our
@@ -84,25 +84,25 @@ function DonateBanner() {
         </div>
 
         <div className="relative md:p-10 flex justify-center items-center">
-          <div className="w-[90%] h-48 md:h-[380px] bg-green-700/20 absolute -z-[1] lg:ml-12 ml-10 rounded-2xl mb-10"></div>
+          <div className="w-[90%] h-48 md:h-[320px] bg-green-700/20 absolute -z-[1] lg:ml-12 ml-10 rounded-2xl mb-10"></div>
           <Image
             src="https://www.plant-for-the-planet.org/wp-content/uploads/2022/06/Trillion-Trees-Map.jpg"
             width={1200}
             height={1200}
             alt=""
-            className="md:w-full w-[90%]  md:h-[380px]  rounded-2xl object-cover h-48  "
+            className="md:w-full w-[90%]  md:h-[320px]  rounded-2xl object-cover h-48  "
           />
         </div>
       </div>
       <div className="container grid lg:grid-cols-2 gap-10 mt-12">
         <div className="relative md:p-10 flex justify-center items-center">
-          <div className="w-[90%] h-48 md:h-[380px] bg-green-700/20 absolute -z-[1] lg:ml-12 ml-10 rounded-2xl mb-10"></div>
+          <div className="w-[90%] h-48 md:h-[320px] bg-green-700/20 absolute -z-[1] lg:ml-12 ml-10 rounded-2xl mb-10"></div>
           <Image
             src="https://www.plant-for-the-planet.org/wp-content/uploads/2022/06/Trillion-Trees-Map.jpg"
             width={1200}
             height={1200}
             alt=""
-            className="md:w-full w-[90%]  md:h-[380px]  rounded-2xl object-cover h-48  "
+            className="md:w-full w-[90%]  md:h-[320px]  rounded-2xl object-cover h-48  "
           />
         </div>
         <div className="md:text-left text-center md:mt-20">
@@ -111,7 +111,7 @@ function DonateBanner() {
           >
             Well thought out well done
           </h1>
-          <p className="md:text-xl  mt-5">
+          <p className="md:text-lg  mt-5">
             Over 100,273 children and youth have already been trained at 1,866
             academies in 76 countries, where we teach each other about the
             climate crisis. As Climate Justice Ambassadors we fight for our

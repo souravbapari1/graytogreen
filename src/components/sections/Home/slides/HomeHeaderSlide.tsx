@@ -28,7 +28,7 @@ function HomeHeaderSlide() {
                     loop={true}
                     className="w-full h-full object-cover absolute top-0 right-0 bg-green-50"
                   />
-                  <div className="w-full h-full z-10 flex justify-center items-center p-20 mt-12 text-center  md:text-5xl font-extrabold text-xl">
+                  <div className="w-full h-full z-10 flex justify-center items-center p-20 mt-12 text-center  md:text-4xl font-extrabold text-xl">
                     <h1>
                       The world had 3 trillion trees. But do you know where they
                       are?

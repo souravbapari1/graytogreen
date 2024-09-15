@@ -13,7 +13,7 @@ import { Button } from "@/components/ui/button";
 function OurSponsor() {
   return (
     <div className={` ${montserrat.className} container overflow-hidden`}>
-      <h1 className="md:text-5xl text-3xl md:mt-16 mt-10 font-extrabold text-center">
+      <h1 className="md:text-4xl text-3xl md:mt-16 mt-10 font-extrabold text-center">
         Our <span className="text-main ">Sponsor</span>
       </h1>
       <Marquee className="">
@@ -50,23 +50,23 @@ function OurSponsor() {
       <div className="flex flex-col justify-center items-center gap-10">
         <div className="grid lg:grid-cols-2 gap-10 mt-12">
           <div className="relative md:p-10 flex justify-center items-center">
-            <div className="w-[90%] h-48 md:h-[480px] bg-green-700/20 absolute -z-[1] lg:mr-12 mr-10 rounded-2xl mb-10"></div>
+            <div className="w-[90%] h-48 md:h-[400px] bg-green-700/20 absolute -z-[1] lg:mr-12 mr-10 rounded-2xl mb-10"></div>
             <Image
               src="https://www.plant-for-the-planet.org/wp-content/uploads/2020/12/20190919_ac_curitiba_19-scaled.jpg"
               width={1200}
               height={1200}
               alt=""
-              className="md:w-full w-[90%]  md:h-[480px]  rounded-2xl object-cover h-48  "
+              className="md:w-full w-[90%]  md:h-[400px]  rounded-2xl object-cover h-48  "
             />
           </div>
           <div className="md:text-left text-center md:mt-5">
             <h1
-              className={`${montserrat.className} font-extrabold uppercase lg:text-5xl text-2xl`}
+              className={`${montserrat.className} font-extrabold uppercase lg:text-4xl text-2xl`}
             >
               Why we need to be <br /> more{" "}
               <span className="text-main">sustianable</span>
             </h1>
-            <p className="md:text-xl  mt-5">
+            <p className="  mt-4">
               The world currently has three trillion trees and has space for a
               trillion more. Trees are one of the most powerful tools that buy
               us time in the fight against the climate crisis. Only by restoring
@@ -75,15 +75,15 @@ function OurSponsor() {
             </p>
             <Link
               href="#"
-              className="uppercase font-bold text-main mt-5 flex md:justify-start justify-center items-center"
+              className="uppercase font-bold text-main mt-3 flex md:justify-start justify-center items-center"
             >
               Learn More About Our Vision <RiArrowDropRightLine size={35} />
             </Link>
-            <div className="grid md:grid-cols-2 gap-4 md:mt-6 mt-4 ">
+            <div className="grid md:grid-cols-2 gap-4 md:mt-2 mt-4 ">
               {Array.from({ length: 2 }).map((_, i) => {
                 return (
                   <div
-                    className=" bg-green-50/50  rounded-xl p-7 shadow-md shadow-green-50/20 transition-all flex flex-col justify-start items-start gap-2"
+                    className=" bg-green-50/50  rounded-xl p-5 shadow-md shadow-green-50/20 transition-all flex flex-col justify-start items-start gap-2"
                     key={i}
                   >
                     <p className="font-semibold text-green-950">

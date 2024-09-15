@@ -5,7 +5,7 @@ function LatestVideos() {
   return (
     <div className="container mt-20">
       <h1
-        className={`${montserrat.className} md:text-6xl text-center text-4xl font-bold`}
+        className={`${montserrat.className} md:text-5xl text-center text-4xl font-bold`}
       >
         Latest <span className="text-main">Videos</span>
       </h1>
@@ -21,7 +21,7 @@ function LatestVideos() {
               allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
               referrerPolicy="strict-origin-when-cross-origin"
               allowFullScreen
-              className="w-full lg:h-80 md:h-56 h-48 rounded-3xl object-cover"
+              className="w-full lg:h-64 md:h-56 h-48 rounded-3xl object-cover"
             ></iframe>
           );
         })}

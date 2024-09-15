@@ -24,7 +24,7 @@ async function page() {
       <HomeHeaderSlide />
       <div className="container my-20">
         <h1
-          className={`lg:text-5xl text-2xl font-bold text-center mb-20 mt-20 ${montserrat.className}`}
+          className={`lg:text-4xl text-2xl font-bold text-center mb-20 mt-20 ${montserrat.className}`}
         >
           295+ Projects united{" "}
           <span className="text-main">to bring back a Trillion Trees.</span>

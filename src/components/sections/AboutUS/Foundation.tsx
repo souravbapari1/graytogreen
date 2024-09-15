@@ -16,7 +16,7 @@ function Foundation() {
           The <span className="text-gray-700">Grey</span> to{" "}
           <span className="text-main">Green</span> Foundation
         </h1>
-        <p className="text-center md:text-xl max-w-[800px] mt-2 ">
+        <p className="text-center max-w-[600px] mt-4 ">
           The Foundation Council oversees and reviews the Foundation in
           strategic and operational matters.
         </p>

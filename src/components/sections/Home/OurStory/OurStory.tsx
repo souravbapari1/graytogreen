@@ -11,19 +11,19 @@ function OurStory() {
       <div className="flex lg:flex-row flex-col lg:justify-between justify-center items-center text-center lg:text-left gap-5 lg:items-center">
         <div className="">
           <h1
-            className={`${montserrat.className} md:text-6xl text-4xl font-bold`}
+            className={`${montserrat.className} md:text-5xl text-4xl font-bold`}
           >
             How it <span className="text-main">works</span>
           </h1>
           <p
-            className={`${montserrat.className} md:text-lg max-w-[500px] mt-3 font-bold`}
+            className={`${montserrat.className}  max-w-[500px] mt-3 font-bold`}
           >
             From Grey to Green: Our Journey to Protect the Environment and
             Reclaim Nature by Planting Trees.
           </p>
         </div>
         <div className="">
-          <Button className="donateBtn border-none rounded-full md:text-xl md:px-10 px-8 md:py-7 py-5">
+          <Button className="donateBtn border-none rounded-full md:text-lg md:px-10 px-8 md:py-7 py-5">
             Support Us
           </Button>
         </div>

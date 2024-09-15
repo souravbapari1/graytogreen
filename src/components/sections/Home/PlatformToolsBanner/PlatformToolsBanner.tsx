@@ -11,12 +11,12 @@ function PlatformToolsBanner() {
       <div className="container grid lg:grid-cols-2 gap-10 ">
         <div className="flex flex-col gap-5">
           <h1
-            className={`${montserrat.className} uppercase md:text-5xl text-3xl  font-bold`}
+            className={`${montserrat.className} uppercase md:text-4xl text-3xl  font-bold`}
           >
             The <span className="text-main">gray to green</span> <br />
             Platforms
           </h1>
-          <p className="text-xl">
+          <p className="">
             A free software toolset to fund, manage and monitor forest
             restoration. Used by over 300 projects around the world. Get started
             within minutes.
@@ -33,7 +33,7 @@ function PlatformToolsBanner() {
           width={1200}
           height={1200}
           alt=""
-          className="h-80 object-contain"
+          className="h-72 object-contain"
         />
       </div>
       <div className=" mt-32 w-full relative bg-gradient-to-r from-green-500 to-emerald-700   lg:h-64 py-8">

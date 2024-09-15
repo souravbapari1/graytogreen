@@ -14,7 +14,7 @@ function BordOfDirectors() {
       >
         Board of Directors
       </h1>
-      <p className="text-center md:text-xl max-w-[800px] mt-2 ">
+      <p className="text-center max-w-[800px] mt-4 ">
         The Board of Directors exercises overall responsibility for the
         policies, programs, and direction of Plant-for-the-Planet Foundation.
       </p>

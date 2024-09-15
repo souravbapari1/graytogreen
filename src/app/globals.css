@@ -87,7 +87,7 @@
     @apply bg-background text-foreground;
   }
   .container {
-    @apply mx-auto max-w-[1900px] md:px-20 px-4 !important;
+    @apply mx-auto max-w-[1550px] md:px-20 px-4 !important;
   }
   .donateBtn {
     @apply bg-gradient-to-r from-green-500 to-emerald-600 rounded-full shadow-md shadow-green-400/60 border-none md:px-8 px-5   font-extrabold text-white/85;

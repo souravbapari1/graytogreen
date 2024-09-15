@@ -7,12 +7,12 @@ function ProtectingAndRestoring() {
     <div className="w-full  shadow-lg bg-gradient-to-br from-[rgba(160,249,138,0.2)] via-[rgba(219,255,213,0)] to-[rgba(187,249,138,0.2)]  py-10">
       <div className="container flex justify-center items-center text-center flex-col md:gap-6 gap-4 py-10">
         <h1
-          className={`lg:text-5xl text-2xl font-bold capitalize max-w-[1000px] ${montserrat.className}`}
+          className={`lg:text-4xl text-2xl font-bold capitalize max-w-[1000px] ${montserrat.className}`}
         >
           Protecting and restoring <span className="text-main">our planet</span>{" "}
           with <span className="text-main">one trillion new trees.</span>
         </h1>
-        <p className="text-lg max-w-[700px]">
+        <p className=" max-w-[700px]">
           We believe that we need to protect the world’s three trillion trees
           and bring back a further one trillion trees
         </p>

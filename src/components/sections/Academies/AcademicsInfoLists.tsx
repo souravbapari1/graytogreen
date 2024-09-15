@@ -11,7 +11,7 @@ function AcademicsInfoLists() {
       <div className="container mt-32">
         {/* ======≠≠===========≠≠≠≠≠≠≠≠≠≠≠=========== */}
         <div className="grid md:grid-cols-2 gap-6">
-          <div className=" lg:mt-10 mt-4 flex flex-col justify-center items-start">
+          <div className="  flex flex-col justify-center items-start">
             <h1
               className={`lg:text-3xl text-2xl  lg:mb-10 mb-5 font-bold uppercase ${montserrat.className}`}
             >
@@ -22,7 +22,7 @@ function AcademicsInfoLists() {
               </span>{" "}
               and <span className="text-main">Mother Earth</span>
             </h1>
-            <p className="lg:text-xl text-gray-700 ">
+            <p className=" text-gray-700 ">
               We offer skill-based training programs, workshops, bootcamps,
               practical resources and expert sessions designed to empower
               participants to join the sustainability workforce and become
@@ -52,13 +52,13 @@ function AcademicsInfoLists() {
               >
                 Equip
               </div>
-              <div className="w-[90%] h-64 md:h-[480px] bg-green-700/20 absolute -z-[1] lg:mr-12 mr-10 rounded-2xl mb-10"></div>
+              <div className="w-[90%] h-64 md:h-[380px] bg-green-700/20 absolute -z-[1] lg:mr-12 mr-10 rounded-2xl mb-10"></div>
               <Image
                 src="https://images.pexels.com/photos/1072824/pexels-photo-1072824.jpeg?cs=srgb&dl=pexels-akilmazumder-1072824.jpg&fm=jpg"
                 width={1200}
                 height={1200}
                 alt=""
-                className="md:w-full w-[90%]  md:h-[480px]  rounded-2xl object-cover h-64  "
+                className="md:w-full w-[90%]  md:h-[380px]  rounded-2xl object-cover h-64  "
               />
             </div>
           </div>
@@ -70,7 +70,7 @@ function AcademicsInfoLists() {
         <div className="w-full h-full bg-black/50 flex justify-center items-center">
           <div className="container grid lg:grid-cols-5 md:grid-cols-3 grid-cols-1 gap-10 py-20 text-white">
             <div className=" text-center flex flex-col justify-center items-center gap-5">
-              <h1 className="md:text-8xl text-5xl font-bold text-center">
+              <h1 className="md:text-7xl text-5xl font-bold text-center">
                 11+
               </h1>
               <p
@@ -80,7 +80,7 @@ function AcademicsInfoLists() {
               </p>
             </div>
             <div className=" text-center flex flex-col justify-center items-center gap-5">
-              <h1 className="md:text-8xl text-5xl font-bold text-center">
+              <h1 className="md:text-7xl text-5xl font-bold text-center">
                 23+
               </h1>
               <p
@@ -90,7 +90,7 @@ function AcademicsInfoLists() {
               </p>
             </div>
             <div className=" text-center flex flex-col justify-center items-center gap-5">
-              <h1 className="md:text-8xl text-5xl font-bold text-center">
+              <h1 className="md:text-7xl text-5xl font-bold text-center">
                 100+
               </h1>
               <p
@@ -100,7 +100,7 @@ function AcademicsInfoLists() {
               </p>
             </div>
             <div className=" text-center flex flex-col justify-center items-center gap-5">
-              <h1 className="md:text-8xl text-5xl font-bold text-center">7+</h1>
+              <h1 className="md:text-7xl text-5xl font-bold text-center">7+</h1>
               <p
                 className={`${montserrat.className} text-xl text-center text-white/75`}
               >
@@ -108,7 +108,7 @@ function AcademicsInfoLists() {
               </p>
             </div>
             <div className=" text-center flex flex-col justify-center items-center gap-5">
-              <h1 className="md:text-8xl text-5xl font-bold text-center">
+              <h1 className="md:text-7xl text-5xl font-bold text-center">
                 12+
               </h1>
               <p
@@ -122,63 +122,65 @@ function AcademicsInfoLists() {
         {/* ======≠≠===========≠≠≠≠≠≠≠≠≠≠≠=========== */}
       </div>
 
-      <div className="container">
-        <div className="grid lg:grid-cols-2 lg:gap-16 gap-10 md:my-36 py-10 ">
-          {[
-            {
-              image:
-                "https://upload.wikimedia.org/wikipedia/commons/1/19/High_school_students%2C_SAS_Pudong.jpg",
-              title: "Green Kids Academy",
-              link: "#",
-            },
-            {
-              image:
-                "https://caias.in/wp-content/uploads/2020/12/iStock-1210745478-conflicted-scaled-1.jpg",
-              title: "Sustainable Youth Academy",
-              link: "#",
-            },
-            {
-              image:
-                "https://www.utility.rentals/wp-content/uploads/2020/01/Spruce-up-your-science-lab.jpg",
-              title: "Experiments, Innovation and Researches Labs",
-              link: "#",
-            },
-            {
-              image:
-                "https://www.ulektznews.com/wp-content/uploads/2021/09/DU-Makes-It-Compulsory-For-All-Students-To-Plant-Trees-From-This-Session.png",
-              title: "Training and Qualification Academy",
-              link: "#",
-            },
-          ].map((e, i) => {
-            return (
-              <div
-                key={"type:_" + i}
-                className="w-full lg:h-[500px] h-64 bg-green-200 rounded-3xl hover:shadow-lg transition-all overflow-hidden relative"
-              >
-                <Image
-                  src={e.image}
-                  alt=""
-                  width={3000}
-                  height={3000}
-                  className="w-full h-full object-cover absolute top-0 right-0"
-                />
-                <div className="w-full h-full bg-black absolute top-0 right-0 bg-black/30"></div>
-                <div className="absolute bottom-0 md:p-10 p-5">
-                  <h1
-                    className={`${montserrat.className} md:text-3xl text-2xl text-white font-extrabold `}
-                  >
-                    {e.title}
-                  </h1>
-                  <Link
-                    href={e.link}
-                    className="donateBtn w-40 h-12 shadow-none mt-5 flex justify-center items-center"
-                  >
-                    View More
-                  </Link>
+      <div className="container ">
+        <div className="w-full mx-auto  ">
+          <div className="grid lg:grid-cols-2 max-w-[900px] mx-auto items-center  gap-10 md:my-20 py-10 ">
+            {[
+              {
+                image:
+                  "https://upload.wikimedia.org/wikipedia/commons/1/19/High_school_students%2C_SAS_Pudong.jpg",
+                title: "Green Kids Academy",
+                link: "#",
+              },
+              {
+                image:
+                  "https://caias.in/wp-content/uploads/2020/12/iStock-1210745478-conflicted-scaled-1.jpg",
+                title: "Sustainable Youth Academy",
+                link: "#",
+              },
+              {
+                image:
+                  "https://www.utility.rentals/wp-content/uploads/2020/01/Spruce-up-your-science-lab.jpg",
+                title: "Experiments, Innovation and Researches Labs",
+                link: "#",
+              },
+              {
+                image:
+                  "https://www.ulektznews.com/wp-content/uploads/2021/09/DU-Makes-It-Compulsory-For-All-Students-To-Plant-Trees-From-This-Session.png",
+                title: "Training and Qualification Academy",
+                link: "#",
+              },
+            ].map((e, i) => {
+              return (
+                <div
+                  key={"type:_" + i}
+                  className="w-full lg:h-[250px] h-32 bg-green-200 rounded-3xl hover:shadow-lg transition-all overflow-hidden relative"
+                >
+                  <Image
+                    src={e.image}
+                    alt=""
+                    width={3000}
+                    height={3000}
+                    className="w-full h-full object-cover absolute top-0 right-0"
+                  />
+                  <div className="w-full h-full bg-black absolute top-0 right-0 bg-black/30"></div>
+                  <div className="absolute bottom-0  p-5">
+                    <h1
+                      className={`${montserrat.className}  text-xl text-white font-extrabold `}
+                    >
+                      {e.title}
+                    </h1>
+                    <Link
+                      href={e.link}
+                      className="donateBtn w-32 p-0 h-10 text-sm shadow-none mt-5 flex justify-center items-center"
+                    >
+                      View More
+                    </Link>
+                  </div>
                 </div>
-              </div>
-            );
-          })}
+              );
+            })}
+          </div>
         </div>
       </div>
     </div>
