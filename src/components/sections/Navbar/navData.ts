@@ -228,7 +228,7 @@ export const navData: NavDataSet[] = [
     isSubmenu: false,
   },
   {
-    title: "Academies",
+    title: "Academies & Labs ",
     href: "/academies",
     isSubmenu: false,
   },

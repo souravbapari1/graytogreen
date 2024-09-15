@@ -52,7 +52,7 @@ function BlogsBanner() {
         >
           Empowering global youth to restore our planet—one tree at a time
         </p>
-        <div className="w-full grid xl:grid-cols-4 macAir:grid-cols-3 lg:grid-cols-2  grid-cols-1 gap-10">
+        <div className="w-full grid 2xl:grid-cols-4 macAir:grid-cols-3 lg:grid-cols-2  lg:px-32 grid-cols-1 gap-10">
           {Array.from({ length: 6 }).map((_, i) => {
             return (
               <div

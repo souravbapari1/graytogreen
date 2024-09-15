@@ -26,7 +26,7 @@ function AcademicsInfo() {
           >
             Academies
           </h1>
-          <p className="lg:text-2xl text-gray-700 ">
+          <p className="lg:text-xl text-gray-700 ">
             During a one-day workshop, you will learn about the climate crisis
             from your peers and train how to give presentations.  You will plant
             trees with your own hands and can do something for our future. The

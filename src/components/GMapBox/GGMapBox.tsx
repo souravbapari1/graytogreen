@@ -74,7 +74,7 @@ const GGMapBox: React.FC<{
 
   return (
     <div className="relative">
-      <div className="w-96 h-full z-10 left-0 top-0 bg-transparent absolute px-3 py-3 overflow-hidden">
+      <div className="lg:w-96 w-full h-full z-10 left-0 md:top-0  bg-transparent absolute lg:px-3 py-3 overflow-hidden">
         <div className="w-full h-full bg-white rounded-3xl shadow-xl overflow-hidden pt-3">
           <div
             className={`w-full h-12 border-b  flex text-sm justify-center gap-10 items-center font-semibold ${montserrat.className}`}
@@ -86,7 +86,7 @@ const GGMapBox: React.FC<{
             <FiSearch size={20} />
           </div>
           <div
-            className={`${montserrat.className} w-full h-full text-xs px-5  overflow-scroll pb-20`}
+            className={`${montserrat.className} w-full h-full text-xs px-5  md:overflow-scroll overflow-hidden pb-20`}
           >
             {Array.from({ length: 30 }).map((_, i) => {
               return (
