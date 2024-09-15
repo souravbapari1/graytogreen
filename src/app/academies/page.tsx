@@ -13,8 +13,8 @@ function page() {
     <div>
       <Navbar />
       <AcademicsHero />
-      <AcademicsInfo />
-      <UpcomingAcademies />
+      {/* <AcademicsInfo /> */}
+      {/* <UpcomingAcademies /> */}
       <AcademicsInfoLists />
       <FooterTop />
       <Footer />
