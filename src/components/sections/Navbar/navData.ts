@@ -26,131 +26,6 @@ export type NavDataSet =
       className?: string;
     };
 
-const servicesMenuItems: ServicesMenuItems[] = [
-  {
-    title: "Restoration Orgs",
-    list: [
-      {
-        id: "restoration-01",
-        icon: "📐",
-        title: "TreeMapper",
-        href: "#", // Add appropriate link here
-      },
-      {
-        id: "restoration-02",
-        icon: "🔥",
-        title: "FireAlert",
-        href: "#", // Add appropriate link here
-      },
-      {
-        id: "restoration-03",
-        icon: "📜",
-        title: "Restoration Standards",
-        href: "#", // Add appropriate link here
-      },
-      {
-        id: "restoration-04",
-        icon: "💡",
-        title: "Restoration Advice",
-        href: "#", // Add appropriate link here
-      },
-    ],
-  },
-  {
-    title: "Users",
-    list: [
-      {
-        id: "users-01",
-        icon: "🌱",
-        title: "Donate Trees",
-        href: "#", // Add appropriate link here
-      },
-      {
-        id: "users-02",
-        icon: "🎁",
-        title: "Gift Trees",
-        href: "#", // Add appropriate link here
-      },
-      {
-        id: "users-03",
-        icon: "📖",
-        title: "Redeem/Check Tree Status",
-        href: "#", // Add appropriate link here
-      },
-      {
-        id: "users-04",
-        icon: "💸",
-        title: "Start fundraiser",
-        href: "#", // Add appropriate link here
-      },
-      {
-        id: "users-05",
-        icon: "⚙️",
-        title: "Embed Tree Counter Widgets",
-        href: "#", // Add appropriate link here
-      },
-    ],
-  },
-  {
-    title: "Open Platform",
-    list: [
-      {
-        id: "open-platform-01",
-        icon: "💻",
-        title: "Partner Dashboard",
-        href: "#", // Add appropriate link here
-      },
-      {
-        id: "open-platform-02",
-        icon: "💰",
-        title: "PlanetCash",
-        href: "#", // Add appropriate link here
-      },
-      {
-        id: "open-platform-03",
-        icon: "🌳",
-        title: "MyForest",
-        href: "#", // Add appropriate link here
-      },
-      {
-        id: "open-platform-04",
-        icon: "🚜",
-        title: "EUDR Tracer",
-        href: "#", // Add appropriate link here
-      },
-    ],
-  },
-  {
-    title: "Companies & Institutions",
-    list: [
-      {
-        id: "companies-01",
-        icon: "💻", // Added a generic icon; replace if necessary
-        title: "Partner Dashboard",
-        href: "#", // Add appropriate link here
-      },
-      {
-        id: "companies-02",
-        icon: "💰", // Added a generic icon; replace if necessary
-        title: "PlanetCash",
-        href: "#", // Add appropriate link here
-      },
-      {
-        id: "companies-03",
-        icon: "🌳", // Added a generic icon; replace if necessary
-        title: "MyForest",
-        href: "#", // Add appropriate link here
-      },
-      {
-        id: "companies-04",
-        icon: "🚜", // Added a generic icon; replace if necessary
-        title: "EUDR Tracer",
-        href: "#", // Add appropriate link here
-      },
-    ],
-  },
-];
-
 const supportMenu: ServicesMenuItems[] = [
   {
     title: "YOU",
@@ -223,8 +98,8 @@ export const navData: NavDataSet[] = [
     isSubmenu: false,
   },
   {
-    title: "About",
-    href: "/about-us",
+    title: "Projects",
+    href: "/projects",
     isSubmenu: false,
   },
   {
@@ -233,30 +108,23 @@ export const navData: NavDataSet[] = [
     isSubmenu: false,
   },
   {
-    title: "Platform & Tools",
-    href: "#",
-    isSubmenu: true,
-    image:
-      "https://www.plant-for-the-planet.org/wp-content/uploads/2023/07/Plant-for-the-Planet-Platform-Illustration.webp",
-    submenu: servicesMenuItems,
-  },
-  {
-    title: "Research",
-    href: "/research",
+    title: "Tools & initiatives",
+    href: "/platform",
     isSubmenu: false,
   },
   {
-    title: "Support Us",
+    title: "⁠Researchs",
+    href: "/research",
+    isSubmenu: false,
+  },
+
+  {
+    title: "Impact With Us",
     href: "#",
     isSubmenu: true,
     image:
       "https://www.plant-for-the-planet.org/wp-content/uploads/2022/10/20191015_ac_curitiba_rethoricalpractice_3.jpg",
     submenu: supportMenu,
     className: "gap-1",
-  },
-  {
-    title: "Blog",
-    href: "/blogs",
-    isSubmenu: false,
   },
 ];

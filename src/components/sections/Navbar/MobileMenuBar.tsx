@@ -99,20 +99,20 @@ function MobileMenuBar() {
         {index == null && (
           <div className=" w-full py-10 ">
             <div className="lg:px-20 px-5 lg:w-auto w-full   z-50 lg:rounded-tl-full flex justify-start flex-col items-start  gap-5">
-              <Link className="" href="#">
+              <Link className="" href="/about-us">
                 About Us
               </Link>
-              <Link className="" href="#">
+              <Link className="" href="/transparency">
                 Transparency
               </Link>
               <Link className="" href="#">
                 Press
               </Link>
-              <Link className="" href="#">
+              <Link className="" href="/signin">
                 Sign In
               </Link>
               <Link
-                href="#"
+                href="/platform"
                 className="bg-white p-6 w-full text-xs rounded-xl mt-10 py-[15px] border font-bold text-green-900 flex justify-center items-center gap-2"
               >
                 <IoMdOpen size={15} />

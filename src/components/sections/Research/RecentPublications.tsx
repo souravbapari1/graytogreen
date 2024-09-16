@@ -30,7 +30,7 @@ function RecentPublications() {
               >
                 20<span className="text-main">22</span>
               </h1>
-              <p className="lg:text-xl mb-20">
+              <p className="lg:text-lg mb-20">
                 Averill, C., Anthony, M.A., Baldrian, P. et al. Defending
                 Earth’s terrestrial microbiome. Nat Microbiol
                 (2022). https://doi.org/10.1038/s41564-022-01228-3 We argue for
@@ -55,7 +55,7 @@ function RecentPublications() {
               >
                 20<span className="text-main">21</span>
               </h1>
-              <p className=" lg:text-xl">
+              <p className=" lg:text-lg">
                 Díaz-Páez, M., Werden, L.K., Zahawi, R.A., Usuga, J. and
                 Polanía, J., 2021. Vegetative propagation of native tree
                 species: an alternative restoration strategy for the tropical

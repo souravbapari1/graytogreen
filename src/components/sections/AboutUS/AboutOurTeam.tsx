@@ -5,6 +5,19 @@ import React from "react";
 import { PiInstagramLogoFill } from "react-icons/pi";
 
 import { FaLinkedinIn } from "react-icons/fa";
+const categories = [
+  "All",
+  "Empowerment",
+  "Chocolate",
+  "Communications",
+  "Corporate Partnerships",
+  "Institutional Fundraising",
+  "International",
+  "Logistics",
+  "Management",
+  "Private Sponsorship",
+  "Platform",
+];
 
 function AboutOurTeam() {
   return (
@@ -18,8 +31,21 @@ function AboutOurTeam() {
         Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
         tempor incididunt ut labore et dolore magna aliqua.
       </p>
+      <div className="flex justify-center items-center gap-5 gap-x-10 mt-10 flex-wrap  ">
+        {categories.map((e, i) => {
+          return (
+            <p
+              className={`${montserrat.className} ${
+                i == 0 ? "underline text-main" : null
+              } lg:text-base text-xs font-bold hover:underline text-gray-600 text-nowrap underline-offset-1 under cursor-pointer`}
+            >
+              {e}
+            </p>
+          );
+        })}
+      </div>
       <div className="grid xl:grid-cols-4 md:grid-cols-2   gap-8 mt-24">
-        {Array.from({ length: 4 }).map((e, i) => {
+        {Array.from({ length: 8 }).map((e, i) => {
           return (
             <div className="">
               <Image
@@ -27,7 +53,7 @@ function AboutOurTeam() {
                 width={3200}
                 height={3200}
                 alt=""
-                className="w-full md:h-[420px] h-[300px] object-cover rounded-3xl"
+                className="w-full md:h-[420px] bg-gray-100 h-[300px] object-cover rounded-3xl"
               />
               <div className="flex justify-between py-6  px-2">
                 <div className="">
