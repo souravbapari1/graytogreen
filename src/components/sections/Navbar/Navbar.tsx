@@ -8,9 +8,9 @@ import { IoMdOpen } from "react-icons/io";
 
 function Navbar() {
   return (
-    <div className="sticky top-0 right-0 z-40">
+    <div className="sticky top-0 right-0 z-40  lg:shadow-none shadow-md shadow-gray-950/5">
       <div className="w-full flex bg-white z-50 justify-end items-end">
-        <div className="lg:px-20 px-5 lg:w-auto w-full h-10 text-sm bg-[#68B030]/20 z-50 lg:rounded-tl-full flex justify-end items-center gap-10">
+        <div className="lg:px-20 md:px-5 lg:w-auto w-full h-8 text-xs bg-[#68B030]/20 z-50 lg:rounded-tl-full flex justify-end items-center gap-10">
           <Link className="lg:block hidden" href="#">
             About Us
           </Link>
@@ -25,14 +25,14 @@ function Navbar() {
           </Link>
           <Link
             href="#"
-            className="bg-white p-4 text-xs rounded-full py-[6px] font-bold text-green-900 flex justify-center items-center gap-2"
+            className="bg-white p-4 text-xs md:rounded-full md:py-[5px] py-[8px] font-bold text-green-900 flex justify-center items-center gap-2"
           >
             <IoMdOpen size={15} />
             <p> Open Platform</p>
           </Link>
         </div>
       </div>
-      <div className="w-full h-16 overflow-hidden bg-white  border-b border-b-green-950/5 z-40 ">
+      <div className="w-full h-14 overflow-hidden bg-white  border-b border-b-green-950/5 z-40 ">
         <div className="container flex justify-between items-center w-full h-full">
           <div className="lg:w-44 flex justify-start items-center gap-3 h-full ">
             <MobileMenuBar />
@@ -42,7 +42,7 @@ function Navbar() {
                 width={200}
                 height={200}
                 alt="logo"
-                className="w-auto object-contain md:h-20 h-16 py-3 mb:pb-5"
+                className="w-auto object-contain md:h-[65px] lg:-mt-3 h-16 py-3 mb:pb-5"
               />
             </Link>
           </div>

@@ -11,7 +11,7 @@ function AcademicsHero() {
         >
           Become an Climate Change Ambassador
         </h1>
-        <p className="max-w-[900px] text-center">
+        <p className="max-w-[900px] text-center lg:text-xl text-sm ">
           Only talking won't stop glaciers from melting! Everyone is talking
           about the climate crisis. But what is actually happening there? And
           what can we children do about it?

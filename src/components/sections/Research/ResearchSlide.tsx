@@ -26,7 +26,7 @@ function ResearchSlide() {
               alt=""
             />
             <div className="bg-main/70 w-full h-full absolute top-0 right-0"></div>
-            <div className="container flex justify-center items-center relative text-white md:text-3xl font-bold h-full text-center">
+            <div className="container flex justify-center items-center relative text-white md:text-xl font-bold h-full text-center">
               <h1 className={`${montserrat.className} max-w-[1200px]`}>
                 Lorem, ipsum dolor sit amet consectetur adipisicing elit.
                 Adipisci quod ipsam nostrum quis ullam nobis. Sint quae quidem

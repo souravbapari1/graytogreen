@@ -13,20 +13,20 @@ function ResearchHero() {
         className="w-64 h-64 absolute left-0 -ml-24 mt-40"
       />
 
-      <div className="grid lg:grid-cols-2 lg:gap-16 gap-8 container mt-10">
+      <div className="grid lg:grid-cols-2  gap-8 container mt-10">
         <div className="">
           <h1
-            className={montserrat.className + " lg:text-5xl text-3xl font-bold"}
+            className={montserrat.className + " lg:text-4xl text-3xl font-bold"}
           >
             <span className="text-main">Restoration</span> Research Park
           </h1>
-          <h2 className={montserrat.className + " text-xl font-bold mt-10"}>
+          <h2 className={montserrat.className + " text-xl font-bold mt-5"}>
             Center for Applied Forest Restoration Research & Advice
           </h2>
-          <h5 className={montserrat.className + " text-2xl font-light mt-10"}>
+          <h5 className={montserrat.className + " text-2xl font-light mt-5"}>
             in Mexico's Balam-Kú Ecosystem Reserve
           </h5>
-          <p className={montserrat.className + " lg:text-2xl mt-10 mb-8"}>
+          <p className={montserrat.className + " text-lg mt-10 mb-8"}>
             Planting a single tree is easy. But how do you restore vast,
             degraded forests and bring back as many of the locally lost species
             as possible? Which restoration methods are most effective in
@@ -40,13 +40,13 @@ function ResearchHero() {
         </div>
         <div className="">
           <div className="relative md:p-10 flex justify-center items-center">
-            <div className="w-[90%] h-48 md:h-[480px] bg-green-700/20 absolute -z-[1] lg:-mr-12 -mr-10 rounded-2xl mb-10"></div>
+            <div className="w-[90%] h-48 md:h-[380px] bg-green-700/20 absolute -z-[1] lg:-mr-12 -mr-10 rounded-2xl mb-10"></div>
             <Image
               src="https://www.plant-for-the-planet.org/wp-content/uploads/2023/02/Research-Office-Plant-for-the-Planet.jpg"
               width={1200}
               height={1200}
               alt=""
-              className="md:w-full w-[90%]  md:h-[480px]  rounded-2xl object-cover h-48  "
+              className="md:w-full w-[90%]  md:h-[380px]  rounded-2xl object-cover h-48  "
             />
           </div>
         </div>

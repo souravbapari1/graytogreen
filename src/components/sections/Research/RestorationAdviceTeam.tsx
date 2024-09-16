@@ -14,7 +14,7 @@ function RestorationAdviceTeam() {
           >
             <span className={` text-main`}>Restoration</span> Advice Team
           </h1>
-          <p className="md:text-xl mt-5">
+          <p className=" mt-5">
             Nested within the Empowerment & Restoration Research Park is our
             Restoration Advice Team. We are building this team of experienced
             restoration ecologists to provide actionable restoration advice for
@@ -33,13 +33,13 @@ function RestorationAdviceTeam() {
         </div>
         <div className="">
           <div className="relative md:p-10 flex justify-center items-center">
-            <div className="w-[90%] h-48 md:h-[480px] bg-green-700/20 absolute -z-[1] lg:mr-12 mr-10 rounded-2xl mb-10"></div>
+            <div className="w-[90%] h-48 md:h-[380px] bg-green-700/20 absolute -z-[1] lg:mr-12 mr-10 rounded-2xl mb-10"></div>
             <Image
               src="https://www.plant-for-the-planet.org/wp-content/uploads/2021/02/Yucatan-Map-Aerial-View.jpg"
               width={1200}
               height={1200}
               alt=""
-              className="md:w-full w-[90%]  md:h-[480px]  rounded-2xl object-cover h-48  "
+              className="md:w-full w-[90%]  md:h-[380px]  rounded-2xl object-cover h-48  "
             />
           </div>
         </div>

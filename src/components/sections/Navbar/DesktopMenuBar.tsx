@@ -16,7 +16,7 @@ function DesktopMenuBar() {
             <NavLink
               exact
               href={e.href}
-              className="flex items-center gap-2 group-hover:text-green-600 cursor-pointer h-full"
+              className="flex items-center gap-2 group-hover:text-green-600 text-sm cursor-pointer h-full"
             >
               {e.title}
               {e.isSubmenu && (
@@ -24,7 +24,7 @@ function DesktopMenuBar() {
               )}
             </NavLink>
             {e.isSubmenu && (
-              <div className="w-full h-72 -z-10 bg-green-50 fixed shadow-md shadow-gray-50 top-16 right-0 transition-all duration-500 transform -translate-y-96 group-hover:translate-y-10 ">
+              <div className="w-full h-72 -z-10 bg-green-50 fixed shadow-md shadow-gray-50 top-12 right-0 transition-all duration-500 transform -translate-y-96 group-hover:translate-y-10 ">
                 <div className="container h-full flex justify-evenly items-start  macAir:px-40 gap-3">
                   <div className="h-full  justify-center items-center  mid:flex hidden">
                     <Image

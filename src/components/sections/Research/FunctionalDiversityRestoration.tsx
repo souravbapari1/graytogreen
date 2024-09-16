@@ -14,17 +14,17 @@ function FunctionalDiversityRestoration() {
       <div className="grid md:grid-cols-2 gap-10 mt-10">
         <div className="">
           <div className="relative md:p-10 flex justify-center items-center">
-            <div className="w-[90%] h-48 md:h-[480px] bg-green-700/20 absolute -z-[1] lg:mr-12 mr-10 rounded-2xl mb-10"></div>
+            <div className="w-[90%] h-48 md:h-[380px] bg-green-700/20 absolute -z-[1] lg:mr-12 mr-10 rounded-2xl mb-10"></div>
             <Image
               src="https://www.plant-for-the-planet.org/wp-content/uploads/2021/02/Yucatan-Map-Aerial-View.jpg"
               width={1200}
               height={1200}
               alt=""
-              className="md:w-full w-[90%]  md:h-[480px]  rounded-2xl object-cover h-48  "
+              className="md:w-full w-[90%]  md:h-[380px]  rounded-2xl object-cover h-48  "
             />
           </div>
         </div>
-        <p className={`md:text-xl mt-10 ${montserrat.className}`}>
+        <p className={` mt-10 ${montserrat.className}`}>
           How can we build optimal species mixes that catalyze the recovery of
           resilient forests and help ensure that the right trees are planted in
           the right places? <br />
@@ -43,7 +43,7 @@ function FunctionalDiversityRestoration() {
           biodiversity, provisioning of ecosystem services, and in the
         </p>
       </div>
-      <p className={`md:text-2xl  mb-5 mt-5 ${montserrat.className} lg:p-8`}>
+      <p className={`  mb-5 mt-5 ${montserrat.className} lg:p-8`}>
         long-term, stand-level resilience to climate change. This will provide
         insights into patterns of ecosystem recovery under different
         compositions and combinations of planted tree species. By grouping
@@ -63,19 +63,19 @@ function FunctionalDiversityRestoration() {
               width={1200}
               height={1200}
               alt=""
-              className="md:w-full w-[90%]  md:h-[480px]  rounded-2xl object-contain h-48  "
+              className="md:w-full w-[90%]  md:h-[380px]  rounded-2xl object-contain h-48  "
             />
           </div>
         </div>
 
         <div className="">
           <h1
-            className={`md:text-3xl text-2xl font-bold uppercase ${montserrat.className}`}
+            className={` text-2xl font-bold uppercase ${montserrat.className}`}
           >
             Neutral vs Niche Theory: What drives tree diversity in secondary
             forests?
           </h1>
-          <p className={`md:text-xl mt-10 ${montserrat.className}`}>
+          <p className={` mt-10 ${montserrat.className}`}>
             What are the underlying processes that generate tree diversity in
             tropical dry forests that have been impacted by human land use? Anna
             Gee, a Ph.D. student from Imperial College, London aims to answer

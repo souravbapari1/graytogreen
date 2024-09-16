@@ -7,7 +7,7 @@ function AllResearchPartner() {
     <div className="mt-20">
       <div className="container ">
         <h1
-          className={`${montserrat.className} lg:text-4xl text-2xl font-bold capitalize text-center`}
+          className={`${montserrat.className} lg:text-3xl text-2xl font-bold capitalize text-center`}
         >
           research partner
         </h1>
@@ -37,7 +37,7 @@ function AllResearchPartner() {
       <div className="mt-10">
         <div className="container bg-green-50/50 pt-10 pb-2">
           <h1
-            className={`${montserrat.className} lg:text-4xl text-2xl font-bold capitalize text-center`}
+            className={`${montserrat.className} lg:text-3xl text-2xl font-bold capitalize text-center`}
           >
             Top partner
           </h1>
@@ -67,7 +67,7 @@ function AllResearchPartner() {
 
       <div className="container mt-16 ">
         <h1
-          className={`${montserrat.className} lg:text-4xl text-2xl font-bold capitalize text-center`}
+          className={`${montserrat.className} lg:text-3xl text-2xl font-bold capitalize text-center`}
         >
           project partner
         </h1>
@@ -95,7 +95,7 @@ function AllResearchPartner() {
       </div>
       <div className="container bg-green-50/50 pt-10 pb-10 flex flex-col justify-center items-center gap-5">
         <h1
-          className={`${montserrat.className} lg:text-4xl text-2xl font-bold capitalize text-center`}
+          className={`${montserrat.className} lg:text-3xl text-2xl font-bold capitalize text-center`}
         >
           <span className="text-main">scientific</span> advisors
         </h1>

@@ -17,16 +17,16 @@ function NitrogenFixingSpecies() {
       />
 
       <div className="grid lg:grid-cols-2 lg:gap-16 gap-8 container mt-10">
-        <div className="">
+        <div className="mt-5">
           <h1
             className={
-              montserrat.className + " lg:text-5xl text-3xl font-bold text-main"
+              montserrat.className + " lg:text-4xl text-3xl font-bold text-main"
             }
           >
             Nitrogen-Fixing Species
           </h1>
 
-          <p className={montserrat.className + " lg:text-2xl mt-10 mb-8"}>
+          <p className={montserrat.className + "  mt-8 mb-8"}>
             Nitrogen is one of the key nutrients plants need to grow. To do so,
             they extract inorganic nitrogen from the forest soil. A lot of
             tropical dry forests are Nitrogen limited. That means that the low
@@ -43,13 +43,13 @@ function NitrogenFixingSpecies() {
         </div>
         <div className="">
           <div className="relative md:p-10 flex justify-center items-center">
-            <div className="w-[90%] h-48 md:h-[480px] bg-green-700/20 absolute -z-[1] lg:-mr-12 -mr-10 rounded-2xl mb-10"></div>
+            <div className="w-[90%] h-48 md:h-[380px] bg-green-700/20 absolute -z-[1] lg:-mr-12 -mr-10 rounded-2xl mb-10"></div>
             <Image
               src="https://www.plant-for-the-planet.org/wp-content/uploads/2021/02/Yucatan-Map-Aerial-View.jpg"
               width={1200}
               height={1200}
               alt=""
-              className="md:w-full w-[90%]  md:h-[480px]  rounded-2xl object-cover h-48 border  "
+              className="md:w-full w-[90%]  md:h-[380px]  rounded-2xl object-cover h-48 border  "
             />
           </div>
         </div>

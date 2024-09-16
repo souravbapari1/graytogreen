@@ -14,13 +14,13 @@ function OngoingResearch() {
         <div className="grid md:grid-cols-2 gap-5 mt-20">
           <div className="md:mb-0 mb-10">
             <div className="relative md:p-10 flex justify-center items-center">
-              <div className="w-[90%] h-64 md:h-[480px] bg-green-700/20 absolute -z-[1] lg:mr-12 mr-10 rounded-2xl mb-10"></div>
+              <div className="w-[90%] h-64 md:h-[340px] bg-green-700/20 absolute -z-[1] lg:mr-12 mr-10 rounded-2xl mb-10"></div>
               <Image
                 src="https://www.plant-for-the-planet.org/wp-content/uploads/2022/07/Planting-Density-Map-Research.jpg"
                 width={1200}
                 height={1200}
                 alt=""
-                className="md:w-full w-[90%]  md:h-[480px]  rounded-2xl object-cover h-64 border border-gray-100  "
+                className="md:w-full w-[90%]  md:h-[340px]  rounded-2xl object-cover h-64 border border-gray-100  "
               />
             </div>
           </div>

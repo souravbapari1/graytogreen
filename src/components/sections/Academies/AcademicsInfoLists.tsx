@@ -130,7 +130,7 @@ function AcademicsInfoLists() {
                 image:
                   "https://upload.wikimedia.org/wikipedia/commons/1/19/High_school_students%2C_SAS_Pudong.jpg",
                 title: "Green Kids Academy",
-                link: "#",
+                link: "/greenkidsacademy ",
               },
               {
                 image:
@@ -142,7 +142,7 @@ function AcademicsInfoLists() {
                 image:
                   "https://www.utility.rentals/wp-content/uploads/2020/01/Spruce-up-your-science-lab.jpg",
                 title: "Experiments, Innovation and Researches Labs",
-                link: "#",
+                link: "/research",
               },
               {
                 image:
@@ -154,7 +154,7 @@ function AcademicsInfoLists() {
               return (
                 <div
                   key={"type:_" + i}
-                  className="w-full lg:h-[250px] h-32 bg-green-200 rounded-3xl hover:shadow-lg transition-all overflow-hidden relative"
+                  className="w-full lg:h-[250px] h-56 bg-green-200 rounded-3xl hover:shadow-lg transition-all overflow-hidden relative"
                 >
                   <Image
                     src={e.image}

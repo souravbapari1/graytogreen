@@ -11,7 +11,7 @@ function ResearchFellowships() {
         Infrastructure & Team
       </h1>
       <h1
-        className={`${montserrat.className} text-2xl text-center mt-4 capitalize font-light `}
+        className={`${montserrat.className} text-xl text-center mt-4 capitalize font-light `}
       >
         {" "}
         A fieldsite for scientists from all over the world
@@ -22,18 +22,18 @@ function ResearchFellowships() {
         <div className="grid md:grid-cols-2 gap-6">
           <div className="">
             <div className="relative md:p-10 flex justify-center items-center">
-              <div className="w-[90%] h-64 md:h-[480px] bg-green-700/20 absolute -z-[1] lg:mr-12 mr-10 rounded-2xl mb-10"></div>
+              <div className="w-[90%] h-64 md:h-[340px] bg-green-700/20 absolute -z-[1] lg:mr-12 mr-10 rounded-2xl mb-10"></div>
               <Image
                 src="https://www.plant-for-the-planet.org/wp-content/uploads/2022/06/Felix-Finkbeiner-in-Yucatan.jpg"
                 width={1200}
                 height={1200}
                 alt=""
-                className="md:w-full w-[90%]  md:h-[480px]  rounded-2xl object-cover h-64  "
+                className="md:w-full w-[90%]  md:h-[340px]  rounded-2xl object-cover h-64  "
               />
             </div>
           </div>
-          <div className=" lg:mt-10  flex flex-col justify-center items-start">
-            <p className="lg:text-xl text-gray-700 ">
+          <div className="   flex flex-col justify-center items-start">
+            <p className="lg:text-lg text-gray-700 ">
               Universities and research institutes often lack the facilities to
               offer researchers the necessary framework conditions to test
               forest restoration methods in the open field. Especially when it
@@ -58,13 +58,13 @@ function ResearchFellowships() {
       <div className="container mt-16 md:mt-0">
         {/* ======≠≠===========≠≠≠≠≠≠≠≠≠≠≠=========== */}
         <div className="grid md:grid-cols-2 gap-6">
-          <div className=" lg:mt-10 mt-4 flex flex-col justify-center items-start">
+          <div className="  mt-4 flex flex-col justify-center items-start">
             <h1
               className={`lg:text-3xl text-2xl  lg:mb-7 mb-3 font-bold uppercase ${montserrat.className}`}
             >
               Support Us!
             </h1>
-            <p className="lg:text-xl text-gray-700 ">
+            <p className="lg:text-lg text-gray-700 ">
               We need help to set up a range of further, crucial experiments and
               to build our restoration advice team so that struggling forest
               restoration projects around the world can benefit from expert
@@ -86,13 +86,13 @@ function ResearchFellowships() {
 
           <div className="mt-5">
             <div className="relative md:p-10 flex justify-center items-center">
-              <div className="w-[90%] h-64 md:h-[480px] bg-green-700/20 absolute -z-[1] lg:mr-12 mr-10 rounded-2xl mb-10"></div>
+              <div className="w-[90%] h-64 md:h-[340px] bg-green-700/20 absolute -z-[1] lg:mr-12 mr-10 rounded-2xl mb-10"></div>
               <Image
                 src="https://www.plant-for-the-planet.org/wp-content/uploads/2022/03/Team-picture-at-laying-of-the-cornerstone.jpg"
                 width={1200}
                 height={1200}
                 alt=""
-                className="md:w-full w-[90%]  md:h-[480px]  rounded-2xl object-cover h-64  "
+                className="md:w-full w-[90%]  md:h-[340px]  rounded-2xl object-cover h-64  "
               />
             </div>
           </div>
@@ -105,13 +105,13 @@ function ResearchFellowships() {
         <div className="grid md:grid-cols-2 gap-6">
           <div className="">
             <div className="relative md:p-10 flex justify-center items-center">
-              <div className="w-[90%] h-64 md:h-[480px] bg-green-700/20 absolute -z-[1] lg:mr-12 mr-10 rounded-2xl mb-10"></div>
+              <div className="w-[90%] h-64 md:h-[340px] bg-green-700/20 absolute -z-[1] lg:mr-12 mr-10 rounded-2xl mb-10"></div>
               <Image
                 src="https://www.plant-for-the-planet.org/wp-content/uploads/2022/03/Empowerment-Restoration-Research-Park-Plant-for-the-Planet-Laying-of-the-cornerstone.jpg"
                 width={1200}
                 height={1200}
                 alt=""
-                className="md:w-full w-[90%]  md:h-[480px]  rounded-2xl object-cover h-64  "
+                className="md:w-full w-[90%]  md:h-[340px]  rounded-2xl object-cover h-64  "
               />
             </div>
           </div>
@@ -121,7 +121,7 @@ function ResearchFellowships() {
             >
               Laying the Cornerstone
             </h1>
-            <p className="lg:text-xl text-gray-700 ">
+            <p className="lg:text-lg text-gray-700 ">
               The research site was inaugurated by Mayor Miguel Arcos,
               Environment Minister Dr. Sandra Laffon, CONAFOR Director Dr.
               Carlos Tucuch, Plant-for-the-Planet Chair Felix Finkbeiner, UT

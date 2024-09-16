@@ -6,7 +6,7 @@ import React from "react";
 function PartnersHero() {
   return (
     <div className="container ">
-      <div className="w-full  mt-10 lg:h-[80vh] h-[50vh] min-h-[500px] rounded-3xl overflow-hidden shadow-md relative">
+      <div className="w-full  mt-10 lg:h-[80vh] h-[50vh] min-h-[460px] max-h-[800px] rounded-3xl overflow-hidden shadow-md relative">
         <Image
           src="/assets/hero-bg.png"
           width={3000}

@@ -8,7 +8,7 @@ function UpcomingAcademies() {
   return (
     <div className="container">
       <h1
-        className={`lg:text-5xl text-3xl font-bold text-main   ${montserrat.className} text-center`}
+        className={`lg:text-4xl text-3xl font-bold text-main   ${montserrat.className} text-center`}
       >
         Upcoming Academies
       </h1>
@@ -16,7 +16,7 @@ function UpcomingAcademies() {
         Your participation is free! Anyone aged 8-14 years is invited.
       </p>
       <div
-        className={` grid lg:grid-cols-4 md:grid-cols-2 gap-8 md:mt-6 mt-4 ${montserrat.className}`}
+        className={` grid lg:grid-cols-3 md:grid-cols-2 gap-8 md:mt-6 mt-4 ${montserrat.className}`}
       >
         {Array.from({ length: 12 }).map((_, i) => {
           return (

@@ -21,7 +21,7 @@ function Loading({
           width={1200}
           height={1200}
           alt="logo"
-          className="w-auto object-cover md:h-28 h-20 py-3"
+          className="w-auto object-cover  h-20 py-3"
         />
       </div>
     </div>
