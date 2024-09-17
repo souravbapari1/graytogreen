@@ -130,7 +130,7 @@ function AcademicsInfoLists() {
                 image:
                   "https://upload.wikimedia.org/wikipedia/commons/1/19/High_school_students%2C_SAS_Pudong.jpg",
                 title: "Green Kids Academy",
-                link: "/greenkidsacademy ",
+                link: "/academies/greenkidsacademy ",
               },
               {
                 image:

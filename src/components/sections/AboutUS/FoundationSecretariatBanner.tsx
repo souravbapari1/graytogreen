@@ -31,15 +31,15 @@ function FoundationSecretariatBanner() {
               Mission and vission
             </h1>
             <p className="lg:pr-20 lg:text-xl  mt-10 text-white/75 ">
-              As the secretariat of the Plant-for-the-Planet Foundation, we
-              support young people in achieving their ambitious goals. Our main
-              activities are: partnerships and donor support, events, academies,
-              our app, the sale of the Change Chocolate, communication and
-              administration. Our passion comes from our people. We embrace
-              diversity and believe that different backgrounds, ideas and
-              perspectives make us a stronger and more capable team. We put our
-              heart and soul into Plant-for-the-Planet. We are passionate
-              activists for climate justice.
+              As the secretariat of the Foundation, we support young people in
+              achieving their ambitious goals. Our main activities are:
+              partnerships and donor support, events, academies, our app, the
+              sale of the Change Chocolate, communication and administration.
+              Our passion comes from our people. We embrace diversity and
+              believe that different backgrounds, ideas and perspectives make us
+              a stronger and more capable team. We put our heart and soul into
+              Plant-for-the-Planet. We are passionate activists for climate
+              justice.
             </p>
           </div>
         </div>
@@ -68,11 +68,10 @@ function FoundationSecretariatBanner() {
               <span className="text-main">ESG objects</span>
             </h1>
             <p className={montserrat.className + "  mt-10 "}>
-              Plant-for-the-Planet thrives on the most outstanding children and
-              young people. To spread the word, we have a Global Board with
-              young leaders around the world. They are committed to climate
-              justice and tree planting on a voluntary basis. The Global Board
-              is elected every year.
+              thrives on the most outstanding children and young people. To
+              spread the word, we have a Global Board with young leaders around
+              the world. They are committed to climate justice and tree planting
+              on a voluntary basis. The Global Board is elected every year.
             </p>
             <Link
               href="#"

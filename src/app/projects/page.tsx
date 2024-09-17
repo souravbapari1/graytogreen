@@ -9,6 +9,25 @@ function Projects() {
   return (
     <div className="relative">
       <Navbar />
+
+      <div className="w-full md:h-[70vh] min-h-[300px] h-[50vh] z-20 relative bg-[url('https://juftrust.com/wp-content/uploads/edd/2021/03/Avoid-Errors-Claiming-Personal-Super-Contributions-Deductions-%E2%80%93-ATO-Update.jpg')] bg-cover bg-no-repeat bg-center ">
+        <div className="w-full h-full bg-black/50 absolute top-0 right-0"></div>
+        <div className="container relative flex justify-end md:pb-36 pb-16 items-center z-10 h-full flex-col text-xl text-white">
+          <h1
+            className={`md:text-5xl text-3xl  font-bold mb-5 text-center ${montserrat.className}`}
+          >
+            Our Planting Trees Projects
+          </h1>
+          <p className="max-w-[900px] text-center lg:text-xl text-sm ">
+            Lorem ipsum dolor sit amet consectetur adipisicing elit.
+            Perspiciatis aliquid quasi nihil iusto laborum fugit in blanditiis
+            nemo esse debitis laboriosam, sequi exercitationem! Harum
+            necessitatibus corrupti id saepe, magnam natus.
+          </p>
+        </div>
+      </div>
+
+      <div className=""></div>
       <div className="flex justify-center items-center md:gap-10 gap-5 md:mt-20 mt-10  bg-white flex-wrap  ">
         {["Active", "Completed", "Restoration", "Planting"].map((e, i) => {
           return (

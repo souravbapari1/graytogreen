@@ -17,9 +17,9 @@ function ScientificAndSustainabilityAdvisors() {
           <span className="text-main">Sustainability</span> Advisors
         </h1>
         <p className="text-center  max-w-[700px] mt-4 mb-5 ">
-          The Plant-for-the-Planet Foundation partners with organizations in
-          Czech Republic, Spain, Switzerland, Mexico, Italy, and Brazil. There
-          are further activities in many other countries.
+          The Foundation partners with organizations in Czech Republic, Spain,
+          Switzerland, Mexico, Italy, and Brazil. There are further activities
+          in many other countries.
         </p>
 
         <div className="grid lg:grid-cols-3 gap-10 mt-10 lg:px-20">

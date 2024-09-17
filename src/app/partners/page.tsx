@@ -16,11 +16,11 @@ function page() {
           <span className="text-main">Restoration</span> Research Park
         </h1>
         <p className="text-center lg:text-lg  mt-8">
-          Plant-for-the-Planet is a global movement fighting for climate
-          justice. We work on solutions for the most urgent challenges in the
-          field of ecosystem restoration. We empower children and young people,
-          restore ecosystems ourselves, conduct research, provide free software
-          tools and advice to restoration organizations around the world.
+          is a global movement fighting for climate justice. We work on
+          solutions for the most urgent challenges in the field of ecosystem
+          restoration. We empower children and young people, restore ecosystems
+          ourselves, conduct research, provide free software tools and advice to
+          restoration organizations around the world.
         </p>
         <div className="grid grid-cols-2 gap-10">
           <div className="relative">

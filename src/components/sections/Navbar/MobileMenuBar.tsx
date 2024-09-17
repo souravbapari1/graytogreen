@@ -105,10 +105,13 @@ function MobileMenuBar() {
               <Link className="" href="/transparency">
                 Transparency
               </Link>
-              <Link className="" href="#">
-                Press
+              <Link className="" href="/live-and-podcasts">
+                Live & podcasts
               </Link>
-              <Link className="" href="/signin">
+              <Link className="" href="/blogs">
+                Blogs
+              </Link>
+              <Link className="" href="/auth/signin">
                 Sign In
               </Link>
               <Link

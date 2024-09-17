@@ -16,7 +16,7 @@ function EducationAdvisors() {
       </h1>
       <p className="text-center  max-w-[800px] mt-5 ">
         The Board of Directors exercises overall responsibility for the
-        policies, programs, and direction of Plant-for-the-Planet Foundation.
+        policies, programs, and direction of Foundation.
       </p>
 
       <div className="grid lg:grid-cols-3 gap-10 mt-10 lg:px-20">

@@ -23,11 +23,11 @@ function Navbar() {
           <Link className="lg:block hidden" href="/blogs">
             Blogs
           </Link>
-          <Link className="lg:block hidden" href="/signin">
+          <Link className="lg:block hidden" href="/auth/signin">
             Sign In
           </Link>
           <Link
-            href="#"
+            href="/platform"
             className="bg-white p-4 text-xs md:rounded-full md:py-[5px] py-[8px] font-bold text-green-900 flex justify-center items-center gap-2"
           >
             <IoMdOpen size={15} />

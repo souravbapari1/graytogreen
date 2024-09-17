@@ -14,10 +14,9 @@ function TransparencyHero() {
             Transparency
           </h1>
           <p>
-            The annual reports of the national Gray To Green organizations are
-            available here, along with our statutes, daily records on our
-            Yucatan Restoration work and more. If you have any questions, feel
-            free to contact us at{" "}
+            The annual reports of the national organizations are available here,
+            along with our statutes, daily records on our Yucatan Restoration
+            work and more. If you have any questions, feel free to contact us at{" "}
             <Link className="text-main" href="#">
               info@gray-to-green.org
             </Link>

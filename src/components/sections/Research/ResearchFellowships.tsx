@@ -124,9 +124,9 @@ function ResearchFellowships() {
             <p className="lg:text-lg text-gray-700 ">
               The research site was inaugurated by Mayor Miguel Arcos,
               Environment Minister Dr. Sandra Laffon, CONAFOR Director Dr.
-              Carlos Tucuch, Plant-for-the-Planet Chair Felix Finkbeiner, UT
-              Calakmul Rector Andrés Zamudio, INIFAP Scientist Fernando Arellano
-              & Plant-for-the-Planet Mexico President Raúl Negrete Cetina
+              Carlos Tucuch, Chair Felix Finkbeiner, UT Calakmul Rector Andrés
+              Zamudio, INIFAP Scientist Fernando Arellano & Gray to greenMexico
+              President Raúl Negrete Cetina
             </p>
           </div>
         </div>

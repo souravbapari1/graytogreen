@@ -13,7 +13,7 @@ function PlatformToolsBanner() {
           <h1
             className={`${montserrat.className} uppercase md:text-4xl text-3xl  font-bold`}
           >
-            The <span className="text-main">gray to green</span> <br />
+            The <span className="text-main"> </span> <br />
             Platforms
           </h1>
           <p className="">

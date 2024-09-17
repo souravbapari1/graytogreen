@@ -45,7 +45,7 @@ function BlogsBanner() {
         <h1
           className={`${montserrat.className} font-bold text-4xl  text-white  text-center`}
         >
-          The Gray To Green Blog
+          The Blog
         </h1>
         <p
           className={`${montserrat.className} font-semibold mt-5 text-xl  text-white  text-center mb-20`}

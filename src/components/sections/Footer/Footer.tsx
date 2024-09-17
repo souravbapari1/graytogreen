@@ -253,7 +253,7 @@ function Footer() {
       </div>
       <div className="w-full h-16 bg-green-900 mt-16">
         <div className="container text-white h-full flex justify-center text-center items-center">
-          <p>Gray to Green @ all right reserved 2024</p>
+          <p> @ all right reserved 2024</p>
         </div>
       </div>
     </div>

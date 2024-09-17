@@ -31,7 +31,7 @@ const supportMenu: ServicesMenuItems[] = [
     title: "YOU",
     list: [
       {
-        href: "#",
+        href: "/membership",
         icon: "🧩",
         id: "Become_a_member",
         title: "Become a member",
@@ -81,9 +81,9 @@ const supportMenu: ServicesMenuItems[] = [
       },
       {
         title: "Sustainable Events",
-        href: "#",
+        href: "/sustainable-events",
         icon: "🎤",
-        id: "Partner_with_us",
+        id: "sustainable-events",
         subtitle:
           "Reduce and compensate emissions and invite young speakers to talk about the climate crisis.",
       },
@@ -98,6 +98,11 @@ export const navData: NavDataSet[] = [
     isSubmenu: false,
   },
   {
+    title: "Services",
+    href: "/services",
+    isSubmenu: false,
+  },
+  {
     title: "Projects",
     href: "/projects",
     isSubmenu: false,
@@ -107,6 +112,7 @@ export const navData: NavDataSet[] = [
     href: "/academies",
     isSubmenu: false,
   },
+
   {
     title: "Tools & initiatives",
     href: "/platform",

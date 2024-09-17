@@ -1,25 +1,20 @@
 import { montserrat } from "@/fonts/font";
 import Image from "next/image";
 import React from "react";
-import { FaFacebook, FaLinkedinIn } from "react-icons/fa";
-import {
-  FaSquareFacebook,
-  FaSquareXTwitter,
-  FaXTwitter,
-} from "react-icons/fa6";
-import { PiInstagramLogoFill } from "react-icons/pi";
+import { FaLinkedinIn } from "react-icons/fa";
+import { FaSquareXTwitter } from "react-icons/fa6";
 
-function AboutPatrons() {
+function AboutPatrons({ desc, title }: { title?: string; desc?: string }) {
   return (
     <div className="container mt-20 flex justify-center items-center flex-col gap-6 ">
       <h1
         className={`${montserrat.className} text-5xl font-bold text-center text-main`}
       >
-        Patrons
+        {title || "Patrons"}
       </h1>
       <p className="text-center text-xl max-w-[800px] ">
-        We would like to thank our patrons who have accompanied
-        Plant-for-the-Planet from the very beginning.
+        {desc ||
+          "We would like to thank our patrons who have accompanied  from the very beginning."}
       </p>
       <div className="grid lg:grid-cols-3 gap-10 mt-10">
         {Array.from({ length: 3 }).map((_, i) => {
