@@ -26,6 +26,20 @@ export type NavDataSet =
       className?: string;
     };
 
+const servicesMenu: ServicesMenuItems[] = [
+  {
+    title: "Services",
+    list: [
+      {
+        icon: "",
+        href: "#",
+        id: "",
+        title: "Partner with us or sponsor us",
+      },
+    ],
+  },
+];
+
 const supportMenu: ServicesMenuItems[] = [
   {
     title: "YOU",
@@ -37,34 +51,40 @@ const supportMenu: ServicesMenuItems[] = [
         title: "Become a member",
       },
       {
-        href: "#",
+        href: "/impact-with-us/plante-tree",
         icon: "💚",
-        id: "Donate",
-        title: "Donate",
+        id: "Plante_Tree",
+        title: "Plante Tree",
       },
       {
-        href: "#",
+        href: "/impact-with-us/support-research-and-epirement",
         icon: "🌱",
-        id: "Donate_Trees",
-        title: "Donate Trees",
+        id: "Support_research_and_Expirement ",
+        title: "Support research & Expirement",
       },
       {
-        href: "#",
+        href: "/impact-with-us/general-funding",
         icon: "🎁",
-        id: "Gift_Trees",
-        title: "Gift Trees",
+        id: "general_funding ",
+        title: "General Funding",
       },
       {
-        href: "#",
-        icon: "🪴",
+        href: "/impact-with-us/donate-for-land",
+        icon: "🌲",
+        id: "donate-for-land",
+        title: "Donate Land",
+      },
+      {
+        href: "/impact-with-us/endowment",
+        icon: "💙",
         id: "Endowment",
         title: "Endowment",
       },
       {
-        href: "#",
-        icon: "💙",
-        id: "Inheritance",
-        title: "Inheritance",
+        href: "/impact-with-us/be-volunteer",
+        icon: "🧑‍🎓",
+        id: "Be_Volunteer",
+        title: "Be Volunteer",
       },
     ],
   },
@@ -82,6 +102,14 @@ const supportMenu: ServicesMenuItems[] = [
       {
         title: "Sustainable Events",
         href: "/sustainable-events",
+        icon: "🎤",
+        id: "sustainable-events",
+        subtitle:
+          "Reduce and compensate emissions and invite young speakers to talk about the climate crisis.",
+      },
+      {
+        title: "Statistics And Records",
+        href: "/statistics-and-records",
         icon: "🎤",
         id: "sustainable-events",
         subtitle:

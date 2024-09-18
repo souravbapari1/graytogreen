@@ -3,8 +3,8 @@ import Footer from "@/components/sections/Footer/Footer";
 import FooterTop from "@/components/sections/Footer/FooterTop";
 import Navbar from "@/components/sections/Navbar/Navbar";
 import MembershipView from "@/components/sections/Services/MembershipView";
-import OurSolution from "@/components/sections/Services/OurSolution";
-import ServiceAdditionalPartnership from "@/components/sections/Services/ServiceAdditionalPartnership";
+import OurSolution from "@/components/sections/Partners/OurSolution";
+import ServiceAdditionalPartnership from "@/components/sections/Partners/ServiceAdditionalPartnership";
 import ServicesHero from "@/components/sections/Services/ServicesHero";
 import ServicesView from "@/components/sections/Services/ServicesView";
 import { montserrat } from "@/fonts/font";
@@ -16,8 +16,7 @@ function Services() {
     <>
       <Navbar />
       <ServicesHero />
-      <OurSolution />
-      <ServiceAdditionalPartnership />
+
       <ServicesView />
       <AboutPatrons title="Our Team" />
       <MembershipView />

@@ -1,6 +1,7 @@
 import { Button } from "@/components/ui/button";
 import { montserrat } from "@/fonts/font";
 import Image from "next/image";
+import Link from "next/link";
 import React from "react";
 
 function PartnersHero() {
@@ -16,7 +17,7 @@ function PartnersHero() {
         />
         <div className="absolute top-0 right-0 w-full h-full">
           <Button
-            className={`bg-white/80 shadow-md backdrop-blur-sm px-10 py-6 rounded-full absolute right-10 top-8 text-main hover:text-white uppercase font-bold ${montserrat.className}`}
+            className={`bg-white/80 shadow-md backdrop-blur-sm lg:px-10 lg:py-6 lg:text-base text-xs rounded-full absolute right-10 top-8 text-main hover:text-white uppercase font-bold ${montserrat.className}`}
           >
             Partner Dashboard
           </Button>
@@ -39,6 +40,14 @@ function PartnersHero() {
               Join a generation-spanning movement for a climate-just future with
               your company, your employees, and your customers.
             </p>
+            <br />
+            <br />
+            <Link
+              href="#"
+              className={`${montserrat.className} donateBtn py-3 shadow-none  text-sm`}
+            >
+              Register as sponsor
+            </Link>
           </div>
         </div>
       </div>

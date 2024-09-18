@@ -43,7 +43,7 @@ function ServicesView() {
       <div className="w-full flex flex-col gap-8 ">
         <div className="w-full  bg-main/10 rounded-3xl p-10 flex flex-col gap-3">
           <div className="w-16 h-16 rounded-full bg-white flex justify-center items-center">
-            🧩
+            🤝
           </div>
           <p className="text-2xl font-bold ">Partner With Us</p>
           <p>
@@ -54,7 +54,25 @@ function ServicesView() {
           </p>
           <Link
             className="donateBtn py-3 text-center w-32 shadow-none mt-2"
-            href="#"
+            href="/partners"
+          >
+            View
+          </Link>
+        </div>
+        <div className="w-full  bg-main/10 rounded-3xl p-10 flex flex-col gap-3">
+          <div className="w-16 h-16 rounded-full bg-white flex justify-center items-center">
+            🎤
+          </div>
+          <p className="text-2xl font-bold ">Sustainable Event</p>
+          <p>
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Id ullam
+            expedita vero aspernatur, placeat alias ipsam saepe dolore excepturi
+            consequuntur nisi facere consequatur earum libero perferendis! Ipsa
+            reprehenderit inventore numquam!
+          </p>
+          <Link
+            className="donateBtn py-3 text-center w-32 shadow-none mt-2"
+            href="/sustainable-events"
           >
             View
           </Link>
@@ -63,7 +81,7 @@ function ServicesView() {
           <div className="w-16 h-16 rounded-full bg-white flex justify-center items-center">
             🧩
           </div>
-          <p className="text-2xl font-bold ">Partner With Us</p>
+          <p className="text-2xl font-bold ">MemberShip</p>
           <p>
             Lorem ipsum dolor sit amet consectetur adipisicing elit. Id ullam
             expedita vero aspernatur, placeat alias ipsam saepe dolore excepturi
@@ -72,25 +90,7 @@ function ServicesView() {
           </p>
           <Link
             className="donateBtn py-3 text-center w-32 shadow-none mt-2"
-            href="#"
-          >
-            View
-          </Link>
-        </div>
-        <div className="w-full  bg-main/10 rounded-3xl p-10 flex flex-col gap-3">
-          <div className="w-16 h-16 rounded-full bg-white flex justify-center items-center">
-            🧩
-          </div>
-          <p className="text-2xl font-bold ">Partner With Us</p>
-          <p>
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Id ullam
-            expedita vero aspernatur, placeat alias ipsam saepe dolore excepturi
-            consequuntur nisi facere consequatur earum libero perferendis! Ipsa
-            reprehenderit inventore numquam!
-          </p>
-          <Link
-            className="donateBtn py-3 text-center w-32 shadow-none mt-2"
-            href="#"
+            href="/membership"
           >
             View
           </Link>
@@ -99,9 +99,9 @@ function ServicesView() {
       <div className="w-full h-[600px] flex flex-col gap-8 ">
         <div className="w-full  bg-main/10 rounded-3xl p-10 flex flex-col gap-3">
           <div className="w-16 h-16 rounded-full bg-white flex justify-center items-center">
-            🧩
+            💡
           </div>
-          <p className="text-2xl font-bold ">Partner With Us</p>
+          <p className="text-2xl font-bold ">Consultation</p>
           <p>
             Lorem ipsum dolor sit amet consectetur adipisicing elit. Id ullam
             expedita vero aspernatur, placeat alias ipsam saepe dolore excepturi
@@ -110,16 +110,16 @@ function ServicesView() {
           </p>
           <Link
             className="donateBtn py-3 text-center w-32 shadow-none mt-2"
-            href="#"
+            href="/consultation"
           >
             View
           </Link>
         </div>
         <div className="w-full  bg-main/10 rounded-3xl p-10 flex flex-col gap-3">
           <div className="w-16 h-16 rounded-full bg-white flex justify-center items-center">
-            🧩
+            💙
           </div>
-          <p className="text-2xl font-bold ">Partner With Us</p>
+          <p className="text-2xl font-bold ">Training Programes</p>
           <p>
             Lorem ipsum dolor sit amet consectetur adipisicing elit. Id ullam
             expedita vero aspernatur, placeat alias ipsam saepe dolore excepturi
@@ -128,7 +128,7 @@ function ServicesView() {
           </p>
           <Link
             className="donateBtn py-3 text-center w-32 shadow-none mt-2"
-            href="#"
+            href="/academies"
           >
             View
           </Link>

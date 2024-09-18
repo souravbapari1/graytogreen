@@ -18,12 +18,6 @@ function ServicesHero() {
           illo recusandae et hic assumenda eius. Omnis id temporibus ratione sed
           nobis dolorum voluptatem.
         </p>
-        <Link
-          href="#"
-          className={`${montserrat.className} donateBtn py-3 shadow-none mt-10 text-sm`}
-        >
-          Register as sponsor
-        </Link>
       </div>
     </div>
   );

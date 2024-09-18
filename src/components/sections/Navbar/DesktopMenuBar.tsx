@@ -51,6 +51,7 @@ function DesktopMenuBar() {
                             return (
                               <NavLink
                                 href={e.href}
+                                exact
                                 className="opacity-85 hover:opacity-100 transition-all macAir:text-sm text-xs font-semibold"
                               >
                                 <p>
