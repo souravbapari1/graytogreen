@@ -65,7 +65,7 @@ function AcademicsInfoLists() {
         </div>
         {/* ======≠≠===========≠≠≠≠≠≠≠≠≠≠≠=========== */}
       </div>
-      <div className="relative container  lg:h-72 mt-20 bg-[url('/assets/744.jpg')] bg-fixed bg-no-repeat bg-cover bg-center">
+      <div className="relative container  lg:h-72 h-[900px] mt-20 bg-[url('/assets/744.jpg')] bg-fixed bg-no-repeat bg-cover bg-center">
         {/* ======≠≠===========≠≠≠≠≠≠≠≠≠≠≠=========== */}
         <div className="absolute top-0 right-0 bg-black/50 w-full h-full">
           <div className="w-full h-full   flex justify-center items-center">
@@ -139,7 +139,7 @@ function AcademicsInfoLists() {
 
       <div className="container ">
         <div className="w-full mx-auto  ">
-          <div className="grid lg:grid-cols-2 max-w-[900px] mx-auto items-center  gap-10 md:my-20 py-10 ">
+          <div className="grid lg:grid-cols-4 md:grid-cols-2  mx-auto items-center  gap-10 md:my-20 py-10 ">
             {[
               {
                 image:
@@ -169,7 +169,7 @@ function AcademicsInfoLists() {
               return (
                 <div
                   key={"type:_" + i}
-                  className="w-full lg:h-[250px] h-56 bg-green-200 rounded-3xl hover:shadow-lg transition-all overflow-hidden relative"
+                  className="w-full lg:h-[450px] h-80 bg-green-200  hover:shadow-lg transition-all overflow-hidden relative"
                 >
                   <Image
                     src={e.image}
@@ -187,7 +187,7 @@ function AcademicsInfoLists() {
                     </h1>
                     <Link
                       href={e.link}
-                      className="donateBtn w-32 p-0 h-10 text-sm shadow-none mt-5 flex justify-center items-center"
+                      className="donateBtn rounded-none w-32 p-0 h-10 text-sm shadow-none mt-5 flex justify-center items-center"
                     >
                       View More
                     </Link>

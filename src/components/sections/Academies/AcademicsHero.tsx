@@ -1,5 +1,6 @@
 import { Button } from "@/components/ui/button";
 import { montserrat } from "@/fonts/font";
+import { cn } from "@/lib/utils";
 import Image from "next/image";
 import React from "react";
 
@@ -63,15 +64,16 @@ function AcademicsHero() {
           ].map((e, i) => {
             return (
               <div
-                className={`w-full max-w-[350px] h-40  z-30 bg-white md:shadow md:hover:shadow-lg transition-all p-3.5 flex justify-center items-center text-center gap-3 flex-col ${
-                  montserrat.className
-                } ${
-                  i == 0
-                    ? "md:h-52 md:-mt-2.5 bg-gray-400 text-white"
-                    : i == 4
-                    ? "md:h-52 md:-mt-2.5 bg-green-600 text-white"
-                    : " md:h-48 text-gray-800 border-t "
-                }`}
+                className={cn(
+                  `w-full max-w-[350px] h-40  z-30 bg-white md:shadow md:hover:shadow-lg transition-all p-3.5 flex justify-center items-center text-center gap-3 flex-col ${montserrat.className}`,
+                  `${
+                    i == 0
+                      ? "md:h-52 md:-mt-2.5 bg-gray-400 text-white"
+                      : i == 4
+                      ? "md:h-52 md:-mt-2.5 bg-green-600 text-white"
+                      : " md:h-48 text-gray-800 border-t "
+                  }`
+                )}
               >
                 <Image
                   src={e.image}
