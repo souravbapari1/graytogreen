@@ -70,9 +70,7 @@ function AcademicsInfoLists() {
         <div className="w-full h-full bg-black/50 flex justify-center items-center">
           <div className=" grid lg:grid-cols-5 md:grid-cols-3 grid-cols-1 gap-10 py-20 text-white">
             <div className=" text-center flex flex-col justify-center items-center gap-5">
-              <h1 className="md:text-7xl text-5xl font-bold text-center">
-                11+
-              </h1>
+              <h1 className="md:text-7xl text-5xl font-bold text-center">11</h1>
               <p
                 className={`${montserrat.className} text-xl text-center text-white/75`}
               >
