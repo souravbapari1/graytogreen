@@ -65,10 +65,10 @@ function AcademicsInfoLists() {
         </div>
         {/* ======≠≠===========≠≠≠≠≠≠≠≠≠≠≠=========== */}
       </div>
-      <div className="relative lg:h-72 mt-20 bg-[url('https://www.plant-for-the-planet.org/wp-content/uploads/2022/07/background_image_nursery_1920x1080p_01-1.jpg')] bg-fixed bg-no-repeat bg-cover bg-center">
+      <div className="relative container lg:h-72 mt-20 bg-[url('/assets/744.jpg')] bg-fixed bg-no-repeat bg-cover bg-center">
         {/* ======≠≠===========≠≠≠≠≠≠≠≠≠≠≠=========== */}
         <div className="w-full h-full bg-black/50 flex justify-center items-center">
-          <div className="container grid lg:grid-cols-5 md:grid-cols-3 grid-cols-1 gap-10 py-20 text-white">
+          <div className=" grid lg:grid-cols-5 md:grid-cols-3 grid-cols-1 gap-10 py-20 text-white">
             <div className=" text-center flex flex-col justify-center items-center gap-5">
               <h1 className="md:text-7xl text-5xl font-bold text-center">
                 11+
