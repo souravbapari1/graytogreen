@@ -1,4 +1,5 @@
 "use client";
+import BlogCard from "@/app/blogs/BloCard";
 import { montserrat } from "@/fonts/font";
 import Image from "next/image";
 import React, { useEffect, useRef, useState } from "react";
@@ -52,49 +53,9 @@ function BlogsBanner() {
         >
           Empowering global youth to restore our planet—one tree at a time
         </p>
-        <div className="w-full grid 2xl:grid-cols-4 lg:grid-cols-3 md:grid-cols-2   grid-cols-1 gap-10">
+        <div className="w-full grid lg:grid-cols-3 md:grid-cols-2   grid-cols-1 gap-10">
           {Array.from({ length: 6 }).map((_, i) => {
-            return (
-              <div
-                className="bg-white rounded-xl overflow-hidden shadow "
-                key={i}
-              >
-                <Image
-                  src="https://st.depositphotos.com/2632165/4026/i/450/depositphotos_40264933-stock-photo-young-plant.jpg"
-                  width={1200}
-                  height={1200}
-                  alt=""
-                  className="w-full h-60"
-                />
-                <div className="p-5">
-                  <h1 className="text-xl ">
-                    The Power Of Achieve More Together
-                  </h1>
-                  <p className="mt-2 text-gray-500">
-                    Explore the concept of collaboration and its impact on
-                    productivity.
-                  </p>
-                  <div className="flex mt-3">
-                    <div className="flex justify-start items-center gap-3">
-                      <Image
-                        src="https://www.shutterstock.com/image-photo/young-handsome-man-beard-wearing-600nw-1703979295.jpg"
-                        alt=""
-                        width={1200}
-                        height={1200}
-                        about=""
-                        className="w-12 h-12 object-cover rounded-full"
-                      />
-                      <div className="">
-                        <p className="font-bold text-green-950">
-                          William Goham
-                        </p>
-                        <p className="text-xs mt-1">7 July 2023</p>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            );
+            return <BlogCard />;
           })}
         </div>
       </div>

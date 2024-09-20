@@ -44,11 +44,10 @@ export const polygonsData = [
   {
     id: "polygon-4",
     coordinates: [
-      [-68.90478, 47.18479],
-      [-68.2343, 47.35462],
-      [-67.79035, 47.06624],
-      [-67.79141, 45.70258],
-      [-68.90478, 47.18479],
+      [57.32343956645474, 21.288218077111807],
+      [55.32343956645474, 22.288218077111807],
+      [56.32343956645474, 23.288218077111807],
+      [57.92343956645474, 21.288218077111807],
     ],
     fillColor: "green",
     fillOpacity: 0.5,
@@ -59,12 +58,12 @@ export const polygonsData = [
 
 export const markersData = [
   {
-    coordinates: [-74.17078396437353, 40.92216671221169],
+    coordinates: [58.32343956645474, 21.288218077111807],
     markerImage:
       "https://st2.depositphotos.com/2632165/11804/i/450/depositphotos_118049482-stock-photo-young-plant-in-the-morning.jpg",
   },
   {
-    coordinates: [-70.137343, 44.137451],
+    coordinates: [52.32343956645474, 22.288218077111807],
     markerImage:
       "https://static.vecteezy.com/system/resources/previews/044/044/818/non_2x/sprout-of-green-leafy-plants-growing-from-fertile-soil-on-green-background-environmental-design-concept-free-photo.jpg",
   },

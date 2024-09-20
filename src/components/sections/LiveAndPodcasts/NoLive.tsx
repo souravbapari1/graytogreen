@@ -4,15 +4,18 @@ import { MdLiveTv } from "react-icons/md";
 
 function NoLive() {
   return (
-    <div className="container">
-      <div className="flex justify-center items-center flex-col gap-6">
-        <MdLiveTv size={80} className="text-red-500 mt-16" />
-        <h1 className="text-5xl font-bold">Oops!</h1>
-        <p>No live currently</p>
-        <Button className="donate-btn rounded-full border-none shadow">
-          Go To Home
-        </Button>
-      </div>
+    <div className="container mt-20">
+      <iframe
+        width="560"
+        height="315"
+        src="https://www.youtube.com/embed/AbA-hoIuHM4?si=VCJ45jaB0xb5Y9h5"
+        title="YouTube video player"
+        frameBorder="0"
+        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+        referrerPolicy="strict-origin-when-cross-origin"
+        allowFullScreen
+        className="w-full xl:h-[700px] lg:h-[500px] md:h-[400px] bg-gray-50 h-[240px] rounded object-cover"
+      ></iframe>
     </div>
   );
 }

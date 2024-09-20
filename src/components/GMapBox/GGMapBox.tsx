@@ -10,6 +10,7 @@ import { cn } from "@/lib/utils";
 import { montserrat } from "@/fonts/font";
 
 import { FiSearch } from "react-icons/fi";
+import PlatformMenu, { MobPlatformMenu } from "./PlatformMenu";
 
 const MAPBOX_ACCESS_TOKEN =
   "pk.eyJ1IjoiY2hhbmdlaXQtMjAyNCIsImEiOiJjbHlsNmd5M2MxY3lrMmpyM25ieWloeTk2In0.tD7fz5cEA7wAmR4lNBgsaQ";
@@ -74,28 +75,10 @@ const GGMapBox: React.FC<{
 
   return (
     <div className="relative">
-      <div className="lg:w-96 w-full h-full z-10 left-0 md:top-0  bg-transparent absolute lg:px-3 py-3 overflow-hidden">
-        <div className="w-full h-full bg-white rounded-3xl shadow-xl overflow-hidden pt-3">
-          <div
-            className={`w-full h-12 border-b  flex text-sm justify-center gap-10 items-center font-semibold ${montserrat.className}`}
-          >
-            <p className="underline-offset-2 underline text-main">
-              Top Projects
-            </p>
-            <p>All Projects</p>
-            <FiSearch size={20} />
-          </div>
-          <div
-            className={`${montserrat.className} w-full h-full text-xs px-5  md:overflow-scroll overflow-hidden pb-20`}
-          >
-            {Array.from({ length: 30 }).map((_, i) => {
-              return (
-                <PopupContent className="w-full mt-3" key={"project_" + i} />
-              );
-            })}
-          </div>
-        </div>
+      <div className="lg:block hidden">
+        <PlatformMenu />
       </div>
+      <MobPlatformMenu />
       <div
         ref={mapContainerRef}
         style={style ?? { width: "100%", height: "85vh" }}

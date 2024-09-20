@@ -7,7 +7,7 @@ function BlogCard() {
   return (
     <Link
       href="/blogs/slug"
-      className={`${montserrat.className}  transition-all border hover:shadow-lg overflow-hidden`}
+      className={`${montserrat.className} bg-white  transition-all border hover:shadow-lg overflow-hidden`}
     >
       <Image
         src="https://blog.plant-for-the-planet.org/wp-content/uploads/2024/08/IMG-20240820-WA0052-e1724333949203.jpg"

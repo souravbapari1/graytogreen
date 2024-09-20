@@ -16,6 +16,8 @@ import Footer from "@/components/sections/Footer/Footer";
 import { montserrat } from "@/fonts/font";
 import GGMapBox from "@/components/GMapBox/GGMapBox";
 import Faq from "@/components/sections/Home/Faq/Faq";
+import { Button } from "@/components/ui/button";
+import Link from "next/link";
 
 async function page() {
   return (
@@ -31,7 +33,17 @@ async function page() {
           <p className="mt-2 ">Donate Now!</p>
         </h1>
 
-        <GGMapBox disableScroll />
+        <div className="w-full lg:h-auto h-96  relative overflow-hidden rounded-3xl ">
+          <div className="w-full h-full z-[31] absolute top-0 right-0 bg-black/30 lg:hidden flex justify-center items-center">
+            <Link
+              href="/platform"
+              className={`${montserrat.className} donateBtn font-extrabold  py-3`}
+            >
+              Open Platform
+            </Link>
+          </div>
+          <GGMapBox disableScroll />
+        </div>
       </div>
       <OurPartners />
       <DonateBanner />

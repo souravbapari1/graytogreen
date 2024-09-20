@@ -9,7 +9,7 @@ function page() {
     <div>
       <Navbar />
       <GGMapBox
-        style={{ width: "100vw", height: "89.5vh" }}
+        style={{ width: "100%", height: "90.8vh" }}
         className="rounded-none shadow-none"
       />
     </div>
