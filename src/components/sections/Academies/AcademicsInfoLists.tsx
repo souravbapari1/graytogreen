@@ -65,58 +65,75 @@ function AcademicsInfoLists() {
         </div>
         {/* ======≠≠===========≠≠≠≠≠≠≠≠≠≠≠=========== */}
       </div>
-      <div className="relative container lg:h-72 mt-20 bg-[url('/assets/744.jpg')] bg-fixed bg-no-repeat bg-cover bg-center">
+      <div className="relative container  lg:h-72 mt-20 bg-[url('/assets/744.jpg')] bg-fixed bg-no-repeat bg-cover bg-center">
         {/* ======≠≠===========≠≠≠≠≠≠≠≠≠≠≠=========== */}
-        <div className="w-full h-full bg-black/50 flex justify-center items-center">
-          <div className=" grid lg:grid-cols-5 md:grid-cols-3 grid-cols-1 gap-10 py-20 text-white">
-            <div className=" text-center flex flex-col justify-center items-center gap-5">
-              <h1 className="md:text-7xl text-5xl font-bold text-center">11</h1>
-              <p
-                className={`${montserrat.className} text-xl text-center text-white/75`}
-              >
-                BootCamps
-              </p>
-            </div>
-            <div className=" text-center flex flex-col justify-center items-center gap-5">
-              <h1 className="md:text-7xl text-5xl font-bold text-center">
-                23+
-              </h1>
-              <p
-                className={`${montserrat.className} text-xl text-center text-white/75`}
-              >
-                Released Researches
-              </p>
-            </div>
-            <div className=" text-center flex flex-col justify-center items-center gap-5">
-              <h1 className="md:text-7xl text-5xl font-bold text-center">
-                100+
-              </h1>
-              <p
-                className={`${montserrat.className} text-xl text-center text-white/75`}
-              >
-                Graduated Ambassadors
-              </p>
-            </div>
-            <div className=" text-center flex flex-col justify-center items-center gap-5">
-              <h1 className="md:text-7xl text-5xl font-bold text-center">7+</h1>
-              <p
-                className={`${montserrat.className} text-xl text-center text-white/75`}
-              >
-                Workspace
-              </p>
-            </div>
-            <div className=" text-center flex flex-col justify-center items-center gap-5">
-              <h1 className="md:text-7xl text-5xl font-bold text-center">
-                12+
-              </h1>
-              <p
-                className={`${montserrat.className} text-xl text-center text-white/75`}
-              >
-                Climate Change Experts
-              </p>
+        <div className="absolute top-0 right-0 bg-black/50 w-full h-full">
+          <div className="w-full h-full   flex justify-center items-center">
+            <div className=" grid lg:grid-cols-5 md:grid-cols-3 grid-cols-1 gap-10  text-white">
+              <div className=" text-center flex flex-col justify-center items-center gap-5">
+                <h1
+                  className={`md:text-7xl text-5xl font-bold text-center ${montserrat.className}`}
+                >
+                  11
+                </h1>
+                <p
+                  className={`${montserrat.className} text-xl text-center text-white/75`}
+                >
+                  BootCamps
+                </p>
+              </div>
+              <div className=" text-center flex flex-col justify-center items-center gap-5">
+                <h1
+                  className={`md:text-7xl text-5xl font-bold text-center ${montserrat.className}`}
+                >
+                  23+
+                </h1>
+                <p
+                  className={`${montserrat.className} text-xl text-center text-white/75`}
+                >
+                  Released Researches
+                </p>
+              </div>
+              <div className=" text-center flex flex-col justify-center items-center gap-5">
+                <h1
+                  className={`md:text-7xl text-5xl font-bold text-center ${montserrat.className}`}
+                >
+                  100+
+                </h1>
+                <p
+                  className={`${montserrat.className} text-xl text-center text-white/75`}
+                >
+                  Graduated Ambassadors
+                </p>
+              </div>
+              <div className=" text-center flex flex-col justify-center items-center gap-5">
+                <h1
+                  className={`md:text-7xl text-5xl font-bold text-center ${montserrat.className}`}
+                >
+                  7+
+                </h1>
+                <p
+                  className={`${montserrat.className} text-xl text-center text-white/75`}
+                >
+                  Workspace
+                </p>
+              </div>
+              <div className=" text-center flex flex-col justify-center items-center gap-5">
+                <h1
+                  className={`md:text-7xl text-5xl font-bold text-center ${montserrat.className}`}
+                >
+                  12+
+                </h1>
+                <p
+                  className={`${montserrat.className} text-xl text-center text-white/75`}
+                >
+                  Climate Change Experts
+                </p>
+              </div>
             </div>
           </div>
         </div>
+
         {/* ======≠≠===========≠≠≠≠≠≠≠≠≠≠≠=========== */}
       </div>
 
