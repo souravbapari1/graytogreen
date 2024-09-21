@@ -1,4 +1,5 @@
 import AboutHero from "@/components/sections/AboutUS/AboutHero";
+import AboutOurAmbassadors from "@/components/sections/AboutUS/AboutOurAmbassadors";
 import AboutOurTeam from "@/components/sections/AboutUS/AboutOurTeam";
 import AboutPatrons from "@/components/sections/AboutUS/AboutPatrons";
 import BordOfDirectors from "@/components/sections/AboutUS/BordOfDirectors";
@@ -21,6 +22,7 @@ function AboutUs() {
       <AboutOurTeam />
       <Foundation />
       <BordOfDirectors />
+      <AboutOurAmbassadors />
       <ScientificAndSustainabilityAdvisors />
       <EducationAdvisors />
       <FooterTop />
