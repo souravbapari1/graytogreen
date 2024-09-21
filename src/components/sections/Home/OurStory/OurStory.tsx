@@ -11,7 +11,7 @@ function OurStory() {
       <div className="flex lg:flex-row flex-col lg:justify-between justify-center items-center text-center lg:text-left gap-5 lg:items-center">
         <div className="">
           <h1
-            className={`${montserrat.className} md:text-5xl text-4xl font-bold capitalize`}
+            className={`${montserrat.className} md:text-4xl text-4xl font-bold capitalize`}
           >
             Your path to be <br />
             <span className="text-main">positive natural Parteners</span>
