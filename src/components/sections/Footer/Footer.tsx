@@ -203,9 +203,9 @@ function Footer() {
               </Link>
               <Link
                 className="hover:text-white transition-all text-sm"
-                href="#"
+                href="/careers"
               >
-                Bank Accounts
+                Jobs
               </Link>
               <Link
                 className="hover:text-white transition-all text-sm"
@@ -215,9 +215,9 @@ function Footer() {
               </Link>
               <Link
                 className="hover:text-white transition-all text-sm"
-                href="#"
+                href="/pages/faq"
               >
-                Inheritance
+                Faq
               </Link>
             </div>
           </div>
