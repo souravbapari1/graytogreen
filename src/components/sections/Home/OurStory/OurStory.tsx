@@ -13,7 +13,7 @@ function OurStory() {
           <h1
             className={`${montserrat.className} md:text-5xl text-4xl font-bold capitalize`}
           >
-            Your path to be{" "}
+            Your path to be <br />
             <span className="text-main">positive natural Parteners</span>
           </h1>
           <p
