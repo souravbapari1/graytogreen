@@ -110,7 +110,7 @@ const supportMenu: ServicesMenuItems[] = [
       {
         title: "Statistics And Records",
         href: "/statistics-and-records",
-        icon: "🎤",
+        icon: "📈",
         id: "sustainable-events",
         subtitle:
           "Reduce and compensate emissions and invite young speakers to talk about the climate crisis.",

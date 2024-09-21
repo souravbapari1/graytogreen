@@ -18,7 +18,8 @@ function ResearchHero() {
           <h1
             className={montserrat.className + " lg:text-4xl text-3xl font-bold"}
           >
-            <span className="text-main">Restoration</span> Research Park
+            <span className="text-main"> Lab's Programs </span> Restoration
+            Research Park
           </h1>
           <h2 className={montserrat.className + " text-xl font-bold mt-5"}>
             Center for Applied Forest Restoration Research & Advice

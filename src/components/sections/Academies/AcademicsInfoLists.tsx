@@ -151,7 +151,7 @@ function AcademicsInfoLists() {
                 image:
                   "https://caias.in/wp-content/uploads/2020/12/iStock-1210745478-conflicted-scaled-1.jpg",
                 title: "Sustainable Youth Academy",
-                link: "#",
+                link: "/sustainable-events",
               },
               {
                 image:
@@ -169,7 +169,7 @@ function AcademicsInfoLists() {
               return (
                 <div
                   key={"type:_" + i}
-                  className="w-full lg:h-[450px] h-80 bg-green-200  hover:shadow-lg transition-all overflow-hidden relative"
+                  className="w-full lg:h-[350px] h-80 bg-green-200  hover:shadow-lg transition-all overflow-hidden relative"
                 >
                   <Image
                     src={e.image}

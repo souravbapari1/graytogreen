@@ -10,7 +10,7 @@ function Navbar() {
   return (
     <div className="sticky top-0 right-0 z-40  lg:shadow-none shadow-md shadow-gray-950/5">
       <div className="w-full flex bg-white z-50 justify-end items-end">
-        <div className="lg:px-20 md:px-5 lg:w-auto w-full h-8 text-xs bg-[#68B030]/20 z-50 lg:rounded-tl-full flex justify-end items-center gap-10">
+        <div className="lg:px-20 md:px-5 lg:w-auto w-full h-8 text-xs bg-[#68B030]/20 z-50 lg:rounded-tl-full flex justify-end items-center gap-8">
           <Link className="lg:block hidden" href="/about-us">
             About Us
           </Link>
@@ -19,6 +19,9 @@ function Navbar() {
           </Link>
           <Link className="lg:block hidden" href="/live-and-podcasts">
             Live & podcasts
+          </Link>
+          <Link className="lg:block hidden" href="/tracking">
+            Tracking
           </Link>
           <Link className="lg:block hidden" href="/blogs">
             Blogs

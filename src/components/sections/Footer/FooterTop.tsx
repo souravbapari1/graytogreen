@@ -55,7 +55,7 @@ function FooterTop() {
         </Link>
       </div>
       <p className="text-justify md:text-xl text-sm max-w-[1000px]">
-         is a global movement empowering young people and organizations to
+        is a global movement empowering young people and organizations to
         restore forest ecosystems and fight for climate justice. To do so,
         we educate young people, restore ecosystems, conduct restoration
         research, provide free software tools and restoration advice for

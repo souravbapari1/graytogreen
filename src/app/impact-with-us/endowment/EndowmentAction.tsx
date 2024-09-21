@@ -17,7 +17,10 @@ function EndowmentAction() {
           any small or regular contribution and, like a donation, it is
           tax-deductible.
         </p>
-        <Link className="donateBtn py-4 px-10 mt-10" href="/platform">
+        <Link
+          className="donateBtn py-4 px-10 mt-10 text-center"
+          href="/platform"
+        >
           Request Call For More Information
         </Link>
       </div>

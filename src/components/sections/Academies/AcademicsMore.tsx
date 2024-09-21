@@ -7,6 +7,25 @@ import { RiArrowDropRightLine } from "react-icons/ri";
 function AcademicsMore() {
   return (
     <div>
+      <div className="container">
+        <Image
+          src="/assets/academy_steps.svg"
+          className="w-full lg:h-[600px] h-auto mt-40 md:block hidden"
+          width={2000}
+          height={2000}
+          alt=""
+        />
+      </div>
+      <div className="overflow-hidden">
+        <Image
+          src="/assets/academy_steps_mob.svg"
+          className="w-full lg:h-[600px] h-auto mt-40 md:hidden block ml-32"
+          width={2000}
+          height={2000}
+          alt=""
+        />
+      </div>
+
       <div className="container mt-32 mb-20">
         {/* ======≠≠===========≠≠≠≠≠≠≠≠≠≠≠=========== */}
         <div className="grid md:grid-cols-2 gap-6">

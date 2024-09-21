@@ -11,7 +11,7 @@ function GeneralFundingHero() {
         >
           General Funding
         </h1>
-        <p className="md:text-3xl">
+        <p className="md:text-3xl text-center">
           Lorem ipsum dolor sit amet consectetur adipisicing elit.
         </p>
       </div>

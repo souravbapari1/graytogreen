@@ -6,9 +6,9 @@ import React from "react";
 function ServicesView() {
   return (
     <div
-      className={`${montserrat.className} container grid xl:grid-cols-3  my-20 gap-10`}
+      className={`${montserrat.className} container grid xl:grid-cols-10  my-20 gap-10`}
     >
-      <div className="w-full  bg-main/10 rounded-3xl p-8">
+      <div className="w-full  bg-main/10 rounded-3xl xl:col-span-4 p-8">
         <h1 className="text-3xl font-bold mb-3">
           Transform your ideas into <span className="text-main">Action</span>!
         </h1>
@@ -40,13 +40,13 @@ function ServicesView() {
           })}
         </div>
       </div>
-      <div className="w-full flex flex-col gap-8 ">
+      <div className="w-full flex flex-col gap-8 xl:col-span-3 xl:mt-6 xl:mb-6">
         <div className="w-full  bg-main/10 rounded-3xl p-10 flex flex-col gap-3">
           <div className="w-16 h-16 rounded-full bg-white flex justify-center items-center">
             🤝
           </div>
           <p className="text-2xl font-bold ">Partner With Us</p>
-          <p>
+          <p className="text-sm">
             Lorem ipsum dolor sit amet consectetur adipisicing elit. Id ullam
             expedita vero aspernatur, placeat alias ipsam saepe dolore excepturi
             consequuntur nisi facere consequatur earum libero perferendis! Ipsa
@@ -64,7 +64,7 @@ function ServicesView() {
             🎤
           </div>
           <p className="text-2xl font-bold ">Sustainable Event</p>
-          <p>
+          <p className="text-sm">
             Lorem ipsum dolor sit amet consectetur adipisicing elit. Id ullam
             expedita vero aspernatur, placeat alias ipsam saepe dolore excepturi
             consequuntur nisi facere consequatur earum libero perferendis! Ipsa
@@ -82,7 +82,7 @@ function ServicesView() {
             🧩
           </div>
           <p className="text-2xl font-bold ">MemberShip</p>
-          <p>
+          <p className="text-sm">
             Lorem ipsum dolor sit amet consectetur adipisicing elit. Id ullam
             expedita vero aspernatur, placeat alias ipsam saepe dolore excepturi
             consequuntur nisi facere consequatur earum libero perferendis! Ipsa
@@ -96,13 +96,13 @@ function ServicesView() {
           </Link>
         </div>
       </div>
-      <div className="w-full h-[600px] flex flex-col gap-8 ">
+      <div className="w-full h-[600px] flex flex-col gap-8 xl:col-span-3  xl:mt-6 xl:mb-6">
         <div className="w-full  bg-main/10 rounded-3xl p-10 flex flex-col gap-3">
           <div className="w-16 h-16 rounded-full bg-white flex justify-center items-center">
             💡
           </div>
           <p className="text-2xl font-bold ">Consultation</p>
-          <p>
+          <p className="text-sm">
             Lorem ipsum dolor sit amet consectetur adipisicing elit. Id ullam
             expedita vero aspernatur, placeat alias ipsam saepe dolore excepturi
             consequuntur nisi facere consequatur earum libero perferendis! Ipsa
@@ -120,7 +120,7 @@ function ServicesView() {
             💙
           </div>
           <p className="text-2xl font-bold ">Training Programes</p>
-          <p>
+          <p className="text-sm">
             Lorem ipsum dolor sit amet consectetur adipisicing elit. Id ullam
             expedita vero aspernatur, placeat alias ipsam saepe dolore excepturi
             consequuntur nisi facere consequatur earum libero perferendis! Ipsa

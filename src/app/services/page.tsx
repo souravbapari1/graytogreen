@@ -15,7 +15,7 @@ function Services() {
   return (
     <>
       <Navbar />
-      <ServicesHero />
+      {/* <ServicesHero /> */}
 
       <ServicesView />
       <AboutPatrons title="Our Team" />

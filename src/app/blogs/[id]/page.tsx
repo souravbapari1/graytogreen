@@ -21,11 +21,11 @@ function ReadBlog() {
       </div>
       <div className="container  md:-mt-32 -mt-16 z-20 relative">
         <Image
-          src="https://blog.plant-for-the-planet.org/wp-content/uploads/2024/08/image.png"
+          src="https://cid-inc.com/app/uploads/2023/04/Plamnt-research.jpg"
           width={2000}
           height={2000}
           alt=""
-          className="w-full lg:h-[500px] md:h-96 h-52 object-cover max-w-[900px] shadow-md rounded-md mx-auto"
+          className="w-full lg:h-[500px] md:h-96 bg-white h-52 object-cover max-w-[900px] shadow-md rounded-3xl mx-auto"
         />
       </div>
       <div className={`container ${montserrat.className}`}>
@@ -34,6 +34,11 @@ function ReadBlog() {
             Lorem ipsum dolor sit amet consectetur adipisicing elit. Asperiores
             quaerat culpa maxime laudantium unde debitis error.{" "}
           </h1>
+          <p className="font-semibold md:text-base mt-5 text-sm text-gray-400">
+            August 22, 2024 - Admin
+          </p>
+          <br />
+          <hr />
           <br />
           <p className="text-justify lg:leading-8">
             Lorem ipsum dolor sit amet consectetur adipisicing elit. Ipsa alias

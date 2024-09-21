@@ -11,6 +11,7 @@ import {
 import { useState } from "react";
 import Image from "next/image";
 import { IoMdOpen } from "react-icons/io";
+import NavLink from "./NavLink";
 
 function MobileMenuBar() {
   const [index, setIndex] = useState<null | ServicesMenuItems[]>(null);
@@ -48,13 +49,13 @@ function MobileMenuBar() {
               navData.map((e, i) => {
                 if (!e.isSubmenu) {
                   return (
-                    <Link
+                    <NavLink
                       key={i}
                       href={e.href}
                       className="py-2 transition-all hover:text-green-600"
                     >
                       {e.title}
-                    </Link>
+                    </NavLink>
                   );
                 } else {
                   return (
@@ -80,13 +81,13 @@ function MobileMenuBar() {
                       </p>
                       <div className="flex flex-col gap-1">
                         {submenuItem.list.map((link, j) => (
-                          <Link
+                          <NavLink
                             key={j}
                             href={link.href}
                             className="py-2 transition-all hover:text-green-600"
                           >
                             {link.title}
-                          </Link>
+                          </NavLink>
                         ))}
                       </div>
                     </div>
@@ -108,6 +109,9 @@ function MobileMenuBar() {
               <Link className="" href="/live-and-podcasts">
                 Live & podcasts
               </Link>
+              <Link className="" href="/tracking">
+                Tracking
+              </Link>
               <Link className="" href="/blogs">
                 Blogs
               </Link>
@@ -116,7 +120,7 @@ function MobileMenuBar() {
               </Link>
               <Link
                 href="/platform"
-                className="bg-white p-6 w-full text-xs rounded-xl mt-10 py-[15px] border font-bold text-green-900 flex justify-center items-center gap-2"
+                className="bg-white p-6 w-full text-xs rounded-xl mt-5 py-[15px] border font-bold text-green-900 flex justify-center items-center gap-2"
               >
                 <IoMdOpen size={15} />
                 <p> Open Platform</p>

@@ -25,39 +25,39 @@ function Footer() {
             <div className="flex flex-col gap-4 text-white/70 mt-3 font-medium">
               <Link
                 className="hover:text-white transition-all text-sm"
-                href="#"
+                href="/pages/contact-us"
               >
                 Contact
               </Link>
               <Link
                 className="hover:text-white transition-all text-sm"
-                href="#"
+                href="/about-us"
               >
                 About US
               </Link>
               <Link
                 className="hover:text-white transition-all text-sm"
-                href="#"
+                href="/transparency"
               >
                 Annual Reports
               </Link>
               <Link
                 className="hover:text-white transition-all text-sm"
-                href="#"
+                href="/blogs"
               >
                 Blog
               </Link>
               <Link
                 className="hover:text-white transition-all text-sm"
-                href="#"
+                href="/pages/privacy-policy"
               >
-                Press
+                Privacy
               </Link>
               <Link
                 className="hover:text-white transition-all text-sm"
-                href="#"
+                href="/pages/terms-and-conditions"
               >
-                Team
+                Terms
               </Link>
             </div>
           </div>
@@ -68,7 +68,7 @@ function Footer() {
             <div className="flex flex-col gap-4 text-white/70 mt-3 font-medium">
               <Link
                 className="hover:text-white transition-all text-sm"
-                href="#"
+                href="/academies"
               >
                 Academies
               </Link>
@@ -92,13 +92,13 @@ function Footer() {
               </Link>
               <Link
                 className="hover:text-white transition-all text-sm"
-                href="#"
+                href="/monthly-summit-talk"
               >
                 Youth Summit
               </Link>
               <Link
                 className="hover:text-white transition-all text-sm"
-                href="#"
+                href="/monthly-summit-talk"
               >
                 Youth Summit Talks
               </Link>
@@ -117,7 +117,7 @@ function Footer() {
               </Link>
               <Link
                 className="hover:text-white transition-all text-sm"
-                href="#"
+                href="/platform"
               >
                 Platform
               </Link>
@@ -166,7 +166,7 @@ function Footer() {
               </Link>
               <Link
                 className="hover:text-white transition-all text-sm"
-                href="#"
+                href="/sustainable-events"
               >
                 Sustainable Events
               </Link>
@@ -185,19 +185,19 @@ function Footer() {
             <div className="flex flex-col gap-4 text-white/70 mt-3 font-medium">
               <Link
                 className="hover:text-white transition-all text-sm"
-                href="#"
+                href="/donate"
               >
                 Donate
               </Link>
               <Link
                 className="hover:text-white transition-all text-sm"
-                href="#"
+                href="/membership"
               >
                 Membership
               </Link>
               <Link
                 className="hover:text-white transition-all text-sm"
-                href="#"
+                href="/donate/trees"
               >
                 Gift Trees
               </Link>
@@ -209,7 +209,7 @@ function Footer() {
               </Link>
               <Link
                 className="hover:text-white transition-all text-sm"
-                href="#"
+                href="/impact-with-us/endowment"
               >
                 Endowment
               </Link>
@@ -251,9 +251,9 @@ function Footer() {
           </div>
         </div>
       </div>
-      <div className="w-full h-16 bg-green-900 mt-16">
-        <div className="container text-white h-full flex justify-center text-center items-center">
-          <p> @ all right reserved 2024</p>
+      <div className="w-full md:h-16 h-12 bg-green-900 mt-16">
+        <div className="container text-white h-full flex md:text-base text-xs justify-center text-center items-center">
+          <p> @ Gray to Green all right reserved 2024</p>
         </div>
       </div>
     </div>

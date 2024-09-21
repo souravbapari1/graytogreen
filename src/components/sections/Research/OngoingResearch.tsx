@@ -1,7 +1,6 @@
-import BlogCard from "@/app/blogs/BloCard";
 import { montserrat } from "@/fonts/font";
-import Image from "next/image";
 import React from "react";
+import ResearchCard from "./ResearchCard";
 
 function OngoingResearch() {
   return (
@@ -21,9 +20,9 @@ function OngoingResearch() {
             </p>
           ))}
         </div>
-        <div className="grid lg:grid-cols-3 md:grid-cols-2 gap-5 mt-10">
+        <div className="grid lg:grid-cols-3 md:grid-cols-2 gap-10 gap-y-5 mt-10">
           {Array.from({ length: 6 }).map(() => {
-            return <BlogCard />;
+            return <ResearchCard />;
           })}
         </div>
       </div>
