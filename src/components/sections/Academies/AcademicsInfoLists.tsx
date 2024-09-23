@@ -138,8 +138,16 @@ function AcademicsInfoLists() {
       </div>
 
       <div className="container ">
-        <div className="w-full mx-auto  ">
-          <div className="grid lg:grid-cols-4 md:grid-cols-2  mx-auto items-center  gap-10 md:my-20 py-10 ">
+        <div className="w-full mt-28 mx-auto  ">
+          <div className={`${montserrat.className} md:text-left text-center`}>
+            <p className="lg:text-xl text-lg mb-2 font-bold text-main">
+              We are starting from here
+            </p>
+            <h1 className="lg:text-4xl text-3xl font-bold">
+              Current Departments
+            </h1>
+          </div>
+          <div className="grid lg:grid-cols-4 md:grid-cols-2  mx-auto items-center  gap-10  py-10 ">
             {[
               {
                 image:
@@ -151,7 +159,7 @@ function AcademicsInfoLists() {
                 image:
                   "https://caias.in/wp-content/uploads/2020/12/iStock-1210745478-conflicted-scaled-1.jpg",
                 title: "Sustainable Youth Academy",
-                link: "/sustainable-events",
+                link: "/academies/sustainable-youth-academy",
               },
               {
                 image:

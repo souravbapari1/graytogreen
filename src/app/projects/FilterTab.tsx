@@ -90,7 +90,7 @@ function FilterTab() {
             <AccordionTrigger className="py-2 px-3 text-xs">
               Processing Type
             </AccordionTrigger>
-            <AccordionContent className="p-3 flex flex-col gap-3 max-h-40 overflow-auto">
+            <AccordionContent className="p-3 flex flex-col gap-3 max-h-44 overflow-auto">
               <div className="flex justify-start items-center gap-4">
                 <Checkbox />
                 <p>Collection</p>
@@ -98,6 +98,18 @@ function FilterTab() {
               <div className="flex justify-start items-center gap-4">
                 <Checkbox />
                 <p>Recycling</p>
+              </div>
+              <div className="flex justify-start items-center gap-4">
+                <Checkbox />
+                <p>Planting</p>
+              </div>
+              <div className="flex justify-start items-center gap-4">
+                <Checkbox />
+                <p>Restoration</p>
+              </div>
+              <div className="flex justify-start items-center gap-4">
+                <Checkbox />
+                <p>Soil Improvement</p>
               </div>
             </AccordionContent>
           </AccordionItem>

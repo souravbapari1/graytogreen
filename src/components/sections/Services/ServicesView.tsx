@@ -3,7 +3,7 @@ import Image from "next/image";
 import Link from "next/link";
 import React from "react";
 
-function ServicesView() {
+function ServicesListView() {
   return (
     <div
       className={`${montserrat.className} container grid xl:grid-cols-10  my-20 gap-10`}
@@ -53,10 +53,10 @@ function ServicesView() {
             reprehenderit inventore numquam!
           </p>
           <Link
-            className="donateBtn py-3 text-center w-32 shadow-none mt-2"
+            className="donateBtn py-3 text-center w-36 shadow-none mt-2"
             href="/partners"
           >
-            View
+            Let's Go
           </Link>
         </div>
         <div className="w-full  bg-main/10 rounded-3xl p-10 flex flex-col gap-3">
@@ -71,10 +71,10 @@ function ServicesView() {
             reprehenderit inventore numquam!
           </p>
           <Link
-            className="donateBtn py-3 text-center w-32 shadow-none mt-2"
+            className="donateBtn py-3 text-center w-36 shadow-none mt-2"
             href="/sustainable-events"
           >
-            View
+            Let's Go
           </Link>
         </div>
         <div className="w-full  bg-main/10 rounded-3xl p-10 flex flex-col gap-3">
@@ -89,10 +89,10 @@ function ServicesView() {
             reprehenderit inventore numquam!
           </p>
           <Link
-            className="donateBtn py-3 text-center w-32 shadow-none mt-2"
+            className="donateBtn py-3 text-center w-36 shadow-none mt-2"
             href="/membership"
           >
-            View
+            Let's Go
           </Link>
         </div>
       </div>
@@ -109,10 +109,10 @@ function ServicesView() {
             reprehenderit inventore numquam!
           </p>
           <Link
-            className="donateBtn py-3 text-center w-32 shadow-none mt-2"
+            className="donateBtn py-3 text-center w-36 shadow-none mt-2"
             href="/consultation"
           >
-            View
+            Let's Go
           </Link>
         </div>
         <div className="w-full  bg-main/10 rounded-3xl p-10 flex flex-col gap-3">
@@ -127,10 +127,10 @@ function ServicesView() {
             reprehenderit inventore numquam!
           </p>
           <Link
-            className="donateBtn py-3 text-center w-32 shadow-none mt-2"
+            className="donateBtn py-3 text-center w-36 shadow-none mt-2"
             href="/academies"
           >
-            View
+            Let's Go
           </Link>
         </div>
       </div>
@@ -138,4 +138,4 @@ function ServicesView() {
   );
 }
 
-export default ServicesView;
+export default ServicesListView;

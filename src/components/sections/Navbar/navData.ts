@@ -26,15 +26,81 @@ export type NavDataSet =
       className?: string;
     };
 
-const servicesMenu: ServicesMenuItems[] = [
+const toolsMenu: ServicesMenuItems[] = [
   {
-    title: "Services",
+    title: "Tools",
     list: [
       {
         icon: "",
         href: "#",
         id: "",
-        title: "Partner with us or sponsor us",
+        title: "CO2 Calculator ",
+      },
+      {
+        icon: "",
+        href: "#",
+        id: "",
+        title: "GCX Platform",
+      },
+      {
+        icon: "",
+        href: "#",
+        id: "",
+        title: "GTG Nursery",
+      },
+      {
+        icon: "",
+        href: "#",
+        id: "",
+        title: "Sustainability Marketplace",
+      },
+      {
+        icon: "",
+        href: "#",
+        id: "",
+        title: "Tracking Tool",
+      },
+      {
+        icon: "",
+        href: "#",
+        id: "",
+        title: "Partener Platform",
+      },
+      {
+        icon: "",
+        href: "#",
+        id: "",
+        title: "Trees restoration Tracking Tool",
+      },
+    ],
+  },
+  {
+    title: "Initiatives",
+    list: [
+      {
+        icon: "",
+        href: "#",
+        id: "",
+        title: "ReThink",
+        subtitle:
+          "Reduce and compensate emissions and invite young speakers to talk about the climate crisis.",
+      },
+
+      {
+        icon: "",
+        href: "#",
+        id: "",
+        title: "Stop Talking , Start Planting",
+        subtitle:
+          "Reduce and compensate emissions and invite young speakers to talk about the climate crisis.",
+      },
+      {
+        icon: "",
+        href: "#",
+        id: "",
+        title: "Monthly Environmental Day",
+        subtitle:
+          "Reduce and compensate emissions and invite young speakers to talk about the climate crisis.",
       },
     ],
   },
@@ -143,8 +209,12 @@ export const navData: NavDataSet[] = [
 
   {
     title: "Tools & initiatives",
-    href: "/platform",
-    isSubmenu: false,
+    href: "#",
+    isSubmenu: true,
+    image:
+      "https://www.plant-for-the-planet.org/wp-content/uploads/2022/10/20191015_ac_curitiba_rethoricalpractice_3.jpg",
+    submenu: toolsMenu,
+    className: "gap-1",
   },
   {
     title: "⁠Researchs",
