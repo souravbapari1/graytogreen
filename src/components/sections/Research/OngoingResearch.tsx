@@ -1,6 +1,7 @@
 import { montserrat } from "@/fonts/font";
 import React from "react";
 import ResearchCard from "./ResearchCard";
+import Link from "next/link";
 
 function OngoingResearch() {
   return (
@@ -24,6 +25,11 @@ function OngoingResearch() {
           {Array.from({ length: 6 }).map(() => {
             return <ResearchCard />;
           })}
+        </div>
+        <div className="w-full flex justify-center items-center pt-10">
+          <Link href="#" className="donateBtn py-4">
+            View More
+          </Link>
         </div>
       </div>
     </div>
