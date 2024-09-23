@@ -55,9 +55,11 @@ function DesktopMenuBar() {
                                 className="opacity-85 hover:opacity-100 transition-all macAir:text-sm text-xs font-semibold"
                               >
                                 <p>
-                                  <span className="text-sm mr-3 ">
-                                    {e.icon}
-                                  </span>
+                                  {e.icon && (
+                                    <span className="text-sm mr-3 ">
+                                      {e.icon}
+                                    </span>
+                                  )}
                                   {e.title}
                                 </p>
                                 {e.subtitle && (

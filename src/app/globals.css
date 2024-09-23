@@ -227,3 +227,18 @@ button.mapboxgl-popup-close-button {
 
 button.nav.default-nav {
 }
+
+button.react-multiple-carousel__arrow.react-multiple-carousel__arrow--right,
+button.react-multiple-carousel__arrow.react-multiple-carousel__arrow--left {
+  border-radius: 12px;
+  background: rgba(18, 138, 18, 0.519);
+  position: absolute !important;
+  z-index: 1;
+}
+
+button.react-multiple-carousel__arrow.react-multiple-carousel__arrow--right {
+  right: 0px;
+}
+button.react-multiple-carousel__arrow.react-multiple-carousel__arrow--left {
+  left: 0;
+}

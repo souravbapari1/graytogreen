@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { Inter, Lora, Open_Sans } from "next/font/google";
+import "react-multi-carousel/lib/styles.css";
 import "react-slideshow-image/dist/styles.css";
 import "./globals.css";
 import NextTopLoader from "nextjs-toploader";
