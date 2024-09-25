@@ -7,7 +7,6 @@ function YouthAcademyWahtYouExperience() {
   return (
     <div className="container relative">
       <div className="flex text-main items-center gap-3 mb-4">
-        {" "}
         <PiPlantFill />
         <p className={`${montserrat.className} text-sm font-semibold`}>
           Learn Something New

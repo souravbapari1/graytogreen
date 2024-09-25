@@ -242,3 +242,11 @@ button.react-multiple-carousel__arrow.react-multiple-carousel__arrow--right {
 button.react-multiple-carousel__arrow.react-multiple-carousel__arrow--left {
   left: 0;
 }
+
+.react-calendar.border-none {
+  border: none !important;
+}
+
+.react-calendar__tile--active {
+  background: #68b030 !important;
+}

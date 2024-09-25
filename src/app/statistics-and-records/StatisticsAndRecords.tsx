@@ -1,7 +1,7 @@
 import { montserrat } from "@/fonts/font";
 import Image from "next/image";
 import React from "react";
-const donations = [
+export const donations = [
   {
     company: "PJM Investment Akademie GmbH",
     trees: 1,

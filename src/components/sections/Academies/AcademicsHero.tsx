@@ -65,7 +65,7 @@ function AcademicsHero() {
             return (
               <div
                 className={cn(
-                  `w-full max-w-[350px] h-40  z-30 bg-white md:shadow md:hover:shadow-lg transition-all p-3.5 flex justify-center items-center text-center gap-3 flex-col ${montserrat.className}`,
+                  `w-full max-w-[350px] h-36  z-30 bg-white md:shadow md:hover:shadow-lg transition-all p-2 flex justify-center items-center text-center gap-3 flex-col ${montserrat.className}`,
                   `${
                     i == 0
                       ? "md:h-52 md:-mt-2.5 bg-gray-400 text-white"
@@ -80,10 +80,10 @@ function AcademicsHero() {
                   width={300}
                   height={200}
                   alt=""
-                  className="w-auto md:h-16 h-10"
+                  className="w-auto md:h-12 h-8"
                 />
                 <h1 className="lg:text-xl text-lg font-bold ">{e.title}</h1>
-                <p className="lg:text-sm text-xs opacity-60">{e.desc}</p>
+                <p className="lg:text-sm text-sm opacity-60">{e.desc}</p>
               </div>
             );
           })}
