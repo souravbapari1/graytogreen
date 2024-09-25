@@ -11,6 +11,7 @@ import {
   SheetTrigger,
 } from "@/components/ui/sheet";
 import { Input } from "../ui/input";
+import { Checkbox } from "../ui/checkbox";
 
 function PlatformMenu() {
   return (
@@ -30,6 +31,10 @@ function PlatformMenu() {
               </TabsTrigger>
             </TabsList>
           </Tabs>
+          <div className="flex justify-normal items-center gap-3 mt-3">
+            <Checkbox />
+            <p className="text-sm font-medium">Top Projects</p>
+          </div>
           <Input
             className="shadow-none mt-2  text-xs"
             placeholder="Search Project.. "

@@ -1,7 +1,9 @@
+import AboutOurTeam from "@/components/sections/AboutUS/AboutOurTeam";
 import Footer from "@/components/sections/Footer/Footer";
 import FooterTop from "@/components/sections/Footer/FooterTop";
 import Navbar from "@/components/sections/Navbar/Navbar";
 import AllResearchPartner from "@/components/sections/Research/AllResearchPartner";
+import ApplyResearchPrograms from "@/components/sections/Research/ApplyResearchPrograms";
 import FunctionalDiversityRestoration from "@/components/sections/Research/FunctionalDiversityRestoration";
 import InfrastructureAndTeam from "@/components/sections/Research/InfrastructureAndTeam";
 import NitrogenFixingSpecies from "@/components/sections/Research/NitrogenFixingSpecies";
@@ -20,13 +22,14 @@ function ResearchPage() {
       <ResearchHero />
       <OngoingResearch />
       <NitrogenFixingSpecies />
+      <ApplyResearchPrograms />
       <FunctionalDiversityRestoration />
       <RestorationAdviceTeam />
       <InfrastructureAndTeam />
       <TourOfTheCampus />
       <RecentPublications />
       <ResearchFellowships />
-      <AllResearchPartner />
+      <AboutOurTeam />
       <FooterTop />
       <Footer />
     </div>
