@@ -1,14 +1,14 @@
 import { montserrat } from "@/fonts/font";
 import Image from "next/image";
 import Link from "next/link";
-import React from "react";
+import React, { ReactNode } from "react";
 
-function WorkSpace() {
+function WorkSpace({ children }: { children: ReactNode }) {
   return (
     <div className={`relative ${montserrat.className}`}>
-      <div className="w-full fixed top-0 z-40 h-16 border-b bg-white flex ">
+      <div className="w-full fixed top-0 z-40 h-16 border-b bg-white flex items-center ">
         <div className="w-80"></div>
-        <h1>sds</h1>
+        <div className="px-20">{/* ///////// */}</div>
       </div>
       <div className="w-80 border-r z-50 h-screen bg-white fixed left-0 top-0 p-6">
         <Link href="/account">
@@ -21,10 +21,13 @@ function WorkSpace() {
           />
         </Link>
         <div className="mt-5 font-medium flex flex-col gap-3">
-          <Link href="#" className="bg-primary/20 p-2 px-5 ">
+          <Link href="/account/company" className="bg-primary/20 p-2 px-5 ">
             <p>My Balance</p>
           </Link>
-          <Link href="#" className="bg-gray-100 p-2 px-5 ">
+          <Link
+            href="/account/company/my-projects"
+            className="bg-gray-100 p-2 px-5 "
+          >
             <p>My Projects</p>
           </Link>
           <Link href="#" className="bg-gray-100 p-2 px-5 ">
@@ -37,6 +40,9 @@ function WorkSpace() {
             <p>Logout</p>
           </Link>
         </div>
+      </div>
+      <div className="mt-20 pl-80">
+        <div className="p-10">{children}</div>
       </div>
     </div>
   );

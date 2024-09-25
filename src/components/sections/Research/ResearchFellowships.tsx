@@ -33,6 +33,11 @@ function ResearchFellowships() {
             </div>
           </div>
           <div className="   flex flex-col justify-center items-start">
+            <h1
+              className={`lg:text-3xl text-2xl  lg:mb-7 mb-3 font-bold uppercase ${montserrat.className}`}
+            >
+              Research Fellowships
+            </h1>
             <p className="lg:text-lg text-gray-700 ">
               Universities and research institutes often lack the facilities to
               offer researchers the necessary framework conditions to test
