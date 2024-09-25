@@ -52,6 +52,7 @@ function MobileMenuBar() {
                     <NavLink
                       key={i}
                       href={e.href}
+                      exact
                       className="py-2 transition-all hover:text-green-600"
                     >
                       {e.title}
@@ -84,6 +85,7 @@ function MobileMenuBar() {
                           <NavLink
                             key={j}
                             href={link.href}
+                            exact
                             className="py-2 transition-all hover:text-green-600"
                           >
                             {link.title}

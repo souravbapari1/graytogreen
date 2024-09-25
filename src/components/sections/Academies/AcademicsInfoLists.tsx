@@ -52,13 +52,13 @@ function AcademicsInfoLists() {
               >
                 Equip
               </div>
-              <div className="w-[90%] h-64 md:h-[380px] bg-green-700/20 absolute -z-[1] lg:mr-12 mr-10 rounded-2xl mb-10"></div>
+              <div className="w-[90%] h-64 md:h-[320px] bg-green-700/20 absolute -z-[1] lg:mr-12 mr-10 rounded-2xl mb-10"></div>
               <Image
                 src="https://images.pexels.com/photos/1072824/pexels-photo-1072824.jpeg?cs=srgb&dl=pexels-akilmazumder-1072824.jpg&fm=jpg"
                 width={1200}
                 height={1200}
                 alt=""
-                className="md:w-full w-[90%]  md:h-[380px]  rounded-2xl object-cover h-64  "
+                className="md:w-full w-[90%]  md:h-[320px]  rounded-2xl object-cover h-64  "
               />
             </div>
           </div>
@@ -72,60 +72,60 @@ function AcademicsInfoLists() {
             <div className=" grid lg:grid-cols-5 md:grid-cols-3 grid-cols-1 gap-10  text-white">
               <div className=" text-center flex flex-col justify-center items-center gap-5">
                 <h1
-                  className={`md:text-7xl text-5xl font-bold text-center ${montserrat.className}`}
+                  className={`md:text-6xl text-5xl font-bold text-center ${montserrat.className}`}
                 >
                   11
                 </h1>
                 <p
-                  className={`${montserrat.className} text-xl text-center text-white/75`}
+                  className={`${montserrat.className} text-md text-center text-white/75`}
                 >
                   BootCamps
                 </p>
               </div>
               <div className=" text-center flex flex-col justify-center items-center gap-5">
                 <h1
-                  className={`md:text-7xl text-5xl font-bold text-center ${montserrat.className}`}
+                  className={`md:text-6xl text-5xl font-bold text-center ${montserrat.className}`}
                 >
                   23+
                 </h1>
                 <p
-                  className={`${montserrat.className} text-xl text-center text-white/75`}
+                  className={`${montserrat.className} text-md text-center text-white/75`}
                 >
                   Released Researches
                 </p>
               </div>
               <div className=" text-center flex flex-col justify-center items-center gap-5">
                 <h1
-                  className={`md:text-7xl text-5xl font-bold text-center ${montserrat.className}`}
+                  className={`md:text-6xl text-5xl font-bold text-center ${montserrat.className}`}
                 >
                   100+
                 </h1>
                 <p
-                  className={`${montserrat.className} text-xl text-center text-white/75`}
+                  className={`${montserrat.className} text-md text-center text-white/75`}
                 >
                   Graduated Ambassadors
                 </p>
               </div>
               <div className=" text-center flex flex-col justify-center items-center gap-5">
                 <h1
-                  className={`md:text-7xl text-5xl font-bold text-center ${montserrat.className}`}
+                  className={`md:text-6xl text-5xl font-bold text-center ${montserrat.className}`}
                 >
                   7+
                 </h1>
                 <p
-                  className={`${montserrat.className} text-xl text-center text-white/75`}
+                  className={`${montserrat.className} text-md text-center text-white/75`}
                 >
                   Workspace
                 </p>
               </div>
               <div className=" text-center flex flex-col justify-center items-center gap-5">
                 <h1
-                  className={`md:text-7xl text-5xl font-bold text-center ${montserrat.className}`}
+                  className={`md:text-6xl text-5xl font-bold text-center ${montserrat.className}`}
                 >
                   12+
                 </h1>
                 <p
-                  className={`${montserrat.className} text-xl text-center text-white/75`}
+                  className={`${montserrat.className} text-md text-center text-white/75`}
                 >
                   Climate Change Experts
                 </p>
@@ -147,7 +147,7 @@ function AcademicsInfoLists() {
               Current Departments
             </h1>
           </div>
-          <div className="grid lg:grid-cols-4 md:grid-cols-2  mx-auto items-center  gap-10  py-10 ">
+          <div className="grid lg:grid-cols-4 md:grid-cols-2  mx-auto items-center  lg:gap-0 gap-5  py-10 ">
             {[
               {
                 image:
@@ -177,7 +177,7 @@ function AcademicsInfoLists() {
               return (
                 <div
                   key={"type:_" + i}
-                  className="w-full lg:h-[350px] h-80 bg-green-200  hover:shadow-lg transition-all overflow-hidden relative"
+                  className="w-full lg:h-[320px] h-80 bg-green-200  hover:shadow-lg transition-all overflow-hidden relative"
                 >
                   <Image
                     src={e.image}
@@ -189,7 +189,7 @@ function AcademicsInfoLists() {
                   <div className="w-full h-full bg-black absolute top-0 right-0 bg-black/30"></div>
                   <div className="absolute bottom-0  p-5">
                     <h1
-                      className={`${montserrat.className}  text-xl text-white font-extrabold `}
+                      className={`${montserrat.className}  text-lg text-white font-extrabold `}
                     >
                       {e.title}
                     </h1>

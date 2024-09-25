@@ -55,11 +55,11 @@ function Navbar() {
 
           <DesktopMenuBar />
 
-          <div className="md:w-28">
+          <Link href="/donate" className="md:w-28">
             <Button className="bg-gradient-to-r from-green-500 to-emerald-600 rounded-full shadow-md shadow-green-400/60 border-none md:px-8 px-5   font-extrabold text-white/85">
               Act Now
             </Button>
-          </div>
+          </Link>
         </div>
       </div>
     </div>
