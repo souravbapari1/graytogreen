@@ -3,7 +3,7 @@ import Image from "next/image";
 import Link from "next/link";
 import React, { ReactNode } from "react";
 
-function WorkSpace({ children }: { children: ReactNode }) {
+function WorkSpace({ children }: { children?: ReactNode }) {
   return (
     <div className={`relative ${montserrat.className}`}>
       <div className="w-full fixed top-0 z-40 h-16 border-b bg-white flex items-center ">
