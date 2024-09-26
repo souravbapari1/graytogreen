@@ -1,5 +1,5 @@
 import React from "react";
-import WorkSpace from "../../components/workspace";
+import WorkSpace from "../components/workspace";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import {
   Table,
@@ -19,6 +19,7 @@ import {
   PaginationNext,
   PaginationPrevious,
 } from "@/components/ui/pagination";
+import Link from "next/link";
 
 function MyProjects() {
   return (
@@ -73,37 +74,43 @@ function MyProjects() {
             return (
               <TableRow>
                 <TableCell className="border-r text-center text-nowrap p-4 ">
-                  INV001
+                  1223
                 </TableCell>
                 <TableCell className="border-r text-center text-nowrap p-4 ">
-                  Paid
+                  Project 1
                 </TableCell>
                 <TableCell className="border-r text-center text-nowrap p-4 ">
-                  Credit Card
+                  Carbon Offset
                 </TableCell>
                 <TableCell className="border-r text-center text-nowrap p-4 ">
-                  Credit Card
+                  Planting
                 </TableCell>
                 <TableCell className="border-r text-center text-nowrap p-4 ">
-                  Credit Card
+                  Oman/ Muscat
                 </TableCell>
                 <TableCell className="border-r text-center text-nowrap p-4 ">
-                  Credit Card
+                  12/03/2022
                 </TableCell>
                 <TableCell className="border-r text-center text-nowrap p-4 ">
-                  Credit Card
+                  Approved and Currently Planting
                 </TableCell>
                 <TableCell className="border-r text-center text-nowrap p-4 ">
-                  Credit Card
+                  100029
                 </TableCell>
                 <TableCell className="border-r text-center text-nowrap p-4 ">
-                  Credit Card
+                  Trees
                 </TableCell>
                 <TableCell className="border-r text-center text-nowrap p-4 ">
-                  Credit Card
+                  <Link className="text-xs text-primary" href="#">
+                    Document_1_2022
+                  </Link>
                 </TableCell>
 
-                <TableCell className="text-center">$250.00</TableCell>
+                <TableCell className="text-center">
+                  <Link className="text-xs text-primary" href="#">
+                    Document_1_2022
+                  </Link>
+                </TableCell>
               </TableRow>
             );
           })}

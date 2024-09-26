@@ -21,13 +21,10 @@ function WorkSpace({ children }: { children?: ReactNode }) {
           />
         </Link>
         <div className="mt-5 font-medium flex flex-col gap-3">
-          <Link href="/account/company" className="bg-primary/20 p-2 px-5 ">
+          <Link href="/account" className="bg-primary/20 p-2 px-5 ">
             <p>My Balance</p>
           </Link>
-          <Link
-            href="/account/company/my-projects"
-            className="bg-gray-100 p-2 px-5 "
-          >
+          <Link href="/account/my-projects" className="bg-gray-100 p-2 px-5 ">
             <p>My Projects</p>
           </Link>
           <Link href="#" className="bg-gray-100 p-2 px-5 ">
@@ -35,6 +32,9 @@ function WorkSpace({ children }: { children?: ReactNode }) {
           </Link>
           <Link href="#" className="bg-gray-100 p-2 px-5 ">
             <p>Social impacts</p>
+          </Link>
+          <Link href="#" className="bg-gray-100 p-2 px-5 ">
+            <p>My Program</p>
           </Link>
           <Link href="#" className="bg-gray-100 p-2 px-5 ">
             <p>Logout</p>
