@@ -46,8 +46,7 @@ function Foundation() {
                   Foundation
                 </p>
                 <div className="flex  flex-row gap-4 mt-5 text-gray-500 ">
-                 
-                  <FaSquareXTwitter className="hover:text-gray-900" size={18} />
+                  {/* <FaSquareXTwitter className="hover:text-gray-900" size={18} /> */}
                   <FaLinkedinIn className="hover:text-gray-900" size={18} />
                 </div>
               </div>

@@ -128,6 +128,13 @@ function MonthlySummitTalkContent() {
           participating, fostering a global community dedicated to tackling the
           climate crisis together.
         </p>
+        <Link
+          href="https://us06web.zoom.us/meeting/register/tZAvc-mqpzgsHdepCVceOUjuRTLY89tiqJwX#/registration"
+          target="_blank"
+          className="donateBtn py-3 shadow-none mt-6 capitalize text-center  text-xs"
+        >
+          Registering in Climate Justice Session{" "}
+        </Link>
       </div>
       <div className="grid lg:grid-cols-2 gap-10 mt-20">
         <div className="flex items-center justify-center md:mt-0 mt-10 md:mb-0 mb-8">

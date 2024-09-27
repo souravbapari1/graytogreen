@@ -3,7 +3,7 @@ import Image from "next/image";
 import Link from "next/link";
 import React from "react";
 
-function SupportResearchAndEpirementAction() {
+function BeVolunteerAction() {
   return (
     <div className={`py-20 ${montserrat.className}`}>
       <div className="container flex flex-col gap-5 justify-center items-center">
@@ -17,8 +17,11 @@ function SupportResearchAndEpirementAction() {
           any small or regular contribution and, like a donation, it is
           tax-deductible.
         </p>
-        <Link className="donateBtn py-4 px-10 mt-10" href="/donate">
-          Support research & Expirement
+        <Link
+          className="donateBtn py-4 px-10 mt-10"
+          href="/act-with-us/be-volunteer/request"
+        >
+          Apply Now
         </Link>
       </div>
       <div className="flex container justify-start md:flex-row flex-col items-center  md:gap-20 gap-10   mt-28  ">
@@ -28,7 +31,7 @@ function SupportResearchAndEpirementAction() {
             width={1000}
             height={1000}
             alt=""
-            className="w-56 h-56 object-cover rounded-3xl"
+            className="w-72 h-96 object-cover rounded-3xl"
           />
         </div>
         <div className="flex flex-col justify-center items-start gap-8 ">
@@ -47,10 +50,13 @@ function SupportResearchAndEpirementAction() {
               +49 8808 921 08 111
             </Link>
           </p>
+          <Link className="donateBtn py-3 capitalize shadow-none" href="#">
+            Book 15 min Meeting
+          </Link>
         </div>
       </div>
     </div>
   );
 }
 
-export default SupportResearchAndEpirementAction;
+export default BeVolunteerAction;

@@ -13,10 +13,15 @@ function HomeHeaderSlide() {
         autoplay={false}
         infinite={true}
       >
-        {Array.from({ length: 4 }).map((_, i) => {
+        {[
+          "https://images.theconversation.com/files/440454/original/file-20220112-25-zmd311.jpg?ixlib=rb-4.1.0&rect=0%2C1300%2C6928%2C3464&q=45&auto=format&w=1356&h=668&fit=crop",
+          "https://help.gardeningexpress.co.uk/wp-content/uploads/2023/04/Untitled-design-1-1024x576.png",
+          "https://images.theconversation.com/files/440454/original/file-20220112-25-zmd311.jpg?ixlib=rb-4.1.0&rect=0%2C1300%2C6928%2C3464&q=45&auto=format&w=1356&h=668&fit=crop",
+          "https://help.gardeningexpress.co.uk/wp-content/uploads/2023/04/Untitled-design-1-1024x576.png",
+        ].map((e, i) => {
           return (
             <div
-              className="each-slide md:max-h-[500px] max-h-[300px]  h-[1200px] w-full overflow-hidden  "
+              className="each-slide md:max-h-[600px] max-h-[300px]  h-[1200px] w-full overflow-hidden  "
               key={"s" + i}
             >
               <div className="h-full relative w-full">
@@ -29,7 +34,7 @@ function HomeHeaderSlide() {
                     className="w-full h-full object-cover absolute top-0 right-0 bg-green-50"
                   /> */}
                   <Image
-                    src="https://pixabay.com/get/g04121149a7b5a7f2079ed8848fa4d60ecc75cd6abce09639850eb3b8475e2e98db1c2101364a27002bcca45c3cc3a1c3.jpg"
+                    src={e}
                     // autoPlay={true}
                     // muted={true}
                     // loop={true}

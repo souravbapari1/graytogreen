@@ -10,6 +10,7 @@ import ServicesView from "@/components/sections/Services/ServicesView";
 import { montserrat } from "@/fonts/font";
 import Link from "next/link";
 import React from "react";
+import AboutOurTeam from "@/components/sections/AboutUS/AboutOurTeam";
 
 function Services() {
   return (
@@ -18,7 +19,7 @@ function Services() {
       {/* <ServicesHero /> */}
 
       <ServicesView />
-      <AboutPatrons title="Our Team" />
+      <AboutOurTeam />
       <MembershipView />
       <FooterTop />
       <Footer />

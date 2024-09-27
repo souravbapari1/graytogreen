@@ -43,7 +43,7 @@ function PartnersHero() {
             <br />
             <br />
             <Link
-              href="#"
+              href="/partners/register"
               className={`${montserrat.className} donateBtn py-3 shadow-none  text-sm`}
             >
               Register as sponsor

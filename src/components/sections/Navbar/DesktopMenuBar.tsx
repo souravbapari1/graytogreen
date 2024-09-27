@@ -12,7 +12,7 @@ function DesktopMenuBar() {
     <div className="lg:flex lg:gap-8 gap-5 font-medium text-gray-500 hidden h-full bg-white w-full justify-center items-center">
       {navData.map((e, i) => {
         return (
-          <div className="relative group" key={"NavLink-" + i}>
+          <div className="relative group text-nowrap" key={"NavLink-" + i}>
             <NavLink
               exact
               href={e.href}
@@ -54,9 +54,9 @@ function DesktopMenuBar() {
                                 exact
                                 className="opacity-85 hover:opacity-100 transition-all macAir:text-sm text-xs font-semibold"
                               >
-                                <p>
+                                <p className="text-xs">
                                   {e.icon && (
-                                    <span className="text-sm mr-3 ">
+                                    <span className="text-xs mr-3 ">
                                       {e.icon}
                                     </span>
                                   )}

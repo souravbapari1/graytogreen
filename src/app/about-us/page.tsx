@@ -22,7 +22,7 @@ function AboutUs() {
       <AboutOurTeam />
       <Foundation />
       <BordOfDirectors />
-      <AboutOurAmbassadors />
+      {/* <AboutOurAmbassadors /> */}
       <ScientificAndSustainabilityAdvisors />
       <EducationAdvisors />
       <FooterTop />

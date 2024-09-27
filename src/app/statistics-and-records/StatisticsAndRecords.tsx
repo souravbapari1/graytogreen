@@ -54,9 +54,9 @@ function StatisticsAndRecords() {
         <div className="flex justify-center mt-10 w-full items-center flex-col gap-6">
           <div className="flex justify-center items-center gap-8 md:mb-4 font-semibold select-none">
             <p className="border-b-2 border-main text-main cursor-pointer">
-              Most Recent
+              Plastic Activity
             </p>
-            <p className="cursor-pointer">Most Trees</p>
+            <p className="cursor-pointer">Planting Trees</p>
           </div>
           <div className="max-w-[600px] w-full">
             {donations.map((e, i) => {
