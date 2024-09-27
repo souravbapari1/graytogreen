@@ -69,7 +69,7 @@ function OngoingResearch() {
             })}
           </div>
           <div className="w-full flex justify-center items-center pt-10">
-            <Link href="#" className="donateBtn py-4">
+            <Link href="/research" className="donateBtn py-4">
               View More
             </Link>
           </div>

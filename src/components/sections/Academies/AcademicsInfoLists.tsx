@@ -165,7 +165,7 @@ function AcademicsInfoLists() {
                 image:
                   "https://www.utility.rentals/wp-content/uploads/2020/01/Spruce-up-your-science-lab.jpg",
                 title: "Experiments, Innovation and Researches Labs",
-                link: "/research",
+                link: "/academies/researches-labs",
               },
               {
                 image:

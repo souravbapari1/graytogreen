@@ -39,7 +39,7 @@ function DonateBanner() {
               <Button
                 className={`${lora.className} text-xl py-[24px] md:w-auto w-full  px-8 rounded-full bg-green-500 shadow-none border-none`}
               >
-                Donate Us
+                Act Now
               </Button>
               <Link
                 href="#"
@@ -65,8 +65,8 @@ function DonateBanner() {
           <h1
             className={`${montserrat.className} font-extrabold uppercase lg:text-3xl text-xl`}
           >
-            Climate Justice Ambassadors: <br />
-            <span className="text-main">We Make Ourselves Heard</span>
+            Why we need to
+            <span className="text-main"> bemore sustianable</span>
           </h1>
           <p className="md:text-lg  mt-5">
             Over 100,273 children and youth have already been trained at 1,866

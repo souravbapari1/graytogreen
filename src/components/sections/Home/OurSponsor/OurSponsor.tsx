@@ -17,7 +17,7 @@ function OurSponsor() {
         Our <span className="text-main ">Sponsor</span>
       </h1>
       <Marquee className="">
-        <div className="flex  justify-center md:mt-14 mt-5 md:mb-20 items-center ">
+        <div className="flex  justify-center md:mt-14 mt-5 md:mb-10 items-center ">
           {[
             "https://www.savatree.com/wp-content/uploads/2021/10/savatree-mobile-500.png",
             "https://livelihoods.eu/wp-content/uploads/2017/03/HD-LOGO-LIVELIHOODS-FUNDS-HORIZONTAL.png",
@@ -35,18 +35,28 @@ function OurSponsor() {
             "https://upload.wikimedia.org/wikipedia/en/thumb/b/b5/Tropicana_green_flat_logo.svg/800px-Tropicana_green_flat_logo.svg.png",
           ].map((e, i) => {
             return (
-              <Image
-                src={e}
-                key={i}
-                alt=""
-                className="w-28 h-28 object-contain md:mx-10  mx-5"
-                width={100}
-                height={100}
-              />
+              <Link href="/sponsors/brand">
+                <Image
+                  src={e}
+                  key={i}
+                  alt=""
+                  className="w-28 h-28 object-contain md:mx-10  mx-5"
+                  width={100}
+                  height={100}
+                />
+              </Link>
             );
           })}
         </div>
       </Marquee>
+      <div className="w-full flex justify-center items-center mb-10">
+        <Link
+          href="/sponsors"
+          className="shadow-none border-none donateBtn py-2 font-semibold"
+        >
+          All Sponsors
+        </Link>
+      </div>
       <div className="flex flex-col justify-center items-center gap-10">
         <div className="grid lg:grid-cols-2 gap-10 mt-12">
           <div className="relative md:p-10 flex justify-center items-center">
@@ -63,8 +73,8 @@ function OurSponsor() {
             <h1
               className={`${montserrat.className} font-extrabold uppercase lg:text-4xl text-2xl`}
             >
-              Why we need to be <br /> more{" "}
-              <span className="text-main">sustianable</span>
+              Climate Justice Ambassadors: <br />
+              <span className="text-main">We Make Ourselves Heard</span>
             </h1>
             <p className="  mt-4">
               The world currently has three trillion trees and has space for a

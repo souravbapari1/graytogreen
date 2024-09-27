@@ -94,13 +94,13 @@ function Footer() {
                 className="hover:text-white transition-all text-sm"
                 href="/monthly-summit-talk"
               >
-                Youth Summit
+                Monthly Summit
               </Link>
               <Link
                 className="hover:text-white transition-all text-sm"
                 href="/monthly-summit-talk"
               >
-                Youth Summit Talks
+                Monthly Summit Talks
               </Link>
             </div>
           </div>
@@ -123,9 +123,9 @@ function Footer() {
               </Link>
               <Link
                 className="hover:text-white transition-all text-sm"
-                href="#"
+                href="/book/consultation"
               >
-                FireAlert
+                Consultation
               </Link>
               <Link
                 className="hover:text-white transition-all text-sm"
@@ -209,7 +209,7 @@ function Footer() {
               </Link>
               <Link
                 className="hover:text-white transition-all text-sm"
-                href="/impact-with-us/endowment"
+                href="/act-with-us/endowment"
               >
                 Endowment
               </Link>

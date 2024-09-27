@@ -7,7 +7,7 @@ import Image from "next/image";
 function RecentPublications() {
   return (
     <>
-      <div className="container py-20 flex flex-col justify-center items-center">
+      {/* <div className="container py-20 flex flex-col justify-center items-center">
         <h1
           className={`${montserrat.className} md:text-4xl text-3xl font-bold text-center`}
         >
@@ -64,7 +64,7 @@ function RecentPublications() {
             </div>
           </div>
         </div>
-      </div>
+      </div> */}
       <ResearchSlide />
 
       <div className="flex  justify-center flex-wrap md:mt-14 mt-5 md:mb-20 items-center ">

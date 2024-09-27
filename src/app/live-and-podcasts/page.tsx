@@ -12,7 +12,7 @@ function LiveAndPodcasts() {
   return (
     <div>
       <Navbar />
-      <NoLive />
+      {/* <NoLive /> */}
       <LiveOrPodCastVideos />
       <FooterTop />
       <Footer />

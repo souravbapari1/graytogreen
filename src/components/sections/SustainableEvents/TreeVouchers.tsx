@@ -2,6 +2,9 @@ import { montserrat } from "@/fonts/font";
 import Image from "next/image";
 import Link from "next/link";
 import React from "react";
+import { ImWhatsapp } from "react-icons/im";
+
+import { FaPhone } from "react-icons/fa6";
 
 function TreeVouchers() {
   return (
@@ -40,7 +43,51 @@ function TreeVouchers() {
               <Link href="#" className="text-main">
                 event@graytogreen.com
               </Link>
+              <br />
             </p>
+          </div>
+        </div>
+      </div>
+      <div className="flex container justify-start md:flex-row flex-col items-center  md:gap-20 gap-10   mt-28  ">
+        <div className="">
+          <Image
+            src="https://www.plant-for-the-planet.org/wp-content/uploads/2022/10/Maike-Grundmann.jpg"
+            width={1000}
+            height={1000}
+            alt=""
+            className="w-72 h-80 object-cover rounded-3xl"
+          />
+        </div>
+        <div className="flex flex-col justify-center items-start gap-8 ">
+          <h1 className="text-xl font-bold">
+            Maike Grundmann will be happy to answer any questions you may have.
+          </h1>
+          <p className="">
+            Email:{" "}
+            <Link href="#" className="text-main">
+              maike.grundmann@plant-for-the-planet.org
+            </Link>
+          </p>
+          <p className="">
+            Tel:{" "}
+            <Link href="#" className="text-main">
+              +49 8808 921 08 111
+            </Link>
+          </p>
+
+          <div className="flex md:gap-5 gap-10 md:justify-start md:items-start justify-center items-center w-full">
+            <Link
+              href="#"
+              className="w-12 h-12 bg-gray-100 hover:bg-primary  rounded-full text-primary hover:text-white text-lg flex justify-center items-center"
+            >
+              <FaPhone />
+            </Link>
+            <Link
+              href="#"
+              className="w-12 h-12 bg-gray-100 hover:bg-primary  rounded-full text-primary hover:text-white text-xl flex justify-center items-center"
+            >
+              <ImWhatsapp />
+            </Link>
           </div>
         </div>
       </div>

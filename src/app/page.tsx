@@ -30,7 +30,7 @@ async function page() {
         >
           295+ Projects united{" "}
           <span className="text-main">to bring back a Trillion Trees.</span>
-          <p className="mt-2 ">Donate Now!</p>
+          <p className="mt-2 ">Act Now!</p>
         </h1>
 
         <div className="w-full lg:h-auto h-96  relative overflow-hidden rounded-3xl ">

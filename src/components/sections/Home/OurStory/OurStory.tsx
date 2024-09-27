@@ -70,7 +70,7 @@ function OurStory() {
               <Button
                 className={`${lora.className} text-xl py-[24px] md:w-auto w-full  px-8 rounded-full bg-green-500 shadow-none border-none`}
               >
-                Donate Us
+                Act Now
               </Button>
               <Link
                 href="#"

@@ -8,14 +8,20 @@ function AcademicsMore() {
   return (
     <div>
       <div className="container">
+        <h1
+          className={`lg:text-3xl text-2xl text-primary  lg:mb-10 mb-5 text-center mt-40 font-bold uppercase ${montserrat.className}`}
+        >
+          Kids trip to be climate change ambbassdor
+        </h1>
         <Image
           src="/assets/academy_steps.svg"
-          className="w-full lg:h-[600px] h-auto mt-40 md:block hidden"
+          className="w-full lg:h-[600px] h-auto mt-20 md:block hidden"
           width={2000}
           height={2000}
           alt=""
         />
       </div>
+
       <div className="overflow-hidden">
         <Image
           src="/assets/academy_steps_mob.svg"

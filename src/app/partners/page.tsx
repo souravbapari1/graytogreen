@@ -1,3 +1,4 @@
+import AboutOurTeam from "@/components/sections/AboutUS/AboutOurTeam";
 import Footer from "@/components/sections/Footer/Footer";
 import FooterTop from "@/components/sections/Footer/FooterTop";
 import Navbar from "@/components/sections/Navbar/Navbar";
@@ -16,6 +17,7 @@ function page() {
       <PartnersHero />
       <OurSolution />
       <ServiceAdditionalPartnership />
+      <AboutOurTeam />
       <FooterTop />
       <Footer />
     </div>
