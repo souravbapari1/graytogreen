@@ -37,7 +37,7 @@ function AcademicsInfoLists() {
           </div>
           <div className="lg:mt-0 mt-10">
             <div className="relative md:p-10 flex justify-center items-center">
-              <div
+              {/* <div
                 className={`${montserrat.className} md:w-32 w-20  shadow-md text-white bg-gradient-to-r from-green-900 to-green-600 md:py-7 py-4 md:text-sm text-xs absolute z-20 top-20 lg:-left-10 -left-2 rounded-full flex justify-center items-center font-bold`}
               >
                 Educate
@@ -51,7 +51,7 @@ function AcademicsInfoLists() {
                 className={`${montserrat.className} md:w-32 w-20  shadow-md text-white bg-gradient-to-r to-green-900 from-green-600 md:py-7 py-4 md:text-sm text-xs absolute z-20 bottom-0 right-0 lg:left-48 rounded-full flex justify-center items-center font-bold`}
               >
                 Equip
-              </div>
+              </div> */}
               <div className="w-[90%] h-64 md:h-[320px] bg-green-700/20 absolute -z-[1] lg:mr-12 mr-10 rounded-2xl mb-10"></div>
               <Image
                 src="https://images.pexels.com/photos/1072824/pexels-photo-1072824.jpeg?cs=srgb&dl=pexels-akilmazumder-1072824.jpg&fm=jpg"
