@@ -32,7 +32,7 @@ function SustainableYouthAcademyAbout() {
             </p>
           </div>
           <h1
-            className={`lg:text-4xl text-3xl text-gray-900 lg:mb-10 mb-5 font-bold ${montserrat.className}`}
+            className={`lg:text-4xl text-xl text-gray-900 lg:mb-10 mb-5 font-bold ${montserrat.className}`}
           >
             Join our Future Sustainability Leaders Program (FSLP)
           </h1>
@@ -40,7 +40,7 @@ function SustainableYouthAcademyAbout() {
             <div className="flex gap-4">
               <PiPottedPlantBold size={40} className="text-main w-10" />
               <div className={`${montserrat.className}`}>
-                <h3 className="font-bold text-xl mb-2">Lorem, ipsum.</h3>
+                <h3 className="font-bold md:text-xl mb-2">Lorem, ipsum.</h3>
                 <p className={` text-xs text-gray-500 max-w-[400px]`}>
                   Lorem ipsum dolor sit amet consectetur adipisicing elit. Atque
                   exercitationem numquam quasi necessitatibus, veniam ea
@@ -50,7 +50,7 @@ function SustainableYouthAcademyAbout() {
             <div className="flex gap-4 mt-5">
               <GiEarthAfricaEurope size={40} className="text-main w-10" />
               <div className={`${montserrat.className}`}>
-                <h3 className="font-bold text-xl mb-2">Lorem, ipsum.</h3>
+                <h3 className="font-bold md:text-xl mb-2">Lorem, ipsum.</h3>
                 <p className={` text-xs text-gray-500 max-w-[400px]`}>
                   Lorem ipsum dolor sit amet consectetur adipisicing elit. Atque
                   exercitationem numquam quasi necessitatibus, veniam ea

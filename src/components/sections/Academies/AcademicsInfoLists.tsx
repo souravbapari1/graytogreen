@@ -8,8 +8,8 @@ import { RiArrowDropRightLine } from "react-icons/ri";
 function AcademicsInfoLists() {
   return (
     <div className="">
-      <div className="container mt-32">
-        {/* ======≠≠===========≠≠≠≠≠≠≠≠≠≠≠=========== */}
+      {/* <div className="container mt-32">
+     
         <div className="grid md:grid-cols-2 gap-6">
           <div className="  flex flex-col justify-center items-start">
             <h1
@@ -37,21 +37,7 @@ function AcademicsInfoLists() {
           </div>
           <div className="lg:mt-0 mt-10">
             <div className="relative md:p-10 flex justify-center items-center">
-              {/* <div
-                className={`${montserrat.className} md:w-32 w-20  shadow-md text-white bg-gradient-to-r from-green-900 to-green-600 md:py-7 py-4 md:text-sm text-xs absolute z-20 top-20 lg:-left-10 -left-2 rounded-full flex justify-center items-center font-bold`}
-              >
-                Educate
-              </div>
-              <div
-                className={`${montserrat.className} md:w-32 w-20  shadow-md text-white bg-gradient-to-r from-green-900 to-green-600 md:py-7 py-4 md:text-sm text-xs absolute z-20 lg:top-48 -top-10 lg:-right-6  rounded-full flex justify-center items-center font-bold`}
-              >
-                Engage
-              </div>
-              <div
-                className={`${montserrat.className} md:w-32 w-20  shadow-md text-white bg-gradient-to-r to-green-900 from-green-600 md:py-7 py-4 md:text-sm text-xs absolute z-20 bottom-0 right-0 lg:left-48 rounded-full flex justify-center items-center font-bold`}
-              >
-                Equip
-              </div> */}
+            
               <div className="w-[90%] h-64 md:h-[320px] bg-green-700/20 absolute -z-[1] lg:mr-12 mr-10 rounded-2xl mb-10"></div>
               <Image
                 src="https://images.pexels.com/photos/1072824/pexels-photo-1072824.jpeg?cs=srgb&dl=pexels-akilmazumder-1072824.jpg&fm=jpg"
@@ -63,78 +49,80 @@ function AcademicsInfoLists() {
             </div>
           </div>
         </div>
-        {/* ======≠≠===========≠≠≠≠≠≠≠≠≠≠≠=========== */}
-      </div>
-      <div className="relative container  lg:h-72 h-[900px] mt-20 bg-[url('/assets/744.jpg')] bg-fixed bg-no-repeat bg-cover bg-center">
-        {/* ======≠≠===========≠≠≠≠≠≠≠≠≠≠≠=========== */}
-        <div className="absolute top-0 right-0 bg-black/50 w-full h-full">
-          <div className="w-full h-full   flex justify-center items-center">
-            <div className=" grid lg:grid-cols-5 md:grid-cols-3 grid-cols-1 gap-10  text-white">
-              <div className=" text-center flex flex-col justify-center items-center gap-5">
-                <h1
-                  className={`md:text-6xl text-5xl font-bold text-center ${montserrat.className}`}
-                >
-                  11
-                </h1>
-                <p
-                  className={`${montserrat.className} text-md text-center text-white/75`}
-                >
-                  BootCamps
-                </p>
-              </div>
-              <div className=" text-center flex flex-col justify-center items-center gap-5">
-                <h1
-                  className={`md:text-6xl text-5xl font-bold text-center ${montserrat.className}`}
-                >
-                  23+
-                </h1>
-                <p
-                  className={`${montserrat.className} text-md text-center text-white/75`}
-                >
-                  Released Researches
-                </p>
-              </div>
-              <div className=" text-center flex flex-col justify-center items-center gap-5">
-                <h1
-                  className={`md:text-6xl text-5xl font-bold text-center ${montserrat.className}`}
-                >
-                  100+
-                </h1>
-                <p
-                  className={`${montserrat.className} text-md text-center text-white/75`}
-                >
-                  Graduated Ambassadors
-                </p>
-              </div>
-              <div className=" text-center flex flex-col justify-center items-center gap-5">
-                <h1
-                  className={`md:text-6xl text-5xl font-bold text-center ${montserrat.className}`}
-                >
-                  7+
-                </h1>
-                <p
-                  className={`${montserrat.className} text-md text-center text-white/75`}
-                >
-                  Workspace
-                </p>
-              </div>
-              <div className=" text-center flex flex-col justify-center items-center gap-5">
-                <h1
-                  className={`md:text-6xl text-5xl font-bold text-center ${montserrat.className}`}
-                >
-                  12+
-                </h1>
-                <p
-                  className={`${montserrat.className} text-md text-center text-white/75`}
-                >
-                  Climate Change Experts
-                </p>
+      
+      </div> */}
+      <div className="container mt-10">
+        <div className="relative   lg:h-60 h-[900px] mt-20 bg-[url('/assets/744.jpg')] bg-fixed bg-no-repeat bg-cover bg-center">
+          {/* ======≠≠===========≠≠≠≠≠≠≠≠≠≠≠=========== */}
+          <div className="absolute top-0 right-0 bg-black/50 w-full h-full">
+            <div className="w-full h-full   flex justify-center items-center">
+              <div className=" grid lg:grid-cols-5 md:grid-cols-3 grid-cols-1 lg:gap-5 gap-16  text-white">
+                <div className=" text-center flex flex-col justify-center items-center gap-5">
+                  <h1
+                    className={`md:text-6xl text-5xl font-bold text-center ${montserrat.className}`}
+                  >
+                    11
+                  </h1>
+                  <p
+                    className={`${montserrat.className} text-md text-center text-white/75`}
+                  >
+                    BootCamps
+                  </p>
+                </div>
+                <div className=" text-center flex flex-col justify-center items-center gap-5">
+                  <h1
+                    className={`md:text-6xl text-5xl font-bold text-center ${montserrat.className}`}
+                  >
+                    23+
+                  </h1>
+                  <p
+                    className={`${montserrat.className} text-md text-center text-white/75`}
+                  >
+                    Released Researches
+                  </p>
+                </div>
+                <div className=" text-center flex flex-col justify-center items-center gap-5">
+                  <h1
+                    className={`md:text-6xl text-5xl font-bold text-center ${montserrat.className}`}
+                  >
+                    100+
+                  </h1>
+                  <p
+                    className={`${montserrat.className} text-md text-center text-white/75`}
+                  >
+                    Graduated Ambassadors
+                  </p>
+                </div>
+                <div className=" text-center flex flex-col justify-center items-center gap-5">
+                  <h1
+                    className={`md:text-6xl text-5xl font-bold text-center ${montserrat.className}`}
+                  >
+                    7+
+                  </h1>
+                  <p
+                    className={`${montserrat.className} text-md text-center text-white/75`}
+                  >
+                    Workspace
+                  </p>
+                </div>
+                <div className=" text-center flex flex-col justify-center items-center gap-5">
+                  <h1
+                    className={`md:text-6xl text-5xl font-bold text-center ${montserrat.className}`}
+                  >
+                    12+
+                  </h1>
+                  <p
+                    className={`${montserrat.className} text-md text-center text-white/75`}
+                  >
+                    Climate Change Experts
+                  </p>
+                </div>
               </div>
             </div>
           </div>
-        </div>
 
-        {/* ======≠≠===========≠≠≠≠≠≠≠≠≠≠≠=========== */}
+          {/* ======≠≠===========≠≠≠≠≠≠≠≠≠≠≠=========== */}
+        </div>
       </div>
 
       <div className="container ">

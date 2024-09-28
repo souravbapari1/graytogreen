@@ -29,7 +29,7 @@ const responsive = {
 
 function ApplyResearchPrograms() {
   return (
-    <div className="container mb-24">
+    <div className="container mt-24 mb-24">
       <div className="flex text-main items-center gap-3 mb-4">
         <PiPlantFill />
         <p className={`${montserrat.className} text-sm font-semibold`}>

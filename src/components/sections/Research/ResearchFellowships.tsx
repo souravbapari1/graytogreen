@@ -6,7 +6,7 @@ import React from "react";
 
 function ResearchFellowships() {
   return (
-    <div className="container">
+    <div className="container mt-20">
       <h1 className={`${montserrat.className} text-center text-4xl font-bold`}>
         Infrastructure & Team
       </h1>
