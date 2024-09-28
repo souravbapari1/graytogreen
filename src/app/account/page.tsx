@@ -34,9 +34,9 @@ function Company() {
           <TabsTrigger value="Others">Others</TabsTrigger>
         </TabsList>
       </Tabs>
-      <div className="grid grid-cols-2 mt-6 gap-10">
-        <div className="">
-          <div className="grid grid-cols-2 gap-5 ">
+      <div className="grid lg:grid-cols-3 mt-6 gap-10">
+        <div className="lg:col-span-2">
+          <div className="grid md:grid-cols-2 gap-5 ">
             <Card x-chunk="dashboard-01-chunk-1">
               <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
                 <CardTitle className="text-sm font-medium flex justify-between items-center w-full">
@@ -67,7 +67,7 @@ function Company() {
             </Card>
           </div>
 
-          <div className="mt-10  flex items-end justify-end">
+          <div className="mt-10  flex lg:items-end lg:justify-end">
             <div className="w-full">
               <Label className="text-xs">Date From</Label>
               <Input
@@ -84,11 +84,11 @@ function Company() {
               <Button className="rounded-none">Apply</Button>
             </div>
           </div>
-          <Table className="border">
+          <Table className="border text-xs">
             <TableCaption>A list of your recent Transaction.</TableCaption>
             <TableHeader className="bg-gray-100 ">
               <TableRow>
-                <TableHead className="py-3 w-[160px] text-center">
+                <TableHead className="py-3 md:w-[160px] text-center">
                   Transaction ID
                 </TableHead>
                 <TableHead className="py-3 border-r border-l text-center">
@@ -120,8 +120,8 @@ function Company() {
             </TableBody>
           </Table>
         </div>
-        <div className="">
-          <Card>
+        <div className="w-full">
+          <Card className="shadow-none md:border border-none">
             <CardHeader className="flex justify-center items-end">
               <Select>
                 <SelectTrigger className="w-[180px]">
@@ -134,7 +134,7 @@ function Company() {
                 </SelectContent>
               </Select>
             </CardHeader>
-            <CardContent>
+            <CardContent className="md:p-5 p-0 ">
               <ChartViewComponent />
             </CardContent>
           </Card>

@@ -7,8 +7,36 @@ import Image from "next/image";
 function OngoingResearch() {
   return (
     <>
+      <div className="bg-green-50/50 w-full  py-20 ">
+        <div className="container gap-10 ">
+          <h1
+            className={`${montserrat.className} md:text-4xl text-3xl text-center font-bold `}
+          >
+            <span className="text-main">Ongoing</span> Research
+          </h1>
+          <div
+            className={`flex justify-center items-center md:gap-6 gap-3 ${montserrat.className} mt-10 md:text-base text-sm font-bold`}
+          >
+            {["Active", "Completed", "Restoration", "Planting"].map((e) => (
+              <p className={`${e == "Active" ? "underline text-main" : null}`}>
+                {e}
+              </p>
+            ))}
+          </div>
+          <div className="grid lg:grid-cols-3 md:grid-cols-2 gap-10 gap-y-5 mt-10">
+            {Array.from({ length: 6 }).map(() => {
+              return <ResearchCard />;
+            })}
+          </div>
+          <div className="w-full flex justify-center items-center pt-10">
+            <Link href="/research" className="donateBtn py-4">
+              View More
+            </Link>
+          </div>
+        </div>
+      </div>
       <div
-        className=" mt-10 w-full bg-gradient-to-r from-green-500 to-emerald-700 relative 
+        className=" w-full bg-gradient-to-r from-green-500 to-emerald-700 relative 
     "
       >
         <div className=" grid md:order-1 order-last lg:grid-cols-2 md:gap-16 gap-10 container py-10">
@@ -45,35 +73,6 @@ function OngoingResearch() {
           height={1200}
           alt=""
         />
-      </div>
-
-      <div className="bg-green-50/50 w-full  shadow-md py-20 ">
-        <div className="container gap-10 ">
-          <h1
-            className={`${montserrat.className} md:text-4xl text-3xl text-center font-bold `}
-          >
-            <span className="text-main">Ongoing</span> Research
-          </h1>
-          <div
-            className={`flex justify-center items-center md:gap-6 gap-3 ${montserrat.className} mt-10 md:text-base text-sm font-bold`}
-          >
-            {["Active", "Completed", "Restoration", "Planting"].map((e) => (
-              <p className={`${e == "Active" ? "underline text-main" : null}`}>
-                {e}
-              </p>
-            ))}
-          </div>
-          <div className="grid lg:grid-cols-3 md:grid-cols-2 gap-10 gap-y-5 mt-10">
-            {Array.from({ length: 6 }).map(() => {
-              return <ResearchCard />;
-            })}
-          </div>
-          <div className="w-full flex justify-center items-center pt-10">
-            <Link href="/research" className="donateBtn py-4">
-              View More
-            </Link>
-          </div>
-        </div>
       </div>
     </>
   );

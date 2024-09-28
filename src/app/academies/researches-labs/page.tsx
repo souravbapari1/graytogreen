@@ -19,16 +19,17 @@ function page() {
     <div>
       <Navbar />
       <ResearchHero />
-      <OngoingResearch />
-      <NitrogenFixingSpecies />
       <ApplyResearchPrograms />
-      <FunctionalDiversityRestoration />
-      <RestorationAdviceTeam />
-      <InfrastructureAndTeam />
-      <TourOfTheCampus />
-      <RecentPublications />
+      <OngoingResearch />
       <ResearchFellowships />
-      <AboutOurTeam />
+      <RecentPublications />
+      {/* <NitrogenFixingSpecies /> */}
+      {/* <FunctionalDiversityRestoration /> */}
+      <RestorationAdviceTeam />
+      {/* <InfrastructureAndTeam /> */}
+      {/* <TourOfTheCampus /> */}
+
+      {/* <AboutOurTeam /> */}
       <FooterTop />
       <Footer />
     </div>
