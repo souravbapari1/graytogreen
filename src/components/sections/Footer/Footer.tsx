@@ -74,9 +74,9 @@ function Footer() {
               </Link>
               <Link
                 className="hover:text-white transition-all text-sm"
-                href="#"
+                href="/standards"
               >
-                Ideas & Tools
+                Standards
               </Link>
               <Link
                 className="hover:text-white transition-all text-sm"
@@ -86,9 +86,9 @@ function Footer() {
               </Link>
               <Link
                 className="hover:text-white transition-all text-sm"
-                href="#"
+                href="/project-verification"
               >
-                Children's Conferences
+                Project Verification{" "}
               </Link>
               <Link
                 className="hover:text-white transition-all text-sm"
