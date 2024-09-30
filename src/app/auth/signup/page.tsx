@@ -118,12 +118,12 @@ function SignUp() {
                 </span>
               </label>
             </div>
-            <Button
-              className="w-full rounded-none donateBtn py-6 font-bold mt-8 mb-10
-            "
-            >
-              Register Now
-            </Button>
+            <Link href="/account">
+              {" "}
+              <Button className="w-full rounded-none donateBtn py-6 font-bold mt-8 mb-10">
+                Register Now
+              </Button>
+            </Link>
           </div>
         </div>
       </div>
