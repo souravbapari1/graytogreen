@@ -36,32 +36,18 @@ function Company() {
       </Tabs>
       <div className="grid lg:grid-cols-3 mt-6 gap-10">
         <div className="lg:col-span-2">
-          <div className="grid md:grid-cols-2 gap-5 ">
+          <div className=" gap-5 ">
             <Card x-chunk="dashboard-01-chunk-1">
               <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
                 <CardTitle className="text-sm font-medium flex justify-between items-center w-full">
-                  <p>My Balance (OMR)</p>
+                  <p>My Donations (OMR)</p>
                   <p className="text-2xl text-gray-500">$</p>
                 </CardTitle>
               </CardHeader>
               <CardContent>
                 <div className="text-2xl font-bold">$2350.00</div>
                 <p className="text-xs text-muted-foreground">
-                  Current your balance
-                </p>
-              </CardContent>
-            </Card>
-            <Card x-chunk="dashboard-01-chunk-1">
-              <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-                <CardTitle className="text-sm font-medium flex justify-between items-center w-full">
-                  <p>Total Cost (OMR)</p>
-                  <p className="text-2xl text-gray-500">$</p>
-                </CardTitle>
-              </CardHeader>
-              <CardContent>
-                <div className="text-2xl font-bold">$2350.00</div>
-                <p className="text-xs text-muted-foreground">
-                  your cost balance
+                  your total donatio
                 </p>
               </CardContent>
             </Card>
@@ -120,24 +106,26 @@ function Company() {
             </TableBody>
           </Table>
         </div>
-        <div className="w-full">
-          <Card className="shadow-none md:border border-none">
-            <CardHeader className="flex justify-center items-end">
-              <Select>
-                <SelectTrigger className="w-[180px]">
-                  <SelectValue placeholder="2024" />
-                </SelectTrigger>
-                <SelectContent>
-                  <SelectItem value="light">2024</SelectItem>
-                  <SelectItem value="dark">2023</SelectItem>
-                  <SelectItem value="system">2022</SelectItem>
-                </SelectContent>
-              </Select>
-            </CardHeader>
-            <CardContent className="md:p-5 p-0 ">
-              <ChartViewComponent />
-            </CardContent>
-          </Card>
+        <div className="flex justify-center items-start">
+          <div className="w-full md:max-w-[100%]  ">
+            <Card className="shadow-none md:border border-none">
+              <CardHeader className="flex justify-center items-end">
+                <Select>
+                  <SelectTrigger className="w-[180px]">
+                    <SelectValue placeholder="2024" />
+                  </SelectTrigger>
+                  <SelectContent>
+                    <SelectItem value="light">2024</SelectItem>
+                    <SelectItem value="dark">2023</SelectItem>
+                    <SelectItem value="system">2022</SelectItem>
+                  </SelectContent>
+                </Select>
+              </CardHeader>
+              <CardContent className="md:p-5 p-0 ">
+                <ChartViewComponent />
+              </CardContent>
+            </Card>
+          </div>
         </div>
       </div>
     </WorkSpace>

@@ -5,6 +5,7 @@ import Image from "next/image";
 import React, { ReactNode } from "react";
 import MobNav from "./MobNav";
 import ProfileMenu from "./ProfileMenu";
+import MenuLinks from "./MenuLinks";
 
 function WorkSpace({ children }: { children?: ReactNode }) {
   return (
@@ -23,27 +24,13 @@ function WorkSpace({ children }: { children?: ReactNode }) {
           <MobNav />
         </div>
         <div className="font-medium lg:flex hidden justify-end items-center  gap-6 text-sm">
-          <NavLink exact href="/account" className="text-primary/90 ">
-            <p>My Balance</p>
-          </NavLink>
-          <NavLink exact href="/account/my-projects" className=" ">
-            <p>My Projects</p>
-          </NavLink>
-          <NavLink exact href="#" className=" ">
-            <p>My Forest</p>
-          </NavLink>
-          <NavLink exact href="#" className=" ">
-            <p>Social impacts</p>
-          </NavLink>
-          <NavLink exact href="#" className=" ">
-            <p>My Program</p>
-          </NavLink>
+          <MenuLinks />
           <ProfileMenu />
         </div>
       </div>
 
-      <div className="mt-20 ">
-        <div className="p-4">{children}</div>
+      <div className="pt-20 bg-gray-50/60 min-h-screen ">
+        <div className="lg:px-20 p-4">{children}</div>
       </div>
     </div>
   );
