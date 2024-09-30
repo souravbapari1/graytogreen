@@ -8,6 +8,8 @@ import {
 } from "@/components/ui/sheet";
 import { AiOutlineMenu } from "react-icons/ai";
 import ProfileMenu from "./ProfileMenu";
+import MenuLinks from "./MenuLinks";
+import NavLink from "@/components/sections/Navbar/NavLink";
 
 function MobNav() {
   return (
@@ -16,14 +18,14 @@ function MobNav() {
         <SheetTrigger>
           <AiOutlineMenu size={25} />
         </SheetTrigger>
-        <SheetContent>
-          <SheetHeader>
-            <SheetTitle>Are you absolutely sure?</SheetTitle>
-            <SheetDescription>
-              This action cannot be undone. This will permanently delete your
-              account and remove your data from our servers.
-            </SheetDescription>
-          </SheetHeader>
+        <SheetContent className="flex flex-col gap-5 pt-20">
+          <MenuLinks />
+          <NavLink exact href="#" className=" ">
+            <p>Profile</p>
+          </NavLink>
+          <NavLink exact href="#" className=" ">
+            <p>Logout</p>
+          </NavLink>
         </SheetContent>
       </Sheet>
     </div>

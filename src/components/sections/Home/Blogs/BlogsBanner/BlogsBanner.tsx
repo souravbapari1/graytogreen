@@ -55,7 +55,7 @@ function BlogsBanner() {
         </p>
         <div className="w-full grid lg:grid-cols-3 md:grid-cols-2   grid-cols-1 gap-10">
           {Array.from({ length: 6 }).map((_, i) => {
-            return <BlogCard />;
+            return <BlogCard key={"vlog" + i} />;
           })}
         </div>
       </div>

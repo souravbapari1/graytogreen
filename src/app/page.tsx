@@ -28,8 +28,10 @@ async function page() {
         <h1
           className={`lg:text-4xl text-2xl font-bold text-center mb-20 mt-20 ${montserrat.className}`}
         >
-          295+ Projects united{" "}
-          <span className="text-main">to bring back a Trillion Trees.</span>
+          295+ Projects united to{" "}
+          <span className="text-primary">bring back a Trillion Trees</span> &
+          200+ Projects to remove{" "}
+          <span className="text-blue-700">10 m of Plastic waste</span>
           <p className="mt-2 ">Act Now!</p>
         </h1>
 

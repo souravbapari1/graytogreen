@@ -12,7 +12,7 @@ import { montserrat } from "@/fonts/font";
 import { FiSearch } from "react-icons/fi";
 import PlatformMenu, { MobPlatformMenu } from "./PlatformMenu";
 
-const MAPBOX_ACCESS_TOKEN =
+export const MAPBOX_ACCESS_TOKEN =
   "pk.eyJ1IjoiY2hhbmdlaXQtMjAyNCIsImEiOiJjbHlsNmd5M2MxY3lrMmpyM25ieWloeTk2In0.tD7fz5cEA7wAmR4lNBgsaQ";
 
 const GGMapBox: React.FC<{
