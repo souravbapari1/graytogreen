@@ -17,7 +17,10 @@ function DonateForLandAction() {
           any small or regular contribution and, like a donation, it is
           tax-deductible.
         </p>
-        <Link className="donateBtn py-4 px-10 mt-10" href="#">
+        <Link
+          className="donateBtn py-4 px-10 mt-10"
+          href="/act-with-us/donate-for-land/apply"
+        >
           Submit The Request
         </Link>
       </div>

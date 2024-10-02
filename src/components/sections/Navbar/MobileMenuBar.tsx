@@ -35,7 +35,7 @@ function MobileMenuBar() {
             alt=""
             className="w-24 mb-5 h-auto object-contain"
           />
-          <div className="flex flex-col font-semibold text-gray-700 gap-1 transition-all duration-300">
+          <div className="flex flex-col font-semibold text-gray-700 gap-3 transition-all duration-300">
             {index != null && (
               <div
                 className="flex justify-start items-center w-20 gap-1 cursor-pointer text-green-700 mb-2"

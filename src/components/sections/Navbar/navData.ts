@@ -108,7 +108,7 @@ const toolsMenu: ServicesMenuItems[] = [
 
 const supportMenu: ServicesMenuItems[] = [
   {
-    title: "YOU",
+    title: "General",
     list: [
       {
         href: "/membership",
@@ -120,13 +120,19 @@ const supportMenu: ServicesMenuItems[] = [
         href: "/act-with-us/plante-tree",
         icon: "💚",
         id: "Plante_Tree",
-        title: "Plante Tree",
+        title: "Planting Trees",
+      },
+      {
+        href: "/soon",
+        icon: "📎",
+        id: "Acting_on_Reducing_Plastics_Waste",
+        title: "Acting on Reducing Plastics Waste",
       },
       {
         href: "/act-with-us/support-research-and-epirement",
         icon: "🌱",
         id: "Support_research_and_Expirement ",
-        title: "Support research & Expirement",
+        title: "Support Researches & Experiments",
       },
       {
         href: "/act-with-us/general-funding",
@@ -138,7 +144,7 @@ const supportMenu: ServicesMenuItems[] = [
         href: "/act-with-us/donate-for-land",
         icon: "🌲",
         id: "donate-for-land",
-        title: "Donate Land",
+        title: "Donate for Land",
       },
       {
         href: "/act-with-us/endowment",
@@ -155,7 +161,7 @@ const supportMenu: ServicesMenuItems[] = [
     ],
   },
   {
-    title: "Companies & Organizations",
+    title: "Especial for Companies & Organizations",
     list: [
       {
         title: "Partner with us",
@@ -173,14 +179,14 @@ const supportMenu: ServicesMenuItems[] = [
         subtitle:
           "Reduce and compensate emissions and invite young speakers to talk about the climate crisis.",
       },
-      {
-        title: "Statistics And Records",
-        href: "/statistics-and-records",
-        icon: "📈",
-        id: "sustainable-events",
-        subtitle:
-          "Reduce and compensate emissions and invite young speakers to talk about the climate crisis.",
-      },
+      // {
+      //   title: "Statistics And Records",
+      //   href: "/statistics-and-records",
+      //   icon: "📈",
+      //   id: "sustainable-events",
+      //   subtitle:
+      //     "Reduce and compensate emissions and invite young speakers to talk about the climate crisis.",
+      // },
     ],
   },
 ];
