@@ -32,7 +32,7 @@ function MyProjects() {
         </TabsList>
       </Tabs>
       <br />
-      <Table className="border">
+      <Table className="border text-nowrap">
         <TableCaption>A list of your recent invoices.</TableCaption>
         <TableHeader className="bg-gray-200">
           <TableRow>
@@ -55,6 +55,9 @@ function MyProjects() {
               Start Date
             </TableHead>
             <TableHead className="border-r text-center text-nowrap p-4 ">
+              Last Update Date
+            </TableHead>
+            <TableHead className="border-r text-center text-nowrap p-4 ">
               Status
             </TableHead>
             <TableHead className="border-r text-center text-nowrap p-4 ">
@@ -66,11 +69,17 @@ function MyProjects() {
             <TableHead className="border-r text-center text-nowrap p-4 ">
               Registration Doc
             </TableHead>
-            <TableHead className="text-center">Financial Reports</TableHead>
+            <TableHead className="text-center">
+              Auditing and Reviewing Reports
+            </TableHead>
+            <TableHead className="text-center">
+              Verification and Validation Reports
+            </TableHead>
+            <TableHead className="text-center">Other Doc</TableHead>
           </TableRow>
         </TableHeader>
         <TableBody>
-          {Array.from({ length: 100 }).map((e, i) => {
+          {Array.from({ length: 10 }).map((e, i) => {
             return (
               <TableRow>
                 <TableCell className="border-r text-center text-nowrap p-4 ">
@@ -92,6 +101,9 @@ function MyProjects() {
                   12/03/2022
                 </TableCell>
                 <TableCell className="border-r text-center text-nowrap p-4 ">
+                  12/03/2022
+                </TableCell>
+                <TableCell className="border-r text-center text-nowrap p-4 ">
                   Approved and Currently Planting
                 </TableCell>
                 <TableCell className="border-r text-center text-nowrap p-4 ">
@@ -102,13 +114,24 @@ function MyProjects() {
                 </TableCell>
                 <TableCell className="border-r text-center text-nowrap p-4 ">
                   <Link className="text-xs text-primary" href="#">
-                    Document_1_2022
+                    Report_1_2022
+                  </Link>
+                </TableCell>
+
+                <TableCell className="text-center border-r">
+                  <Link className="text-xs text-primary" href="#">
+                    Report_1_2022
+                  </Link>
+                </TableCell>
+                <TableCell className="border-r text-center text-nowrap p-4 ">
+                  <Link className="text-xs text-primary" href="#">
+                    Report_1_2022
                   </Link>
                 </TableCell>
 
                 <TableCell className="text-center">
                   <Link className="text-xs text-primary" href="#">
-                    Document_1_2022
+                    Report_1_2022
                   </Link>
                 </TableCell>
               </TableRow>

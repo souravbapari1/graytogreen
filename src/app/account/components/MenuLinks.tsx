@@ -16,6 +16,9 @@ function MenuLinks() {
       <NavLink exact={true} href="/account/micro-action" className=" ">
         <p>Micro Action</p>
       </NavLink>
+      <NavLink exact={true} href="/account/climat-change-impact" className=" ">
+        <p>Climat Change Impact</p>
+      </NavLink>
       {/* <NavLink exact={true} href="/account" className=" ">
         <p>Free Plastic</p>
       </NavLink> */}

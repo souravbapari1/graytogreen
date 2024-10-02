@@ -36,7 +36,7 @@ function Company() {
       </Tabs>
       <div className="grid lg:grid-cols-3 mt-6 gap-10">
         <div className="lg:col-span-2">
-          <div className=" gap-5 ">
+          <div className=" gap-5 grid lg:grid-cols-2 ">
             <Card x-chunk="dashboard-01-chunk-1">
               <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
                 <CardTitle className="text-sm font-medium flex justify-between items-center w-full">
@@ -49,6 +49,29 @@ function Company() {
                 <p className="text-xs text-muted-foreground">
                   your total donatio
                 </p>
+              </CardContent>
+            </Card>
+
+            <Card x-chunk="dashboard-01-chunk-1">
+              <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
+                <CardTitle className="text-sm font-medium flex justify-between items-center w-full">
+                  <p>My Wallet (OMR)</p>
+                  <p className="text-2xl text-gray-500">$</p>
+                </CardTitle>
+              </CardHeader>
+              <CardContent className="flex justify-between">
+                <div className="">
+                  <div className="text-2xl font-bold">$2350.00</div>
+                  <p className="text-xs text-muted-foreground">
+                    your total donatio
+                  </p>
+                </div>
+                <Button
+                  className="mt-10 shadow-none hover:bg-primary hover:text-white "
+                  variant="outline"
+                >
+                  Refund
+                </Button>
               </CardContent>
             </Card>
           </div>
