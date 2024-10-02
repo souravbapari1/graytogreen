@@ -3,6 +3,7 @@ import React from "react";
 import { Fade } from "react-slideshow-image";
 import ResearchSlide from "./ResearchSlide";
 import Image from "next/image";
+import AllResearchPartner from "./AllResearchPartner";
 
 function RecentPublications() {
   return (
@@ -68,27 +69,7 @@ function RecentPublications() {
       </div> */}
       <ResearchSlide />
 
-      <div className="flex  justify-center flex-wrap md:mt-14 mt-5 md:mb-20 items-center ">
-        {[
-          "https://www.savatree.com/wp-content/uploads/2021/10/savatree-mobile-500.png",
-          "https://livelihoods.eu/wp-content/uploads/2017/03/HD-LOGO-LIVELIHOODS-FUNDS-HORIZONTAL.png",
-          "https://upload.wikimedia.org/wikipedia/en/thumb/b/b5/Tropicana_green_flat_logo.svg/800px-Tropicana_green_flat_logo.svg.png",
-          "https://cdn.shopify.com/s/files/1/0582/8457/2829/files/fft_logo_1.png?v=1634643664",
-          "https://www.savatree.com/wp-content/uploads/2021/10/savatree-mobile-500.png",
-          "https://livelihoods.eu/wp-content/uploads/2017/03/HD-LOGO-LIVELIHOODS-FUNDS-HORIZONTAL.png",
-        ].map((e, i) => {
-          return (
-            <Image
-              src={e}
-              key={i}
-              alt=""
-              className="w-28 h-28 object-contain md:mx-10  mx-5"
-              width={100}
-              height={100}
-            />
-          );
-        })}
-      </div>
+      <AllResearchPartner />
     </>
   );
 }

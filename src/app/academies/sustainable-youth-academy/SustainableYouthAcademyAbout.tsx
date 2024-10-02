@@ -61,9 +61,11 @@ function SustainableYouthAcademyAbout() {
           <div
             className={`flex justify-normal items-center gap-6 mt-8 ${montserrat.className}`}
           >
-            <Button className=" shadow-none font-bold donateBtn px-10 py-6">
-              Register
-            </Button>
+            <Link href="/academies/sustainable-youth-academy/register">
+              <Button className=" shadow-none font-bold donateBtn px-10 py-6">
+                Register
+              </Button>
+            </Link>
             <Button
               className=" shadow-none font-bold  px-10 py-6"
               variant="secondary"

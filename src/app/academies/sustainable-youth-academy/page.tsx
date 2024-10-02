@@ -5,6 +5,7 @@ import SustainableYouthAcademyAbout from "./SustainableYouthAcademyAbout";
 import YouthAcademyWahtYouExperience from "./YouthAcademyWahtYouExperience";
 import FooterTop from "@/components/sections/Footer/FooterTop";
 import Footer from "@/components/sections/Footer/Footer";
+import AllResearchPartner from "@/components/sections/Research/AllResearchPartner";
 
 function SustainableYouthAcademy() {
   return (
@@ -13,6 +14,7 @@ function SustainableYouthAcademy() {
       <SustainableYouthAcademyHero />
       <SustainableYouthAcademyAbout />
       <YouthAcademyWahtYouExperience />
+
       <FooterTop />
       <Footer />
     </div>

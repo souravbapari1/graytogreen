@@ -19,7 +19,6 @@ function Services() {
       {/* <ServicesHero /> */}
 
       <ServicesView />
-      <AboutOurTeam />
       <MembershipView />
       <FooterTop />
       <Footer />

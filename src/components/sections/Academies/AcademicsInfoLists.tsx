@@ -159,7 +159,7 @@ function AcademicsInfoLists() {
                 image:
                   "https://www.ulektznews.com/wp-content/uploads/2021/09/DU-Makes-It-Compulsory-For-All-Students-To-Plant-Trees-From-This-Session.png",
                 title: "Training and Qualification Academy",
-                link: "#",
+                link: "/soon",
               },
             ].map((e, i) => {
               return (
