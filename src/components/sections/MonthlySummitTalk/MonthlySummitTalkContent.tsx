@@ -139,7 +139,7 @@ function MonthlySummitTalkContent() {
           participating, fostering a global community dedicated to tackling the
           climate crisis together.
         </p>
-        <div className="flex justify-center items-center gap-5">
+        <div className="flex md:flex-row flex-col justify-center items-center md:gap-5 gap-0">
           <Link
             href="https://us06web.zoom.us/meeting/register/tZAvc-mqpzgsHdepCVceOUjuRTLY89tiqJwX#/registration"
             target="_blank"
