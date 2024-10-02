@@ -14,6 +14,8 @@ import {
   SelectValue,
 } from "@/components/ui/select";
 import { Button } from "@/components/ui/button";
+import ConsultationHero from "./ConsultationHero";
+import Link from "next/link";
 
 type Value = ValuePiece | [ValuePiece, ValuePiece];
 
@@ -23,33 +25,28 @@ function consultation() {
   return (
     <div>
       <Navbar />
+      <ConsultationHero />
       <div className={`container ${montserrat.className} py-20`}>
         <div className="max-w-[1200px] mx-auto ">
-          <h1 className="text-3xl font-bold mb-2">Contact Us</h1>
-          <p className="text-gray-800">
-            Check out our availability and book the date and time that works for
-            you
-          </p>
-
           <div className="grid lg:grid-cols-3 md:grid-cols-2 gap-12 mt-10">
-            <div className="md:col-span-2 grid md:grid-cols-2 gap-4">
-              <div className="w-full flex justify-between items-center md:col-span-2">
-                <h1 className="font-bold text-xl">Select a Date and Time</h1>
-                <p className="md:block hidden">
-                  India Standard Time (GMT+5:30)
-                </p>
-              </div>
-              <div className="w-full">
-                <div className="mx-auto flex justify-center items-center">
+            <div className="md:col-span-2 grid md:grid-cols-2 gap-0">
+              <div className="w-full pt-5 ">
+                <h1 className="font-bold text-xl mb-8">
+                  Select a Date and Time
+                </h1>
+                <div className="mx-auto flex justify-start  items-center">
                   <Calendar
                     onChange={onChange}
                     value={value}
-                    className="border-none"
+                    className="border-none bg-primary"
                   />
                 </div>
               </div>
-              <div className="">
+              <div className="bg-gray-50 p-5">
                 <p className="md:hidden mt-10 mb-5 block">
+                  India Standard Time (GMT+5:30)
+                </p>
+                <p className="md:block hidden font-bold text-center mb-8 text-xl">
                   India Standard Time (GMT+5:30)
                 </p>
                 <div className="grid grid-cols-3 gap-3">
@@ -69,7 +66,7 @@ function consultation() {
                     "11:00 PM",
                   ].map((e, i) => {
                     return (
-                      <div className="w-full h-10 border hover:bg-main hover:text-white transition-all select-none cursor-pointer flex justify-center items-center">
+                      <div className="w-full h-10 border hover:bg-main hover:text-white transition-all select-none cursor-pointer flex justify-center text-sm items-center">
                         <p>{e}</p>
                       </div>
                     );
@@ -88,21 +85,39 @@ function consultation() {
               <br />
               <hr />
               <br />
-              <p className="mb-2">Preferences</p>
-              <Select>
-                <SelectTrigger className="w-full rounded-none p-6">
-                  <SelectValue placeholder="Member 1" />
-                </SelectTrigger>
-                <SelectContent>
-                  <SelectItem value="light">Member 1</SelectItem>
-                  <SelectItem value="dark">Member 2</SelectItem>
-                  <SelectItem value="system">Member 3</SelectItem>
-                </SelectContent>
-              </Select>
+              <div className="">
+                <p className="mb-2">Consultation Type</p>
+                <Select>
+                  <SelectTrigger className="w-full rounded-none shadow-none">
+                    <SelectValue placeholder="Type 1" />
+                  </SelectTrigger>
+                  <SelectContent>
+                    <SelectItem value="light">Type 1</SelectItem>
+                    <SelectItem value="dark">Type 2</SelectItem>
+                    <SelectItem value="system">Type 3</SelectItem>
+                  </SelectContent>
+                </Select>
+              </div>
               <br />
-              <Button className="w-full p-6 shadow-none uppercase rounded-none">
-                Book Now
-              </Button>
+              <div className="">
+                <p className="mb-2">Your Industry</p>
+                <Select>
+                  <SelectTrigger className="w-full rounded-none shadow-none ">
+                    <SelectValue placeholder="Industry 1" />
+                  </SelectTrigger>
+                  <SelectContent>
+                    <SelectItem value="light">Industry 1</SelectItem>
+                    <SelectItem value="dark">Industry 2</SelectItem>
+                    <SelectItem value="system">Industry 3</SelectItem>
+                  </SelectContent>
+                </Select>
+              </div>
+              <br />
+              <Link href="/book/consultation/next">
+                <Button className="w-full p-6 shadow-none uppercase rounded-none">
+                  Book Now
+                </Button>
+              </Link>
             </div>
           </div>
         </div>
