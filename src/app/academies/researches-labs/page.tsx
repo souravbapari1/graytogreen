@@ -1,7 +1,9 @@
 import AboutOurTeam from "@/components/sections/AboutUS/AboutOurTeam";
+import ScientificAdvisors from "@/components/sections/AboutUS/ScientificAdvisors";
 import Footer from "@/components/sections/Footer/Footer";
 import FooterTop from "@/components/sections/Footer/FooterTop";
 import Navbar from "@/components/sections/Navbar/Navbar";
+import AllResearchPartner from "@/components/sections/Research/AllResearchPartner";
 import ApplyResearchPrograms from "@/components/sections/Research/ApplyResearchPrograms";
 import FunctionalDiversityRestoration from "@/components/sections/Research/FunctionalDiversityRestoration";
 import InfrastructureAndTeam from "@/components/sections/Research/InfrastructureAndTeam";
@@ -22,6 +24,8 @@ function page() {
       <ApplyResearchPrograms />
       <OngoingResearch />
       <ResearchFellowships />
+      <ScientificAdvisors />
+
       <RecentPublications />
       {/* <NitrogenFixingSpecies /> */}
       {/* <FunctionalDiversityRestoration /> */}
@@ -29,7 +33,6 @@ function page() {
       {/* <InfrastructureAndTeam /> */}
       {/* <TourOfTheCampus /> */}
 
-      {/* <AboutOurTeam /> */}
       <FooterTop />
       <Footer />
     </div>

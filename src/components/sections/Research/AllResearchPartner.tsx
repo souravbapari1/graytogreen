@@ -93,7 +93,7 @@ function AllResearchPartner() {
           })}
         </div>
       </div>
-      <div className="container bg-green-50/50 pt-10 pb-10 flex flex-col justify-center items-center gap-5">
+      {/* <div className="container bg-green-50/50 pt-10 pb-10 flex flex-col justify-center items-center gap-5">
         <h1
           className={`${montserrat.className} lg:text-3xl text-2xl font-bold capitalize text-center`}
         >
@@ -105,7 +105,7 @@ function AllResearchPartner() {
           The research efforts are guided by members of our Scientific Advisory
           Board
         </p>
-      </div>
+      </div> */}
     </div>
   );
 }
