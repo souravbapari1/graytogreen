@@ -17,18 +17,24 @@ function ContactUsHeader() {
           </p>
           <div className="grid md:grid-cols-3 gap-6 w-full max-w-[800px]">
             {[
-              "Partnerships",
-              "Academics",
-              "Support And Donation",
-              "Donate Plant",
-              "Volunteer",
+              { name: "Partnerships", link: "#" },
+              { name: "Academies", link: "/academies" },
+              { name: "Support And Donation", link: "#" },
+              { name: "Donate Plant", link: "#" },
+              { name: "Volunteer", link: "/act-with-us/be-volunteer" },
+              { name: "Book Appointment", link: "/book/consultation" },
             ].map((e, i) => {
               return (
-                <div className="w-full h-32 bg-main/10 text-center rounded-3xl border-2 border-main/10 flex justify-center flex-col gap-4 items-center font-bold text-green-900 ">
+                <div
+                  className="w-full h-32 bg-main/10 text-center rounded-3xl border-2 border-main/10 flex justify-center flex-col gap-4 items-center font-bold text-green-900"
+                  key={i}
+                >
                   <p className="w-8 h-8 flex justify-center items-center rounded-full font-light bg-main/20">
                     {i + 1}
                   </p>
-                  <p>{e}</p>
+                  <a href={e.link} className="hover:underline text-green-900">
+                    {e.name}
+                  </a>
                 </div>
               );
             })}

@@ -27,7 +27,7 @@ function Footer() {
                 className="hover:text-white transition-all text-sm"
                 href="/pages/contact-us"
               >
-                Contact
+                Contact Us
               </Link>
               <Link
                 className="hover:text-white transition-all text-sm"
@@ -80,15 +80,15 @@ function Footer() {
               </Link>
               <Link
                 className="hover:text-white transition-all text-sm"
-                href="#"
+                href="/licenses-and-certification"
               >
-                Global Board
+                Licenses & Certification
               </Link>
               <Link
                 className="hover:text-white transition-all text-sm"
                 href="/project-verification"
               >
-                Project Verification{" "}
+                Verification & Reviews
               </Link>
               <Link
                 className="hover:text-white transition-all text-sm"
