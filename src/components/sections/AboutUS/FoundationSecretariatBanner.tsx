@@ -1,3 +1,4 @@
+import { Button } from "@/components/ui/button";
 import { montserrat } from "@/fonts/font";
 import Image from "next/image";
 import Link from "next/link";
@@ -41,6 +42,10 @@ function FoundationSecretariatBanner() {
               Plant-for-the-Planet. We are passionate activists for climate
               justice.
             </p>
+            <br />
+            <Button className="shadow-none bg-white text-primary px-6 py-5 font-bold">
+              View More
+            </Button>
           </div>
         </div>
       </div>
