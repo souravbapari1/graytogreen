@@ -94,7 +94,7 @@ function MyForest() {
             </div>
           </div>
           <div className="flex w-full justify-center text-xs font-semibold items-start gap-1 flex-col">
-            <h1>265.8 of 1,000 carbon</h1>
+            <h1>265.8 of 1,000 tons of Plastic</h1>
             <div className="flex justify-between w-full gap-6 items-center">
               <div className="w-full relative">
                 <Progress

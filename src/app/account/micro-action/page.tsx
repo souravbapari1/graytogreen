@@ -59,35 +59,15 @@ function page() {
               </div>
               <div className="flex flex-col justify-center items-center">
                 <Input className="shadow-none bg-white border-none p-6 mt-9" />
-                <Button className="shadow-none mt-3 mx-auto p-5 gap-3">
-                  <TbCopyCheckFilled />
-                  Copy Link
-                </Button>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-      <div className="">
-        <div className="max-w-[800px] mx-auto">
-          <div className="md:p-20 md:mt-0 mt-8 ">
-            <div className="bg-gray-400/30 rounded-2xl flex justify-center items-center flex-col  p-10 h-96">
-              <div className="flex gap-5">
-                <div className="w-40">
-                  <TbScreenShare size={40} className="text-orange-700" />
+                <div className="flex gap-5 mt-7">
+                  <Button className="shadow-none mt-3 mx-auto p-5 gap-3">
+                    Submit
+                  </Button>
+                  <Button className="shadow-none mt-3 mx-auto p-5 gap-3">
+                    <TbCopyCheckFilled />
+                    Copy Link
+                  </Button>
                 </div>
-                <p className="text-sm">
-                  Lorem ipsum dolor sit, amet consectetur adipisicing elit.
-                  Dolorum corrupti quasi culpa magnam est nemo minus assumenda
-                  incidunt hic doloremque laboriosam ullam quos expedita earum
-                  fugiat optio, natus nihil aut.
-                </p>
-              </div>
-              <div className="flex flex-col w-full justify-center items-center">
-                <Input className="shadow-none bg-white border-none w-full p-6 mt-9" />
-                <Button className="shadow-none mt-3 mx-auto p-5 gap-3">
-                  Submit
-                </Button>
               </div>
             </div>
           </div>

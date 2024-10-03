@@ -24,9 +24,7 @@ function page() {
           <br />
           <hr />
           <div className={montserrat.className}>
-            <h1 className="text-2xl font-bold mt-8 mb-3">
-              Registration for Tübingen
-            </h1>
+            <h1 className="text-2xl font-bold mt-8 mb-3">Registration for</h1>
             <p>T | November 9, 2024</p>
             <br />
             <ApplyForm />

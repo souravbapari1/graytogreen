@@ -72,6 +72,12 @@ const toolsMenu: ServicesMenuItems[] = [
         id: "",
         title: "Trees restoration Tracking Tool",
       },
+      {
+        title: "Statistics And Records",
+        href: "/statistics-and-records",
+        icon: "📈",
+        id: "sustainable-events",
+      },
     ],
   },
   {

@@ -51,8 +51,11 @@ function Reporting() {
                   Submitted
                 </h1>
 
-                <Link href="#" className="text-blue-500">
-                  <FaEye size={30} />
+                <Link
+                  href="/academies/greenkidsacademy/registration/adad"
+                  className=""
+                >
+                  <AiOutlinePlusCircle size={30} />
                 </Link>
               </div>
             </div>
@@ -67,8 +70,11 @@ function Reporting() {
                   Submitted
                 </h1>
 
-                <Link href="#" className="text-blue-500">
-                  <FaEye size={30} />
+                <Link
+                  href="/academies/greenkidsacademy/registration/adad"
+                  className=""
+                >
+                  <AiOutlinePlusCircle size={30} />
                 </Link>
               </div>
             </div>
@@ -83,8 +89,11 @@ function Reporting() {
                   Submitted
                 </h1>
 
-                <Link href="#" className="text-blue-500">
-                  <FaEye size={30} />
+                <Link
+                  href="/academies/greenkidsacademy/registration/adad"
+                  className=""
+                >
+                  <AiOutlinePlusCircle size={30} />
                 </Link>
               </div>
             </div>
@@ -99,7 +108,10 @@ function Reporting() {
                   Submitted
                 </h1>
 
-                <Link href="#" className="">
+                <Link
+                  href="/academies/greenkidsacademy/registration/adad"
+                  className=""
+                >
                   <AiOutlinePlusCircle size={30} />
                 </Link>
               </div>
