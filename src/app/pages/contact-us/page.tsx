@@ -21,6 +21,7 @@ const contacts = [
     title: "Press & Media",
     email: "media@plant-for-the-planet.org",
   },
+  
 ];
 function ContactUs() {
   return (

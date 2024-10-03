@@ -11,6 +11,12 @@ function ConsultationHero() {
         >
           Book Your Consultation
         </h1>
+        <div className="md:text-xl text-center">
+          <p className="max-w-[800px] mt-10">
+            Lorem ipsum dolor sit, amet consectetur adipisicing elit. Facilis
+            perferendis, totam ullam labore asperiores assumenda deserunt dicta
+          </p>
+        </div>
       </div>
     </div>
   );

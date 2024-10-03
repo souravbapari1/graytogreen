@@ -7,6 +7,7 @@ import { montserrat } from "@/fonts/font";
 import Image from "next/image";
 import { PiPlantFill } from "react-icons/pi";
 import { Button } from "@/components/ui/button";
+import Link from "next/link";
 const responsive = {
   superLargeDesktop: {
     // the naming can be any, depends on you.
@@ -63,11 +64,13 @@ function ApplyResearchPrograms() {
                 width={1200}
                 height={2000}
               />
-              <Button
-                className={`${montserrat.className} w-full rounded-none mt-0 h-10`}
-              >
-                Apply Now
-              </Button>
+              <Link href="/academies/researches-labs/apply/id">
+                <Button
+                  className={`${montserrat.className} w-full rounded-none mt-0 h-10`}
+                >
+                  Apply Now
+                </Button>
+              </Link>
             </div>
           );
         })}

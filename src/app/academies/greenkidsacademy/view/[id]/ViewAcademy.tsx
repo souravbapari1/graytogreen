@@ -18,7 +18,7 @@ function ViewAcademy() {
           <div className="flex md:flex-row flex-col gap-8  justify-between mt-10 items-center">
             <p className="font-semibold text-lg">Participate for free</p>
             <Link
-              href="academies/greenkidsacademy/registration/adad"
+              href="/academies/greenkidsacademy/registration/adad"
               className="donateBtn py-3 shadow-none rounded-2xl"
             >
               Register Now
