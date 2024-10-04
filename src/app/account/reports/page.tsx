@@ -15,7 +15,7 @@ function Reporting() {
   return (
     <WorkSpace>
       <h1 className="text-2xl font-bold mb-10">Reports</h1>
-      <div className="flex gap-10">
+      <div className="flex lg:flex-row flex-col gap-10">
         <div className="">
           <div className=" w-44 h-full max-h-[calc(100vh-130px)] bg-primary/5 sticky top-24 overflow-auto p-3  rounded-2xl">
             <Select>
@@ -51,10 +51,7 @@ function Reporting() {
                   Submitted
                 </h1>
 
-                <Link
-                  href="/academies/greenkidsacademy/registration/adad"
-                  className=""
-                >
+                <Link href="/account/reports/submit" className="">
                   <AiOutlinePlusCircle size={30} />
                 </Link>
               </div>
@@ -70,10 +67,7 @@ function Reporting() {
                   Submitted
                 </h1>
 
-                <Link
-                  href="/academies/greenkidsacademy/registration/adad"
-                  className=""
-                >
+                <Link href="/account/reports/submit" className="">
                   <AiOutlinePlusCircle size={30} />
                 </Link>
               </div>
@@ -89,10 +83,7 @@ function Reporting() {
                   Submitted
                 </h1>
 
-                <Link
-                  href="/academies/greenkidsacademy/registration/adad"
-                  className=""
-                >
+                <Link href="/account/reports/submit" className="">
                   <AiOutlinePlusCircle size={30} />
                 </Link>
               </div>
@@ -108,10 +99,7 @@ function Reporting() {
                   Submitted
                 </h1>
 
-                <Link
-                  href="/academies/greenkidsacademy/registration/adad"
-                  className=""
-                >
+                <Link href="/account/reports/submit" className="">
                   <AiOutlinePlusCircle size={30} />
                 </Link>
               </div>

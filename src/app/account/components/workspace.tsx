@@ -12,7 +12,7 @@ function WorkSpace({ children }: { children?: ReactNode }) {
     <div className={`relative ${montserrat.className}`}>
       <div className="w-full  lg:px-20 px-5 fixed  top-0 z-40 h-16 border-b bg-white ">
         <div className="container flex justify-between items-center">
-          <NavLink exact href="/">
+          <NavLink exact href="/account">
             <Image
               src="/logo/main-logo.png"
               width={200}
@@ -31,7 +31,7 @@ function WorkSpace({ children }: { children?: ReactNode }) {
         </div>
       </div>
 
-      <div className="pt-20 bg-gray-50/60 min-h-screen ">
+      <div className="pt-28 bg-gray-50/60 min-h-screen ">
         <div className="container">{children}</div>
       </div>
     </div>
