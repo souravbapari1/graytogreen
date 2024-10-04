@@ -10,8 +10,8 @@ function page() {
   return (
     <WorkSpace>
       <h1 className="mb-10">Track and manage your Programs here.</h1>
-      <div className="grid grid-cols-3 gap-5">
-        <div className="w-full h-screen max-h-[calc(100vh-130px)] bg-primary/5 sticky top-24 overflow-auto p-6  rounded-2xl ">
+      <div className="grid md:grid-cols-3 gap-5">
+        <div className="w-full h-screen max-h-[calc(100vh-130px)] bg-primary/5 md:sticky top-24 overflow-auto p-6  rounded-2xl ">
           <div className="flex flex-col gap-4">
             {Array.from({ length: 10 }).map((e, i) => {
               return (
@@ -34,7 +34,7 @@ function page() {
             })}
           </div>
         </div>
-        <div className="col-span-2">
+        <div className="md:col-span-2">
           <Tabs defaultValue="account">
             <TabsList>
               <TabsTrigger value="account">Active (2)</TabsTrigger>
@@ -44,7 +44,7 @@ function page() {
           <br />
           <hr />
           <br />
-          <div className="grid grid-cols-2 gap-5">
+          <div className="grid md:grid-cols-2 gap-5">
             {Array.from({ length: 10 }).map((e, i) => {
               return (
                 <Card className=" border-none">
