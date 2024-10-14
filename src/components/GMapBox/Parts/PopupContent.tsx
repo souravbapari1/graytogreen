@@ -1,16 +1,20 @@
-import { ProjectType } from "@/interface/project";
+"use client";
+import { ProjectDataType } from "@/interface/project";
 import { cn } from "@/lib/utils";
+import { client } from "@/request/actions";
 import React from "react";
 
 export const PopupContent = ({
   className,
   data,
+  onClick,
 }: {
   className?: string | undefined;
-  data?: ProjectType;
+  data?: ProjectDataType;
+  onClick?: () => void;
 }) => {
   function getPriceLabel(type?: string): string {
-    return type === "Tree Project" ? "USD/Trees" : "USD/kg";
+    return type === "Plastic Offset" ? "OMR/kg" : "OMR/Trees";
   }
 
   function getProjectColor(type?: string, status?: string): string {
@@ -49,23 +53,24 @@ export const PopupContent = ({
       className={cn("w-72 h-auto bg-white rounded-2xl p-2 shadow", className)}
     >
       <img
-        src={
-          data?.image ||
-          "https://st2.depositphotos.com/2632165/11804/i/450/depositphotos_118049482-stock-photo-young-plant-in-the-morning.jpg"
-        }
+        onClick={onClick}
+        src={client.baseUrl + "/" + data?.projectImage}
         className="w-full md:h-44 h-40 rounded-xl object-cover"
       />
       <div className="p-2 py-3 flex justify-between items-center">
         <div>
           <p>
             <span className="font-bold">
-              {data?.count || "1,179"} {getTypeLabel(data?.type) || "Trees"}
+              {data?.numberOfTargetUnits || "1,179"}{" "}
+              {getTypeLabel(data?.projectType) || "Trees"}
             </span>
           </p>
           <p>{data?.country}</p>
           <p>
-            <span className="font-bold">${data?.price || "123.00"}</span>{" "}
-            {getPriceLabel(data?.type)}
+            <span className="font-bold">
+              ﷼{data?.omrUnit.toFixed(1) || "123.00"}
+            </span>{" "}
+            {getPriceLabel(data?.projectType)}
           </p>
         </div>
         <div className="w-28 px-0 h-9 rounded-md donateBtn shadow-none flex justify-center items-center">
@@ -75,7 +80,7 @@ export const PopupContent = ({
       <div
         className={cn(
           "h-7 text-[9px] rounded-xl w-full  flex justify-center items-center",
-          getProjectColor(data?.type, data?.status)
+          getProjectColor(data?.projectType, data?.projectStatus)
         )}
       >
         <p>By Mama Saves The Planet</p>
