@@ -10,7 +10,7 @@ export const PopupContent = ({
   onClick,
 }: {
   className?: string | undefined;
-  data?: ProjectDataType;
+  data?: ProjectDataType | undefined;
   onClick?: () => void;
 }) => {
   function getPriceLabel(type?: string): string {
