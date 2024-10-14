@@ -124,7 +124,7 @@ function Projects() {
               <h1 className="font-bold text-xl">Project : 30</h1>
             </div>
             <div className=" grid xl:grid-cols-3   md:grid-cols-2  gap-6">
-              {projects.map((e, i) => {
+              {/* {projects?.map((e, i) => {
                 return (
                   <PopupContent
                     className="w-full mt-3 text-sm"
@@ -132,7 +132,7 @@ function Projects() {
                     data={e}
                   />
                 );
-              })}
+              })} */}
             </div>
           </div>
         </div>
