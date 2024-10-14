@@ -11,6 +11,30 @@ import { montserrat } from "@/fonts/font";
 
 import { FiSearch } from "react-icons/fi";
 import PlatformMenu, { MobPlatformMenu } from "./PlatformMenu";
+import { ProjectDataType } from "@/interface/project";
+import { useDispatch } from "react-redux";
+import { useAppDispatch, useAppSelector } from "@/redux/hooks";
+import {
+  setPlatformData,
+  setSelectedProject,
+  unselectPlatformProject,
+} from "@/redux/slices/platformSlice";
+import { set } from "date-fns";
+import ProjectView from "./ProjectView";
+
+export const Markersmages = {
+  bilding: "/assets/bilding.svg",
+  bird: "/assets/bird.svg",
+  fence: "/assets/fence.svg",
+  plants: "/assets/plants.svg",
+  roots: "/assets/roots.svg",
+  tree: "/assets/tree.svg",
+  work: "/assets/work.svg",
+  plastic: "/assets/plastic.svg",
+};
+
+const keys = Object.keys(Markersmages);
+type MarkerType = keyof typeof Markersmages;
 
 export const MAPBOX_ACCESS_TOKEN =
   "pk.eyJ1IjoiY2hhbmdlaXQtMjAyNCIsImEiOiJjbHlsNmd5M2MxY3lrMmpyM25ieWloeTk2In0.tD7fz5cEA7wAmR4lNBgsaQ";
@@ -19,7 +43,10 @@ const GGMapBox: React.FC<{
   className?: string;
   style?: CSSProperties;
   disableScroll?: boolean;
-}> = ({ className, style, disableScroll }) => {
+  data?: ProjectDataType[];
+}> = ({ className, style, disableScroll, data }) => {
+  const state = useAppSelector((e) => e.platformSlice);
+  const dispatch = useAppDispatch();
   const mapContainerRef = useRef<HTMLDivElement>(null);
   const mapRef = useRef<mapboxgl.Map | null>(null);
   const [mapLoaded, setMapLoaded] = useState(false);
@@ -31,6 +58,8 @@ const GGMapBox: React.FC<{
     if (mapRef.current) {
       mapRef.current.resize(); // Trigger a resize to fix rendering issues
     }
+    dispatch(setPlatformData(data || []));
+    dispatch(unselectPlatformProject());
   }, []);
 
   useEffect(() => {
@@ -39,31 +68,24 @@ const GGMapBox: React.FC<{
     if (mapContainerRef.current) {
       mapRef.current = new mapboxgl.Map({
         container: mapContainerRef.current,
-        style: "mapbox://styles/mapbox/standard-satellite",
         center: center,
         zoom: 5,
       });
       if (disableScroll) {
         mapRef.current.scrollZoom.disable();
       }
+      mapRef.current.setStyle("mapbox://styles/mapbox/standard-satellite");
+      mapRef.current.dragRotate.disable();
 
       mapRef.current.on("load", () => {
         setMapLoaded(true); // Set the state to true when the map is loaded
       });
 
-      mapRef.current.on("click", (e) => {
-        const { lng, lat } = e.lngLat;
-        console.log(lng, lat);
-
-        setCenter([lng, lat]);
-        mapRef.current?.flyTo({
-          center: [lng, lat],
-          zoom: 10, // Adjust the zoom level as needed
-          speed: 1.5, // Fly speed
-          curve: 1, // Smoothness of the fly transition
-          essential: true, // This ensures the animation is not skipped when the tab is inactive
-        });
-      });
+      // mapRef.current.on("click", (e) => {
+      //   const { lng, lat } = e.lngLat;
+      //   console.log(lng, lat);
+      //   setCenter([lng, lat]);
+      // });
     }
 
     return () => {
@@ -73,10 +95,36 @@ const GGMapBox: React.FC<{
     };
   }, []);
 
+  useEffect(() => {
+    if (state.selectedProject) {
+      if (mapRef.current) {
+        mapRef.current.flyTo({
+          center: [
+            state.selectedProject.projectMap.marker.position.lng,
+            state.selectedProject.projectMap.marker.position.lat,
+          ],
+          zoom: 15,
+        });
+      }
+    } else {
+      if (mapRef.current) {
+        mapRef.current.flyTo({
+          center: [center[0], center[1]],
+          zoom: 5,
+        });
+      }
+    }
+  }, [state.selectedProject]);
+
   return (
     <div className="relative">
       <div className="lg:block hidden">
-        <PlatformMenu />
+        {data &&
+          (state.selectedProject ? (
+            <ProjectView />
+          ) : (
+            <PlatformMenu data={data} />
+          ))}
       </div>
       <MobPlatformMenu />
       <div
@@ -88,26 +136,40 @@ const GGMapBox: React.FC<{
         )}
       />
       {mapLoaded &&
-        markersData.map((marker, index) => (
+        !state.selectedProject &&
+        data?.map((marker, index) => (
           <CustomMarker
             key={index}
             map={mapRef.current!}
-            coordinates={marker.coordinates as any}
-            markerImage={marker.markerImage}
-            PopupContent={<PopupContent />}
+            coordinates={[
+              marker.projectMap.marker.position.lng,
+              marker.projectMap.marker.position.lat,
+            ]}
+            onPopupClick={() => {
+              dispatch(
+                setSelectedProject({
+                  project: marker,
+                  type: marker.projectType,
+                })
+              );
+            }}
+            image={"/icons" + marker.projectMap.marker.image}
+            color={marker.projectMap.marker.color}
+            PopupContent={<PopupContent data={marker} />}
           />
         ))}
       {mapLoaded &&
-        polygonsData.map((polygon) => (
+        state.selectedProject &&
+        state.selectedProject.projectMap.workSpace.features.map((polygon) => (
           <PolygonLayer
             key={polygon.id}
             map={mapRef.current!}
             id={polygon.id}
-            coordinates={polygon.coordinates}
-            fillColor={polygon.fillColor}
-            fillOpacity={polygon.fillOpacity}
-            lineColor={polygon.lineColor}
-            lineWidth={polygon.lineWidth}
+            coordinates={polygon.geometry.coordinates[0]}
+            fillColor={"green"}
+            fillOpacity={0.6}
+            lineColor={"green"}
+            lineWidth={2}
           />
         ))}
     </div>

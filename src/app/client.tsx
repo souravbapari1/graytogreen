@@ -1,8 +1,11 @@
+"use client";
 import React, { ReactNode } from "react";
-import Loading from "./loading";
+
+import { Provider } from "react-redux";
+import { store } from "@/redux/store";
 
 function Client({ children }: { children: ReactNode }) {
-  return <div>{children}</div>;
+  return <Provider store={store}>{children}</Provider>;
 }
 
 export default Client;

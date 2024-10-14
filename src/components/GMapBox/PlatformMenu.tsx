@@ -12,8 +12,12 @@ import {
 } from "@/components/ui/sheet";
 import { Input } from "../ui/input";
 import { Checkbox } from "../ui/checkbox";
+import { ProjectDataType } from "@/interface/project";
+import { useAppDispatch } from "@/redux/hooks";
+import { setSelectedProject } from "@/redux/slices/platformSlice";
 
-function PlatformMenu() {
+function PlatformMenu({ data }: { data?: ProjectDataType[] }) {
+  const dispatch = useAppDispatch();
   return (
     <div className="lg:w-96 w-full h-full z-10 left-0 md:top-0  bg-transparent absolute lg:px-3 py-3  overflow-hidden">
       <div className="w-full h-full bg-white rounded-3xl shadow-xl overflow-hidden pt-3 mb-3">
@@ -43,11 +47,27 @@ function PlatformMenu() {
         <div
           className={`${montserrat.className} w-full h-full text-xs md:px-5 px-2  overflow-auto pt-0 pb-20`}
         >
-          {Array.from({ length: 30 }).map((_, i) => {
+          {data?.map((map, i) => {
             return (
-              <PopupContent className="w-full mt-3" key={"project_" + i} />
+              <PopupContent
+                data={map}
+                className="w-full mt-3"
+                key={"project_" + i}
+                onClick={() => {
+                  dispatch(
+                    setSelectedProject({
+                      project: map,
+                      type: map.projectType,
+                    })
+                  );
+                }}
+              />
             );
           })}
+          <br />
+          <br />
+          <br />
+          <br />
         </div>
       </div>
     </div>
