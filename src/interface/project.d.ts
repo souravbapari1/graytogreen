@@ -1,156 +1,63 @@
-export type ProjectType = {
-  image: string;
-  type: string;
-  count: number;
-  country: string;
-  price: number;
-  status: string;
-};
+import { ProjectType } from "./projectType";
+import { ReportingItem } from "./reporting";
+import { SDGITEM } from "./sdg";
+import { UnitItem } from "./units";
+import { UserItem } from "./user";
 
-export interface ProjectDataType {
-  _id: string;
+export interface ProjectItem {
+  about_project: string;
+  address: string;
   allow: boolean;
-  projectName: string;
-  projectImage: string;
-  MainInterventions: MainIntervention[];
-  projectType: string;
-  numberOfTargetUnits: number;
-  omrUnit: number;
-  unitMeasurement: string;
-  typeOfUnit: TypeOfUnit[];
-  operatedBy: OperatedBy[];
-  startDate: string;
-  projectStatus: string;
-  sortDesc: string;
+  challenges_and_impact_details: string;
+  challenges_and_impact_details_images: string[];
+  challenges_and_impact_details_videos: string[];
   city: string;
+  collectionId: string;
+  collectionName: string;
   country: string;
+  created: string;
+  email: string;
+  expand?: Expand;
+  id: string;
+  status: string;
   location: string;
-  challengesAndImpactDetails: string;
-  challengesAndImpactDetailsImages: ChallengesAndImpactDetailsImage[];
-  challengesAndImpactDetailsVideos: ChallengesAndImpactDetailsVideo[];
-  projectContent: string;
-  projectContentImages: ProjectContentImage[];
-  projectContentVideos: ProjectContentVideo[];
-  sustainableDevelopmentGoal: SustainableDevelopmentGoal[];
-  reports: Report[];
-  contact: Contact;
-  projectMap: ProjectMap;
-  createdAt: string;
-  updatedAt: string;
-  __v: number;
+  main_interventions: MainIntervention[];
+  marker: any;
+  name: string;
+  number_of_target_unit: number;
+  omr_unit: number;
+  operated_by: string[];
+  phone: string;
+  preview_image: string;
+  project_images: string[];
+  project_videos: any[];
+  reports: string[];
+  sdgs: string[];
+  sort_title: string;
+  start_date: string;
+  top_project: boolean;
+  type: string;
+  unit_measurement: string;
+  unit_types: string[];
+  updated: string;
+  website: string;
+  workareas: any;
+}
+
+export interface Expand {
+  operated_by?: UserItem[];
+  sdgs?: SDGITEM[];
+  type?: ProjectType;
+  unit_types?: UnitItem[];
+  reports?: ReportingItem[];
+}
+
+export interface Parameter {
+  name: string;
+  value: string;
 }
 
 export interface MainIntervention {
   text: string;
   value: string;
-}
-
-export interface TypeOfUnit {
-  text: string;
-  value: string;
-}
-
-export interface OperatedBy {
-  text: string;
-  value: string;
-}
-
-export interface ChallengesAndImpactDetailsImage {
-  fieldname: string;
-  originalname: string;
-  encoding: string;
-  mimetype: string;
-  destination: string;
-  filename: string;
-  path: string;
-  size: number;
-}
-
-export interface ChallengesAndImpactDetailsVideo {
-  fieldname: string;
-  originalname: string;
-  encoding: string;
-  mimetype: string;
-  destination: string;
-  filename: string;
-  path: string;
-  size: number;
-}
-
-export interface ProjectContentImage {
-  fieldname: string;
-  originalname: string;
-  encoding: string;
-  mimetype: string;
-  destination: string;
-  filename: string;
-  path: string;
-  size: number;
-}
-
-export interface ProjectContentVideo {
-  fieldname: string;
-  originalname: string;
-  encoding: string;
-  mimetype: string;
-  destination: string;
-  filename: string;
-  path: string;
-  size: number;
-}
-
-export interface SustainableDevelopmentGoal {
-  title: string;
-  desc: string;
-  parameters: Parameter[];
-}
-
-export interface Parameter {
-  title: string;
-  value: string;
-}
-
-export interface Report {
-  file: string;
-  title: string;
-  desc: string;
-}
-
-export interface Contact {
-  website: string;
-  emailID: string;
-  location: string;
-}
-
-export interface ProjectMap {
-  marker: Marker;
-  workSpace: WorkSpace;
-}
-
-export interface Marker {
-  image: string;
-  color: string;
-  name: string;
-  position: Position;
-}
-
-export interface Position {
-  lng: number;
-  lat: number;
-}
-
-export interface WorkSpace {
-  type: string;
-  features: Feature[];
-}
-
-export interface Feature {
-  id: string;
-  type: string;
-  geometry: Geometry;
-}
-
-export interface Geometry {
-  coordinates: number[][][];
-  type: string;
 }

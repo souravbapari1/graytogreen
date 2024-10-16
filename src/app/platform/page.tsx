@@ -2,21 +2,28 @@ import React from "react";
 import dynamic from "next/dynamic";
 import Navbar from "@/components/sections/Navbar/Navbar";
 import { client } from "@/request/actions";
-import { ProjectDataType } from "@/interface/project";
+import { ProjectItem } from "@/interface/project";
+import { Collection } from "@/interface/collection";
+
 const GGMapBox = dynamic(() => import("@/components/GMapBox/GGMapBox"), {
   ssr: false,
 });
 
 export const revalidate = 0;
 async function page() {
-  const data = await client.get("/api/v1/project").send<ProjectDataType[]>();
+  const project = await client
+    .get("/api/collections/projects/records/", {
+      expand: "operated_by,reports,sdgs,unit_types,type",
+    })
+    .send<Collection<ProjectItem>>();
+
   return (
     <div>
       <Navbar />
       <GGMapBox
         style={{ width: "100%", height: "90.8vh" }}
         className="rounded-none shadow-none"
-        data={data}
+        data={project}
       />
     </div>
   );
