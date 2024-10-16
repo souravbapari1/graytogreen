@@ -5,9 +5,10 @@ import { montserrat } from "@/fonts/font";
 import { IoIosArrowBack } from "react-icons/io";
 import { unselectPlatformProject } from "@/redux/slices/platformSlice";
 import Image from "next/image";
-import { client } from "@/request/actions";
+import { client, genPbFiles } from "@/request/actions";
 import { MdOutlineFileDownload } from "react-icons/md";
 import Link from "next/link";
+import { get } from "http";
 
 function ProjectView() {
   const state = useAppSelector((e) => e.platformSlice);
@@ -41,17 +42,17 @@ function ProjectView() {
           <div
             className="text-sm "
             dangerouslySetInnerHTML={{
-              __html: state.selectedProject?.projectContent || "",
+              __html: state.selectedProject?.about_project || "",
             }}
           />
           <div className="mt-2 flex flex-col gap-2">
-            {state.selectedProject?.projectContentImages.map((e, i) => {
+            {state.selectedProject?.project_images.map((e, i) => {
               return (
                 <Image
                   width={500}
                   height={200}
                   key={i}
-                  src={client.baseUrl + "/" + e.path}
+                  src={genPbFiles(state.selectedProject, e) || ""}
                   alt=""
                   className="w-full h-auto"
                 />
@@ -60,13 +61,13 @@ function ProjectView() {
           </div>
 
           <div className="mt-2 flex flex-col gap-2">
-            {state.selectedProject?.projectContentVideos.map((e, i) => {
+            {state.selectedProject?.project_videos.map((e, i) => {
               return (
                 <video
                   width={500}
                   height={200}
                   key={i}
-                  src={client.baseUrl + "/" + e.path}
+                  src={genPbFiles(state.selectedProject, e) || ""}
                   controls
                   className="w-full h-auto"
                 />
@@ -79,18 +80,19 @@ function ProjectView() {
           <div
             className="text-sm "
             dangerouslySetInnerHTML={{
-              __html: state.selectedProject?.challengesAndImpactDetails || "",
+              __html:
+                state.selectedProject?.challenges_and_impact_details || "",
             }}
           />
           <div className="mt-2 flex flex-col gap-2">
-            {state.selectedProject?.challengesAndImpactDetailsImages.map(
+            {state.selectedProject?.challenges_and_impact_details_images.map(
               (e, i) => {
                 return (
                   <Image
                     width={500}
                     height={200}
                     key={i}
-                    src={client.baseUrl + "/" + e.path}
+                    src={genPbFiles(state.selectedProject, e) || ""}
                     alt=""
                     className="w-full h-auto"
                   />
@@ -100,14 +102,14 @@ function ProjectView() {
           </div>
 
           <div className="mt-2 flex flex-col gap-2">
-            {state.selectedProject?.challengesAndImpactDetailsVideos.map(
+            {state.selectedProject?.challenges_and_impact_details_videos.map(
               (e, i) => {
                 return (
                   <video
                     width={500}
                     height={200}
                     key={i}
-                    src={client.baseUrl + "/" + e.path}
+                    src={genPbFiles(state.selectedProject, e) || ""}
                     controls
                     className="w-full h-auto"
                   />
@@ -118,13 +120,13 @@ function ProjectView() {
           <br />
           <h1 className="font-bold mb-3">Sustainable Development Goals</h1>
 
-          {state.selectedProject?.sustainableDevelopmentGoal.map((e, i) => {
+          {state.selectedProject?.expand?.sdgs?.map((e, i) => {
             return (
               <div className="">
                 <p className="text-sm font-bold" key={i}>
-                  {e.title}
+                  {e.name}
                 </p>
-                <p className="text-xs mb-2">{e.desc}</p>
+                <p className="text-xs mb-2">{e.sort_desc}</p>
 
                 <div className="w-full bg-gray-50">
                   <div className="w-full h-5 bg-main p-4 text-sm text-white flex justify-between items-center">
@@ -149,15 +151,15 @@ function ProjectView() {
           <br />
           <h1 className="font-bold">Reports</h1>
           <div className="">
-            {state.selectedProject?.reports.map((e, i) => {
+            {state.selectedProject?.expand?.reports?.map((e, i) => {
               return (
                 <div
                   className="w-full h-5 mt-2 border-b border-white py-3 text-sm flex justify-between items-center"
                   key={i}
                 >
-                  <p className="font-semibold text-green-700">{e.title}</p>
+                  <p className="font-semibold text-green-700">{e.name}</p>
                   <Link
-                    href={client.baseUrl + "/" + e.file}
+                    href={genPbFiles(state.selectedProject, e.file)}
                     download={e.file}
                     target="_blank"
                   >
@@ -172,9 +174,10 @@ function ProjectView() {
 
         <div className="flex flex-col gap-2 p-4">
           <h1 className="font-bold">Contact Info</h1>
-          <p className="text-sm">{state.selectedProject?.contact.website}</p>
-          <p className="text-sm">{state.selectedProject?.contact.location}</p>
-          <p className="text-sm">{state.selectedProject?.contact.emailID}</p>
+          <p className="text-sm">{state.selectedProject?.website}</p>
+          <p className="text-sm">{state.selectedProject?.email}</p>
+          <p className="text-sm">{state.selectedProject?.address}</p>
+          <p className="text-sm">{state.selectedProject?.phone}</p>
         </div>
       </div>
     </div>

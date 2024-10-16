@@ -11,16 +11,19 @@ import { montserrat } from "@/fonts/font";
 
 import { FiSearch } from "react-icons/fi";
 import PlatformMenu, { MobPlatformMenu } from "./PlatformMenu";
-import { ProjectDataType } from "@/interface/project";
+
 import { useDispatch } from "react-redux";
 import { useAppDispatch, useAppSelector } from "@/redux/hooks";
 import {
   setPlatformData,
+  setPlatformFilter,
   setSelectedProject,
   unselectPlatformProject,
 } from "@/redux/slices/platformSlice";
 import { set } from "date-fns";
 import ProjectView from "./ProjectView";
+import { Collection } from "@/interface/collection";
+import { ProjectItem } from "@/interface/project";
 
 export const Markersmages = {
   bilding: "/assets/bilding.svg",
@@ -43,7 +46,7 @@ const GGMapBox: React.FC<{
   className?: string;
   style?: CSSProperties;
   disableScroll?: boolean;
-  data?: ProjectDataType[];
+  data?: Collection<ProjectItem>;
 }> = ({ className, style, disableScroll, data }) => {
   const state = useAppSelector((e) => e.platformSlice);
   const dispatch = useAppDispatch();
@@ -58,7 +61,9 @@ const GGMapBox: React.FC<{
     if (mapRef.current) {
       mapRef.current.resize(); // Trigger a resize to fix rendering issues
     }
-    dispatch(setPlatformData(data || []));
+    dispatch(setPlatformData(data?.items || []));
+    dispatch(setPlatformFilter(data?.items || []));
+
     dispatch(unselectPlatformProject());
   }, []);
 
@@ -100,8 +105,8 @@ const GGMapBox: React.FC<{
       if (mapRef.current) {
         mapRef.current.flyTo({
           center: [
-            state.selectedProject.projectMap.marker.position.lng,
-            state.selectedProject.projectMap.marker.position.lat,
+            state.selectedProject.marker.position.lng,
+            state.selectedProject.marker.position.lat,
           ],
           zoom: 15,
         });
@@ -119,14 +124,14 @@ const GGMapBox: React.FC<{
   return (
     <div className="relative">
       <div className="lg:block hidden">
-        {data &&
+        {state.filter &&
           (state.selectedProject ? (
             <ProjectView />
           ) : (
-            <PlatformMenu data={data} />
+            <PlatformMenu data={state.filter} />
           ))}
       </div>
-      <MobPlatformMenu />
+      <MobPlatformMenu data={state.filter} />
       <div
         ref={mapContainerRef}
         style={style ?? { width: "100%", height: "85vh" }}
@@ -137,39 +142,39 @@ const GGMapBox: React.FC<{
       />
       {mapLoaded &&
         !state.selectedProject &&
-        data?.map((marker, index) => (
+        data?.items?.map((marker, index) => (
           <CustomMarker
             key={index}
             map={mapRef.current!}
             coordinates={[
-              marker.projectMap.marker.position.lng,
-              marker.projectMap.marker.position.lat,
+              marker.marker.position.lng,
+              marker.marker.position.lat,
             ]}
             onPopupClick={() => {
               dispatch(
                 setSelectedProject({
                   project: marker,
-                  type: marker.projectType,
+                  type: marker.type,
                 })
               );
             }}
-            image={"/icons" + marker.projectMap.marker.image}
-            color={marker.projectMap.marker.color}
+            image={"/icons" + marker.marker.image}
+            color={marker.marker.color}
             PopupContent={<PopupContent data={marker} />}
           />
         ))}
       {mapLoaded &&
         state.selectedProject &&
-        state.selectedProject.projectMap.workSpace.features.map((polygon) => (
+        state.selectedProject.workareas.features.map((polygon: any) => (
           <PolygonLayer
             key={polygon.id}
             map={mapRef.current!}
             id={polygon.id}
             coordinates={polygon.geometry.coordinates[0]}
             fillColor={"green"}
-            fillOpacity={0.6}
-            lineColor={"green"}
-            lineWidth={2}
+            fillOpacity={0}
+            lineColor={"white"}
+            lineWidth={4}
           />
         ))}
     </div>

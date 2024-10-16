@@ -25,3 +25,7 @@ export const uploadFiles = async (data: File[]) => {
   const filesData = await res.json();
   return filesData as any[];
 };
+
+export const genPbFiles = (record: any, name: string) => {
+  return `${client.baseUrl}/api/files/${record.collectionId}/${record.id}/${name}`;
+};

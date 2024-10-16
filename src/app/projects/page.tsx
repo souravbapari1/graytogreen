@@ -5,7 +5,7 @@ import Navbar from "@/components/sections/Navbar/Navbar";
 import { montserrat } from "@/fonts/font";
 import React from "react";
 import FilterTab, { MobFilterTab } from "./FilterTab";
-import { ProjectType } from "@/interface/project";
+
 function getBackgroundColor(percentage: number): string {
   if (percentage >= 80) {
     return "bg-green-500"; // Green for >= 80%
@@ -15,99 +15,6 @@ function getBackgroundColor(percentage: number): string {
     return "bg-red-500"; // Red for < 50%
   }
 }
-
-const projects: ProjectType[] = [
-  {
-    image:
-      "https://assets.newatlas.com/dims4/default/5eb1316/2147483647/strip/true/crop/1919x1080+0+0/resize/1919x1080!/quality/90/?url=http%3A%2F%2Fnewatlas-brightspot.s3.amazonaws.com%2Farchive%2Fplant-brain-2.jpg",
-    type: "Carbon Project",
-    count: 100,
-    country: "India",
-    price: 123,
-    status: "active",
-  },
-  {
-    image:
-      "https://assets.newatlas.com/dims4/default/5eb1316/2147483647/strip/true/crop/1919x1080+0+0/resize/1919x1080!/quality/90/?url=http%3A%2F%2Fnewatlas-brightspot.s3.amazonaws.com%2Farchive%2Fplant-brain-2.jpg",
-    type: "Carbon Project",
-    count: 200,
-    country: "Brazil",
-    price: 150,
-    status: "completed",
-  },
-  {
-    image:
-      "https://assets.newatlas.com/dims4/default/5eb1316/2147483647/strip/true/crop/1919x1080+0+0/resize/1919x1080!/quality/90/?url=http%3A%2F%2Fnewatlas-brightspot.s3.amazonaws.com%2Farchive%2Fplant-brain-2.jpg",
-    type: "Plastic Project",
-    count: 500,
-    country: "Kenya",
-    price: 230,
-    status: "top",
-  },
-  {
-    image:
-      "https://assets.newatlas.com/dims4/default/5eb1316/2147483647/strip/true/crop/1919x1080+0+0/resize/1919x1080!/quality/90/?url=http%3A%2F%2Fnewatlas-brightspot.s3.amazonaws.com%2Farchive%2Fplant-brain-2.jpg",
-    type: "Carbon Project",
-    count: 350,
-    country: "Australia",
-    price: 180,
-    status: "active",
-  },
-  {
-    image:
-      "https://assets.newatlas.com/dims4/default/5eb1316/2147483647/strip/true/crop/1919x1080+0+0/resize/1919x1080!/quality/90/?url=http%3A%2F%2Fnewatlas-brightspot.s3.amazonaws.com%2Farchive%2Fplant-brain-2.jpg",
-    type: "Plastic Project",
-    count: 600,
-    country: "South Africa",
-    price: 210,
-    status: "completed",
-  },
-  {
-    image:
-      "https://assets.newatlas.com/dims4/default/5eb1316/2147483647/strip/true/crop/1919x1080+0+0/resize/1919x1080!/quality/90/?url=http%3A%2F%2Fnewatlas-brightspot.s3.amazonaws.com%2Farchive%2Fplant-brain-2.jpg",
-    type: "Plastic Project",
-    count: 450,
-    country: "Indonesia",
-    price: 195,
-    status: "active",
-  },
-  {
-    image:
-      "https://assets.newatlas.com/dims4/default/5eb1316/2147483647/strip/true/crop/1919x1080+0+0/resize/1919x1080!/quality/90/?url=http%3A%2F%2Fnewatlas-brightspot.s3.amazonaws.com%2Farchive%2Fplant-brain-2.jpg",
-    type: "Carbon Project",
-    count: 120,
-    country: "Canada",
-    price: 170,
-    status: "top",
-  },
-  {
-    image:
-      "https://assets.newatlas.com/dims4/default/5eb1316/2147483647/strip/true/crop/1919x1080+0+0/resize/1919x1080!/quality/90/?url=http%3A%2F%2Fnewatlas-brightspot.s3.amazonaws.com%2Farchive%2Fplant-brain-2.jpg",
-    type: "Plastic Project",
-    count: 300,
-    country: "Germany",
-    price: 130,
-    status: "completed",
-  },
-  {
-    image:
-      "https://assets.newatlas.com/dims4/default/5eb1316/2147483647/strip/true/crop/1919x1080+0+0/resize/1919x1080!/quality/90/?url=http%3A%2F%2Fnewatlas-brightspot.s3.amazonaws.com%2Farchive%2Fplant-brain-2.jpg",
-    type: "Tree Project",
-    count: 800,
-    country: "Norway",
-    price: 250,
-    status: "active",
-  },
-  {
-    image:
-      "https://assets.newatlas.com/dims4/default/5eb1316/2147483647/strip/true/crop/1919x1080+0+0/resize/1919x1080!/quality/90/?url=http%3A%2F%2Fnewatlas-brightspot.s3.amazonaws.com%2Farchive%2Fplant-brain-2.jpg",
-    type: "Tree Project",
-    count: 900,
-    country: "Finland",
-    price: 300,
-    status: "completed",
-  },
-];
 
 function Projects() {
   return (

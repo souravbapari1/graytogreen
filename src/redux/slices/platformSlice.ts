@@ -1,10 +1,10 @@
-import { ProjectDataType } from "@/interface/project";
+import { ProjectItem } from "@/interface/project";
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 
 export interface PlatformState {
-  dataSet: ProjectDataType[];
-  filter: ProjectDataType[];
-  selectedProject?: ProjectDataType;
+  dataSet: ProjectItem[];
+  filter: ProjectItem[];
+  selectedProject?: ProjectItem;
   selectedProjectType?: string;
 }
 
@@ -19,14 +19,18 @@ const platformSlice = createSlice({
   name: "platformSlice",
   initialState,
   reducers: {
-    setPlatformData: (state, action: PayloadAction<ProjectDataType[]>) => {
+    setPlatformData: (state, action: PayloadAction<ProjectItem[]>) => {
       state.dataSet = action.payload;
+    },
+
+    setPlatformFilter: (state, action: PayloadAction<ProjectItem[]>) => {
+      state.filter = action.payload;
     },
 
     setSelectedProject: (
       state,
       action: PayloadAction<{
-        project?: ProjectDataType;
+        project?: ProjectItem;
         type?: string;
       }>
     ) => {
@@ -41,7 +45,11 @@ const platformSlice = createSlice({
   },
 });
 
-export const { setPlatformData, setSelectedProject, unselectPlatformProject } =
-  platformSlice.actions;
+export const {
+  setPlatformData,
+  setSelectedProject,
+  unselectPlatformProject,
+  setPlatformFilter,
+} = platformSlice.actions;
 
 export default platformSlice.reducer;
