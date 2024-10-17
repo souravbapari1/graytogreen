@@ -18,8 +18,18 @@ import GGMapBox from "@/components/GMapBox/GGMapBox";
 import Faq from "@/components/sections/Home/Faq/Faq";
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
+import { client } from "@/request/actions";
+import { ProjectItem } from "@/interface/project";
+import { Collection } from "@/interface/collection";
 
+export const revalidate = 0;
 async function page() {
+  const project = await client
+    .get("/api/collections/projects/records/", {
+      expand: "operated_by,reports,sdgs,unit_types,type",
+    })
+    .send<Collection<ProjectItem>>();
+
   return (
     <div>
       <Navbar />
@@ -44,7 +54,7 @@ async function page() {
               Open Platform
             </Link>
           </div>
-          <GGMapBox disableScroll />
+          <GGMapBox disableScroll data={project} />
         </div>
       </div>
       <OurPartners />
