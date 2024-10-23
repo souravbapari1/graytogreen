@@ -1,18 +1,16 @@
 "use client";
-import React, { CSSProperties, memo, useEffect, useRef, useState } from "react";
+import { cn } from "@/lib/utils";
 import mapboxgl from "mapbox-gl";
 import "mapbox-gl/dist/mapbox-gl.css";
+import React, { CSSProperties, useEffect, useRef, useState } from "react";
 import CustomMarker from "./Parts/marker";
 import PolygonLayer from "./Parts/PolygonLayer";
 import { PopupContent } from "./Parts/PopupContent";
-import { markersData, polygonsData } from "./data";
-import { cn } from "@/lib/utils";
-import { montserrat } from "@/fonts/font";
 
-import { FiSearch } from "react-icons/fi";
 import PlatformMenu, { MobPlatformMenu } from "./PlatformMenu";
 
-import { useDispatch } from "react-redux";
+import { Collection } from "@/interface/collection";
+import { ProjectItem } from "@/interface/project";
 import { useAppDispatch, useAppSelector } from "@/redux/hooks";
 import {
   setPlatformData,
@@ -20,10 +18,7 @@ import {
   setSelectedProject,
   unselectPlatformProject,
 } from "@/redux/slices/platformSlice";
-import { set } from "date-fns";
 import ProjectView from "./ProjectView";
-import { Collection } from "@/interface/collection";
-import { ProjectItem } from "@/interface/project";
 
 export const Markersmages = {
   bilding: "/assets/bilding.svg",
@@ -158,25 +153,27 @@ const GGMapBox: React.FC<{
                 })
               );
             }}
-            image={"/icons" + marker.marker.image}
-            color={marker.marker.color}
+            image={"/icons" + marker.marker.values.image}
+            color={marker.marker.values.color}
             PopupContent={<PopupContent data={marker} />}
           />
         ))}
       {mapLoaded &&
         state.selectedProject &&
-        state.selectedProject.workareas.features.map((polygon: any) => (
-          <PolygonLayer
-            key={polygon.id}
-            map={mapRef.current!}
-            id={polygon.id}
-            coordinates={polygon.geometry.coordinates[0]}
-            fillColor={"green"}
-            fillOpacity={0}
-            lineColor={"white"}
-            lineWidth={4}
-          />
-        ))}
+        state.selectedProject.workareas.workAreaData.features.map(
+          (polygon: any) => (
+            <PolygonLayer
+              key={polygon.id}
+              map={mapRef.current!}
+              id={polygon.id}
+              coordinates={polygon.geometry.coordinates[0]}
+              fillColor={"green"}
+              fillOpacity={0}
+              lineColor={"white"}
+              lineWidth={4}
+            />
+          )
+        )}
     </div>
   );
 };

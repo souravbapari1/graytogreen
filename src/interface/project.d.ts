@@ -21,7 +21,7 @@ export interface ProjectItem {
   id: string;
   status: string;
   location: string;
-  main_interventions: MainIntervention[];
+  main_interventions: string[];
   marker: any;
   name: string;
   number_of_target_unit: number;
