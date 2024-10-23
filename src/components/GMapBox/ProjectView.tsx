@@ -126,20 +126,20 @@ function ProjectView() {
                 <p className="text-sm font-bold" key={i}>
                   {e.name}
                 </p>
-                <p className="text-xs mb-2">{e.sort_desc}</p>
+                <p className="text-xs mb-2">{e.description}</p>
 
                 <div className="w-full bg-gray-50">
                   <div className="w-full h-5 bg-main p-4 text-sm text-white flex justify-between items-center">
                     <p>Parameter</p>
                     <p>Target</p>
                   </div>
-                  {e.parameters.map((e, i) => {
+                  {e.data.map((e, i) => {
                     return (
                       <div
                         className="w-full h-5  border-b border-white p-4 text-sm flex justify-between items-center"
                         key={i}
                       >
-                        <p>{e.title}</p>
+                        <p>{e.name}</p>
                         <p>{e.value}</p>
                       </div>
                     );
