@@ -1,6 +1,6 @@
 import { NextClient } from "./request";
 
-export const client = new NextClient("https://graytogreen.souravbapari.in");
+export const client = new NextClient("https://g2g-pocketbase.souravbapari.in");
 
 export function AdminAuthToken() {
   return { Authorization: "Bearer " + localStorage.getItem("token") || "" };
