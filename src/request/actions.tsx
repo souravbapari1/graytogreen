@@ -6,26 +6,32 @@ export function AdminAuthToken() {
   return { Authorization: "Bearer " + localStorage.getItem("token") || "" };
 }
 
-export const uploadFiles = async (data: File[]) => {
-  const formdata = new FormData();
-  data.forEach((file) => {
-    formdata.append("file", file);
-  });
-
-  const requestOptions: any = {
-    method: "POST",
-    body: formdata,
-    redirect: "follow",
-  };
-
-  const res = await fetch(
-    client.baseUrl + "/api/v1/uploader/multiple",
-    requestOptions
-  );
-  const filesData = await res.json();
-  return filesData as any[];
+export const genPbFiles = (record: any, name: any) => {
+  return `${client.baseUrl}/api/files/${record?.collectionId}/${record?.id}/${name}`;
 };
 
-export const genPbFiles = (record: any, name: string) => {
-  return `${client.baseUrl}/api/files/${record.collectionId}/${record.id}/${name}`;
-};
+export function extractErrors(errorResponse: {
+  message?: any;
+  data: { [key: string]: { message: string; code: number } };
+}): string[] {
+  try {
+    const errors: string[] = [];
+
+    // Check if the errorResponse contains data
+    if (errorResponse && errorResponse.data) {
+      // Iterate through the keys of the data object
+      for (const [key, value] of Object.entries(errorResponse.data)) {
+        // Remove underscores from the key
+        const formattedKey = key.replace(/_/g, " ");
+        // Construct a message for each error
+        const message = `${formattedKey}: ${value.message}`;
+        errors.push(message);
+      }
+    }
+    console.log(errorResponse);
+
+    return [...errors, errorResponse?.message || "something went wrong"];
+  } catch (error) {
+    return ["something went wrong"];
+  }
+}

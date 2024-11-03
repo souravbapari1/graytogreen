@@ -80,7 +80,7 @@ export const PopupContent = ({
           <div className="text-xs ">
             <div className="flex  justify-start items-start gap-2">
               <img
-                src={"/icons" + data?.marker?.image}
+                src={"/icons" + data?.marker?.values.image}
                 className="w-3 h-3 cursor-pointer"
               />
               <p className="font-semibold text-[10px]">

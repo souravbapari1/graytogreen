@@ -14,6 +14,7 @@ import { Button } from "@/components/ui/button";
 import { Textarea } from "@/components/ui/textarea";
 import Link from "next/link";
 import { FaArrowLeft } from "react-icons/fa";
+import { useToast } from "@/hooks/use-toast";
 
 function CompanyApplicationForm({
   onChange,
@@ -22,8 +23,9 @@ function CompanyApplicationForm({
   type: "Individual" | "Ambassador" | "Company" | null;
   onChange: Function;
 }) {
+  const toast = useToast();
   const [formData, setFormData] = useState({
-    title: "Mr.",
+    title: "",
     name: "",
     position: "",
     phone: "",
@@ -35,7 +37,148 @@ function CompanyApplicationForm({
     countryCity: "",
     reasons: [],
     heardFrom: "",
+    password: "",
+    confirmPassword: "",
   });
+
+  const validateFields = () => {
+    if (formData.title === "") {
+      toast.toast({
+        title: "Please select One Mr/MS",
+        description: "Please select Mr/Ms.",
+        variant: "destructive",
+      });
+      return false;
+    }
+
+    if (formData.name === "") {
+      toast.toast({
+        title: "Please enter your Applicant Name.",
+        description: "Please enter your Applicant Name.",
+        variant: "destructive",
+      });
+      return false;
+    }
+
+    if (formData.position === "") {
+      toast.toast({
+        title: "Please enter your Position.",
+        description: "Please enter your Position.",
+        variant: "destructive",
+      });
+      return false;
+    }
+
+    if (formData.phone === "") {
+      toast.toast({
+        title: "Please enter your Phone Number.",
+        description: "Please enter your Phone Number.",
+        variant: "destructive",
+      });
+      return false;
+    }
+
+    if (formData.email === "") {
+      toast.toast({
+        title: "Please enter your Email Address.",
+        description: "Please enter your Email Address.",
+        variant: "destructive",
+      });
+      return false;
+    }
+
+    if (formData.companyName === "") {
+      toast.toast({
+        title: "Please enter your Company Name.",
+        description: "Please enter your Company Name.",
+        variant: "destructive",
+      });
+      return false;
+    }
+
+    if (formData.website === "") {
+      toast.toast({
+        title: "Please enter your Company Website.",
+        description: "Please enter your Company Website.",
+        variant: "destructive",
+      });
+      return false;
+    }
+
+    if (formData.industry === "") {
+      toast.toast({
+        title: "Please enter your Industry.",
+        description: "Please enter your Industry.",
+        variant: "destructive",
+      });
+      return false;
+    }
+
+    if (formData.companySize === "") {
+      toast.toast({
+        title: "Please enter your Company Size.",
+        description: "Please enter your Company Size.",
+        variant: "destructive",
+      });
+      return false;
+    }
+
+    if (formData.countryCity === "") {
+      toast.toast({
+        title: "Please enter your Country and City.",
+        description: "Please enter your Country and City.",
+        variant: "destructive",
+      });
+      return false;
+    }
+
+    if (formData.reasons.length === 0) {
+      toast.toast({
+        title: "Please select at least one reason.",
+        description: "Please select at least one reason.",
+        variant: "destructive",
+      });
+      return false;
+    }
+
+    if (formData.heardFrom === "") {
+      toast.toast({
+        title: "Please select how did you hear about us.",
+        description: "Please select how did you hear about us.",
+        variant: "destructive",
+      });
+      return false;
+    }
+
+    if (formData.password === "") {
+      toast.toast({
+        title: "Please enter your Password.",
+        description: "Please enter your Password.",
+        variant: "destructive",
+      });
+      return false;
+    }
+
+    if (formData.confirmPassword === "") {
+      toast.toast({
+        title: "Please confirm your Password.",
+        description: "Please confirm your Password.",
+        variant: "destructive",
+      });
+      return false;
+    }
+
+    if (formData.password !== formData.confirmPassword) {
+      toast.toast({
+        title: "Passwords do not match.",
+        description: "Passwords do not match.",
+        variant: "destructive",
+      });
+      return false;
+    }
+
+    return true;
+  };
 
   const handleChange = (e: any) => {
     const { name, value } = e.target;
@@ -64,11 +207,12 @@ function CompanyApplicationForm({
 
   const handleSubmit = (e: any) => {
     e.preventDefault();
+    validateFields();
     console.log(formData);
   };
 
   return (
-    <form onSubmit={handleSubmit} className="container py-10">
+    <form className="container py-10">
       <FaArrowLeft
         size={20}
         className="bg-primary/10 w-14 h-14 md:mx-0 mx-auto mb-8 flex justify-center items-center p-4 cursor-pointer rounded-full text-primary"
@@ -288,6 +432,30 @@ function CompanyApplicationForm({
           required
         />
       </div>
+      <div className="mt-6 grid grid-cols-2 gap-6">
+        <div className="">
+          <label className="font-medium">Password</label>
+          <Input
+            className="p-6 rounded-none shadow-none mt-2"
+            name="password"
+            type="password"
+            value={formData.password}
+            onChange={handleChange}
+            required
+          />
+        </div>
+        <div className="">
+          <label className="font-medium">Confirm Password</label>
+          <Input
+            className="p-6 rounded-none shadow-none mt-2"
+            name="confirmPassword"
+            type="password"
+            value={formData.confirmPassword}
+            onChange={handleChange}
+            required
+          />
+        </div>
+      </div>
       <div className="mt-7">
         <div className="flex justify-start items-center gap-2  cursor-pointer select-none">
           <label htmlFor="checked" className="flex items-center gap-2">
@@ -309,7 +477,10 @@ function CompanyApplicationForm({
           </label>
         </div>
       </div>
-      <Button className="md:w-96 w-full rounded-none donateBtn py-6 font-bold mt-8 mb-10">
+      <Button
+        onClick={handleSubmit}
+        className="md:w-96 w-full rounded-none donateBtn py-6 font-bold mt-8 mb-10"
+      >
         Register Now
       </Button>
     </form>

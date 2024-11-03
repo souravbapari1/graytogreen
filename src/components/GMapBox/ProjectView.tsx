@@ -9,7 +9,22 @@ import { client, genPbFiles } from "@/request/actions";
 import { MdOutlineFileDownload } from "react-icons/md";
 import Link from "next/link";
 import { get } from "http";
-
+import Carousel from "react-multi-carousel";
+import SdgsView from "./SdgsView";
+const responseive = {
+  desktop: {
+    breakpoint: { max: 3000, min: 1024 },
+    items: 1,
+  },
+  tablet: {
+    breakpoint: { max: 1024, min: 464 },
+    items: 1,
+  },
+  mobile: {
+    breakpoint: { max: 464, min: 0 },
+    items: 1,
+  },
+};
 function ProjectView() {
   const state = useAppSelector((e) => e.platformSlice);
   const dispatch = useAppDispatch();
@@ -40,45 +55,49 @@ function ProjectView() {
         <div className="px-4">
           <p className="font-bold ">About Project</p>
           <div
-            className="text-sm "
+            className="text-xs "
             dangerouslySetInnerHTML={{
               __html: state.selectedProject?.about_project || "",
             }}
           />
-          <div className="mt-2 flex flex-col gap-2">
-            {state.selectedProject?.project_images.map((e, i) => {
-              return (
-                <Image
-                  width={500}
-                  height={200}
-                  key={i}
-                  src={genPbFiles(state.selectedProject, e) || ""}
-                  alt=""
-                  className="w-full h-auto"
-                />
-              );
-            })}
+          <div className="mt-2 flex flex-col gap-2 hide-c-arrow">
+            <Carousel responsive={responseive}>
+              {state.selectedProject?.project_images.map((e, i) => {
+                return (
+                  <Image
+                    width={500}
+                    height={200}
+                    key={i + e}
+                    src={genPbFiles(state.selectedProject, e) || ""}
+                    alt=""
+                    className="w-full h-44 object-cover"
+                  />
+                );
+              })}
+            </Carousel>
           </div>
 
-          <div className="mt-2 flex flex-col gap-2">
-            {state.selectedProject?.project_videos.map((e, i) => {
-              return (
-                <video
-                  width={500}
-                  height={200}
-                  key={i}
-                  src={genPbFiles(state.selectedProject, e) || ""}
-                  controls
-                  className="w-full h-auto"
-                />
-              );
-            })}
+          <div className="mt-2 flex flex-col gap-2 hide-c-arrow">
+            <Carousel responsive={responseive}>
+              {state.selectedProject?.project_videos.map((e, i) => {
+                return (
+                  <video
+                    width={500}
+                    height={200}
+                    key={i}
+                    src={genPbFiles(state.selectedProject, e) || ""}
+                    controls
+                    className="h-48 object-cover w-full"
+                  />
+                );
+              })}
+            </Carousel>
           </div>
         </div>
         <div className="px-4 mt-2">
           <p className="font-bold ">Challenges</p>
           <div
-            className="text-sm "
+            className="text-xs "
             dangerouslySetInnerHTML={{
               __html:
                 state.selectedProject?.challenges_and_impact_details || "",
@@ -120,33 +139,8 @@ function ProjectView() {
           <br />
           <h1 className="font-bold mb-3">Sustainable Development Goals</h1>
 
-          {state.selectedProject?.expand?.sdgs?.map((e, i) => {
-            return (
-              <div className="">
-                <p className="text-sm font-bold" key={i}>
-                  {e.name}
-                </p>
-                <p className="text-xs mb-2">{e.description}</p>
-
-                <div className="w-full bg-gray-50">
-                  <div className="w-full h-5 bg-main p-4 text-sm text-white flex justify-between items-center">
-                    <p>Parameter</p>
-                    <p>Target</p>
-                  </div>
-                  {e.data.map((e, i) => {
-                    return (
-                      <div
-                        className="w-full h-5  border-b border-white p-4 text-sm flex justify-between items-center"
-                        key={i}
-                      >
-                        <p>{e.name}</p>
-                        <p>{e.value}</p>
-                      </div>
-                    );
-                  })}
-                </div>
-              </div>
-            );
+          {state.selectedProject?.expand?.sdgs?.map((v, i) => {
+            return <SdgsView data={v} key={v.id} />;
           })}
           <br />
           <h1 className="font-bold">Reports</h1>

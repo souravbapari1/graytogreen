@@ -37,7 +37,10 @@ function DesktopMenuBar() {
                   </div>
                   {e.submenu?.map((menu, i) => {
                     return (
-                      <div className="flex justify-start flex-col gap-4 pt-8">
+                      <div
+                        className="flex justify-start flex-col gap-4 pt-8"
+                        key={"submenu-" + i + "sad"}
+                      >
                         <h1 className="text-gray-600/40 uppercase font-semibold mb-2 macAir:text-sm text-xs">
                           {menu.title}
                         </h1>
@@ -50,6 +53,7 @@ function DesktopMenuBar() {
                           {menu.list.map((e, i) => {
                             return (
                               <NavLink
+                                key={"submenu-link-" + i}
                                 href={e.href}
                                 exact
                                 className="opacity-85 hover:opacity-100 transition-all macAir:text-sm text-xs font-semibold"

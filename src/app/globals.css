@@ -256,3 +256,13 @@ button.react-multiple-carousel__arrow.react-multiple-carousel__arrow--left {
 
   padding: 5px;
 }
+
+.hide-c-arrow
+  button.react-multiple-carousel__arrow.react-multiple-carousel__arrow--right,
+.hide-c-arrow
+  button.react-multiple-carousel__arrow.react-multiple-carousel__arrow--left {
+  border-radius: 12px;
+  background: transparent;
+  position: absolute !important;
+  z-index: 1;
+}

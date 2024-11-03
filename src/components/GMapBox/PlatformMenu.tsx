@@ -120,8 +120,8 @@ function PlatformMenu({ data }: { data?: ProjectItem[] }) {
             return (
               <PopupContent
                 data={map}
-                className="w-full mt-3"
                 key={"project_" + i}
+                className="w-full mt-3"
                 onClick={() => {
                   dispatch(
                     setSelectedProject({
