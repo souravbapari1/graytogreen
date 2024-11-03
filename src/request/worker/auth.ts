@@ -1,26 +1,7 @@
 import { UserItem } from "@/interface/user";
-import { client, pb } from "../actions";
+import { client } from "../actions";
 import { Collection } from "@/interface/collection";
 import { auth, signIn } from "@/auth";
-
-export const google_O_Auth = async () => {
-  try {
-    const res = await pb.collection("users").authWithOAuth2({
-      provider: "google",
-    });
-
-    const authSignIn = signIn("credentials", {
-      credentials: {
-        redirect: false,
-        email: res?.meta?.email,
-        password: res?.token,
-        provider: "google",
-      },
-    });
-  } catch (error) {
-    console.log(error);
-  }
-};
 
 export const authUser = async ({
   email,
