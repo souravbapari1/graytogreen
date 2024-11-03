@@ -103,39 +103,45 @@ function ProjectView() {
                 state.selectedProject?.challenges_and_impact_details || "",
             }}
           />
-          <div className="mt-2 flex flex-col gap-2">
-            {state.selectedProject?.challenges_and_impact_details_images.map(
-              (e, i) => {
-                return (
-                  <Image
-                    width={500}
-                    height={200}
-                    key={i}
-                    src={genPbFiles(state.selectedProject, e) || ""}
-                    alt=""
-                    className="w-full h-auto"
-                  />
-                );
-              }
-            )}
+
+          <div className="mt-2 flex flex-col gap-2 hide-c-arrow">
+            <Carousel responsive={responseive}>
+              {state.selectedProject?.challenges_and_impact_details_images.map(
+                (e, i) => {
+                  return (
+                    <Image
+                      width={500}
+                      height={200}
+                      key={i + e}
+                      src={genPbFiles(state.selectedProject, e) || ""}
+                      alt=""
+                      className="w-full h-44 object-cover"
+                    />
+                  );
+                }
+              )}
+            </Carousel>
           </div>
 
-          <div className="mt-2 flex flex-col gap-2">
-            {state.selectedProject?.challenges_and_impact_details_videos.map(
-              (e, i) => {
-                return (
-                  <video
-                    width={500}
-                    height={200}
-                    key={i}
-                    src={genPbFiles(state.selectedProject, e) || ""}
-                    controls
-                    className="w-full h-auto"
-                  />
-                );
-              }
-            )}
+          <div className="mt-2 flex flex-col gap-2 hide-c-arrow">
+            <Carousel responsive={responseive}>
+              {state.selectedProject?.challenges_and_impact_details_videos.map(
+                (e, i) => {
+                  return (
+                    <video
+                      width={500}
+                      height={200}
+                      key={i}
+                      src={genPbFiles(state.selectedProject, e) || ""}
+                      controls
+                      className="h-48 object-cover w-full"
+                    />
+                  );
+                }
+              )}
+            </Carousel>
           </div>
+
           <br />
           <h1 className="font-bold mb-3">Sustainable Development Goals</h1>
 
