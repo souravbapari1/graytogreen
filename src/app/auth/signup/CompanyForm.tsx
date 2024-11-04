@@ -15,6 +15,12 @@ import { Textarea } from "@/components/ui/textarea";
 import Link from "next/link";
 import { FaArrowLeft } from "react-icons/fa";
 import { useToast } from "@/hooks/use-toast";
+import { MultiSelect } from "@/components/ui/multi-select";
+import { createCompanyRequest } from "@/request/worker/company";
+import { createUser } from "@/request/worker/users";
+import AboutUs from "@/app/about-us/page";
+import { signIn } from "next-auth/react";
+import { extractErrors } from "@/request/actions";
 
 function CompanyApplicationForm({
   onChange,
@@ -23,6 +29,7 @@ function CompanyApplicationForm({
   type: "Individual" | "Ambassador" | "Company" | null;
   onChange: Function;
 }) {
+  const [loading, setLoading] = useState(false);
   const toast = useToast();
   const [formData, setFormData] = useState({
     title: "",
@@ -35,7 +42,7 @@ function CompanyApplicationForm({
     industry: "",
     companySize: "",
     countryCity: "",
-    reasons: [],
+    reasons: [] as string[],
     heardFrom: "",
     password: "",
     confirmPassword: "",
@@ -188,27 +195,72 @@ function CompanyApplicationForm({
     });
   };
 
-  const handleCheckboxChange = (e: any) => {
-    const { value, checked } = e.target;
-    setFormData((prevState: any) => {
-      if (checked) {
-        return {
-          ...prevState,
-          reasons: [...prevState.reasons, value],
-        };
-      } else {
-        return {
-          ...prevState,
-          reasons: prevState.reasons.filter((reason: any) => reason !== value),
-        };
-      }
-    });
-  };
-
-  const handleSubmit = (e: any) => {
+  const handleSubmit = async (e: any) => {
     e.preventDefault();
-    validateFields();
-    console.log(formData);
+    if (validateFields()) {
+      try {
+        setLoading(true);
+        createCompanyRequest({
+          mr_ms: formData.title,
+          application_name: formData.name,
+          position: formData.position,
+          company_name: formData.companyName,
+          website: formData.website,
+          Industry_type: formData.industry,
+          size_hint: formData.companySize,
+          city: formData.countryCity,
+          country: formData.countryCity,
+          about_us: formData.heardFrom,
+          resonses: formData.reasons,
+        }).then(async (res) => {
+          try {
+            const user = await createUser({
+              city: formData.countryCity,
+              company: res.id,
+              complete: true,
+              country: formData.countryCity,
+              email: formData.email,
+              emailVisibility: true,
+              first_name: formData.companyName,
+              last_name: "",
+              dob: "",
+              gender: "",
+              mobile_no: formData.phone,
+              socail_state: "",
+              role: "USER",
+              tree_orders: [],
+              user_type: "company",
+              password: formData.password,
+              passwordConfirm: formData.confirmPassword,
+            });
+
+            localStorage.setItem("user", JSON.stringify(user));
+            localStorage.setItem("company", JSON.stringify(res));
+
+            const auth = await signIn("credentials", {
+              redirect: false,
+              email: formData.email,
+              password: formData.password,
+            });
+
+            if (auth?.ok) {
+              window.location.replace("/account");
+            }
+          } catch (error: any) {
+            setLoading(false);
+            const errors = extractErrors(error.response);
+            toast.toast({
+              title: "Error",
+              description: errors[0],
+              variant: "destructive",
+            });
+            console.log(error);
+          }
+        });
+      } catch (error) {
+        setLoading(false);
+      }
+    }
   };
 
   return (
@@ -405,23 +457,32 @@ function CompanyApplicationForm({
             required
           />
         </div>
-      </div>
-      <div className="mt-4">
-        <label className="font-medium">
-          Reasons to be our Partner (Select multiple) *
-        </label>
-        <div className="flex flex-wrap gap-2">
-          <label className="font-medium">
-            <Checkbox value="Reason 1" onChange={handleCheckboxChange} /> Reason
-            1
-          </label>
-          <label className="font-medium">
-            <Checkbox value="Reason 2" onChange={handleCheckboxChange} /> Reason
-            2
-          </label>
-          {/* Add other checkbox reasons */}
+        <div>
+          <label className="font-medium">Reasons *</label>
+          <MultiSelect
+            defaultValue={formData.reasons}
+            options={[
+              {
+                label: "Start up Company",
+                value: "Start up Company",
+              },
+              {
+                label: "Small Facility (1-49 Employees)",
+                value: "Small Facility (1-49 Employees)",
+              },
+            ]}
+            onValueChange={(value) =>
+              setFormData({ ...formData, reasons: value })
+            }
+            maxCount={1}
+            className="py-0 h-[50px] rounded-none shadow-none mt-2"
+            name="countryCity"
+            value={formData.countryCity}
+            onChange={handleChange}
+          />
         </div>
       </div>
+
       <div className="mt-4">
         <label className="font-medium">From where you heard about us *</label>
         <Textarea
