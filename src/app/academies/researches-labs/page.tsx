@@ -1,3 +1,4 @@
+import OngoingResearch from "@/app/research/ResearchesList";
 import AboutOurTeam from "@/components/sections/AboutUS/AboutOurTeam";
 import ScientificAdvisors from "@/components/sections/AboutUS/ScientificAdvisors";
 import Footer from "@/components/sections/Footer/Footer";
@@ -8,7 +9,7 @@ import ApplyResearchPrograms from "@/components/sections/Research/ApplyResearchP
 import FunctionalDiversityRestoration from "@/components/sections/Research/FunctionalDiversityRestoration";
 import InfrastructureAndTeam from "@/components/sections/Research/InfrastructureAndTeam";
 import NitrogenFixingSpecies from "@/components/sections/Research/NitrogenFixingSpecies";
-import OngoingResearch from "@/components/sections/Research/OngoingResearch";
+
 import RecentPublications from "@/components/sections/Research/RecentPublications";
 import ResearchFellowships from "@/components/sections/Research/ResearchFellowships";
 import ResearchHero from "@/components/sections/Research/ResearchHero";

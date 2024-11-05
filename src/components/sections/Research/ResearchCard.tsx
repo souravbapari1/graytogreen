@@ -1,37 +1,35 @@
 import { montserrat } from "@/fonts/font";
+import { formatTimestampCustom } from "@/helper/dateTime";
+import { ResearchItem } from "@/interface/researches";
+import { genPbFiles } from "@/request/actions";
 import Image from "next/image";
 import Link from "next/link";
 import React from "react";
 
-function ResearchCard() {
+function ResearchCard({ data }: { data: ResearchItem }) {
   return (
     <Link
-      href="/blogs/slug"
+      href={"/research/" + data?.slug}
       className={`${montserrat.className}  relative  transition-all   overflow-hidden`}
     >
       <div className="donateBtn p-0 w-10 h-10 flex justify-center items-center absolute top-5 left-5 ">
         R
       </div>
       <Image
-        src="https://cid-inc.com/app/uploads/2023/04/Plamnt-research.jpg"
+        src={genPbFiles(data, data.image)}
         width={2000}
         height={2000}
         alt=""
         className="w-full md:h-64 h-60 object-cover rounded-3xl"
       />
       <div className="flex flex-col gap-2 py-5">
-        <h1 className="md:text-xl font-bold line-clamp-2">
-          Lorem ipsum dolor, sit amet consectetur adipisicing elit. Incidunt,
-          dolor?
-        </h1>
+        <h1 className="md:text-xl font-bold line-clamp-2">{data.title}</h1>
         <p className="md:text-sm text-xs line-clamp-3 text-gray-500">
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Officiis
-          error dicta esse impedit repudiandae autem, distinctio necessitatibus
-          deserunt voluptates culpa aliquid quod est nesciunt exercitationem
-          ducimus labore dolorum recusandae! Perspiciatis.
+          {data.description}
         </p>
         <p className="font-semibold md:text-base text-sm text-gray-400">
-          August 22, 2024
+          {formatTimestampCustom(data.created)} -{" "}
+          <span className="uppercase">{data.status}</span>
         </p>
       </div>
     </Link>

@@ -1,8 +1,10 @@
 "use client";
-import React, { useState } from "react";
 import { Input } from "@/components/ui/input";
+import { useState } from "react";
 
+import { Button } from "@/components/ui/button";
 import { Checkbox } from "@/components/ui/checkbox";
+import { MultiSelect } from "@/components/ui/multi-select";
 import {
   Select,
   SelectContent,
@@ -10,17 +12,14 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
-import { Button } from "@/components/ui/button";
 import { Textarea } from "@/components/ui/textarea";
-import Link from "next/link";
-import { FaArrowLeft } from "react-icons/fa";
 import { useToast } from "@/hooks/use-toast";
-import { MultiSelect } from "@/components/ui/multi-select";
+import { extractErrors } from "@/request/actions";
 import { createCompanyRequest } from "@/request/worker/company";
 import { createUser } from "@/request/worker/users";
-import AboutUs from "@/app/about-us/page";
 import { signIn } from "next-auth/react";
-import { extractErrors } from "@/request/actions";
+import Link from "next/link";
+import { FaArrowLeft } from "react-icons/fa";
 
 function CompanyApplicationForm({
   onChange,
