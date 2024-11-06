@@ -9,6 +9,8 @@ import { Collection } from "@/interface/collection";
 import { BlogItem } from "@/interface/blog";
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
+import { Search } from "lucide-react";
+import BlogSearch from "./BlogSearch/BlogSearch";
 
 function BlogsList({ tabs }: { tabs: ResearchItem[] }) {
   const [loading, setLoading] = useState(false);
@@ -76,6 +78,7 @@ function BlogsList({ tabs }: { tabs: ResearchItem[] }) {
             </p>
           );
         })}
+        <BlogSearch />
       </div>
 
       <div className="container grid lg:grid-cols-3 md:grid-cols-2 gap-10 mt-10">

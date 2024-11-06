@@ -51,7 +51,10 @@ function OngoingResearch() {
           {["active", "completed", "restoration", "planting"].map((e) => (
             <p
               key={e}
-              onClick={() => setFilter(e)}
+              onClick={() => {
+                setData(null);
+                setFilter(e);
+              }}
               className={`capitalize cursor-pointer select-none ${
                 e == filter ? "underline text-main" : null
               }`}
@@ -65,6 +68,9 @@ function OngoingResearch() {
             return <ResearchCard data={e} key={e.id} />;
           })}
         </div>
+        {data?.items.length == 0 && (
+          <div className="text-center mt-10">No Researches Found</div>
+        )}
         {loading ? (
           <div className="flex justify-center items-center mt-10">
             <div

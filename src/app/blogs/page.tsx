@@ -17,6 +17,8 @@ async function Blogs() {
   const tabs = await client
     .get("/api/collections/blog_category/records", {
       filter: `(showOnTab=true)`,
+      sort: "-created",
+      perPage: 4,
     })
     .send<Collection<ResearchItem>>();
   return (

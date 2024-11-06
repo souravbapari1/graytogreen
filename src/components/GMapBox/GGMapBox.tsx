@@ -69,6 +69,7 @@ const GGMapBox: React.FC<{
       mapRef.current = new mapboxgl.Map({
         container: mapContainerRef.current,
         center: center,
+
         zoom: 5,
       });
       if (disableScroll) {
@@ -76,6 +77,14 @@ const GGMapBox: React.FC<{
       }
       mapRef.current.setStyle("mapbox://styles/mapbox/standard-satellite");
       mapRef.current.dragRotate.disable();
+      mapRef.current.addControl(
+        new mapboxgl.NavigationControl({
+          showCompass: true,
+          visualizePitch: false,
+        })
+      );
+
+      // Listen for the `load` event to know when the map is fully loaded
 
       mapRef.current.on("load", () => {
         setMapLoaded(true); // Set the state to true when the map is loaded
