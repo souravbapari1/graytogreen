@@ -5,21 +5,25 @@ import HowReviewsWork from "./steps/HowReviewsWork";
 import HowToApply from "./steps/HowToApply";
 import YourBenefits from "./steps/YourBenefits";
 import { cn } from "@/lib/utils";
+import { VerificationAndReview } from "./VerificationAndReviewData";
 
-function VerificationApplyStep() {
+function VerificationApplyStep({
+  data,
+}: {
+  data?: VerificationAndReview["applyInfoSteps"];
+}) {
+  if (!data) {
+    return <></>;
+  }
   const [index, setIndex] = useState(0);
   return (
     <div className="bg-gray-50 py-20">
       <div className={`container ${montserrat.className}`}>
-        <h1 className="text-3xl font-bold text-center">
-          Apply now to become a Gray to Green Project Reviewer!
-        </h1>
-        <p className="max-w-[800px] mx-auto mt-7">
-          If you are a student or professional of biological sciences or have
-          some experience in conservation, restoration, forestry, community
-          involvement or NGOs, apply now to become an on-site reviewer for the
-          Plant-for-the-Planet Platform!
-        </p>
+        <h1 className="text-3xl font-bold text-center">{data.title}</h1>
+        <p
+          className="max-w-[800px] mx-auto mt-7"
+          dangerouslySetInnerHTML={{ __html: data.description }}
+        />
         <div className="max-w-[900px] mx-auto mt-14 bg-white min-h-96 rounded-xl ">
           <div className="w-full h-14  grid grid-cols-3 md:text-sm  overflow-hidden select-none">
             <h1
@@ -57,7 +61,13 @@ function VerificationApplyStep() {
             </h1>
           </div>
           <div className="p-4">
-            {[<HowReviewsWork />, <HowToApply />, <YourBenefits />][index]}
+            {
+              [
+                <HowReviewsWork content={data.howReviewsWork} />,
+                <HowToApply content={data.howToApply} />,
+                <YourBenefits content={data.yourBenefits} />,
+              ][index]
+            }
           </div>
         </div>
       </div>

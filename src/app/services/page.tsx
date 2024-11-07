@@ -1,24 +1,50 @@
-import AboutPatrons from "@/components/sections/AboutUS/AboutPatrons";
 import Footer from "@/components/sections/Footer/Footer";
 import FooterTop from "@/components/sections/Footer/FooterTop";
 import Navbar from "@/components/sections/Navbar/Navbar";
 import MembershipView from "@/components/sections/Services/MembershipView";
-import OurSolution from "@/components/sections/Partners/OurSolution";
-import ServiceAdditionalPartnership from "@/components/sections/Partners/ServiceAdditionalPartnership";
-import ServicesHero from "@/components/sections/Services/ServicesHero";
 import ServicesView from "@/components/sections/Services/ServicesView";
-import { montserrat } from "@/fonts/font";
-import Link from "next/link";
-import React from "react";
-import AboutOurTeam from "@/components/sections/AboutUS/AboutOurTeam";
+import client from "@/graphql/client";
+import { gql } from "@apollo/client";
+import { ServicePages } from "./ServicePages";
 
-function Services() {
+const SERVICE_PAGE = gql`
+  query Services {
+    services {
+      title
+      documentId
+      description
+      Industries {
+        id
+        image {
+          url
+        }
+        title
+      }
+      language {
+        name
+        id
+      }
+    }
+  }
+`;
+
+async function Services({ searchParams }: { searchParams?: any }) {
+  const { data } = await client.query<ServicePages>({
+    query: SERVICE_PAGE,
+  });
+
+  const getData = () => {
+    const language = searchParams.ln || "english";
+    return (
+      data?.services.find((item) => item.language.name === language) ||
+      data?.services.find((item) => item.language.name === "english")
+    );
+  };
+
   return (
     <>
       <Navbar />
-      {/* <ServicesHero /> */}
-
-      <ServicesView />
+      <ServicesView data={getData()} />
       <MembershipView />
       <FooterTop />
       <Footer />

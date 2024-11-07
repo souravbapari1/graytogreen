@@ -1,27 +1,39 @@
+import { AcademiesAndLab } from "@/app/academies/AcademiesAndLab";
 import { Button } from "@/components/ui/button";
 import { montserrat } from "@/fonts/font";
+import { strApi } from "@/graphql/client";
 import { cn } from "@/lib/utils";
 import Image from "next/image";
 import React from "react";
 
-function AcademicsHero() {
+function AcademicsHero({
+  headerDescription,
+  headerImage,
+  hraderTitle,
+}: {
+  hraderTitle?: string;
+  headerDescription?: string;
+  headerImage?: string;
+}) {
   return (
     <div className="relative">
-      <div className="w-full md:h-[70vh] min-h-[400px] h-[70vh] z-10 relative bg-[url('https://www.ugaoo.com/cdn/shop/articles/shutterstock_649766830.jpg?v=1661881786')] bg-cover bg-no-repeat bg-center ">
+      <div
+        style={{
+          backgroundImage: `url(${strApi + headerImage})`,
+        }}
+        className="w-full md:h-[70vh] min-h-[400px] h-[70vh] z-10 relative  bg-cover bg-no-repeat bg-center "
+      >
         <div className="w-full h-full bg-black/50 absolute top-0 right-0"></div>
         <div className="container relative flex justify-center md:pb-48   items-start z-10 h-full flex-col text-xl text-white">
           <h1
             className={`md:text-4xl text-3xl  font-bold mb-5 mt-20 text-left ${montserrat.className}`}
-          >
-            MERGING <span className="text-main">MINDS, METHODS</span> AND{" "}
-            <span className="text-main">MOTHER EARTH</span>
-          </h1>
+            dangerouslySetInnerHTML={{ __html: hraderTitle || "" }}
+          />
+
           <p
             className={`max-w-[900px] text-left lg:text-xl text-sm ${montserrat.className}`}
           >
-            Only talking won't stop glaciers from melting! Everyone is talking
-            about the climate crisis. But what is actually happening there? And
-            what can we children do about it?
+            {headerDescription}
           </p>
           <div
             className={` flex gap-5 mt-10 ${montserrat.className} md:mb-0 mb-32`}

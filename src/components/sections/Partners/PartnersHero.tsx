@@ -1,15 +1,26 @@
+import { PartenerWithUse } from "@/app/partners/partners";
 import { Button } from "@/components/ui/button";
 import { montserrat } from "@/fonts/font";
+import { strApi } from "@/graphql/client";
 import Image from "next/image";
 import Link from "next/link";
 import React from "react";
 
-function PartnersHero() {
+function PartnersHero({
+  data,
+  requestFormLink,
+}: {
+  data?: PartenerWithUse["banner"];
+  requestFormLink?: string | null;
+}) {
+  if (!data) {
+    return <></>;
+  }
   return (
     <div className="container ">
       <div className="w-full  mt-10 lg:h-[80vh] h-[50vh] min-h-[460px] max-h-[800px] rounded-3xl overflow-hidden shadow-md relative">
         <Image
-          src="/assets/hero-bg.png"
+          src={strApi + data?.bannerImage.url}
           width={3000}
           height={3000}
           alt=""
@@ -32,18 +43,17 @@ function PartnersHero() {
             <h1
               className={`${montserrat.className} lg:text-5xl text-2xl font-bold text-white mt-6`}
             >
-              Partner with us
+              {data?.title}
             </h1>
             <p
               className={`${montserrat.className} lg:text-xl font-bold text-white mt-6`}
             >
-              Join a generation-spanning movement for a climate-just future with
-              your company, your employees, and your customers.
+              {data.description}
             </p>
             <br />
             <br />
             <Link
-              href="/partners/register"
+              href={requestFormLink || "#"}
               className={`${montserrat.className} donateBtn py-3 shadow-none  text-sm`}
             >
               Register as sponsor

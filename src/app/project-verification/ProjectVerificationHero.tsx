@@ -2,8 +2,19 @@ import { montserrat } from "@/fonts/font";
 import Image from "next/image";
 import Link from "next/link";
 import React from "react";
+import { VerificationAndReview } from "./VerificationAndReviewData";
+import { strApi } from "@/graphql/client";
 
-function ProjectVerificationHero() {
+function ProjectVerificationHero({
+  data,
+  link,
+}: {
+  data?: VerificationAndReview["banner"];
+  link?: string;
+}) {
+  if (!data) {
+    return <></>;
+  }
   return (
     <div className="relative w-full overflow-hidden bg-primary/5 py-10">
       <Image
@@ -19,15 +30,14 @@ function ProjectVerificationHero() {
           <h1
             className={montserrat.className + " lg:text-4xl text-3xl font-bold"}
           >
-            High Standards and Transparency
+            {data.title}
           </h1>
 
-          <p className={montserrat.className + " text-lg mt-10 mb-8"}>
-            Plant-for-the-Planet strives for the greatest transparency and
-            highest quality. The restoration projects on the platform have to
-            comply with high standards.
-          </p>
-          <Link className="donateBtn py-3 text-center w-40" href="#">
+          <p
+            className={montserrat.className + " text-lg mt-10 mb-8"}
+            dangerouslySetInnerHTML={{ __html: data.description }}
+          />
+          <Link className="donateBtn py-3 text-center w-40" href={link || "#"}>
             Learn More
           </Link>
         </div>
@@ -35,7 +45,7 @@ function ProjectVerificationHero() {
           <div className="relative md:p-10 flex justify-center items-center">
             <div className="w-[90%] h-48 md:h-[350px] bg-green-700/20 absolute -z-[1] lg:-mr-12 -mr-10 rounded-2xl mb-10"></div>
             <Image
-              src="https://www.plant-for-the-planet.org/wp-content/uploads/2023/02/Research-Office-Plant-for-the-Planet.jpg"
+              src={strApi + data.bannerImage.url}
               width={1200}
               height={1200}
               alt=""

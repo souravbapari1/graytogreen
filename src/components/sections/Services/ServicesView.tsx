@@ -1,62 +1,12 @@
+import { Service } from "@/app/services/ServicePages";
 import { montserrat } from "@/fonts/font";
+import { strApi } from "@/graphql/client";
 import Image from "next/image";
 import Link from "next/link";
 import React from "react";
 
-function ServicesListView() {
+function ServicesListView({ data }: { data?: Service }) {
   // Industry Titles and Images Array
-  const industries = [
-    {
-      title: "Energy & Oil and Gas",
-      image:
-        "https://www.ep2c-energy.com/wp-content/uploads/2020/02/EP2C-Energy_OilGas_img1.jpg", // replace with real URLs
-    },
-    {
-      title: "Construction",
-      image:
-        "https://www.worldconstructiontoday.com/wp-content/uploads/2020/11/constructon-worker-wellfare.jpg",
-    },
-    {
-      title: "Transportation",
-      image:
-        "https://www.globaltranz.com/wp-content/uploads/sites/2/terminology.jpg",
-    },
-    {
-      title: "Manufacturing",
-      image:
-        "https://www.mrpeasy.com/blog/wp-content/uploads/2019/03/discrete-manufacturing-process-manufacturing.jpg",
-    },
-    {
-      title: "Finance, Banking",
-      image:
-        "https://securityintelligence.com/wp-content/uploads/2020/06/si-catagory-bankingAndFinance@2x.jpg",
-    },
-    {
-      title: "Healthcare",
-      image:
-        "https://www.zebra.com/content/dam/zebra_dam/global/photography/application/0006/healthcare-photography-application-et40-hc-et45-hc-patient-identification-bedside-16x9-3600.jpg.imgo.jpg",
-    },
-    {
-      title: "Agriculture",
-      image:
-        "https://images.cnbctv18.com/wp-content/uploads/2021/03/tractor1.jpg?impolicy=website&width=1200&height=900",
-    },
-    {
-      title: "Education",
-      image:
-        "https://www.unicef.org/sites/default/files/styles/hero_tablet/public/Hero%20-%20Transforming%20Education%20%2811%29.jpg.webp?itok=YVdEA0yi",
-    },
-    {
-      title: "Retail",
-      image:
-        "https://assets.ey.com/content/dam/ey-sites/ey-com/en_in/news/2022/11/ey-women-shopping-in-store.jpeg.rendition.690.460.jpg",
-    },
-    {
-      title: "Other",
-      image:
-        "https://www.yukonwellness.ca/wp-content/uploads/2020/02/Reaching-out-for-support.jpg",
-    },
-  ];
 
   return (
     <div
@@ -64,26 +14,24 @@ function ServicesListView() {
     >
       {/* Top Section */}
       <div className="w-full md:bg-main/10 rounded-3xl xl:col-span-10 sm:p-6 md:p-8 lg:p-12 shadow-lg">
-        <h1 className="text-3xl sm:text-2xl md:text-4xl lg:text-5xl font-extrabold mb-4 sm:mb-4 md:mb-6 leading-tight text-gray-900">
-          Transform your ideas into <span className="text-main">Action</span>!
-        </h1>
+        <h1
+          className="text-3xl sm:text-2xl md:text-4xl lg:text-5xl font-extrabold mb-4 sm:mb-4 md:mb-6 leading-tight text-gray-900"
+          dangerouslySetInnerHTML={{ __html: data?.title || "" }}
+        />
         <p className="text-base sm:text-sm md:text-lg text-gray-700 leading-relaxed sm:mb-6 md:mb-8">
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Temporibus
-          maiores rem dolorem a expedita itaque impedit esse, voluptates
-          commodi. Dignissimos exercitationem minima sapiente blanditiis
-          consectetur error dolorum animi atque dicta.
+          {data?.description}
         </p>
         <h2 className="text-2xl sm:text-xl md:text-3xl font-bold col-span-10 mb-4 sm:mb-6 text-main">
           Industries
         </h2>
         <div className="grid sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-0">
-          {industries.map((industry, i) => (
+          {data?.Industries.map((industry, i) => (
             <div
               key={i}
               className="h-48 md:h-64 lg:h-40 relative w-full overflow-hidden  hover:scale-105 transition-transform duration-300"
             >
               <Image
-                src={industry.image}
+                src={strApi + industry.image.url}
                 width={1200}
                 height={1200}
                 alt={`Industry Image for ${industry.title}`}

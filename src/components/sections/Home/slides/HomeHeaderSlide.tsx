@@ -1,9 +1,14 @@
 "use client";
+import { HomePage } from "@/app/homePage";
+import { strApi } from "@/graphql/client";
 import Image from "next/image";
 import React from "react";
 import { Fade } from "react-slideshow-image";
 
-function HomeHeaderSlide() {
+function HomeHeaderSlide({ data }: { data?: HomePage["banner"] }) {
+  if (!data) {
+    return <></>;
+  }
   return (
     <div className="w-full overflow-hidden ">
       <Fade
@@ -13,12 +18,7 @@ function HomeHeaderSlide() {
         autoplay={false}
         infinite={true}
       >
-        {[
-          "https://images.theconversation.com/files/440454/original/file-20220112-25-zmd311.jpg?ixlib=rb-4.1.0&rect=0%2C1300%2C6928%2C3464&q=45&auto=format&w=1356&h=668&fit=crop",
-          "https://help.gardeningexpress.co.uk/wp-content/uploads/2023/04/Untitled-design-1-1024x576.png",
-          "https://images.theconversation.com/files/440454/original/file-20220112-25-zmd311.jpg?ixlib=rb-4.1.0&rect=0%2C1300%2C6928%2C3464&q=45&auto=format&w=1356&h=668&fit=crop",
-          "https://help.gardeningexpress.co.uk/wp-content/uploads/2023/04/Untitled-design-1-1024x576.png",
-        ].map((e, i) => {
+        {data.map((e, i) => {
           return (
             <div
               className="each-slide md:max-h-[600px] max-h-[300px]  h-[1200px] w-full overflow-hidden  "
@@ -34,7 +34,7 @@ function HomeHeaderSlide() {
                     className="w-full h-full object-cover absolute top-0 right-0 bg-green-50"
                   /> */}
                   <Image
-                    src={e}
+                    src={strApi + e.image.url}
                     // autoPlay={true}
                     // muted={true}
                     // loop={true}
@@ -44,10 +44,7 @@ function HomeHeaderSlide() {
                     className="w-full h-full object-cover absolute top-0 right-0 bg-green-50"
                   />
                   <div className="w-full h-full z-10 flex justify-center items-center p-20 mt-12 text-center  md:text-4xl font-extrabold text-xl">
-                    <h1>
-                      The world had 3 trillion trees. But do you know where they
-                      are?
-                    </h1>
+                    <h1>{e.title}</h1>
                   </div>
                 </div>
               </div>

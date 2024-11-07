@@ -1,16 +1,22 @@
+import { PartenerWithUse } from "@/app/partners/partners";
 import { montserrat } from "@/fonts/font";
+import { strApi } from "@/graphql/client";
 import Image from "next/image";
-import React from "react";
+import Link from "next/link";
 import { FaLinkedinIn } from "react-icons/fa";
-import { FaSquareXTwitter } from "react-icons/fa6";
 
 function ScientificAdvisors({
   desc,
   title,
+  data,
 }: {
   title?: string;
-  desc?: string;
+  desc?: string | null;
+  data?: PartenerWithUse["ourTeam"];
 }) {
+  if (!data) {
+    return <></>;
+  }
   return (
     <div className="container mt-20 mb-20 flex justify-center items-center flex-col gap-6 ">
       <h1
@@ -23,13 +29,16 @@ function ScientificAdvisors({
           "We would like to thank our patrons who have accompanied  from the very beginning."}
       </p>
       <div className="grid lg:grid-cols-3 gap-10 mt-10">
-        {Array.from({ length: 3 }).map((_, i) => {
+        {data.map((e, i) => {
           return (
-            <div className="flex flex-col justify-center items-center text-center">
+            <div
+              className="flex flex-col justify-center items-center text-center"
+              key={e.id}
+            >
               <div className="">
                 <div className=" bg-gradient-to-r from-green-600 to-green-900 p-3 rounded-full">
                   <Image
-                    src={"https://i.pravatar.cc/130" + i}
+                    src={strApi + e.image.url}
                     height={3000}
                     alt=""
                     width={3000}
@@ -37,15 +46,15 @@ function ScientificAdvisors({
                   />
                 </div>
               </div>
-              <h1 className="text-2xl font-bold mt-8 mb-3">Chiagozie Udeh</h1>
-              <p>
-                Chairman of the Foundation Council of the Plant-for-the-Planet
-                Foundation
-              </p>
-              <div className="flex  flex-row gap-4 mt-5 text-gray-500 ">
-                {/* <FaSquareXTwitter className="hover:text-gray-900" size={18} /> */}
+              <h1 className="text-2xl font-bold mt-8 mb-3">{e.name}</h1>
+              <p>{e.about}</p>
+              <Link
+                target="_blank"
+                href={e?.linkdinProfile || "#"}
+                className="flex  flex-row gap-4 mt-5 text-gray-500 "
+              >
                 <FaLinkedinIn className="hover:text-gray-900" size={18} />
-              </div>
+              </Link>
             </div>
           );
         })}

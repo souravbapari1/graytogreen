@@ -1,11 +1,16 @@
 "use client";
 import BlogCard from "@/app/blogs/BloCard";
 import { montserrat } from "@/fonts/font";
+import { createResource } from "@/helper/createResource";
 import { BlogItem } from "@/interface/blog";
+import { getBlogs } from "@/request/worker/manageBlog";
 import Image from "next/image";
 import React, { useEffect, useRef, useState } from "react";
 
-function BlogsBanner({ blogs }: { blogs: BlogItem[] }) {
+const blogsResource = createResource(getBlogs(1, "(public=true)"));
+
+function BlogsBanner() {
+  const blogs = blogsResource.read();
   const bannerRef = useRef<HTMLDivElement | null>(null); // Create a ref for the banner
   const [bannerHeight, setBannerHeight] = useState<number>(0); // State to hold dynamic height
 
@@ -55,7 +60,7 @@ function BlogsBanner({ blogs }: { blogs: BlogItem[] }) {
           Empowering global youth to restore our planet—one tree at a time
         </p>
         <div className="w-full grid lg:grid-cols-3 md:grid-cols-2   grid-cols-1 gap-10">
-          {blogs.map((e, i) => {
+          {blogs?.items.map((e, i) => {
             return <BlogCard key={"vlog" + i} blog={e} />;
           })}
         </div>

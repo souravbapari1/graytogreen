@@ -1,12 +1,12 @@
-import type { Metadata } from "next";
-import { Inter, Lora, Open_Sans } from "next/font/google";
-import "react-multi-carousel/lib/styles.css";
-import "react-slideshow-image/dist/styles.css";
-import "./globals.css";
-import NextTopLoader from "nextjs-toploader";
-import Client from "./client";
 import { Toaster } from "@/components/ui/toaster";
 import { lora } from "@/fonts/font";
+import type { Metadata } from "next";
+import { cookies } from "next/headers";
+import NextTopLoader from "nextjs-toploader";
+import "react-multi-carousel/lib/styles.css";
+import "react-slideshow-image/dist/styles.css";
+import Client from "./client";
+import "./globals.css";
 
 export const metadata: Metadata = {
   title: " ",

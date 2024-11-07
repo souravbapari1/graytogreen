@@ -14,7 +14,6 @@ function SustainableYouthAcademy() {
       <SustainableYouthAcademyHero />
       <SustainableYouthAcademyAbout />
       <YouthAcademyWahtYouExperience />
-
       <FooterTop />
       <Footer />
     </div>

@@ -1,7 +1,16 @@
 import { montserrat } from "@/fonts/font";
+import { createResource } from "@/helper/createResource";
+import { Collection } from "@/interface/collection";
+import { LiveAndPopcastItem } from "@/interface/liveandpodcast";
+import { client } from "@/request/actions";
 import React from "react";
-
+const videosResource = createResource(
+  client
+    .get("/api/collections/podcasts/records?perPage=6")
+    .send<Collection<LiveAndPopcastItem>>()
+);
 function LatestVideos() {
+  const videos = videosResource.read();
   return (
     <div className="container mt-20">
       <h1
@@ -10,12 +19,13 @@ function LatestVideos() {
         Latest <span className="text-main">Videos</span>
       </h1>
       <div className="grid lg:grid-cols-3 md:grid-cols-2 grid-cols-1 gap-12 mt-14">
-        {Array.from({ length: 6 }).map((e, i) => {
+        {videos.items.map((e, i) => {
           return (
             <iframe
               width="560"
               height="315"
-              src="https://www.youtube.com/embed/zFmeeMZioio?si=VCJ45jaB0xb5Y9h5"
+              key={e.id}
+              src={"https://www.youtube.com/embed/" + e.videoId}
               title="YouTube video player"
               frameBorder="0"
               allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
