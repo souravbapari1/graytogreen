@@ -1,18 +1,15 @@
-"use client";
-import Navbar from "@/components/sections/Navbar/Navbar";
-import React from "react";
-import ProjectVerificationHero from "./ProjectVerificationHero";
-import VerificationStep from "./VerificationStep";
-import VerificationApplyStep from "./VerificationApplyStep";
-import InfoList from "./InfoLiist";
 import Footer from "@/components/sections/Footer/Footer";
 import FooterTop from "@/components/sections/Footer/FooterTop";
-import ReviewBoard from "../standards/section/ReviewBoard";
+import Navbar from "@/components/sections/Navbar/Navbar";
 import { montserrat } from "@/fonts/font";
-import Link from "next/link";
-import { gql, useQuery } from "@apollo/client";
-import Loading from "../loading";
+import client from "@/graphql/client";
+import { gql } from "@apollo/client";
+import ReviewBoard from "../standards/section/ReviewBoard";
+import InfoList from "./InfoLiist";
+import ProjectVerificationHero from "./ProjectVerificationHero";
 import { VerificationAndReviewsData } from "./VerificationAndReviewData";
+import VerificationApplyStep from "./VerificationApplyStep";
+import VerificationStep from "./VerificationStep";
 
 const PROJECT_VERIFICATION_GQL = gql`
   query VerificationAndReviews {
@@ -78,21 +75,14 @@ const PROJECT_VERIFICATION_GQL = gql`
   }
 `;
 
-function ProjectVerification() {
-  const { loading, data, error } = useQuery<VerificationAndReviewsData>(
-    PROJECT_VERIFICATION_GQL,
-    {
-      variables: {},
-    }
-  );
-
-  if (loading) {
-    return <Loading className="" />;
-  }
-  console.log(data);
+async function ProjectVerification({ searchParams }: { searchParams?: any }) {
+  const { data } = await client.query<VerificationAndReviewsData>({
+    query: PROJECT_VERIFICATION_GQL,
+    variables: {},
+  });
 
   const getData = () => {
-    const language = localStorage.getItem("language") || "english";
+    const language = searchParams.ln || "english";
     return (
       data?.verificationAndReviews.find(
         (item) => item.language.name === language

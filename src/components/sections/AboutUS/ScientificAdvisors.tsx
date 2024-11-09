@@ -12,7 +12,7 @@ function ScientificAdvisors({
 }: {
   title?: string;
   desc?: string | null;
-  data?: PartenerWithUse["ourTeam"];
+  data?: PartenerWithUse["ourTeam"] | any[];
 }) {
   if (!data) {
     return <></>;

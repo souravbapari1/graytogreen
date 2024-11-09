@@ -1,8 +1,18 @@
+import { ResearchesLabData } from "@/app/academies/researches-labs/ResearchesLabs";
 import { montserrat } from "@/fonts/font";
+import { strApi } from "@/graphql/client";
 import Image from "next/image";
 import React from "react";
 
-function ResearchHero() {
+function ResearchHero({
+  header,
+}: {
+  header?: ResearchesLabData["researchesLabs"][0]["header"];
+}) {
+  if (!header) {
+    return <></>;
+  }
+
   return (
     <div className="relative w-full overflow-hidden">
       <Image
@@ -17,47 +27,41 @@ function ResearchHero() {
         <div className="">
           <h1
             className={montserrat.className + " lg:text-4xl text-3xl font-bold"}
-          >
-            <span className="text-main"> Lab's Programs </span> Restoration
-            Research Park
-          </h1>
-          <h2 className={montserrat.className + " text-xl font-bold mt-5"}>
-            Center for Applied Forest Restoration Research & Advice
-          </h2>
-          <h5 className={montserrat.className + " text-2xl font-light mt-5"}>
-            in Mexico's Balam-Kú Ecosystem Reserve
-          </h5>
-          <p className={montserrat.className + " text-lg mt-10 mb-8"}>
-            Planting a single tree is easy. But how do you restore vast,
-            degraded forests and bring back as many of the locally lost species
-            as possible? Which restoration methods are most effective in
-            different ecosystems and different levels of degradation? How can
-            regrowing forests withstand and mitigate the complex challenges of
-            the climate crisis? How can restoration be maximally beneficial to
-            the local community? Many important scientific questions remain
-            unanswered. And restoration initiatives around the world are waiting
-            for answers.
-          </p>
+            dangerouslySetInnerHTML={{ __html: header.title || "" }}
+          />
+          <h2
+            className={montserrat.className + " text-xl font-bold mt-5"}
+            dangerouslySetInnerHTML={{ __html: header.title2 || "" }}
+          />
+
+          <h5
+            className={montserrat.className + " text-2xl font-light mt-5"}
+            dangerouslySetInnerHTML={{ __html: header.title2 || "" }}
+          />
+          <p
+            className={montserrat.className + " text-lg mt-10 mb-8"}
+            dangerouslySetInnerHTML={{ __html: header.description || "" }}
+          />
         </div>
         <div className="">
           <div className="relative md:p-10 flex justify-center items-center">
             {/* <div className="w-[90%] h-48 md:h-[380px] bg-green-700/20 absolute -z-[1] lg:-mr-12 -mr-10 rounded-2xl mb-10"></div> */}
             <Image
-              src="https://cid-inc.com/app/uploads/2023/04/Plamnt-research.jpg"
+              src={strApi + header.images.center.url}
               width={1200}
               height={1200}
               alt=""
               className="md:w-full w-[90%]  md:h-[380px]   object-cover h-48  "
             />
             <Image
-              src="https://img.freepik.com/premium-photo/tree-that-grows-pile-money_104677-1067.jpg?w=360"
+              src={strApi + header.images.right.url}
               width={1200}
               height={1200}
               alt=""
               className="md:w-52 w-28 absolute  md:h-[140px] right-0 top-0 border-2 border-white md:p-2 p-1  bg-white  object-cover h-20  "
             />
             <Image
-              src="https://media.istockphoto.com/id/1039079320/photo/tree-sapling-baby-hand-on-the-dark-ground-the-concept-implanted-childrens-consciousness-into.jpg?s=612x612&w=0&k=20&c=t3d4xpcSyoNlYDJ1MC2chYDeT1w_a-2140t40cBFVOY="
+              src={strApi + header.images.left.url}
               width={1200}
               height={1200}
               alt=""

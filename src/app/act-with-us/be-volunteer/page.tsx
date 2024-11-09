@@ -1,13 +1,11 @@
-"use client";
-import Navbar from "@/components/sections/Navbar/Navbar";
-import React from "react";
-import BeVolunteerHero from "./BeVolunteerHero";
-import BeVolunteerAction from "./BeVolunteerAction";
-import FooterTop from "@/components/sections/Footer/FooterTop";
 import Footer from "@/components/sections/Footer/Footer";
-import { gql, useQuery } from "@apollo/client";
-import Loading from "@/app/loading";
+import FooterTop from "@/components/sections/Footer/FooterTop";
+import Navbar from "@/components/sections/Navbar/Navbar";
+import client from "@/graphql/client";
+import { gql } from "@apollo/client";
 import { BeVolunteers } from "./beVolunteer";
+import BeVolunteerAction from "./BeVolunteerAction";
+import BeVolunteerHero from "./BeVolunteerHero";
 
 const BE_VOLUNTEER = gql`
   query BeVolunteers {
@@ -38,18 +36,16 @@ const BE_VOLUNTEER = gql`
     }
   }
 `;
-
-function BeVolunteer() {
-  const { loading, data } = useQuery<BeVolunteers>(BE_VOLUNTEER, {
-    variables: {},
-  });
-
-  if (loading) {
-    return <Loading className="" />;
-  }
+export const metadata = {
+  title: "Be a Volunteer",
+  description: "Be a Volunteer",
+};
+export const revalidate = 0;
+async function BeVolunteer({ searchParams }: { searchParams?: any }) {
+  const { data } = await client.query<BeVolunteers>({ query: BE_VOLUNTEER });
 
   const getData = () => {
-    const language = localStorage.getItem("language") || "english";
+    const language = searchParams.ln || "english";
     return (
       data?.beVolunteers.find((item) => item.language.name === language) ||
       data?.beVolunteers.find((item) => item.language.name === "english")

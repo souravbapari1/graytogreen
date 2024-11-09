@@ -49,7 +49,7 @@ async function ReadBlog({ params }: { params: { slug: string } }) {
           <hr />
           <br />
           <div
-            className=""
+            className="content"
             dangerouslySetInnerHTML={{ __html: post?.content || "" }}
           />
         </div>

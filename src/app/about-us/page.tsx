@@ -10,21 +10,192 @@ import ScientificAndSustainabilityAdvisors from "@/components/sections/AboutUS/S
 import Footer from "@/components/sections/Footer/Footer";
 import FooterTop from "@/components/sections/Footer/FooterTop";
 import Navbar from "@/components/sections/Navbar/Navbar";
+import client from "@/graphql/client";
+import { gql } from "@apollo/client";
 import React from "react";
+import { AboutUseData } from "./aboutus";
 
-function AboutUs() {
+export const revalidate = 0;
+
+const GQL = gql`
+  query AboutUses {
+    aboutUses {
+      bordMembers {
+        id
+        member {
+          id
+          name
+          about
+          image {
+            url
+          }
+          linkdinProfile
+          position
+        }
+        title
+        description
+      }
+      documentId
+      educationalAdvisors {
+        id
+        member {
+          id
+          name
+          about
+          image {
+            url
+          }
+          linkdinProfile
+          position
+        }
+        title
+        description
+      }
+      esg {
+        id
+        title
+        description
+        linkText
+        linkUrl
+        align
+        image {
+          url
+        }
+      }
+      foundationCouncil {
+        id
+        member {
+          id
+          name
+          about
+          image {
+            url
+          }
+          linkdinProfile
+          position
+        }
+        title
+        description
+      }
+      foundationCouncilLink1 {
+        id
+        linkText
+        linkUrl
+      }
+      foundationCouncilLink2 {
+        id
+        linkText
+        linkUrl
+      }
+      header {
+        id
+        title
+
+        description
+        images {
+          id
+          center {
+            url
+          }
+          left {
+            url
+          }
+          right {
+            url
+          }
+        }
+      }
+      missionAndVission {
+        id
+        title
+        description
+        linkText
+        linkUrl
+        align
+        image {
+          url
+        }
+      }
+      parteners {
+        id
+        member {
+          id
+          name
+          about
+          image {
+            url
+          }
+          linkdinProfile
+          position
+        }
+        title
+        description
+      }
+      scientificAndSustainabilityAdvisors {
+        id
+        member {
+          id
+          name
+          about
+          image {
+            url
+          }
+          linkdinProfile
+          position
+        }
+        title
+        description
+      }
+    }
+    teamMember {
+      Teams {
+        members {
+          id
+          name
+          about
+          image {
+            url
+          }
+          linkdinProfile
+          position
+        }
+        tabName
+        id
+      }
+      title
+      description
+    }
+  }
+`;
+
+async function AboutUs() {
+  const { data } = await client.query<AboutUseData>({
+    query: GQL,
+  });
+
+  const pageData = data?.aboutUses[0];
+
   return (
     <div>
       <Navbar />
-      <AboutHero />
-      <FoundationSecretariatBanner />
-      <AboutPatrons />
-      <AboutOurTeam />
-      <Foundation />
-      <BordOfDirectors />
+      <AboutHero heroData={pageData?.header} />
+      <FoundationSecretariatBanner
+        data={pageData.missionAndVission}
+        seg={pageData.esg}
+      />
+      <AboutPatrons data={pageData?.parteners} />
+      <AboutOurTeam data={data.teamMember} />
+      <Foundation
+        data={pageData?.foundationCouncil}
+        link1={pageData?.foundationCouncilLink1}
+        link2={pageData?.foundationCouncilLink2}
+      />
+      <BordOfDirectors data={pageData?.bordMembers} />
       {/* <AboutOurAmbassadors /> */}
-      <ScientificAndSustainabilityAdvisors />
-      <EducationAdvisors />
+      <ScientificAndSustainabilityAdvisors
+        data={pageData?.scientificAndSustainabilityAdvisors}
+      />
+      <EducationAdvisors data={pageData?.educationalAdvisors} />
       <FooterTop />
       <Footer />
     </div>

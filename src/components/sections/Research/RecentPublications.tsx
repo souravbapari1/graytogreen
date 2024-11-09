@@ -67,9 +67,6 @@ function RecentPublications() {
           </div>
         </div>
       </div> */}
-      <ResearchSlide />
-
-      <AllResearchPartner />
     </>
   );
 }

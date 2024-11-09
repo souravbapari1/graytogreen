@@ -1,9 +1,11 @@
 "use client";
+import { ResearchesLab } from "@/app/academies/researches-labs/ResearchesLabs";
 import { montserrat } from "@/fonts/font";
+import { strApi } from "@/graphql/client";
 import Image from "next/image";
 import { Fade } from "react-slideshow-image";
 
-function ResearchSlide() {
+function ResearchSlide({ slide }: { slide: ResearchesLab["textSlides"] }) {
   return (
     <Fade
       cssClass="w-full "
@@ -12,14 +14,14 @@ function ResearchSlide() {
       autoplay={false}
       infinite={true}
     >
-      {Array.from({ length: 4 }).map((_, i) => {
+      {slide.text.map((text, i) => {
         return (
           <div
             className="lg:h-72 h-auto py-20 bg-main relative"
             key={"Slider-text-" + i}
           >
             <Image
-              src="https://scottamyx.com/wp-content/uploads/2019/03/green-forest-trees.jpg.860x0_q70_crop-scale.jpg"
+              src={strApi + slide.bgImage.url}
               width={2000}
               height={2000}
               className="w-full h-full object-cover absolute top-0 right-0"
@@ -27,12 +29,10 @@ function ResearchSlide() {
             />
             <div className="bg-main/70 w-full h-full absolute top-0 right-0"></div>
             <div className="container flex justify-center items-center relative text-white md:text-xl font-bold h-full text-center">
-              <h1 className={`${montserrat.className} max-w-[1200px]`}>
-                Lorem, ipsum dolor sit amet consectetur adipisicing elit.
-                Adipisci quod ipsam nostrum quis ullam nobis. Sint quae quidem
-                nisi animi iure excepturi. Laudantium, reiciendis earum rerum
-                ullam possimus voluptas nihil?
-              </h1>
+              <h1
+                className={`${montserrat.className} max-w-[1200px]`}
+                dangerouslySetInnerHTML={{ __html: text.text }}
+              />
             </div>
           </div>
         );

@@ -1,4 +1,3 @@
-"use client";
 import Footer from "@/components/sections/Footer/Footer";
 import FooterTop from "@/components/sections/Footer/FooterTop";
 import Navbar from "@/components/sections/Navbar/Navbar";
@@ -7,9 +6,8 @@ import GiveYouthVoice from "@/components/sections/SustainableEvents/GiveYouthVoi
 import SustainableEventsHero from "@/components/sections/SustainableEvents/SustainableEventsHero";
 import TreeCounter from "@/components/sections/SustainableEvents/TreeCounter";
 import TreeVouchers from "@/components/sections/SustainableEvents/TreeVouchers";
-import { gql, useQuery } from "@apollo/client";
-import React from "react";
-import Loading from "../loading";
+import client from "@/graphql/client";
+import { gql } from "@apollo/client";
 import { SustainableEventData } from "./SustainableEventsData";
 
 const STBGQL = gql`
@@ -65,15 +63,21 @@ const STBGQL = gql`
   }
 `;
 
-function SustainableEvents() {
-  const { loading, data } = useQuery<SustainableEventData>(STBGQL, {
+export const metadata = {
+  title: "Sustainable Events",
+  description: "Sustainable Events",
+};
+
+export const revalidate = 0;
+
+async function SustainableEvents({ searchParams }: { searchParams?: any }) {
+  const { data } = await client.query<SustainableEventData>({
     variables: {},
+    query: STBGQL,
   });
-  if (loading) {
-    return <Loading className="" />;
-  }
+
   const getData = () => {
-    const language = localStorage.getItem("language") || "english";
+    const language = searchParams.ln || "english";
     return (
       data?.sustainableEvents.find((item) => item.language.name === language) ||
       data?.sustainableEvents.find((item) => item.language.name === "english")

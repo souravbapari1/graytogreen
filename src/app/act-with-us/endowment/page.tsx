@@ -1,13 +1,11 @@
-"use client";
-import Navbar from "@/components/sections/Navbar/Navbar";
-import React from "react";
-import EndowmentHero from "./EndowmentHero";
-import EndowmentAction from "./EndowmentAction";
 import Footer from "@/components/sections/Footer/Footer";
 import FooterTop from "@/components/sections/Footer/FooterTop";
-import { gql, useQuery } from "@apollo/client";
-import Loading from "@/app/loading";
+import Navbar from "@/components/sections/Navbar/Navbar";
+import client from "@/graphql/client";
+import { gql } from "@apollo/client";
 import { EndowmentsData } from "./endowment";
+import EndowmentAction from "./EndowmentAction";
+import EndowmentHero from "./EndowmentHero";
 
 const ENDOWMENTS = gql`
   query Endowments {
@@ -37,17 +35,15 @@ const ENDOWMENTS = gql`
   }
 `;
 
-function page() {
-  const { loading, data } = useQuery<EndowmentsData>(ENDOWMENTS, {
-    variables: {},
-  });
-
-  if (loading) {
-    return <Loading className="" />;
-  }
+export const metadata = {
+  title: "Endowment",
+};
+export const revalidate = 0;
+async function page({ searchParams }: { searchParams?: any }) {
+  const { data } = await client.query<EndowmentsData>({ query: ENDOWMENTS });
 
   const getData = () => {
-    const language = localStorage.getItem("language") || "english";
+    const language = searchParams.ln || "english";
     return (
       data?.endowments.find((item) => item.language.name === language) ||
       data?.endowments.find((item) => item.language.name === "english")

@@ -1,12 +1,11 @@
-"use client";
 import Footer from "@/components/sections/Footer/Footer";
 import FooterTop from "@/components/sections/Footer/FooterTop";
 import Navbar from "@/components/sections/Navbar/Navbar";
+import client from "@/graphql/client";
+import { gql } from "@apollo/client";
 import CertificationHero from "./CertificationHero";
-import LicensesCertificationList from "./LicensesCertificationList";
-import { gql, useQuery } from "@apollo/client";
-import Loading from "../loading";
 import { LicensesAndCertificationsData } from "./LicensesAndCertification";
+import LicensesCertificationList from "./LicensesCertificationList";
 
 const LicensesCertification_GQL = gql`
   query Banner {
@@ -35,20 +34,18 @@ const LicensesCertification_GQL = gql`
   }
 `;
 
-function page() {
-  const { loading, data, error } = useQuery<LicensesAndCertificationsData>(
-    LicensesCertification_GQL,
-    {
-      variables: {},
-    }
-  );
+export const metadata = {
+  title: "Licenses And Certifications",
+};
+export const revalidate = 0;
 
-  if (loading) {
-    return <Loading className="" />;
-  }
+async function page({ searchParams }: { searchParams?: any }) {
+  const { data } = await client.query<LicensesAndCertificationsData>({
+    query: LicensesCertification_GQL,
+  });
 
   const getData = () => {
-    const language = localStorage.getItem("language") || "english";
+    const language = searchParams.ln || "english";
     return (
       data?.licensesAndCertifications.find(
         (item) => item.language.name === language

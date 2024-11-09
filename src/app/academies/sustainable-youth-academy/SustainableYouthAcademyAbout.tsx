@@ -6,8 +6,17 @@ import { PiPlantFill, PiPottedPlantBold } from "react-icons/pi";
 import { RiArrowDropRightLine } from "react-icons/ri";
 import { GiEarthAfricaEurope } from "react-icons/gi";
 import { Button } from "@/components/ui/button";
+import {
+  SustainableYouthAcademy,
+  SustainableYouthAcademyData,
+} from "./SustainableYouthAcademy";
+import { strApi } from "@/graphql/client";
 
-function SustainableYouthAcademyAbout() {
+function SustainableYouthAcademyAbout({
+  data,
+}: {
+  data?: SustainableYouthAcademy["sustainabilityRegisterCard"];
+}) {
   return (
     <div className=" py-20">
       <div className="container grid lg:grid-cols-2 gap-10">
@@ -15,7 +24,7 @@ function SustainableYouthAcademyAbout() {
           <div className="relative md:p-10 flex justify-center items-center">
             <div className="w-[90%] h-64 md:h-[380px] bg-green-700/20 absolute -z-[1] lg:mr-12 mr-10 rounded-2xl mb-10"></div>
             <Image
-              src="https://media.istockphoto.com/id/1180948772/photo/photo-of-cheerful-attractive-handsome-bearded-man-smiling-toothily-showing-you-double-ok-sign.jpg?s=612x612&w=0&k=20&c=6O_STRds8iKOjBSKRQM0UhI4HFpsZPhqJTxtT-uuknY="
+              src={strApi + data?.sideImage.url}
               width={1200}
               height={1200}
               alt=""
@@ -25,53 +34,59 @@ function SustainableYouthAcademyAbout() {
         </div>
         <div className="mt-5">
           <div className="flex text-main items-center gap-3 mb-4">
-            {" "}
             <PiPlantFill />
-            <p className={`${montserrat.className} text-sm font-semibold`}>
-              Learn Something New
-            </p>
+            <p
+              className={`${montserrat.className} text-sm font-semibold`}
+              dangerouslySetInnerHTML={{ __html: data?.subtitle || "" }}
+            />
           </div>
           <h1
             className={`lg:text-4xl text-xl text-gray-900 lg:mb-10 mb-5 font-bold ${montserrat.className}`}
-          >
-            Join our Future Sustainability Leaders Program (FSLP)
-          </h1>
+            dangerouslySetInnerHTML={{ __html: data?.title || "" }}
+          />
           <div className="">
-            <div className="flex gap-4">
-              <PiPottedPlantBold size={40} className="text-main w-10" />
-              <div className={`${montserrat.className}`}>
-                <h3 className="font-bold md:text-xl mb-2">Lorem, ipsum.</h3>
-                <p className={` text-xs text-gray-500 max-w-[400px]`}>
-                  Lorem ipsum dolor sit amet consectetur adipisicing elit. Atque
-                  exercitationem numquam quasi necessitatibus, veniam ea
-                </p>
-              </div>
-            </div>
-            <div className="flex gap-4 mt-5">
-              <GiEarthAfricaEurope size={40} className="text-main w-10" />
-              <div className={`${montserrat.className}`}>
-                <h3 className="font-bold md:text-xl mb-2">Lorem, ipsum.</h3>
-                <p className={` text-xs text-gray-500 max-w-[400px]`}>
-                  Lorem ipsum dolor sit amet consectetur adipisicing elit. Atque
-                  exercitationem numquam quasi necessitatibus, veniam ea
-                </p>
-              </div>
-            </div>
+            {data?.info.map((item, index) => {
+              return (
+                <div className="flex gap-4 mb-4" key={item.id}>
+                  <Image
+                    src={strApi + item.bannerImage.url}
+                    className="text-main w-11 object-contain "
+                    width={600}
+                    height={600}
+                    alt=""
+                  />
+                  <div className={`${montserrat.className}`}>
+                    <h3
+                      className="font-bold md:text-xl mb-2"
+                      dangerouslySetInnerHTML={{ __html: item.title || "" }}
+                    />
+                    <p
+                      className={` text-xs text-gray-500 max-w-[400px]`}
+                      dangerouslySetInnerHTML={{
+                        __html: item.description || "",
+                      }}
+                    />
+                  </div>
+                </div>
+              );
+            })}
           </div>
           <div
             className={`flex justify-normal items-center gap-6 mt-8 ${montserrat.className}`}
           >
-            <Link href="/academies/sustainable-youth-academy/register">
+            <Link target="_blank" href={data?.registerBtn.linkUrl || "#"}>
               <Button className=" shadow-none font-bold donateBtn px-10 py-6">
-                Register
+                {data?.registerBtn.linkText}
               </Button>
             </Link>
-            <Button
-              className=" shadow-none font-bold  px-10 py-6"
-              variant="secondary"
-            >
-              View More
-            </Button>
+            <Link target="_blank" href={data?.viewMoreBtn.linkUrl || "#"}>
+              <Button
+                className=" shadow-none font-bold  px-10 py-6"
+                variant="secondary"
+              >
+                {data?.viewMoreBtn.linkText}
+              </Button>
+            </Link>
           </div>
         </div>
       </div>

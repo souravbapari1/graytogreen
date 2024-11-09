@@ -30,7 +30,7 @@ const responsive = {
 function ExperienceSlider({
   data,
 }: {
-  data?: MonthlySummitTalk["experience"]["experienceCard"];
+  data?: MonthlySummitTalk["experience"]["experienceCard"] | any[];
 }) {
   if (!data) {
     return <></>;

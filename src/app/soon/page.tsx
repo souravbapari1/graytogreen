@@ -1,4 +1,3 @@
-"use client";
 import Footer from "@/components/sections/Footer/Footer";
 import FooterTop from "@/components/sections/Footer/FooterTop";
 import Navbar from "@/components/sections/Navbar/Navbar";
@@ -10,16 +9,10 @@ import Link from "next/link";
 import React from "react";
 
 function Page() {
-  const handleSubmit = async (e: any) => {
-    e.preventDefault();
-    ("use server"); // This is not necessary here; remove if not needed
-    await setLnCookie("english");
-  };
-
   return (
     <div>
       <Navbar />
-      <form action="/" onSubmit={handleSubmit} method="post">
+      <form action="/" method="post">
         <div className="container h-[70vh] flex justify-center items-center flex-col gap-6">
           <Image
             src="/icons/soon.webp"
@@ -28,10 +21,6 @@ function Page() {
             alt=""
             className="w-96 h-auto"
           />
-
-          <button type="submit" className="">
-            Submit
-          </button>
 
           <Link href="/" replace>
             <Button

@@ -1,13 +1,11 @@
-"use client";
+import Footer from "@/components/sections/Footer/Footer";
+import FooterTop from "@/components/sections/Footer/FooterTop";
 import Navbar from "@/components/sections/Navbar/Navbar";
-import React from "react";
-import StandersHero from "./section/StandersHero";
+import client from "@/graphql/client";
+import { gql } from "@apollo/client";
 import ReviewBoard from "./section/ReviewBoard";
 import StandardsInfo from "./section/StandardsInfo";
-import FooterTop from "@/components/sections/Footer/FooterTop";
-import Footer from "@/components/sections/Footer/Footer";
-import { gql, useQuery } from "@apollo/client";
-import Loading from "../loading";
+import StandersHero from "./section/StandersHero";
 import { StandardData } from "./standerds";
 
 const STANDERS_GQL = gql`
@@ -61,18 +59,20 @@ const STANDERS_GQL = gql`
     }
   }
 `;
+export const metadata = {
+  title: "Standards",
+  description: "Standards",
+};
+export const revalidate = 0;
 
-function Standards() {
-  const { loading, data, error } = useQuery<StandardData>(STANDERS_GQL, {
+async function Standards({ searchParams }: { searchParams?: any }) {
+  const { data } = await client.query<StandardData>({
     variables: {},
+    query: STANDERS_GQL,
   });
 
-  if (loading) {
-    return <Loading className="" />;
-  }
-
   const getData = () => {
-    const language = localStorage.getItem("language") || "english";
+    const language = searchParams.ln || "english";
     return (
       data?.standards.find((item) => item.language.name === language) ||
       data?.standards.find((item) => item.language.name === "english")

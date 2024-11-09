@@ -1,4 +1,3 @@
-"use client";
 import Loading from "@/app/loading";
 import Footer from "@/components/sections/Footer/Footer";
 import FooterTop from "@/components/sections/Footer/FooterTop";
@@ -7,6 +6,7 @@ import { gql, useQuery } from "@apollo/client";
 import { DonateForLands } from "./donateforland";
 import DonateForLandAction from "./DonateForLandAction";
 import DonateForLandHero from "./DonateForLandHero";
+import client from "@/graphql/client";
 
 const DONATE_FOR_LAND = gql`
   query DonateForLands {
@@ -38,16 +38,19 @@ const DONATE_FOR_LAND = gql`
   }
 `;
 
-function GeneralFunding() {
-  const { loading, data } = useQuery<DonateForLands>(DONATE_FOR_LAND, {
-    variables: {},
+export const metadata = {
+  title: "Donate For Land",
+  description: "Donate For Land",
+};
+
+export const revalidate = 0;
+async function GeneralFunding({ searchParams }: { searchParams?: any }) {
+  const { data } = await client.query<DonateForLands>({
+    query: DONATE_FOR_LAND,
   });
 
-  if (loading) {
-    return <Loading className="" />;
-  }
   const getData = () => {
-    const language = localStorage.getItem("language") || "english";
+    const language = searchParams.ln || "english";
     return (
       data?.donateForLands.find((item) => item.language.name === language) ||
       data?.donateForLands.find((item) => item.language.name === "english")

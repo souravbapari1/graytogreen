@@ -1,4 +1,3 @@
-"use client";
 import Footer from "@/components/sections/Footer/Footer";
 import FooterTop from "@/components/sections/Footer/FooterTop";
 import MonthlySummitTalkContent from "@/components/sections/MonthlySummitTalk/MonthlySummitTalkContent";
@@ -8,6 +7,7 @@ import { gql, useQuery } from "@apollo/client";
 import React from "react";
 import Loading from "../loading";
 import { MonthlySummitTalksData } from "./mst";
+import client from "@/graphql/client";
 
 const MST_GQL = gql`
   query MonthlySummitTalks {
@@ -73,7 +73,7 @@ const MST_GQL = gql`
         description
         sessionDateTime
         centerImage {
-          url
+          urls
         }
         leftImage {
           url
@@ -86,16 +86,13 @@ const MST_GQL = gql`
   }
 `;
 
-function page() {
-  const { loading, data, error } = useQuery<MonthlySummitTalksData>(MST_GQL, {
-    variables: {},
+async function page({ searchParams }: { searchParams: any }) {
+  const { data } = await client.query<MonthlySummitTalksData>({
+    query: MST_GQL,
   });
-  if (loading) {
-    return <Loading className="" />;
-  }
 
   const getData = () => {
-    const language = localStorage.getItem("language") || "english";
+    const language = searchParams.ln || "english";
     return (
       data?.monthlySummitTalks.find(
         (item) => item.language.name === language
@@ -103,7 +100,6 @@ function page() {
       data?.monthlySummitTalks.find((item) => item.language.name === "english")
     );
   };
-  console.log(data);
 
   return (
     <div>

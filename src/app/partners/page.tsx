@@ -1,4 +1,3 @@
-"use client";
 import ScientificAdvisors from "@/components/sections/AboutUS/ScientificAdvisors";
 import Footer from "@/components/sections/Footer/Footer";
 import FooterTop from "@/components/sections/Footer/FooterTop";
@@ -6,9 +5,9 @@ import Navbar from "@/components/sections/Navbar/Navbar";
 import OurSolution from "@/components/sections/Partners/OurSolution";
 import PartnersHero from "@/components/sections/Partners/PartnersHero";
 import ServiceAdditionalPartnership from "@/components/sections/Partners/ServiceAdditionalPartnership";
-import { gql, useQuery } from "@apollo/client";
+import client from "@/graphql/client";
+import { gql } from "@apollo/client";
 import { PartenerWithUses } from "./partners";
-import Loading from "../loading";
 
 const PARTNERS = gql`
   query PartenerWithUses {
@@ -63,17 +62,21 @@ const PARTNERS = gql`
   }
 `;
 
-function page() {
-  const { loading, data } = useQuery<PartenerWithUses>(PARTNERS, {
+export const metadata = {
+  title: "Partners",
+  description: "Partners",
+};
+
+export const revalidate = 0;
+
+async function page({ searchParams }: { searchParams?: any }) {
+  const { data } = await client.query<PartenerWithUses>({
     variables: {},
+    query: PARTNERS,
   });
 
-  if (loading) {
-    return <Loading className="" />;
-  }
-
   const getData = () => {
-    const language = localStorage.getItem("language") || "english";
+    const language = searchParams.ln || "english";
     return (
       data?.partenerWithUses.find((item) => item.language.name === language) ||
       data?.partenerWithUses.find((item) => item.language.name === "english")

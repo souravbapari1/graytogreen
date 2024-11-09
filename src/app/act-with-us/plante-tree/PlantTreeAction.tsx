@@ -2,55 +2,71 @@ import { montserrat } from "@/fonts/font";
 import Image from "next/image";
 import Link from "next/link";
 import React from "react";
+import { PlantTree } from "./palntTree";
+import { strApi } from "@/graphql/client";
 
-function PlantTreeAction() {
+function PlantTreeAction({
+  content,
+  link,
+  contact,
+}: {
+  content?: PlantTree["content"];
+  link?: PlantTree["applyLink"];
+  contact?: PlantTree["contact"];
+}) {
   return (
     <div className={`py-20 ${montserrat.className}`}>
       <div className="container flex flex-col gap-5 justify-center items-center">
-        <p className="md:text-xl ">
-          An endowment is a contribution to the assets of the
-          Plant-for-the-Planet Foundation. An endowment makes sense, for
-          example, if you wish to support a specific cause but do not want to
-          establish your own foundation for this purpose. In contrast to
-          donations, endowments do not have to be used promptly, but are
-          permanently added to the foundation's assets. An endowment can also be
-          any small or regular contribution and, like a donation, it is
-          tax-deductible.
-        </p>
-        <Link className="donateBtn py-4 px-10 mt-10" href="/platform">
-          Plante Trees
+        <div
+          className="md:text-xl content"
+          dangerouslySetInnerHTML={{ __html: content || "" }}
+        />
+        <Link
+          className="donateBtn py-4 px-10 mt-10"
+          href={link?.linkUrl || "#"}
+        >
+          {link?.linkText}
         </Link>
       </div>
       <div className="flex container justify-start md:flex-row flex-col items-center  md:gap-20 gap-10   mt-28  ">
         <div className="">
           <Image
-            src="https://www.plant-for-the-planet.org/wp-content/uploads/2022/10/Maike-Grundmann.jpg"
+            src={strApi + contact?.personImage.url}
             width={1000}
             height={1000}
             alt=""
             className="w-72 h-96 object-cover rounded-3xl"
           />
         </div>
-        <div className="flex flex-col justify-center items-start gap-8 ">
-          <h1 className="text-xl font-bold">
-            Maike Grundmann will be happy to answer any questions you may have.
-          </h1>
-          <p className="">
-            Email:{" "}
-            <Link href="#" className="text-main">
-              maike.grundmann@plant-for-the-planet.org
+        {contact && (
+          <div className="flex flex-col justify-center items-start gap-8 ">
+            <h1
+              className="text-xl font-bold"
+              dangerouslySetInnerHTML={{ __html: contact?.title || "" }}
+            />
+            <p className="">
+              Email:{" "}
+              <Link
+                href={"mailto:" + contact?.email || "#"}
+                className="text-main"
+              >
+                {contact?.email}
+              </Link>
+            </p>
+            <p className="">
+              Tel:{" "}
+              <Link href={"tel:" + contact?.mobileNo} className="text-main">
+                {contact?.mobileNo}
+              </Link>
+            </p>
+            <Link
+              className="donateBtn py-3 capitalize shadow-none"
+              href={contact?.bookMeetLink}
+            >
+              Book 15 min Meeting
             </Link>
-          </p>
-          <p className="">
-            Tel:{" "}
-            <Link href="#" className="text-main">
-              +49 8808 921 08 111
-            </Link>
-          </p>
-          <Link className="donateBtn py-3 capitalize shadow-none" href="#">
-            Book 15 min Meeting
-          </Link>
-        </div>
+          </div>
+        )}
       </div>
     </div>
   );

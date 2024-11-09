@@ -4,6 +4,9 @@ import ContactUsHeader from "./ContactUsHeader";
 import { montserrat } from "@/fonts/font";
 import FooterTop from "@/components/sections/Footer/FooterTop";
 import Footer from "@/components/sections/Footer/Footer";
+import { gql } from "@apollo/client";
+import client from "@/graphql/client";
+import { ContactUseData } from "./contact";
 const contacts = [
   {
     title: "Donor Inquiries",
@@ -21,20 +24,60 @@ const contacts = [
     title: "Press & Media",
     email: "media@plant-for-the-planet.org",
   },
-  
 ];
-function ContactUs() {
+
+export const metadata = {
+  title: "Contact Us",
+  description: "Contact Us",
+};
+export const revalidate = 0;
+const GQL = gql`
+  query ContactUses {
+    contactUses {
+      documentId
+      conatctLinks {
+        id
+        linkText
+        linkUrl
+      }
+      email {
+        id
+        name
+        email
+      }
+      address {
+        id
+        name
+        address
+        mobileNo
+        mapLocation
+      }
+      title
+      description
+      createdAt
+      updatedAt
+      publishedAt
+    }
+  }
+`;
+async function ContactUs() {
+  const { data } = await client.query<ContactUseData>({
+    query: GQL,
+  });
+
+  const pageData = data?.contactUses[0];
+
   return (
     <div>
       <Navbar />
-      <ContactUsHeader />
+      <ContactUsHeader data={pageData} />
       <div className="container grid lg:grid-cols-3 gap-8 mt-24">
         <div className={`${montserrat.className}`}>
           <h1 className="text-4xl font-bold">E-Mail</h1>
           <div className="flex flex-col gap-4 mt-10 ">
-            {contacts.map((contact, index) => (
+            {pageData.email.map((contact, index) => (
               <div key={index}>
-                <strong>{contact.title}:</strong>{" "}
+                <strong>{contact.name}:</strong>{" "}
                 <a href={`mailto:${contact.email}`}>{contact.email}</a>
               </div>
             ))}
@@ -43,17 +86,21 @@ function ContactUs() {
         <div className={`${montserrat.className}`}>
           <h1 className="text-4xl font-bold">Mailing Address</h1>
           <div className="flex flex-col gap-2 mt-10 ">
-            <h3 className="font-bold">Gray to Green Foundation</h3>
-            <p>Lindemannstr. 13</p>
-            <p>82327 Tutzing</p>
-            <p>Germany</p>
-            <br />
-            <p>Phone: +49 (0)8808 9345</p>
+            <h3 className="font-bold">{pageData.address.name}</h3>
+            <p
+              dangerouslySetInnerHTML={{
+                __html: pageData.address.address || "",
+              }}
+            />
+
+            {pageData.address.mobileNo && (
+              <p className="mt-3">Phone: {pageData.address.mobileNo}</p>
+            )}
           </div>
         </div>
         <div className="w-full">
           <iframe
-            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d9825444.23931849!2d50.86090492408859!3d21.419194785564677!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3dd69f66a9d59bbf%3A0x3a064c7665b1a817!2sOman!5e1!3m2!1sen!2sin!4v1726668480935!5m2!1sen!2sin"
+            src={pageData.address.mapLocation}
             width="600"
             height="450"
             style={{ border: 0 }}

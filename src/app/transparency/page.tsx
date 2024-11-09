@@ -1,11 +1,10 @@
-"use client";
 import Footer from "@/components/sections/Footer/Footer";
 import FooterTop from "@/components/sections/Footer/FooterTop";
 import Navbar from "@/components/sections/Navbar/Navbar";
 import TransparencyHero from "@/components/sections/Transparency/TransparencyHero";
 import TransparencyReports from "@/components/sections/Transparency/TransparencyReports";
-import { gql, useQuery } from "@apollo/client";
-import Loading from "../loading";
+import client from "@/graphql/client";
+import { gql } from "@apollo/client";
 import { TransparencyData } from "./transparencies";
 
 const TransparenciesGQL = gql`
@@ -36,25 +35,25 @@ const TransparenciesGQL = gql`
   }
 `;
 
-function Transparency() {
-  const { loading, data, error } = useQuery<TransparencyData>(
-    TransparenciesGQL,
-    {
-      variables: {},
-    }
-  );
+export const revalidate = 0;
+export const metadata = {
+  title: "Transparency",
+};
 
-  if (loading) {
-    return <Loading className="" />;
-  }
+async function Transparency({ searchParams }: { searchParams?: any }) {
+  const { data } = await client.query<TransparencyData>({
+    query: TransparenciesGQL,
+    variables: {},
+  });
 
   const getData = () => {
-    const language = localStorage.getItem("language") || "english";
+    const language = searchParams.ln || "english";
     return (
       data?.transparencies.find((item) => item.language.name === language) ||
       data?.transparencies.find((item) => item.language.name === "english")
     );
   };
+
   return (
     <div>
       <Navbar />

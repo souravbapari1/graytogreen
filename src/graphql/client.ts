@@ -14,9 +14,11 @@ const httpLink = new HttpLink({
 // Add the API key to the request headers using setContext
 const authLink = setContext((_, { headers }) => {
   return {
+    next: { revalidate: 0 },
     headers: {
       ...headers,
       Authorization: `Bearer ${API_KEY}`, // Or 'x-api-key' depending on the API requirement
+      fetchPolicy: "no-cache",
     },
   };
 });
@@ -25,6 +27,16 @@ const authLink = setContext((_, { headers }) => {
 const client = new ApolloClient({
   link: authLink.concat(httpLink),
   cache: new InMemoryCache(),
+  defaultOptions: {
+    watchQuery: {
+      fetchPolicy: "no-cache",
+      errorPolicy: "all",
+    },
+    query: {
+      fetchPolicy: "no-cache",
+      errorPolicy: "all",
+    },
+  },
 });
 
 export default client;
