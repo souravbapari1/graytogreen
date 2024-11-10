@@ -1,11 +1,44 @@
 import { montserrat } from "@/fonts/font";
 import Image from "next/image";
 import React from "react";
-import { Label } from "@/components/ui/label";
-import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
-import { Button } from "@/components/ui/button";
 
-function Donate() {
+import { Button } from "@/components/ui/button";
+import NotFound from "../not-found";
+import { client } from "@/request/actions";
+import { ProjectItem } from "@/interface/project";
+import { Flower2, Sprout } from "lucide-react";
+import DonateBanner from "@/components/sections/Home/DonateBanner/4";
+import DonateBox from "./DonateBox";
+
+export const revalidate = 0;
+export const metadata = {
+  title: "Donate",
+};
+async function Donate({ searchParams }: { searchParams?: any }) {
+  const donate = searchParams.donate;
+  const by = searchParams.by;
+  const id = searchParams.id;
+
+  if (!donate || !by || !id) {
+    return <NotFound />;
+  }
+  if (!["tree", "plastic", "others"].includes(donate)) {
+    return <NotFound />;
+  }
+  const project = await client
+    .get(`/api/collections/projects/records/${id}`, {
+      hideFields: "about_project,challenges_and_impact_details",
+    })
+    .send<ProjectItem>();
+
+  if (!project) {
+    return <NotFound />;
+  }
+
+  if (!["tree", "plastic", "others"].includes(project.project_prefix)) {
+    return <NotFound />;
+  }
+
   return (
     <div className="w-screen h-screen md:bg-[url('https://images.pexels.com/photos/1643409/pexels-photo-1643409.jpeg')] bg-cover bg-center bg-no-repeat">
       <div className="w-full h-full bg-black/50 flex justify-center items-center">
@@ -24,40 +57,7 @@ function Donate() {
               voluptatem molestias, quo incidunt, blanditiis iure provident,
               omnis suscipit culpa illo. Fuga, praesentium debitis.
             </p>
-            <div className="">
-              <p
-                className={`text-xl font-semibold text-gray-700 mt-8  ${montserrat.className}`}
-              >
-                Choose a donation amount
-              </p>
-              <div className={`mt-6 ${montserrat.className}`}>
-                <div className="grid grid-cols-2 gap-4">
-                  {[10, 25, 50, 100].map((e, i) => {
-                    return (
-                      <div className="w-full h-16 bg-gray-100 flex justify-center items-center border-2 text-gray-600 rounded-xl text-lg font-bold">
-                        $ {e}.00
-                      </div>
-                    );
-                  })}
-                </div>
-              </div>
-              <p
-                className={`${montserrat.className} mt-10  text-main underline`}
-              >
-                Enter a custom donation amount
-              </p>
-              <p className={`${montserrat.className}  text-xs mt-5`}>
-                Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                Repellat pariatur nam tenetur deserunt quis laboriosam illum
-                tempora nemo cum ab alias mollitia dolorem odit dolores, fugiat
-                animi nobis numquam! Fuga?
-              </p>
-              <Button
-                className={`w-full h-14 donateBtn border-none shadow-none mt-8 ${montserrat.className} font-bold`}
-              >
-                Send Donation
-              </Button>
-            </div>
+            <DonateBox project={project} />
           </div>
         </div>
       </div>

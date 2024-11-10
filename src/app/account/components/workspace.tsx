@@ -6,8 +6,12 @@ import React, { ReactNode } from "react";
 import MobNav from "./MobNav";
 import ProfileMenu from "./ProfileMenu";
 import MenuLinks from "./MenuLinks";
+import { useSession } from "next-auth/react";
+import { auth } from "@/auth";
 
-function WorkSpace({ children }: { children?: ReactNode }) {
+export const relative = 0;
+async function WorkSpace({ children }: { children?: ReactNode }) {
+  const data = await auth();
   return (
     <div className={`relative ${montserrat.className}`}>
       <div className="w-full  lg:px-20 px-5 fixed  top-0 z-40 h-16 border-b bg-white ">

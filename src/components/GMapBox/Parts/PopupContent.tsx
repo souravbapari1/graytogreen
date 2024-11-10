@@ -3,6 +3,7 @@
 import { ProjectItem } from "@/interface/project";
 import { cn } from "@/lib/utils";
 import { client, genPbFiles } from "@/request/actions";
+import Link from "next/link";
 import React from "react";
 import { FaStar } from "react-icons/fa";
 
@@ -106,9 +107,12 @@ export const PopupContent = ({
             {getPriceLabel(data?.expand?.type?.name)}
           </p>
         </div>
-        <div className="w-28 px-0 h-9 rounded-md donateBtn shadow-none flex justify-center items-center">
+        <Link
+          href={`/donate?by=project&id=${data?.id}&donate=${data?.project_prefix}`}
+          className="w-28 px-0 h-9 rounded-md donateBtn shadow-none flex justify-center items-center"
+        >
           <p className="font-bold text-white cursor-pointer">Act Now</p>
-        </div>
+        </Link>
       </div>
       <div
         className={cn(

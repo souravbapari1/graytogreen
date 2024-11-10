@@ -5,8 +5,10 @@ import DesktopMenuBar from "./DesktopMenuBar";
 import MobileMenuBar from "./MobileMenuBar";
 import Link from "next/link";
 import { IoMdOpen } from "react-icons/io";
+import { auth } from "@/auth";
 
-function Navbar() {
+async function Navbar() {
+  const data = await auth();
   return (
     <div className="sticky top-0 right-0 z-40  lg:shadow-none shadow-md shadow-gray-950/5">
       <div className="w-full flex bg-white z-50 justify-end items-end">
@@ -26,9 +28,15 @@ function Navbar() {
           <Link className="lg:block hidden" href="/blogs">
             Blogs
           </Link>
-          <Link className="lg:block hidden" href="/auth/signin">
-            Sign In
-          </Link>
+          {data?.user.token ? (
+            <Link className="lg:block hidden" href="/account">
+              Account
+            </Link>
+          ) : (
+            <Link className="lg:block hidden" href="/auth/signin">
+              Sign In
+            </Link>
+          )}
           <Link
             href="/platform"
             className="bg-white p-4 text-xs md:rounded-full md:py-[5px] py-[8px] font-bold text-green-900 flex justify-center items-center gap-2"
@@ -55,7 +63,7 @@ function Navbar() {
 
           <DesktopMenuBar />
 
-          <Link href="/donate" className="md:w-28">
+          <Link href="/projects" className="md:w-28">
             <Button className="bg-gradient-to-r from-green-500 to-emerald-600 rounded-full shadow-md shadow-green-400/60 border-none md:px-8 px-5   font-extrabold text-white/85">
               Act Now
             </Button>

@@ -1,10 +1,15 @@
-import { PopupContent } from "@/components/GMapBox/Parts/PopupContent";
+
 import Footer from "@/components/sections/Footer/Footer";
 import FooterTop from "@/components/sections/Footer/FooterTop";
 import Navbar from "@/components/sections/Navbar/Navbar";
 import { montserrat } from "@/fonts/font";
 import React from "react";
 import FilterTab, { MobFilterTab } from "./FilterTab";
+import { client } from "@/request/actions";
+import { Collection } from "@/interface/collection";
+import { ProjectItem } from "@/interface/project";
+import { PopupContent } from "@/components/GMapBox/Parts/PopupContent";
+import ProjectsView from "./ProjectsView";
 
 function getBackgroundColor(percentage: number): string {
   if (percentage >= 80) {
@@ -16,34 +21,17 @@ function getBackgroundColor(percentage: number): string {
   }
 }
 
-function Projects() {
+export const revalidate = 0;
+export const metadata = {
+  title: "Projects",
+}
+
+async function Projects() {
+
   return (
     <div className="relative">
       <Navbar />
-      <MobFilterTab />
-      <div className={`${montserrat.className} container`}>
-        <div className=" grid lg:grid-cols-12  gap-10  py-5 relative">
-          <div className="xl:col-span-3 lg:col-span-4 mt-5 lg:block hidden">
-            <FilterTab />
-          </div>
-          <div className="xl:col-span-9 lg:col-span-8">
-            <div className="flex justify-end items-end">
-              <h1 className="font-bold text-xl">Project : 30</h1>
-            </div>
-            <div className=" grid xl:grid-cols-3   md:grid-cols-2  gap-6">
-              {/* {projects?.map((e, i) => {
-                return (
-                  <PopupContent
-                    className="w-full mt-3 text-sm"
-                    key={"project_" + i}
-                    data={e}
-                  />
-                );
-              })} */}
-            </div>
-          </div>
-        </div>
-      </div>
+    <ProjectsView/>
       <FooterTop />
       <Footer />
     </div>

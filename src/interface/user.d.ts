@@ -22,6 +22,13 @@ export interface UserItem {
   username: string;
   verified: boolean;
   tree_orders?: string[];
+  breef: string;
+  linkedin: string;
+  instagram: string;
+  twitter: string;
+  youtube: string;
+  targetTrees: string;
+  targetPlastic: string;
 }
 
 export interface Expand {

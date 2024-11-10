@@ -14,6 +14,7 @@ async function page() {
   const project = await client
     .get("/api/collections/projects/records/", {
       expand: "operated_by,reports,sdgs,sdgs.sdg,unit_types,type",
+      perPage: 500
     })
     .send<Collection<ProjectItem>>();
 

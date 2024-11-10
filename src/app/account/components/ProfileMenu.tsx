@@ -1,3 +1,4 @@
+"use client";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import {
   DropdownMenu,
@@ -8,9 +9,11 @@ import {
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 import { montserrat } from "@/fonts/font";
+import { signOut, useSession } from "next-auth/react";
 import Link from "next/link";
 
 function ProfileMenu() {
+  const { data } = useSession();
   return (
     <div className="">
       <DropdownMenu>
@@ -18,10 +21,12 @@ function ProfileMenu() {
           {" "}
           <Avatar className="border-primary border-2 p-[2px]">
             <AvatarImage
-              src="https://github.com/shadcn.png"
-              className="rounded-full"
+              src={data?.user?.image || "https://github.com/shadcn.png"}
+              className="rounded-full object-cover"
             />
-            <AvatarFallback>CN</AvatarFallback>
+            <AvatarFallback>
+              {data?.user?.name?.charAt(0) || "U"}
+            </AvatarFallback>
           </Avatar>
         </DropdownMenuTrigger>
         <DropdownMenuContent className={montserrat.className}>
@@ -32,7 +37,7 @@ function ProfileMenu() {
               Profile
             </Link>
           </DropdownMenuItem>
-          <DropdownMenuItem>Logout</DropdownMenuItem>
+          <DropdownMenuItem onClick={() => signOut()}>Logout</DropdownMenuItem>
         </DropdownMenuContent>
       </DropdownMenu>
     </div>

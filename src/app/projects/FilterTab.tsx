@@ -1,5 +1,4 @@
-import React from "react";
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
+"use client";
 import {
   Accordion,
   AccordionContent,
@@ -7,18 +6,15 @@ import {
   AccordionTrigger,
 } from "@/components/ui/accordion";
 import { Checkbox } from "@/components/ui/checkbox";
-import {
-  Sheet,
-  SheetContent,
-  SheetDescription,
-  SheetHeader,
-  SheetTitle,
-  SheetTrigger,
-} from "@/components/ui/sheet";
-import { FaFilter } from "react-icons/fa";
+import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
+import { Tabs, TabsList, TabsTrigger } from "@/components/ui/tabs";
+import { useGlobalDataContext } from "@/context/useGlobalDataContext";
 import { montserrat } from "@/fonts/font";
+import { FaFilter } from "react-icons/fa";
 
 function FilterTab() {
+  const { countryCity } = useGlobalDataContext();
+
   return (
     <div className=" lg:sticky lg:top-28">
       <Tabs defaultValue="account" className="w-full ">
@@ -45,14 +41,17 @@ function FilterTab() {
               Country
             </AccordionTrigger>
             <AccordionContent className="p-3 flex flex-col gap-3 max-h-40 overflow-auto">
-              <div className="flex justify-start items-center gap-4">
-                <Checkbox />
-                <p>India</p>
-              </div>
-              <div className="flex justify-start items-center gap-4">
-                <Checkbox />
-                <p>Oman</p>
-              </div>
+              {countryCity.map((item, index) => {
+                return (
+                  <div
+                    key={index}
+                    className="flex justify-start items-center gap-4"
+                  >
+                    <Checkbox />
+                    <p>{item.country}</p>
+                  </div>
+                );
+              })}
             </AccordionContent>
           </AccordionItem>
         </Accordion>

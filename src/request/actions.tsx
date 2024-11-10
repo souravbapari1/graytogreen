@@ -1,6 +1,14 @@
 import { NextClient } from "./request";
 
 export const client = new NextClient("https://g2g-pocketbase.souravbapari.in");
+export const localClient = new NextClient("http://localhost:3000");
+
+export const paymentClient = new NextClient(process.env.PAY_URL, {
+  headers: {
+    "Content-Type": "application/json",
+    "thawani-api-key": process.env.PRIVATE_KEY,
+  },
+});
 
 export function AdminAuthToken() {
   return { Authorization: "Bearer " + localStorage.getItem("token") || "" };
