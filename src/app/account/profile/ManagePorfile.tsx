@@ -9,6 +9,14 @@ import { client, extractErrors, genPbFiles } from "@/request/actions";
 import { Textarea } from "@/components/ui/textarea";
 import toast from "react-hot-toast";
 import { Session } from "next-auth";
+import { useSession } from "next-auth/react";
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/ui/select";
 
 function ManageProfile({
   user,
@@ -17,6 +25,8 @@ function ManageProfile({
   user: UserItem;
   session: Session;
 }) {
+  const { update } = useSession();
+  const [loading, setLoading] = useState(false);
   const [state, setState] = useState({
     username: user.username,
     emailVisibility: user.emailVisibility,
@@ -82,6 +92,7 @@ function ManageProfile({
 
   const onSave = async () => {
     if (validateUserData(state)) {
+      setLoading(true);
       try {
         let payload = client
           .patch(`/api/collections/users/records/${user.id}`)
@@ -90,14 +101,21 @@ function ManageProfile({
         if (selectedImage) {
           payload.append("avatar", selectedImage);
         }
-        await payload.send({
+        const updateUser = await payload.send<UserItem>({
           Authorization: session.user.token,
+        });
+        await update({
+          ...session,
+
+          user: { ...session.user, image: updateUser.avatar },
         });
         toast.success("Profile updated successfully.");
       } catch (error: any) {
         console.log(error);
         const errors = extractErrors(error.response);
         toast.error(errors[0]);
+      } finally {
+        setLoading(false);
       }
     }
   };
@@ -191,12 +209,22 @@ function ManageProfile({
 
         <div className="w-full">
           <Label>Gender</Label>
-          <Input
-            name="gender"
+
+          <Select
             value={state.gender}
-            onChange={handleChange}
-            className="w-full p-6 mt-2 shadow-none"
-          />
+            onValueChange={(e) => {
+              setState({ ...state, gender: e });
+            }}
+          >
+            <SelectTrigger className="w-full p-6 mt-2 shadow-none">
+              <SelectValue placeholder="gender" />
+            </SelectTrigger>
+            <SelectContent>
+              <SelectItem value="male">male</SelectItem>
+              <SelectItem value="female">female</SelectItem>
+              <SelectItem value="others">others</SelectItem>
+            </SelectContent>
+          </Select>
         </div>
 
         <div className="w-full">
@@ -290,7 +318,11 @@ function ManageProfile({
           />
         </div>
       </div>
-      <Button onClick={onSave} className="mt-10 w-full p-6 shadow-none mb-20">
+      <Button
+        disabled={loading}
+        onClick={onSave}
+        className="mt-10 w-full p-6 shadow-none mb-20"
+      >
         Save Profile
       </Button>
     </div>

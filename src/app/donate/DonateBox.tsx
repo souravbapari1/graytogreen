@@ -9,6 +9,7 @@ import { useSession } from "next-auth/react";
 import React, { useEffect, useState, useCallback } from "react";
 import toast from "react-hot-toast";
 
+const donateOptions = [5, 10, 15, 20];
 // Helper functions
 const calculateAmount = (
   projectPrefix: string,
@@ -17,7 +18,7 @@ const calculateAmount = (
   custom: boolean,
   customValue: number | undefined
 ): number => {
-  const presetAmounts = [5, 10, 15, 20];
+  const presetAmounts = donateOptions;
   if (projectPrefix === "tree") {
     return custom ? (customValue || 0) * unit : presetAmounts[selected] * unit;
   }
@@ -29,9 +30,7 @@ const calculateQuantity = (
   selected: number,
   customValue: number | undefined
 ): number => {
-  return projectPrefix === "tree"
-    ? customValue || [5, 10, 15, 20][selected]
-    : 1;
+  return projectPrefix === "tree" ? customValue || donateOptions[selected] : 1;
 };
 
 // Reusable component for donation options
@@ -40,11 +39,13 @@ const DonationOption = ({
   amount,
   displayText,
   onClick,
+  showCustom = false,
 }: {
   isSelected: boolean;
   amount: number;
   displayText: JSX.Element | string;
   onClick: () => void;
+  showCustom?: boolean;
 }) => (
   <div
     className={`w-full h-16 bg-gray-100 cursor-pointer flex gap-2 justify-center items-center border-2 text-gray-600 rounded-xl text-lg font-bold ${
@@ -53,7 +54,7 @@ const DonationOption = ({
     onClick={onClick}
   >
     {displayText}
-    <p className="font-light text-xs">﷼ {amount}</p>
+    {showCustom && <p className="font-light text-xs">﷼ {amount}</p>}
   </div>
 );
 
@@ -81,7 +82,8 @@ function DonateBox({ project }: { project: ProjectItem }) {
       const req = await localClient
         .post("/api/pay")
         .json({
-          amount: project.omr_unit * 1000,
+          amount:
+            project.project_prefix != "tree" ? amount : project.omr_unit * 1000,
           projectId: project.id,
           donate: project.project_prefix,
           projectName: project.name,
@@ -102,6 +104,10 @@ function DonateBox({ project }: { project: ProjectItem }) {
     }
   }, [amount, data, project, selected, customValue]);
 
+  useEffect(() => {
+    setAmount(project.omr_unit * donateOptions[selected] * 1000);
+  }, [selected]);
+
   return (
     <div>
       <p
@@ -112,11 +118,12 @@ function DonateBox({ project }: { project: ProjectItem }) {
       <div className={`mt-6 ${montserrat.className}`}>
         <div className="grid grid-cols-2 gap-4">
           {!custom &&
-            [5, 10, 15, 20].map((value, index) => (
+            donateOptions.map((value, index) => (
               <DonationOption
                 key={index}
                 isSelected={selected === index}
                 amount={value * (project.omr_unit || 1)}
+                showCustom={project.project_prefix === "tree"}
                 displayText={
                   project.project_prefix === "tree" ? (
                     <>

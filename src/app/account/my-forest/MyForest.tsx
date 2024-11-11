@@ -12,7 +12,9 @@ import Link from "next/link";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 
 import ContributeCard from "./ContributeCard";
-function MyForest() {
+import { UserItem } from "@/interface/user";
+import { genPbFiles } from "@/request/actions";
+function MyForest({ user }: { user: UserItem }) {
   return (
     <div>
       <div className="grid lg:grid-cols-2 gap-10">
@@ -26,21 +28,28 @@ function MyForest() {
           />
           <div className="">
             <Image
-              src="/icons/unknown.webp"
+              src={
+                user.avatar != ""
+                  ? genPbFiles(user, user.avatar)
+                  : "/icons/unknown.webp"
+              }
               width={1000}
               height={800}
               alt=""
-              className="h-20 w-20 bg-white p-2 rounded-full object-contain absolute m-auto left-0 right-0 -mt-10 shadow border-[3px] border-white"
+              className="h-20 object-cover w-20 bg-white p-0 rounded-full  absolute m-auto left-0 right-0 -mt-10 shadow border-[3px] border-white"
             />
           </div>
-          <h1 className="text-center mt-14 font-bold text-2xl text-gray-800">
-            Adarsh Arya
+          <h1 className="text-center mt-14 font-bold capitalize text-2xl text-gray-800">
+            {user.first_name} {user.last_name}
           </h1>
           <div className="flex justify-center items-center gap-6 mt-5">
-            <div className="flex justify-center items-center gap-2 bg-white border-2 border-primary/20 text-primary p-2 w-32 font-semibold rounded-3xl ">
+            <Link
+              href="/account/profile"
+              className="flex justify-center items-center gap-2 bg-white border-2 border-primary/20 text-primary p-2 w-32 font-semibold rounded-3xl "
+            >
               <TbEditCircle />
               <p className="text-xs">Edit Profile</p>
-            </div>
+            </Link>
             <div className="flex justify-center items-center gap-2 bg-white text-primary border-2 border-primary/20 p-2 w-32 font-semibold rounded-3xl ">
               <AiOutlineShareAlt />
               <p className="text-xs">Share</p>

@@ -26,10 +26,10 @@ async function WorkSpace({ children }: { children?: ReactNode }) {
             />
           </NavLink>
           <div className="lg:hidden block">
-            <MobNav />
+            <MobNav data={data} />
           </div>
           <div className="font-medium lg:flex hidden justify-end items-center  gap-6 text-sm">
-            <MenuLinks />
+            <MenuLinks data={data} />
             <ProfileMenu />
           </div>
         </div>

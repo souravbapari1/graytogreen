@@ -6,6 +6,7 @@ declare module "next-auth" {
       id: string;
       role: string;
       token: string;
+      user_type: string;
       // Add any other properties you want to include
     } & DefaultSession["user"];
   }
@@ -13,6 +14,7 @@ declare module "next-auth" {
   interface User {
     role: string;
     token: string;
+    user_type: string;
     // Add any other properties you want to include
   }
 }

@@ -16,7 +16,7 @@ function ProjectsView() {
     const projects = await client
       .get("/api/collections/projects/records/", {
         expand: "operated_by,reports,sdgs,sdgs.sdg,unit_types,type",
-        perPage: 500,
+        perPage: 3,
         hideFields: "about_project,challenges_and_impact_details",
       })
       .send<Collection<ProjectItem>>();
@@ -50,7 +50,9 @@ function ProjectsView() {
           </div>
           <div className="xl:col-span-9 lg:col-span-8">
             <div className="flex justify-end items-end">
-              <h1 className="font-bold text-xl">Project : 30</h1>
+              <h1 className="font-bold text-xl">
+                Project : {Projects?.totalItems}
+              </h1>
             </div>
             <div className=" grid xl:grid-cols-3   md:grid-cols-2  gap-6">
               {Projects?.items.map((e, i) => {
