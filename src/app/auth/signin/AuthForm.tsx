@@ -50,7 +50,7 @@ function AuthForm() {
           callbackUrl: url || "/account",
         });
 
-        if (res?.ok) {
+        if (res?.ok && !res.error) {
           window.location.replace(res.url || "/account");
         }
         console.log(res);

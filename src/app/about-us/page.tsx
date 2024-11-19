@@ -186,9 +186,9 @@ async function AboutUs() {
       <AboutPatrons data={pageData?.parteners} />
       <AboutOurTeam data={data.teamMember} />
       <Foundation
-        data={pageData?.foundationCouncil}
-        link1={pageData?.foundationCouncilLink1}
-        link2={pageData?.foundationCouncilLink2}
+        data={pageData?.foundationCouncil || ""}
+        link1={pageData?.foundationCouncilLink1 || ""}
+        link2={pageData?.foundationCouncilLink2 || ""}
       />
       <BordOfDirectors data={pageData?.bordMembers} />
       {/* <AboutOurAmbassadors /> */}

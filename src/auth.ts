@@ -17,24 +17,30 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
       authorize: async (credentials) => {
         if (!credentials) return null;
 
-        const user = await authUser({
-          email: credentials!.email as string,
-          password: credentials!.password as string,
-        });
+        try {
+          const user = await authUser({
+            email: credentials!.email as string,
+            password: credentials!.password as string,
+          });
 
-        if (!user) {
+          if (!user) {
+            throw new Error("User not found.");
+          }
+
+          return {
+            email: user?.record.email,
+            id: user?.record.id,
+            image: genPbFiles(user?.record, user!.record.avatar),
+            name: user!.record.first_name + " " + user!.record.last_name,
+            role: user!.record.role,
+            token: user!.token,
+            user_type: user!.record.user_type,
+          };
+        } catch (error) {
+          console.log(error);
+
           throw new Error("User not found.");
         }
-
-        return {
-          email: user?.record.email,
-          id: user?.record.id,
-          image: genPbFiles(user?.record, user!.record.avatar),
-          name: user!.record.first_name + " " + user!.record.last_name,
-          role: user!.record.role,
-          token: user!.token,
-          user_type: user!.record.user_type,
-        };
       },
     }),
   ],

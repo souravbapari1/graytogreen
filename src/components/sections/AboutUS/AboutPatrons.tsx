@@ -48,7 +48,7 @@ function AboutPatrons({ data }: { data?: AboutUse["parteners"] }) {
               <p dangerouslySetInnerHTML={{ __html: e.about || "" }} />
               <div className="flex  flex-row gap-4 mt-5 text-gray-500 ">
                 {/* <FaSquareXTwitter className="hover:text-gray-900" size={18} /> */}
-                <Link href={e.linkdinProfile} target="_blank">
+                <Link href={e.linkdinProfile || ""} target="_blank">
                   <FaLinkedinIn className="hover:text-gray-900" size={18} />
                 </Link>
               </div>
