@@ -20,6 +20,48 @@ import { createUser } from "@/request/worker/users";
 import { signIn } from "next-auth/react";
 import Link from "next/link";
 import { FaArrowLeft } from "react-icons/fa";
+export const selectIndustryItems = [
+  { value: "food and drink", label: "Food and Drink" },
+  { value: "energy and mining", label: "Energy and Mining" },
+  { value: "oil and gas services", label: "Oil and Gas Services" },
+  {
+    value: "healthcare and pharmaceutical services",
+    label: "Healthcare and Pharmaceutical Services",
+  },
+  { value: "education and training", label: "Education and Training" },
+  {
+    value: "real estate construction and contracting",
+    label: "Real Estate, Construction and Contracting",
+  },
+  {
+    value: "financial services investment and insurance",
+    label: "Financial Services, Investment and Insurance",
+  },
+  {
+    value: "transportation and logistics services",
+    label: "Transportation and Logistics Services",
+  },
+  {
+    value: "communications and information technology",
+    label: "Communications and Information Technology",
+  },
+  {
+    value: "environment and agriculture",
+    label: "Environment and Agriculture",
+  },
+  { value: "retail trade", label: "Retail Trade" },
+  {
+    value: "management consulting and marketing",
+    label: "Management Consulting and Marketing",
+  },
+  { value: "sports and entertainment", label: "Sports and Entertainment" },
+  { value: "tourism and hospitality", label: "Tourism and Hospitality" },
+  { value: "fashion", label: "Fashion" },
+  { value: "media and news", label: "Media and News" },
+  { value: "social work", label: "Social Work" },
+  { value: "entertainment", label: "Entertainment" },
+  { value: "others", label: "Others" },
+];
 
 function CompanyApplicationForm({
   onChange,
@@ -375,49 +417,11 @@ function CompanyApplicationForm({
               <SelectValue placeholder="Select Industry" />
             </SelectTrigger>
             <SelectContent>
-              <SelectItem value="food_and_drink">Food and Drink</SelectItem>
-              <SelectItem value="energy_and_mining">
-                Energy and Mining
-              </SelectItem>
-              <SelectItem value="oil_and_gas_services">
-                Oil and Gas Services
-              </SelectItem>
-              <SelectItem value="healthcare_and_pharmaceutical_services">
-                Healthcare and Pharmaceutical Services
-              </SelectItem>
-              <SelectItem value="education_and_training">
-                Education and Training
-              </SelectItem>
-              <SelectItem value="real_estate_construction_and_contracting">
-                Real Estate, Construction and Contracting
-              </SelectItem>
-              <SelectItem value="financial_services_investment_and_insurance">
-                Financial Services, Investment and Insurance
-              </SelectItem>
-              <SelectItem value="transportation_and_logistics_services">
-                Transportation and Logistics Services
-              </SelectItem>
-              <SelectItem value="communications_and_information_technology">
-                Communications and Information Technology
-              </SelectItem>
-              <SelectItem value="environment_and_agriculture">
-                Environment and Agriculture
-              </SelectItem>
-              <SelectItem value="retail_trade">Retail Trade</SelectItem>
-              <SelectItem value="management_consulting_and_marketing">
-                Management Consulting and Marketing
-              </SelectItem>
-              <SelectItem value="sports_and_entertainment">
-                Sports and Entertainment
-              </SelectItem>
-              <SelectItem value="tourism_and_hospitality">
-                Tourism and Hospitality
-              </SelectItem>
-              <SelectItem value="fashion">Fashion</SelectItem>
-              <SelectItem value="media_and_news">Media and News</SelectItem>
-              <SelectItem value="social_work">Social Work</SelectItem>
-              <SelectItem value="entertainment">Entertainment</SelectItem>
-              <SelectItem value="others">Others</SelectItem>
+              {selectIndustryItems.map((item) => (
+                <SelectItem key={item.value} value={item.value}>
+                  {item.label}
+                </SelectItem>
+              ))}
             </SelectContent>
           </Select>
         </div>

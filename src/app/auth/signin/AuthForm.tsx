@@ -4,15 +4,14 @@ import { Checkbox } from "@/components/ui/checkbox";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { montserrat } from "@/fonts/font";
-import { useToast } from "@/hooks/use-toast";
 import { signIn } from "next-auth/react";
 import Image from "next/image";
 import Link from "next/link";
 import { useSearchParams } from "next/navigation";
 import { useEffect, useState } from "react";
+import toast from "react-hot-toast";
 
 function AuthForm() {
-  const toast = useToast();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [rememberMe, setRememberMe] = useState(false);
@@ -41,7 +40,8 @@ function AuthForm() {
     // Implement the sign-in logic here
     if (email && password) {
       setLoading(true);
-
+      toast.dismiss();
+      toast.loading("Signing in...");
       try {
         const res = await signIn("credentials", {
           redirect: false,
@@ -52,24 +52,21 @@ function AuthForm() {
 
         if (res?.ok && !res.error) {
           window.location.replace(res.url || "/account");
+        } else {
+          toast.dismiss();
+          toast.error("Invalid Credentials");
         }
         console.log(res);
       } catch (error) {
         console.log(error);
-        toast.toast({
-          title: "Invalid Credentials",
-          description: "Please enter valid email and password.",
-          variant: "destructive",
-        });
+        toast.dismiss();
+        toast.error("Invalid Credentials");
       } finally {
         setLoading(false);
       }
     } else {
-      toast.toast({
-        title: "Please Enter Email Or Password",
-        description: "Please enter your email and password.",
-        variant: "destructive",
-      });
+      toast.dismiss();
+      toast.error("Please Enter Email Or Password");
     }
   };
 

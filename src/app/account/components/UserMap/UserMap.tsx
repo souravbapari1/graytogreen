@@ -3,12 +3,16 @@
 import { MAPBOX_ACCESS_TOKEN } from "@/components/GMapBox/GGMapBox";
 import { useEffect, useRef, useState } from "react";
 import mapboxgl from "mapbox-gl";
+import { useMyDonation } from "@/redux/state/useMyDonations";
+import CustomMarker from "@/components/GMapBox/Parts/marker";
+import { PopupContent } from "@/components/GMapBox/Parts/PopupContent";
 function UserMap() {
+  const { mydonation } = useMyDonation();
   const mapContainerRef = useRef<HTMLDivElement>(null);
   const mapRef = useRef<mapboxgl.Map | null>(null);
   const [mapLoaded, setMapLoaded] = useState(false);
   const [center, setCenter] = useState<[number, number]>([
-    -68.137343, 45.137451,
+    57.22343956645474, 21.288218077111807,
   ]);
   useEffect(() => {
     if (mapRef.current) {
@@ -21,7 +25,7 @@ function UserMap() {
     if (mapContainerRef.current) {
       mapRef.current = new mapboxgl.Map({
         container: mapContainerRef.current,
-        style: "mapbox://styles/mapbox/streets-v12",
+        style: "mapbox://styles/mapbox/streets-v11",
         center: center,
         zoom: 3,
       });
@@ -48,7 +52,22 @@ function UserMap() {
   }, []);
   return (
     <div>
-      <div ref={mapContainerRef} style={{ height: " 20rem", width: "100%" }} />
+      <div ref={mapContainerRef} style={{ height: " 20rem", width: "100%" }}>
+        {mapLoaded &&
+          mydonation.map((marker, index) => (
+            <CustomMarker
+              key={index}
+              map={mapRef.current!}
+              coordinates={[
+                marker.expand.project.marker.position.lng,
+                marker.expand.project.marker.position.lat,
+              ]}
+              image={"/icons" + marker.expand.project.marker.values.image}
+              color={marker.expand.project.marker.values.color}
+              PopupContent={<PopupContent data={marker.expand.project} />}
+            />
+          ))}
+      </div>
     </div>
   );
 }

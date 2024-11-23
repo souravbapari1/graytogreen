@@ -4,6 +4,9 @@ import ManagePorfile from "./ManagePorfile";
 import { client } from "@/request/actions";
 import { getUser } from "@/request/worker/auth";
 import { auth } from "@/auth";
+import CompanyProfile from "./CompanyProfile";
+import { UserItem } from "@/interface/user";
+import { Session } from "next-auth";
 
 export const metadata = {
   title: "Profile",
@@ -12,11 +15,18 @@ export const metadata = {
 export const revalidate = 0;
 async function page() {
   const data = await auth();
-  const profile = await getUser(data?.user.id || "");
+  const profile = await getUser(data?.user.id || "", {
+    expand: "company",
+  });
 
   return (
     <WorkSpace>
-      <ManagePorfile user={profile} session={data!} />
+      {profile.user_type != "company" && (
+        <ManagePorfile user={profile} session={data!} />
+      )}
+      {profile.user_type == "company" && (
+        <CompanyProfile user={profile} session={data!} />
+      )}
     </WorkSpace>
   );
 }

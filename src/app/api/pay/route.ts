@@ -30,6 +30,7 @@ export async function POST(req: Request) {
       quantity: number;
       projectName: string;
       donate: string;
+      support?: string;
     } = await req.json();
 
     // Basic validation rules
@@ -78,6 +79,7 @@ export async function POST(req: Request) {
         project: body.projectId,
         amount: (body.amount / 1000) * body.quantity,
         quantity: body.quantity,
+        support: body.support,
       })
       .send<PaymentIntent>();
 
@@ -100,6 +102,7 @@ export async function POST(req: Request) {
         project: body.projectId,
         amount: body.amount,
         quantity: body.quantity,
+        support: body.support,
       },
     };
 

@@ -65,6 +65,7 @@ export interface Expand {
   type?: ProjectType;
   unit_types?: UnitItem[];
   reports?: ReportingItem[];
+  docs?: ProjectDocument;
 }
 
 export interface Parameter {
@@ -123,4 +124,17 @@ export interface Properties {}
 export interface Geometry {
   coordinates: number[][][];
   type: string;
+}
+
+export interface ProjectDocument {
+  id: string;
+  collectionId: string;
+  collectionName: string;
+  created: string;
+  updated: string;
+  registration_doc: string[];
+  auditing_and_reviewing_reports: string[];
+  verification_and_validation_reports: string[];
+  other_doc: string[];
+  project: string;
 }

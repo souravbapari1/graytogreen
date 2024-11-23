@@ -1,55 +1,98 @@
+import { auth } from "@/auth";
+import { formatTimestampCustom } from "@/helper/dateTime";
+import { Collection } from "@/interface/collection";
+import { OrderPayItem } from "@/interface/PaymentItem";
+import { UserItem } from "@/interface/user";
+import { client, genPbFiles } from "@/request/actions";
+import { useMutation, useQuery } from "@tanstack/react-query";
+
 import Link from "next/link";
-import React from "react";
+import React, { useEffect } from "react";
 import { PiPlantFill } from "react-icons/pi";
 
-function ContributeCard() {
+function ContributeCard({
+  order,
+  user,
+}: {
+  order: OrderPayItem;
+  user: UserItem;
+}) {
+  const moreOrders = async (): Promise<Collection<OrderPayItem>> => {
+    const data = await client
+      .get(`/api/collections/payments/records`, {
+        perPage: 2,
+        filter: `(project='${order.expand.project.id}' && status='paid' && orderPlaced=true && user!='${user.id}')`,
+      })
+      .send<Collection<OrderPayItem>>();
+    return data;
+  };
+
+  const { data, isLoading, isError } = useQuery({
+    queryKey: ["moreOrders-" + order.id],
+    queryFn: moreOrders,
+  });
   return (
     <div className="w-full bg-primary/5 h-auto mt-2 mb-5 rounded-xl flex justify-start flex-col items-start relative p-2">
       <div className="md:flex justify-start w-full items-start relative">
         <div className="md:w-auto w-full">
-          <div className="md:w-40 w-full h-40 rounded-xl bg-white  bg-[url('https://t4.ftcdn.net/jpg/05/66/56/23/360_F_566562314_228mCQjZVn6rNWmKDW6OoWHBIoe1aZd0.jpg')] bg-cover bg-center"></div>
+          <div
+            style={{
+              backgroundImage: `url(${genPbFiles(
+                order.expand.project,
+                order.expand.project.preview_image
+              )})`,
+            }}
+            className={`md:w-40 w-full h-40 rounded-xl bg-white bg-cover bg-center`}
+          ></div>
         </div>
         <div className="p-4 w-full flex-col h-full justify-between">
           <div className="flex flex-col  h-full w-full">
             <p className="flex justify-start items-center gap-2 text-xs text-primary font-semibold">
               <PiPlantFill size={16} />
-              LARGE SCALE RESTORATION
+              {order.expand.project.sort_title}
             </p>
             <h1 className="text-lg mt-2 font-semibold">
-              Plant-for-the-Planet Ghana
+              {order.expand.project.name}
             </h1>
             <p className="text-xs mt-1">
-              Ghana • By Plant-for-the-Planet Ghana
+              {order.expand.project.country} • By Gray To Green
             </p>
           </div>
           <div className="flex justify-between pt-8 items-center ">
-            <h1 className="font-bold  text-lg">9 trees</h1>
+            <h1 className="font-bold  text-lg">{order.quantity} Trees</h1>
             <Link
               className="donateBtn text-sm py-2 rounded-xl text-white shadow-none"
-              href="#"
+              href={`/donate?by=project&id=${order.expand.project.id}&donate=${order.donate}`}
             >
               Donate
             </Link>
           </div>
         </div>
       </div>
-      <div className="w-full grid md:grid-cols-3 gap-3">
-        <div className="w-full h-8 rounded-lg bg-white flex justify-between items-center px-4">
-          <p className="flex justify-start items-center gap-2 text-xs text-green-900 font-semibold">
-            <PiPlantFill size={16} />1 Tree
-          </p>
-          <p className="text-[9px]">Nov 4, 2022</p>
+      {!isLoading && !isError && (
+        <div className="w-full grid md:grid-cols-3 gap-3">
+          {data?.items?.map((order) => (
+            <div
+              className="w-full h-8 rounded-lg bg-white flex justify-between items-center px-4"
+              key={order.id}
+            >
+              <p className="flex justify-start items-center gap-2 text-xs text-green-900 font-semibold">
+                <PiPlantFill size={16} />
+                {order.quantity} Tree
+              </p>
+              <p className="text-[9px]">
+                {formatTimestampCustom(order.created)}
+              </p>
+            </div>
+          ))}
+
+          {(data?.totalItems || 0) > 2 && (
+            <div className="w-full h-8 rounded-lg bg-primary/10 text-xs font-bold text-primary flex justify-center items-center">
+              +{(data?.totalItems || 0) - 2} contributions
+            </div>
+          )}
         </div>
-        <div className="w-full h-8 rounded-lg bg-white flex justify-between items-center px-4">
-          <p className="flex justify-start items-center gap-2 text-xs text-green-900 font-semibold">
-            <PiPlantFill size={16} />1 Tree
-          </p>
-          <p className="text-[9px]">Nov 7, 2022</p>
-        </div>
-        <div className="w-full h-8 rounded-lg bg-primary/10 text-xs font-bold text-primary flex justify-center items-center">
-          +3 contributions
-        </div>
-      </div>
+      )}
     </div>
   );
 }

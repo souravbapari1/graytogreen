@@ -33,7 +33,7 @@ function MenuLinks({ data }: { data: Session | null }) {
       <NavLink exact={true} href="/account/orders" className=" ">
         <p>Orders</p>
       </NavLink>
-      {data?.user.user_type === " ambassador" && (
+      {data?.user.user_type === "ambassador" && (
         <NavLink exact={true} href="/account/reports" className=" ">
           <p>Reporting</p>
         </NavLink>

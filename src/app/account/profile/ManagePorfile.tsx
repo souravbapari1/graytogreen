@@ -1,15 +1,8 @@
 "use client";
-import React, { useState } from "react";
+import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
+import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
-import { Button } from "@/components/ui/button";
-import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
-import { UserItem } from "@/interface/user";
-import { client, extractErrors, genPbFiles } from "@/request/actions";
-import { Textarea } from "@/components/ui/textarea";
-import toast from "react-hot-toast";
-import { Session } from "next-auth";
-import { useSession } from "next-auth/react";
 import {
   Select,
   SelectContent,
@@ -17,7 +10,14 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
-
+import { Textarea } from "@/components/ui/textarea";
+import { data } from "@/data/citycountry.json";
+import { UserItem } from "@/interface/user";
+import { client, extractErrors, genPbFiles } from "@/request/actions";
+import { Session } from "next-auth";
+import { useSession } from "next-auth/react";
+import React, { useCallback, useState } from "react";
+import toast from "react-hot-toast";
 function ManageProfile({
   user,
   session,
@@ -77,7 +77,6 @@ function ManageProfile({
       "country",
       "city",
       "gender",
-      "dob",
     ];
 
     for (let field of requiredFields) {
@@ -89,6 +88,11 @@ function ManageProfile({
 
     return true;
   };
+
+  const getCountryCities = useCallback(() => {
+    const countryData = data.find((item) => item.country === state.country);
+    return countryData ? countryData.cities : [];
+  }, [state.country]);
 
   const onSave = async () => {
     if (validateUserData(state)) {
@@ -189,22 +193,48 @@ function ManageProfile({
 
         <div className="w-full">
           <Label>Country</Label>
-          <Input
+
+          <Select
             name="country"
             value={state.country}
-            onChange={handleChange}
-            className="w-full p-6 mt-2 shadow-none"
-          />
+            onValueChange={(v) => {
+              setState({ ...state, country: v });
+            }}
+          >
+            <SelectTrigger className="w-full p-6 mt-2 shadow-none">
+              <SelectValue placeholder="country" />
+            </SelectTrigger>
+            <SelectContent>
+              {data.map((country) => (
+                <SelectItem key={country.country} value={country.country}>
+                  {country.country}
+                </SelectItem>
+              ))}
+            </SelectContent>
+          </Select>
         </div>
 
         <div className="w-full">
           <Label>City</Label>
-          <Input
+
+          <Select
             name="city"
             value={state.city}
-            onChange={handleChange}
-            className="w-full p-6 mt-2 shadow-none"
-          />
+            onValueChange={(e) => {
+              setState({ ...state, city: e });
+            }}
+          >
+            <SelectTrigger className="w-full p-6 mt-2 shadow-none">
+              <SelectValue placeholder={state.city || "city"} />
+            </SelectTrigger>
+            <SelectContent>
+              {getCountryCities().map((city) => (
+                <SelectItem key={city} value={city}>
+                  {city}
+                </SelectItem>
+              ))}
+            </SelectContent>
+          </Select>
         </div>
 
         <div className="w-full">
@@ -231,20 +261,36 @@ function ManageProfile({
           <Label>DOB</Label>
           <Input
             name="dob"
+            type="date"
             value={state.dob}
             onChange={handleChange}
-            className="w-full p-6 mt-2 shadow-none"
+            className="w-full block justify-center items-center p-6 mt-2 shadow-none"
           />
         </div>
 
         <div className="w-full lg:col-span-2">
           <Label>Social Stat:</Label>
-          <Input
+
+          <Select
             name="socail_state"
             value={state.socail_state}
-            onChange={handleChange}
-            className="w-full p-6 mt-2 shadow-none"
-          />
+            onValueChange={(e) => {
+              setState({ ...state, socail_state: e });
+            }}
+          >
+            <SelectTrigger className="w-full p-6 mt-2 shadow-none">
+              <SelectValue placeholder="social state" />
+            </SelectTrigger>
+            <SelectContent>
+              <SelectItem value="student">Student</SelectItem>
+              <SelectItem value="graduated">Graduated</SelectItem>
+              <SelectItem value="job seeker">Job Seeker</SelectItem>
+              <SelectItem value="private sector employee">
+                Privet sector emolpyee
+              </SelectItem>
+              <SelectItem value="gov">gov</SelectItem>
+            </SelectContent>
+          </Select>
         </div>
 
         <div className="w-full lg:col-span-2">

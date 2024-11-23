@@ -6,6 +6,7 @@ import { ProjectItem } from "@/interface/project";
 import { localClient } from "@/request/actions";
 import { Flower2 } from "lucide-react";
 import { useSession } from "next-auth/react";
+import { useSearchParams } from "next/navigation";
 import React, { useEffect, useState, useCallback } from "react";
 import toast from "react-hot-toast";
 
@@ -65,7 +66,7 @@ function DonateBox({ project }: { project: ProjectItem }) {
   const [customValue, setCustomValue] = useState<number>();
   const [amount, setAmount] = useState(0);
   const [loading, setLoading] = useState(false);
-
+  const params = useSearchParams();
   // Donation action
   const createDonation = useCallback(async () => {
     if (project.project_prefix === "tree") {
@@ -93,6 +94,7 @@ function DonateBox({ project }: { project: ProjectItem }) {
             customValue
           ),
           userId: data?.user.id,
+          support: params?.get("support"),
         })
         .send<any>();
 

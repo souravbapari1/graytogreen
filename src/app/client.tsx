@@ -1,19 +1,23 @@
 "use client";
-import React, { ReactNode } from "react";
+import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
+import { ReactNode } from "react";
 
-import { Provider } from "react-redux";
+import { GlobalContextProvider } from "@/context/useGlobalDataContext";
+import client from "@/graphql/client";
 import { store } from "@/redux/store";
 import { ApolloProvider } from "@apollo/client";
-import client from "@/graphql/client";
-import { GlobalContextProvider } from "@/context/useGlobalDataContext";
+import { Provider } from "react-redux";
+const queryClient = new QueryClient();
 
 function Client({ children }: { children: ReactNode }) {
   return (
-    <ApolloProvider client={client}>
-      <Provider store={store}>
-        <GlobalContextProvider>{children}</GlobalContextProvider>
-      </Provider>
-    </ApolloProvider>
+    <QueryClientProvider client={queryClient}>
+      <ApolloProvider client={client}>
+        <Provider store={store}>
+          <GlobalContextProvider>{children}</GlobalContextProvider>
+        </Provider>
+      </ApolloProvider>
+    </QueryClientProvider>
   );
 }
 

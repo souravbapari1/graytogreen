@@ -96,6 +96,49 @@
     clip-path: polygon(0% 0%, 90% 0%, 100% 55%, 90% 100%, 0% 100%);
   }
 
+  table.tblView {
+    @apply overflow-auto relative w-full;
+
+    border-spacing: 0;
+
+    thead {
+      @apply bg-secondary sticky top-0 w-full z-20;
+      border-collapse: collapse;
+      th {
+        @apply px-6 py-4  font-medium text-sm capitalize text-left w-full;
+        border-bottom: 2px solid #e5e7eb; /* Lighter border for better contrast */
+      }
+      /* Sticky action header */
+      th.action {
+        @apply sticky right-0 bg-secondary z-30 text-center; /* Center-align the header text */
+      }
+    }
+
+    tbody {
+      @apply bg-gray-100 w-full;
+      tr {
+        &:nth-child(odd) {
+          @apply bg-white; /* Light gray for odd rows */
+        }
+        &:nth-child(even) {
+          @apply bg-gray-50; /* Slightly darker gray for even rows */
+        }
+        @apply hover:bg-gray-100 transition-all w-full border-b border-gray-100;
+        &:last-child {
+          @apply border-b-0; /* Remove border for the last row */
+        }
+        td {
+          @apply px-6 py-3 text-sm text-gray-700 w-full text-nowrap;
+          word-wrap: break-word; /* Ensure text wraps neatly */
+        }
+        /* Sticky action column */
+        td.action {
+          @apply sticky right-0 border-gray-100 bg-white z-10 text-center border-l; /* Center-align action buttons */
+        }
+      }
+    }
+  }
+
   .content {
     /* General Mobile Adjustments */
     /* @apply p-4 md:p-8; Reduce padding on mobile, increase for medium and up */
@@ -286,13 +329,14 @@ a.ytp-impression-link {
 /* Track */
 ::-webkit-scrollbar-track {
   border-radius: 0px;
-  background-color: transparent;
+  background-color: rgb(236, 236, 236);
 }
 
 /* Handle */
 ::-webkit-scrollbar-thumb {
-  background: rgb(95, 149, 95);
-  border-radius: 50px;
+  background: rgb(173, 173, 173);
+  border-radius: 0px;
+  cursor: e-resize;
 }
 /* MApBox Css */
 

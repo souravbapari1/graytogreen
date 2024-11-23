@@ -52,4 +52,6 @@ export interface Company {
   size_hint: string;
   updated: string;
   website: string;
+  address: string;
+  map_location: string;
 }

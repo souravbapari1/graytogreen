@@ -4,6 +4,7 @@ import { ProjectItem } from "@/interface/project";
 import { cn } from "@/lib/utils";
 import { client, genPbFiles } from "@/request/actions";
 import Link from "next/link";
+import { useSearchParams } from "next/navigation";
 import React from "react";
 import { FaStar } from "react-icons/fa";
 
@@ -16,6 +17,7 @@ export const PopupContent = ({
   data?: ProjectItem | undefined;
   onClick?: () => void;
 }) => {
+  const params = useSearchParams();
   function getPriceLabel(type?: string): string {
     return type === "Plastic Offset" ? "OMR/kg" : "OMR/Trees";
   }
@@ -108,7 +110,9 @@ export const PopupContent = ({
           </p>
         </div>
         <Link
-          href={`/donate?by=project&id=${data?.id}&donate=${data?.project_prefix}`}
+          href={`/donate?by=project&id=${data?.id}&donate=${
+            data?.project_prefix
+          }${params?.get("support") && "&support=" + params?.get("support")}`}
           className="w-28 px-0 h-9 rounded-md donateBtn shadow-none flex justify-center items-center"
         >
           <p className="font-bold text-white cursor-pointer">Act Now</p>

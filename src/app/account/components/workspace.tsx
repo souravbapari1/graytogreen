@@ -16,7 +16,7 @@ async function WorkSpace({ children }: { children?: ReactNode }) {
     <div className={`relative ${montserrat.className}`}>
       <div className="w-full  lg:px-20 px-5 fixed  top-0 z-40 h-16 border-b bg-white ">
         <div className="container flex justify-between items-center">
-          <NavLink exact href="/account">
+          <NavLink exact href="/">
             <Image
               src="/logo/main-logo.png"
               width={200}

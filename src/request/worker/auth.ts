@@ -34,9 +34,12 @@ const superUserToken = async () => {
   return req.token;
 };
 
-export const getUser = async (id: string) => {
+export const getUser = async (
+  id: string,
+  data?: { expand?: string } | undefined
+) => {
   const req = await client
-    .get("/api/collections/users/records/" + id)
+    .get("/api/collections/users/records/" + id, data)
     .send<UserItem>();
   return req;
 };
