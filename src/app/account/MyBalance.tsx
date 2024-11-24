@@ -14,6 +14,8 @@ import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { Label } from "@/components/ui/label";
 import { ChartViewComponent } from "./components/DataChart";
+import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert";
+
 import {
   Select,
   SelectContent,
@@ -28,7 +30,16 @@ import {
 import { useMutation } from "@tanstack/react-query";
 import { useEffect, useState } from "react";
 import { formatTimestampCustom } from "@/helper/dateTime";
-function MyBalance({ balance }: { balance: MyBalanceItem }) {
+import { Terminal } from "lucide-react";
+import { UserItem } from "@/interface/user";
+import Link from "next/link";
+function MyBalance({
+  balance,
+  user,
+}: {
+  balance: MyBalanceItem;
+  user: UserItem;
+}) {
   const [start_date, setStart_date] = useState("");
   const [end_date, setEnd_date] = useState("");
 
@@ -48,8 +59,38 @@ function MyBalance({ balance }: { balance: MyBalanceItem }) {
     history.mutate("");
   }, []);
 
+  const getStatus = () => {
+    if (user.user_type == "partner") {
+      if (user.expand?.company?.approved_status == "pending") {
+        return (
+          <Alert className="mb-8 p-5 px-8" variant="warning">
+            <AlertTitle className="text-xl font-bold">Under Review!</AlertTitle>
+            <AlertDescription>
+              Your account is under review by our team. Please wait for the
+              review to be completed.
+            </AlertDescription>
+          </Alert>
+        );
+      } else if (user.expand?.company?.approved_status == "rejected") {
+        return (
+          <Alert className="mb-8 p-5 px-8 border" variant="destructive">
+            <AlertTitle className="text-xl font-bold">Rejected!</AlertTitle>
+            <AlertDescription>
+              Your account has been rejected by our team. Please contact us for
+              more information.{" "}
+              <Link href="/contact-us" className="font-bold">
+                Contact Us
+              </Link>
+            </AlertDescription>
+          </Alert>
+        );
+      }
+    }
+  };
+
   return (
     <div>
+      {getStatus()}
       <Tabs defaultValue="All" className="w-full">
         <TabsList>
           <TabsTrigger value="All">All</TabsTrigger>

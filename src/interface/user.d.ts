@@ -54,4 +54,5 @@ export interface Company {
   website: string;
   address: string;
   map_location: string;
+  approved_status: "pending" | "approved" | "rejected";
 }

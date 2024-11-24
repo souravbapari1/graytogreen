@@ -46,7 +46,17 @@ export class ToPath {
     return formData;
   }
 
-  form<T>(data: T | Record<string, any>) {
+  form<T>(data?: T | Record<string, any>) {
+    if (data == null || data === undefined) {
+      return new FormRequest(
+        new FormData(),
+        this.path,
+        this.host,
+        this.init,
+        this.method,
+        this.searchParams
+      );
+    }
     const formData: FormData = this.jsonToFormData(data as Record<string, any>);
     return new FormRequest(
       formData,

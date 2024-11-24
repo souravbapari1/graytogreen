@@ -253,6 +253,7 @@ function CompanyApplicationForm({
           country: formData.countryCity,
           about_us: formData.heardFrom,
           resonses: formData.reasons,
+          approved_status: "pending",
         }).then(async (res) => {
           try {
             const user = await createUser({

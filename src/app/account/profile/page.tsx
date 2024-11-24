@@ -21,10 +21,10 @@ async function page() {
 
   return (
     <WorkSpace>
-      {profile.user_type != "company" && (
+      {profile.user_type != "partner" && (
         <ManagePorfile user={profile} session={data!} />
       )}
-      {profile.user_type == "company" && (
+      {profile.user_type == "partner" && (
         <CompanyProfile user={profile} session={data!} />
       )}
     </WorkSpace>

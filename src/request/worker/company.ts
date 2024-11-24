@@ -13,6 +13,7 @@ export const createCompanyRequest = async (data: {
   country: string;
   about_us: string;
   resonses: string[];
+  approved_status: "pending" | "approved" | "rejected";
 }) => {
   const req = await client
     .post("/api/collections/companies/records")
