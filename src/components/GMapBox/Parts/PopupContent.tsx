@@ -112,7 +112,9 @@ export const PopupContent = ({
         <Link
           href={`/donate?by=project&id=${data?.id}&donate=${
             data?.project_prefix
-          }${params?.get("support") && "&support=" + params?.get("support")}`}
+          }${
+            params?.get("support") ? "&support=" + params?.get("support") : ""
+          }`}
           className="w-28 px-0 h-9 rounded-md donateBtn shadow-none flex justify-center items-center"
         >
           <p className="font-bold text-white cursor-pointer">Act Now</p>
