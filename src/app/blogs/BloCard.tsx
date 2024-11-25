@@ -3,10 +3,8 @@ import { strApi } from "@/graphql/client";
 import { formatTimestampCustom } from "@/helper/dateTime";
 import { BlogItem } from "@/interface/blog";
 import { cn } from "@/lib/utils";
-import { genPbFiles } from "@/request/actions";
 import Image from "next/image";
 import Link from "next/link";
-import React from "react";
 
 function BlogCard({
   blog,

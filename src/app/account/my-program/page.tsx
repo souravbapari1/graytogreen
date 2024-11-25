@@ -11,27 +11,32 @@ function page() {
     <WorkSpace>
       <h1 className="mb-10">Track and manage your Programs here.</h1>
       <div className="grid md:grid-cols-3 gap-5">
-        <div className="w-full h-screen max-h-[calc(100vh-130px)] bg-primary/5 md:sticky top-24 overflow-auto p-6  rounded-2xl ">
-          <div className="flex flex-col gap-4">
-            {Array.from({ length: 10 }).map((e, i) => {
-              return (
-                <Card className="shadow-none border-none overflow-hidden ">
-                  <CardHeader
-                    className={cn(
-                      "py-3 font-semibold text-xs  px-4",
-                      i == 0 && "bg-primary  text-white"
-                    )}
-                  >
-                    <div className="flex items-center ">
-                      <div className="w-12">
-                        <FaMicrophoneAlt size={25} />
+        <div className="">
+          <div className="w-full h-auto max-h-[calc(100vh-130px)] bg-primary/5 md:sticky top-24 overflow-auto p-6  rounded-2xl ">
+            <div className="flex flex-col gap-4">
+              {[
+                "Academy Skills Up ( Climate Cange Ambassador)",
+                "The Future Sustainability Leaders Program (FSLP)",
+              ].map((e, i) => {
+                return (
+                  <Card className="shadow-none border-none overflow-hidden ">
+                    <CardHeader
+                      className={cn(
+                        "py-3 font-semibold text-xs  px-4",
+                        i == 0 && "bg-primary  text-white"
+                      )}
+                    >
+                      <div className="flex items-center ">
+                        <div className="w-12">
+                          <FaMicrophoneAlt size={25} />
+                        </div>
+                        <h1>{e}</h1>
                       </div>
-                      <h1>Skills Up ( Climate Cange Ambassador)</h1>
-                    </div>
-                  </CardHeader>
-                </Card>
-              );
-            })}
+                    </CardHeader>
+                  </Card>
+                );
+              })}
+            </div>
           </div>
         </div>
         <div className="md:col-span-2">
