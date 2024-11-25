@@ -4,28 +4,72 @@ import React, { useEffect, useState } from "react";
 import { BiSearch } from "react-icons/bi";
 import BlogCard from "./BloCard";
 import { ResearchItem } from "@/interface/researches";
-import { getBlogs } from "@/request/worker/manageBlog";
+
 import { Collection } from "@/interface/collection";
 import { BlogItem } from "@/interface/blog";
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
 import { Search } from "lucide-react";
 import BlogSearch from "./BlogSearch/BlogSearch";
+import { BlogCategoryItem } from "@/interface/category";
+import { gql, useQuery } from "@apollo/client";
+import { getBlogs } from "./functions";
 
-function BlogsList({ tabs }: { tabs: ResearchItem[] }) {
-  const [loading, setLoading] = useState(false);
-  const [data, setData] = useState<Collection<BlogItem> | null>(null);
-  const [page, setPage] = useState(1);
-  const [filter, setFilter] = useState<string>("(public=true)");
+const blogsGQl = gql`
+  query Blog_category(
+    $locale: I18NLocaleCode
+    $pagination: PaginationArg
+    $filters: BlogPostFiltersInput
+  ) {
+    blogPosts(locale: $locale, pagination: $pagination, filters: $filters) {
+      blog_category {
+        name
+      }
+      locale
+      title
+      slug
+      previewImage {
+        url
+      }
+      publishedAt
+      documentId
+      description
+    }
+  }
+`;
 
-  const loadData = async () => {
+function BlogsList({ tabs }: { tabs: BlogCategoryItem["blogCategories"] }) {
+  const [loading, setLoading] = useState(true);
+  const [page, setPage] = useState(0);
+  const [filter, setFilter] = useState<string | null>(null);
+  const [posts, setPosts] = useState<BlogItem["blogPosts"]>([]);
+  const [isLast, setIsLast] = useState(false);
+
+  // const loadData = async () => {
+  //   try {
+  //     setLoading(true);
+  //     const blogs = await getBlogs(page, filter);
+  //     setData({
+  //       ...blogs,
+  //       items: [...(data?.items || []), ...blogs.items],
+  //     });
+  //   } catch (error) {
+  //     console.log(error);
+  //   } finally {
+  //     setLoading(false);
+  //   }
+  // };
+
+  // useEffect(() => {
+  //   loadData();
+  // }, [page, filter]);
+
+  const post = async () => {
     try {
       setLoading(true);
-      const blogs = await getBlogs(page, filter);
-      setData({
-        ...blogs,
-        items: [...(data?.items || []), ...blogs.items],
-      });
+      const newBlogs = await getBlogs(page, filter);
+      setIsLast(newBlogs.data.blogPosts.length < 9);
+      setPosts([...posts, ...newBlogs.data.blogPosts]);
     } catch (error) {
       console.log(error);
     } finally {
@@ -34,7 +78,7 @@ function BlogsList({ tabs }: { tabs: ResearchItem[] }) {
   };
 
   useEffect(() => {
-    loadData();
+    post();
   }, [page, filter]);
 
   return (
@@ -45,13 +89,15 @@ function BlogsList({ tabs }: { tabs: ResearchItem[] }) {
       <div className="flex justify-center items-center md:gap-10 gap-5 md:mt-20 mt-10  bg-white flex-wrap  ">
         <p
           onClick={() => {
-            setData(null);
-            setPage(1);
-            setFilter("(public=true)");
+            if (filter != null) {
+              setPosts([]);
+              setPage(0);
+              setFilter(null);
+            }
           }}
           className={cn(
             `${montserrat.className}  lg:text-base text-sm font-bold   text-nowrap underline-offset-1 under cursor-pointer text-gray-600 `,
-            `${filter == "(public=true)" ? "underline text-main" : null}`
+            `${filter == null ? "underline text-main" : null}`
           )}
         >
           All
@@ -59,22 +105,20 @@ function BlogsList({ tabs }: { tabs: ResearchItem[] }) {
         {tabs.map((e, i) => {
           return (
             <p
-              key={e.id}
+              key={e.name}
               onClick={() => {
-                setData(null);
-                setPage(1);
-                setFilter(`(category='${e.id}' && public=true)`);
+                if (filter != e.name) {
+                  setPosts([]);
+                  setPage(0);
+                  setFilter(e.name);
+                }
               }}
               className={cn(
                 `${montserrat.className}  lg:text-base text-sm font-bold   text-nowrap underline-offset-1 under cursor-pointer text-gray-600 `,
-                `${
-                  filter == `(category='${e.id}' && public=true)`
-                    ? " text-main underline"
-                    : null
-                }`
+                `${filter == e.name ? " text-main underline" : null}`
               )}
             >
-              {e.title}
+              {e.name}
             </p>
           );
         })}
@@ -82,7 +126,7 @@ function BlogsList({ tabs }: { tabs: ResearchItem[] }) {
       </div>
 
       <div className="container grid lg:grid-cols-3 md:grid-cols-2 gap-10 mt-10">
-        {data?.items.map((e, i) => {
+        {posts?.map((e, i) => {
           return <BlogCard key={i} blog={e} />;
         })}
       </div>
@@ -95,7 +139,7 @@ function BlogsList({ tabs }: { tabs: ResearchItem[] }) {
         </div>
       ) : (
         <div className="mx-auto flex justify-center items-center mt-10">
-          {data && data?.totalPages > data?.page && (
+          {!isLast && posts?.length > 0 && (
             <Button
               className="donateBtn rounded-full p-5"
               onClick={() => setPage(page + 1)}

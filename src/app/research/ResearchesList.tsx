@@ -3,29 +3,23 @@
 import ResearchCard from "@/components/sections/Research/ResearchCard";
 import { Button } from "@/components/ui/button";
 import { montserrat } from "@/fonts/font";
-import { Collection } from "@/interface/collection";
 import { ResearchItem } from "@/interface/researches";
-import { getResearches } from "@/request/worker/researches/manageResearches";
-import Link from "next/link";
 import { useEffect, useState } from "react";
+import { getResearchesLabs } from "./function";
 
 function OngoingResearch() {
   const [loading, setLoading] = useState(false);
-  const [data, setData] = useState<Collection<ResearchItem> | null>(null);
-  const [page, setPage] = useState(1);
+  const [data, setData] = useState<ResearchItem["researchPosts"] | null>(null);
+  const [page, setPage] = useState(0);
   const [filter, setFilter] = useState<string>("active");
+  const [isLast, setIsLast] = useState(false);
 
   const loadData = async () => {
     try {
       setLoading(true);
-      const blogs = await getResearches(
-        page,
-        `(status='${filter}' && public=true)`
-      );
-      setData({
-        ...blogs,
-        items: [...(data?.items || []), ...blogs.items],
-      });
+      const posts = await getResearchesLabs(filter, page);
+      setData([...(data || []), ...posts.data.researchPosts]);
+      setIsLast(posts.data.researchPosts.length < 9);
     } catch (error) {
       console.log(error);
     } finally {
@@ -52,8 +46,10 @@ function OngoingResearch() {
             <p
               key={e}
               onClick={() => {
-                setData(null);
-                setFilter(e);
+                if (filter != e) {
+                  setData(null);
+                  setFilter(e);
+                }
               }}
               className={`capitalize cursor-pointer select-none ${
                 e == filter ? "underline text-main" : null
@@ -64,11 +60,11 @@ function OngoingResearch() {
           ))}
         </div>
         <div className="grid lg:grid-cols-3 md:grid-cols-2 gap-10 gap-y-5 mt-10">
-          {data?.items.map((e) => {
-            return <ResearchCard data={e} key={e.id} />;
+          {data?.map((e) => {
+            return <ResearchCard data={e} key={e.documentId} />;
           })}
         </div>
-        {data?.items.length == 0 && (
+        {data?.length == 0 && (
           <div className="text-center mt-10">No Researches Found</div>
         )}
         {loading ? (
@@ -80,7 +76,7 @@ function OngoingResearch() {
           </div>
         ) : (
           <div className="mx-auto flex justify-center items-center mt-10">
-            {data && data?.totalPages > data?.page && (
+            {data && !isLast && (
               <Button
                 className="donateBtn rounded-full p-5"
                 onClick={() => setPage(page + 1)}

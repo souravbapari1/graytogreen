@@ -271,7 +271,7 @@ function CompanyApplicationForm({
               socail_state: "",
               role: "USER",
               tree_orders: [],
-              user_type: "company",
+              user_type: "partner",
               password: formData.password,
               passwordConfirm: formData.confirmPassword,
             });
@@ -544,6 +544,7 @@ function CompanyApplicationForm({
       </div>
       <Button
         onClick={handleSubmit}
+        disabled={loading}
         className="md:w-96 w-full rounded-none donateBtn py-6 font-bold mt-8 mb-10"
       >
         Register Now

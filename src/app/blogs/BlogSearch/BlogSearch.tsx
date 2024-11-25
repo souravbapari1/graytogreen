@@ -14,16 +14,17 @@ import { useState } from "react";
 import { Collection } from "@/interface/collection";
 import { BlogItem } from "@/interface/blog";
 import { getBlogs } from "@/request/worker/manageBlog";
+import { searchBlogs } from "../functions";
 
 function BlogSearch() {
   const [loading, setLoading] = useState(false);
-  const [data, setData] = useState<Collection<BlogItem> | null>(null);
+  const [data, setData] = useState<BlogItem["blogPosts"] | null>(null);
   const [search, setSearch] = useState("");
-  const searchBlogs = async () => {
+  const searchBlogsPost = async () => {
     try {
       setLoading(true);
-      const blogs = await getBlogs(1, `(public=true && title~'${search}')`);
-      setData(blogs);
+      const blogs = await searchBlogs(search);
+      setData(blogs.data.blogPosts);
     } catch (error) {
       console.log(error);
     } finally {
@@ -45,13 +46,13 @@ function BlogSearch() {
           onChange={(e) => setSearch(e.target.value)}
           onKeyDown={(e) => {
             if (e.key === "Enter") {
-              searchBlogs();
+              searchBlogsPost();
             }
           }}
         />
         <div className="text-xs flex flex-col gap-5 mt-5">
-          {data?.items?.map((item) => (
-            <BlogCard blog={item} key={item.id} />
+          {data?.map((item) => (
+            <BlogCard blog={item} key={item.slug} size="sm" />
           ))}
           {loading && (
             <div className="w-full flex justify-center items-center ">

@@ -15,10 +15,21 @@ export type MyBalanceItem = {
 };
 export const getUserPaymentInfo = async () => {
   const user = await auth();
-  const balance = await client
-    .get(`/api/collections/my_donations/records/${user?.user.id}`)
-    .send<MyBalanceItem>();
-  return balance;
+  try {
+    const balance = await client
+      .get(`/api/collections/my_donations/records/${user?.user.id}`)
+      .send<MyBalanceItem>();
+    return balance;
+  } catch (error) {
+    return {
+      totalAmount: 0,
+      totalQuantity: 0,
+      collectionId: "",
+      collectionName: "",
+      id: "",
+      user: user?.user.id,
+    } as MyBalanceItem;
+  }
 };
 
 export const getUserPaymentHistory = async (filter?: string) => {

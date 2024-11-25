@@ -1,4 +1,5 @@
 import { montserrat } from "@/fonts/font";
+import { strApi } from "@/graphql/client";
 import { formatTimestampCustom } from "@/helper/dateTime";
 import { ResearchItem } from "@/interface/researches";
 import { genPbFiles } from "@/request/actions";
@@ -6,7 +7,11 @@ import Image from "next/image";
 import Link from "next/link";
 import React from "react";
 
-function ResearchCard({ data }: { data: ResearchItem }) {
+function ResearchCard({
+  data,
+}: {
+  data: ResearchItem["researchPosts"][number];
+}) {
   return (
     <Link
       href={"/research/" + data?.slug}
@@ -16,7 +21,7 @@ function ResearchCard({ data }: { data: ResearchItem }) {
         R
       </div>
       <Image
-        src={genPbFiles(data, data.image)}
+        src={strApi + data.previewImage.url}
         width={2000}
         height={2000}
         alt=""
@@ -28,8 +33,8 @@ function ResearchCard({ data }: { data: ResearchItem }) {
           {data.description}
         </p>
         <p className="font-semibold md:text-base text-sm text-gray-400">
-          {formatTimestampCustom(data.created)} -{" "}
-          <span className="uppercase">{data.status}</span>
+          {formatTimestampCustom(data.publishedAt)} -{" "}
+          <span className="uppercase">{data.state}</span>
         </p>
       </div>
     </Link>

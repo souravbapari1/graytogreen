@@ -31,7 +31,7 @@ function ResearchSlide({ slide }: { slide: ResearchesLab["textSlides"] }) {
             <div className="container flex justify-center items-center relative text-white md:text-xl font-bold h-full text-center">
               <h1
                 className={`${montserrat.className} max-w-[1200px]`}
-                dangerouslySetInnerHTML={{ __html: text.text }}
+                dangerouslySetInnerHTML={{ __html: text.content }}
               />
             </div>
           </div>

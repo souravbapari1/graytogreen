@@ -1,8 +1,8 @@
 export interface BlogCategoryItem {
-  collectionId: string;
-  collectionName: string;
-  created: string;
-  id: string;
-  title: string;
-  updated: string;
+  blogCategories: BlogCategory[];
+}
+
+export interface BlogCategory {
+  name: string;
+  locale: string;
 }

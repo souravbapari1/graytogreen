@@ -16,8 +16,7 @@ export interface ResearchesLab {
 export interface Header {
   id: string;
   title: string;
-  title2: string;
-  title3: string;
+
   description: string;
   images: Images;
 }
@@ -104,7 +103,7 @@ export interface BgImage {
 
 export interface Text {
   id: string;
-  text: string;
+  content: string;
 }
 
 export interface ResearchPartner {

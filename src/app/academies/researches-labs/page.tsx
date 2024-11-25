@@ -22,8 +22,7 @@ const GQL = gql`
       header {
         id
         title
-        title2
-        title3
+
         description
         images {
           id
@@ -82,7 +81,7 @@ const GQL = gql`
         }
         text {
           id
-          text
+          content
         }
       }
       researchPartner {

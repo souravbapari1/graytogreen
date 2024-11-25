@@ -29,15 +29,7 @@ function ResearchHero({
             className={montserrat.className + " lg:text-4xl text-3xl font-bold"}
             dangerouslySetInnerHTML={{ __html: header.title || "" }}
           />
-          <h2
-            className={montserrat.className + " text-xl font-bold mt-5"}
-            dangerouslySetInnerHTML={{ __html: header.title2 || "" }}
-          />
 
-          <h5
-            className={montserrat.className + " text-2xl font-light mt-5"}
-            dangerouslySetInnerHTML={{ __html: header.title2 || "" }}
-          />
           <p
             className={montserrat.className + " text-lg mt-10 mb-8"}
             dangerouslySetInnerHTML={{ __html: header.description || "" }}

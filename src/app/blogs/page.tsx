@@ -5,26 +5,39 @@ import { montserrat } from "@/fonts/font";
 import Image from "next/image";
 import Link from "next/link";
 import React from "react";
-import { BiSearch } from "react-icons/bi";
-import { FaSearch } from "react-icons/fa";
-import BlogCard from "./BloCard";
-import { client } from "@/request/actions";
 import { Collection } from "@/interface/collection";
 import BlogsList from "./BlogsList";
 import { ResearchItem } from "@/interface/researches";
+import client from "@/graphql/client";
+import { gql } from "@apollo/client";
+import { BlogCategoryItem } from "@/interface/category";
 
 async function Blogs() {
-  const tabs = await client
-    .get("/api/collections/blog_category/records", {
-      filter: `(showOnTab=true)`,
-      sort: "-created",
-      perPage: 4,
-    })
-    .send<Collection<ResearchItem>>();
+  const tabs = await client.query<BlogCategoryItem>({
+    query: gql`
+      query BlogCategories(
+        $locale: I18NLocaleCode
+        $filters: BlogCategoryFiltersInput
+      ) {
+        blogCategories(locale: $locale, filters: $filters) {
+          name
+          locale
+        }
+      }
+    `,
+    variables: {
+      locale: "en",
+      filters: {
+        showOnTab: {
+          eq: true,
+        },
+      },
+    },
+  });
   return (
     <div>
       <Navbar />
-      <BlogsList tabs={tabs.items} />
+      <BlogsList tabs={tabs.data.blogCategories} />
       <FooterTop />
       <Footer />
     </div>

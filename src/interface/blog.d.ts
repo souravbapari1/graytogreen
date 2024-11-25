@@ -1,15 +1,23 @@
 export interface BlogItem {
-  collectionId: string;
-  collectionName: string;
-  content: string;
-  created: string;
-  description: string;
-  id: string;
-  image: string;
-  keywords: string;
-  public: boolean;
-  category: string;
-  slug: string;
+  blogPosts: BlogPost[];
+}
+
+export interface BlogPost {
+  blog_category: BlogCategory;
+  locale: string;
   title: string;
-  updated: string;
+  slug: string;
+  previewImage: PreviewImage;
+  publishedAt: string;
+  documentId: string;
+  description: string;
+  content: string;
+}
+
+export interface BlogCategory {
+  name: string;
+}
+
+export interface PreviewImage {
+  url: string;
 }

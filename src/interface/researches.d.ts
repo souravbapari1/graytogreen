@@ -1,15 +1,24 @@
 export interface ResearchItem {
-  collectionId: string;
-  collectionName: string;
-  content: string;
-  created: string;
+  researchPosts: ResearchPost[];
+}
+
+export interface ResearchPost {
+  documentId: string;
   description: string;
-  id: string;
-  image: string;
-  keywords: string;
-  public: boolean;
+  locale: string;
+  previewImage: PreviewImage;
   slug: string;
-  status: string;
+  state: string;
   title: string;
-  updated: string;
+  research_category: ResearchCategory;
+  content: string;
+  publishedAt: string;
+}
+
+export interface PreviewImage {
+  url: string;
+}
+
+export interface ResearchCategory {
+  name: string;
 }

@@ -8,21 +8,23 @@ import { genPbFiles } from "@/request/actions";
 import { getBlog, getBlogs } from "@/request/worker/manageBlog";
 import Image from "next/image";
 import React from "react";
+import { findBySlugPost } from "../functions";
+import { strApi } from "@/graphql/client";
 
 export const revalidate = 0;
 async function ReadBlog({ params }: { params: { slug: string } }) {
-  const blog = await getBlogs(1, `(slug='${params.slug}')`, "updated");
+  const blog = await findBySlugPost(params.slug);
 
-  if (blog?.items?.length === 0) {
+  if (blog?.data.blogPosts?.length === 0) {
     return <NotFound />;
   }
-  const post = blog?.items[0];
+  const post = blog?.data.blogPosts[0];
   return (
     <div>
       <Navbar />
       <div className="w-full md:h-96 h-44 relative overflow-hidden">
         <Image
-          src={genPbFiles(post, post?.image)}
+          src={strApi + post?.previewImage?.url}
           width={2000}
           height={700}
           alt=""
@@ -32,7 +34,7 @@ async function ReadBlog({ params }: { params: { slug: string } }) {
       </div>
       <div className="container  md:-mt-32 -mt-16 z-20 relative">
         <Image
-          src={genPbFiles(post, post?.image)}
+          src={strApi + post?.previewImage?.url}
           width={2000}
           height={2000}
           alt=""
@@ -43,7 +45,7 @@ async function ReadBlog({ params }: { params: { slug: string } }) {
         <div className=" max-w-[900px]  mx-auto">
           <h1 className="lg:text-2xl text-xl font-bold mt-10">{post?.title}</h1>
           <p className="font-semibold md:text-base mt-5 text-sm text-gray-400">
-            {formatTimestampCustom(post?.created)}
+            {formatTimestampCustom(post?.publishedAt || "")}
           </p>
           <br />
           <hr />
