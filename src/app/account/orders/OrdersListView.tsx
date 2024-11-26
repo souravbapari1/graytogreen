@@ -44,6 +44,13 @@ function OrdersListView() {
         </TabsList>
       </Tabs>
 
+      <br />
+      {loading && (
+        <div className="flex justify-center items-center h-80">
+          <p>Loading...</p>
+        </div>
+      )}
+
       <div className="grid lg:grid-cols-2 gap-10 mt-6 mb-10">
         {filterData().length == 0 && (
           <div className="lg:col-span-2 flex justify-center items-center text-center h-80">
@@ -100,6 +107,12 @@ function OrdersListView() {
                       <h3 className="font-semibold">Payment Method</h3>
                       <p>Credit/Debit Card</p>
                     </div>
+                    <div className="">
+                      <h3 className="font-semibold">Quantity</h3>
+                      <p className="uppercase">
+                        {data.quantity} {data.donate}
+                      </p>
+                    </div>
                   </div>
                   <div className="flex flex-col gap-5">
                     <div className="">
@@ -109,6 +122,14 @@ function OrdersListView() {
                     <div className="">
                       <h3 className="font-semibold">Project Name</h3>
                       <p>Support {data?.expand.project.name}</p>
+                    </div>
+                    <div>
+                      <h3 className="font-semibold">Price</h3>
+                      <p className="uppercase">
+                        {data?.quantity} {data.donate} x{" "}
+                        {(data.amount / data.quantity).toFixed(2)} OMR ={" "}
+                        {data.amount}
+                      </p>
                     </div>
                   </div>
                 </div>

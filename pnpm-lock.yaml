@@ -149,6 +149,9 @@ importers:
       next-themes:
         specifier: ^0.3.0
         version: 0.3.0(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
+      nextclient:
+        specifier: ^1.1.0
+        version: 1.1.0
       nextjs-toploader:
         specifier: ^3.6.15
         version: 3.7.15(next@14.2.7(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
@@ -1963,6 +1966,9 @@ packages:
         optional: true
       sass:
         optional: true
+
+  nextclient@1.1.0:
+    resolution: {integrity: sha512-AQw1EZZnFO3vMAL09J+15z/JU03xbDh96AmVkHyT46wZlKrIgyUX07K5hCCuqrHgLn8vO/jhmVQXRArPBNjpug==}
 
   nextjs-toploader@3.7.15:
     resolution: {integrity: sha512-DvvXEJVRPfE2j1HVXgFhmPl8pRcLb/4mvyVBDuYdMdkbEY7KJghp0fG5iOZ002cV6awbBw9j/Di7vQL8LRazxQ==}
@@ -4376,6 +4382,8 @@ snapshots:
     transitivePeerDependencies:
       - '@babel/core'
       - babel-plugin-macros
+
+  nextclient@1.1.0: {}
 
   nextjs-toploader@3.7.15(next@14.2.7(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(react-dom@18.3.1(react@18.3.1))(react@18.3.1):
     dependencies:

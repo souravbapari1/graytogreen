@@ -57,6 +57,7 @@
     "next": "14.2.7",
     "next-auth": "^5.0.0-beta.25",
     "next-themes": "^0.3.0",
+    "nextclient": "^1.1.0",
     "nextjs-toploader": "^3.6.15",
     "pocketbase": "^0.21.5",
     "react": "^18",
