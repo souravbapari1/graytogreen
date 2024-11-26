@@ -20,7 +20,6 @@ const GQL = gql`
       languge
       location
       name
-      registerLink
       content
       slug
       maxParticipants

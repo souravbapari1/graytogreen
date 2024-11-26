@@ -10,7 +10,6 @@ export interface UpcomingAcademy {
   languge: string;
   location: string;
   name: string;
-  registerLink: string;
   content: string;
   slug: string;
   maxParticipants: string;

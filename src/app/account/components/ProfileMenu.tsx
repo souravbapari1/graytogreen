@@ -37,6 +37,11 @@ function ProfileMenu() {
               Profile
             </Link>
           </DropdownMenuItem>
+          <DropdownMenuItem>
+            <Link href="/account/memberships" className="block">
+              Memberships
+            </Link>
+          </DropdownMenuItem>
           <DropdownMenuItem onClick={() => signOut()}>Logout</DropdownMenuItem>
         </DropdownMenuContent>
       </DropdownMenu>

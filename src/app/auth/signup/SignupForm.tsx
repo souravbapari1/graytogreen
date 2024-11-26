@@ -10,7 +10,7 @@ import {
   SelectValue,
 } from "@/components/ui/select";
 import { useToast } from "@/hooks/use-toast";
-import { extractErrors } from "@/request/actions";
+import { client, extractErrors } from "@/request/actions";
 import { createUser } from "@/request/worker/users";
 import { signIn } from "next-auth/react";
 import Image from "next/image";
@@ -189,12 +189,21 @@ function SignupForm({
           gender: formData.gender,
           socail_state: formData.socialState,
           dob: formData.dob,
-          user_type: type ? type.toLowerCase() : "individual",
+          user_type: "individual",
           company: "",
           role: "USER",
           tree_orders: [],
           complete: true,
         });
+        if (type?.trim().toLocaleLowerCase() === "ambassador") {
+          await client
+            .post("/api/collections/ambassador_requests/records")
+            .json({
+              user: res.id,
+              status: "pending",
+            })
+            .send();
+        }
         localStorage.setItem("user", JSON.stringify(res));
         const auth = await signIn("credentials", {
           redirect: false,

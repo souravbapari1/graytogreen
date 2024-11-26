@@ -1,3 +1,4 @@
+import { UserItem } from "@/interface/user";
 import { client } from "../actions";
 
 export const createUser = async (data: {
@@ -22,7 +23,7 @@ export const createUser = async (data: {
   const req = await client
     .post("/api/collections/users/records")
     .json(data)
-    .send();
+    .send<UserItem>();
 
   return req;
 };

@@ -17,7 +17,9 @@ function ViewAcademy({ data }: { data: UpcomingAcademy }) {
             <p className="font-semibold text-lg">Participate for free</p>
             <Link
               target="_blank"
-              href={data.registerLink}
+              href={
+                "/academies/greenkidsacademy/registration/" + data.documentId
+              }
               className="donateBtn py-3 shadow-none rounded-2xl"
             >
               Register Now
@@ -25,7 +27,6 @@ function ViewAcademy({ data }: { data: UpcomingAcademy }) {
           </div>
           <br />
           <br />
-
           <div className="grid md:grid-cols-4 md:gap-5 border-b-2 border-t-2">
             <div className="border-l-2 border-r-2 md:border-b-0 border-b-2 p-5">
               <p className="text-xl font-bold mb-2">Date</p>

@@ -31,7 +31,7 @@ function MembershipPricing() {
                     <p className="capitalize">per month</p>
                   </div>
                   <Link
-                    href="/"
+                    href="/membership/apply/1"
                     className="donateBtn shadow-2xl py-3 mt-8 mb-7 md:px-6 px-8"
                   >
                     Continue
