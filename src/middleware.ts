@@ -4,12 +4,18 @@ import { NextResponse } from "next/server";
 export default auth((req) => {
   const { pathname, searchParams } = req.nextUrl;
 
-
   // Protect the /account and /donate pages
-  if ((pathname.startsWith("/account") || pathname.startsWith("/donate")) && !req.auth?.user) {
+  if (
+    ((pathname.startsWith("/account") || pathname.startsWith("/donate")) &&
+      !req.auth?.user) ||
+    (pathname.startsWith("/membership/apply") && !req.auth?.user)
+  ) {
     const url = new URL("/auth/signin", req.nextUrl.origin);
-    if (pathname !== '/auth/signin') {
-      url.searchParams.set("redirect", pathname + "?" + searchParams.toString());
+    if (pathname !== "/auth/signin") {
+      url.searchParams.set(
+        "redirect",
+        pathname + "?" + searchParams.toString()
+      );
     }
     return NextResponse.redirect(url);
   }

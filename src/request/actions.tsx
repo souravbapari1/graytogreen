@@ -1,4 +1,4 @@
-import { NextClient } from "./request";
+import NextClient from "nextclient";
 export const isProduction = process.env.NODE_ENV === "production";
 
 export const client = new NextClient("https://g2g-pocketbase.souravbapari.in");

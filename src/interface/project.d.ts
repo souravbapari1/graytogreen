@@ -48,6 +48,9 @@ export interface ProjectItem {
   website: string;
   workareas: WorkAreas;
 
+  impactPerUnit?: number;
+  comments?: string;
+
   orders?: TreeOrderItem[];
   byArea?: { [key: string]: Tree[] };
   instagram: string;

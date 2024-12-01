@@ -4,14 +4,17 @@ import MembershipHero from "@/components/sections/Membership/MembershipHero";
 import MembershipPlanDetails from "@/components/sections/Membership/MembershipPlanDetails";
 import MembershipPricing from "@/components/sections/Membership/MembershipPricing";
 import Navbar from "@/components/sections/Navbar/Navbar";
+import { getMembership } from "@/request/worker/membership";
 import React from "react";
 
-function Membership() {
+export const revalidate = 0;
+async function Membership() {
+  const data = await getMembership(1);
   return (
     <div>
       <Navbar />
       <MembershipHero />
-      <MembershipPricing />
+      <MembershipPricing data={data.items} />
       <MembershipPlanDetails />
       <FooterTop />
       <Footer />

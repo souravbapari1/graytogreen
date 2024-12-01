@@ -1,13 +1,9 @@
 import { montserrat } from "@/fonts/font";
 import Image from "next/image";
-import React from "react";
 
-import { Button } from "@/components/ui/button";
-import NotFound from "../not-found";
-import { client } from "@/request/actions";
 import { ProjectItem } from "@/interface/project";
-import { Flower2, Sprout } from "lucide-react";
-import DonateBanner from "@/components/sections/Home/DonateBanner/4";
+import { client } from "@/request/actions";
+import NotFound from "../not-found";
 import DonateBox from "./DonateBox";
 
 export const revalidate = 0;
@@ -18,6 +14,7 @@ async function Donate({ searchParams }: { searchParams?: any }) {
   const donate = searchParams.donate;
   const by = searchParams.by;
   const id = searchParams.id;
+  const type = searchParams.type;
 
   if (!donate || !by || !id) {
     return <NotFound />;

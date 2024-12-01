@@ -8,11 +8,13 @@ import { CircleCheck } from "lucide-react";
 import Link from "next/link";
 import SucessView from "./SucessView";
 
-function page() {
+function page({ searchParams }: { searchParams?: any }) {
+  const type = searchParams.type;
+
   return (
     <div className="">
       <Navbar />
-      <SucessView />
+      <SucessView type={type} />
       <FooterTop />
       <Footer />
     </div>

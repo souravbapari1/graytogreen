@@ -29,6 +29,7 @@ export interface UserItem {
   youtube: string;
   targetTrees: string;
   targetPlastic: string;
+  mamberships: string[];
 }
 
 export interface Expand {

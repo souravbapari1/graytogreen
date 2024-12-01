@@ -1,5 +1,4 @@
-import { auth } from "@/auth";
-import { NextClient } from "../request";
+import NextClient from "nextclient";
 
 const uploadUrl = "https://g2g-files.souravbapari.in";
 const fileClient = new NextClient(uploadUrl, {

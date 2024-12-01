@@ -1,5 +1,6 @@
 import { UserItem } from "@/interface/user";
 import { client } from "../actions";
+import { authUser } from "./auth";
 
 export const createUser = async (data: {
   email: string;
@@ -25,5 +26,21 @@ export const createUser = async (data: {
     .json(data)
     .send<UserItem>();
 
+  return req;
+};
+
+export const setUserMembership = async (
+  id: string,
+  membership: string,
+  token?: string
+) => {
+  const req = await client
+    .patch("/api/collections/users/records/" + id)
+    .json({
+      "mamberships+": membership,
+    })
+    .send<UserItem>({
+      Authorization: `Bearer ${token}`,
+    } as any);
   return req;
 };
