@@ -2,13 +2,13 @@ import { Button } from "@/components/ui/button";
 import React from "react";
 import { MdLiveTv } from "react-icons/md";
 
-function NoLive() {
+function NoLive({ id }: { id: string }) {
   return (
     <div className="container mt-20">
       <iframe
         width="560"
         height="315"
-        src="https://www.youtube.com/embed/AbA-hoIuHM4?si=VCJ45jaB0xb5Y9h5"
+        src={"https://www.youtube.com/embed/" + id}
         title="YouTube video player"
         frameBorder="0"
         allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"

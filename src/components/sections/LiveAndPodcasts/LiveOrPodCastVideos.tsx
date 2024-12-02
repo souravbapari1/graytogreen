@@ -3,19 +3,33 @@ import { Collection } from "@/interface/collection";
 import { LiveAndPopcastItem } from "@/interface/liveandpodcast";
 import { client } from "@/request/actions";
 import React from "react";
+import NoLive from "./NoLive";
 
 export const revalidate = 0;
 async function LiveOrPodCastVideos() {
   const liveVideos = await client
-    .get("/api/collections/lives/records")
+    .get("/api/collections/lives/records", {
+      perPage: 500,
+      filter: "(liveNow=false)",
+    })
     .send<Collection<LiveAndPopcastItem>>();
 
   const podcastVideos = await client
     .get("/api/collections/podcasts/records")
     .send<Collection<LiveAndPopcastItem>>();
 
+  const liveNowVideos = await client
+    .get("/api/collections/lives/records", {
+      perPage: 500,
+      filter: "(liveNow=true)",
+    })
+    .send<Collection<LiveAndPopcastItem>>();
+
   return (
     <div>
+      {liveNowVideos.items.map((e, i) => {
+        return <NoLive key={e.id + i} id={e.videoId} />;
+      })}
       <div className="bg-green-50/50 h-auto lg:py-10 py-1 pb-28 w-full ">
         <div className="container mt-20">
           <h1
