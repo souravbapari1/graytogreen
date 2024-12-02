@@ -19,6 +19,13 @@ async function page() {
           Memberships
         </h1>
         <div className="grid lg:grid-cols-3 gap-10">
+          {!userData.expand?.mamberships?.length && (
+            <div className="w-full lg:col-span-3 h-36 border rounded-2xl bg-primary/5 flex flex-col text-center justify-center items-center border-white shadow p-5">
+              <p className=" font-medium text-gray-600 mb-3">
+                You have no memberships yet
+              </p>
+            </div>
+          )}
           {userData.expand?.mamberships?.map((e, i) => {
             return (
               <div
