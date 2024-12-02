@@ -1,3 +1,5 @@
+import { MembershipItem } from "./membership";
+
 export interface UserItem {
   avatar: string;
   city: string;
@@ -34,6 +36,7 @@ export interface UserItem {
 
 export interface Expand {
   company?: Company;
+  mamberships?: MembershipItem[];
 }
 
 export interface Company {

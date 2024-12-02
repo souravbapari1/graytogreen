@@ -2,6 +2,7 @@ import { UserItem } from "@/interface/user";
 import { client } from "../actions";
 import { Collection } from "@/interface/collection";
 import { auth, signIn } from "@/auth";
+import exp from "constants";
 
 export const authUser = async ({
   email,
@@ -40,6 +41,15 @@ export const getUser = async (
 ) => {
   const req = await client
     .get("/api/collections/users/records/" + id, data)
+    .send<UserItem>();
+  return req;
+};
+
+export const getUserMemberShips = async (id: string) => {
+  const req = await client
+    .get("/api/collections/users/records/" + id, {
+      expand: "mamberships",
+    })
     .send<UserItem>();
   return req;
 };

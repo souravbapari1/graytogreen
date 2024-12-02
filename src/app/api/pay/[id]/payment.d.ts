@@ -14,6 +14,7 @@ export interface PaymentData {
   status: string;
   updated: string;
   user: string;
+  support?: string;
 }
 
 export interface Data {

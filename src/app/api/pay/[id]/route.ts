@@ -3,7 +3,6 @@ import { revalidatePath } from "next/cache";
 import { NextResponse } from "next/server";
 import { PaymentData } from "./payment";
 import { PaymentVerifyData } from "./pymentVerify";
-import { log } from "node:console";
 
 export const revalidate = 0;
 export async function GET(
@@ -52,6 +51,21 @@ export async function GET(
             project: paymentIntent.project,
             tree_count: paymentIntent.quantity,
             amount: paymentIntent.amount * paymentIntent.quantity,
+            support: paymentIntent?.support,
+          })
+          .send<any>();
+        orderId = order.id;
+      } else {
+        // 6. place the order
+        const order = await client
+          .post("/api/collections/other_projects_orders/records")
+          .json({
+            user: paymentIntent.user,
+            project: paymentIntent.project,
+            amount: paymentIntent.amount,
+            status: "received",
+            maping_status: "pending",
+            support: paymentIntent?.support,
           })
           .send<any>();
         orderId = order.id;
@@ -62,7 +76,7 @@ export async function GET(
         .patch(`/api/collections/payments/records/${params.id}`)
         .json({
           orderPlaced: true,
-          tree_order: orderId,
+          other_order: orderId,
         })
         .send();
 
