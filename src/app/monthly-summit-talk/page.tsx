@@ -73,7 +73,7 @@ const MST_GQL = gql`
         description
         sessionDateTime
         centerImage {
-          urls
+          url
         }
         leftImage {
           url
