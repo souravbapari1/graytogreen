@@ -55,6 +55,14 @@ export async function GET(
           })
           .send<any>();
         orderId = order.id;
+        // 7. update the payment intent with the order id
+        await client
+          .patch(`/api/collections/payments/records/${params.id}`)
+          .json({
+            orderPlaced: true,
+            tree_order: orderId,
+          })
+          .send();
       } else {
         // 6. place the order
         const order = await client
@@ -69,16 +77,15 @@ export async function GET(
           })
           .send<any>();
         orderId = order.id;
+        // 7. update the payment intent with the order id
+        await client
+          .patch(`/api/collections/payments/records/${params.id}`)
+          .json({
+            orderPlaced: true,
+            other_order: orderId,
+          })
+          .send();
       }
-
-      // 7. update the payment intent with the order id
-      await client
-        .patch(`/api/collections/payments/records/${params.id}`)
-        .json({
-          orderPlaced: true,
-          other_order: orderId,
-        })
-        .send();
 
       // 8. redirect to the thank you page
       return NextResponse.redirect(
