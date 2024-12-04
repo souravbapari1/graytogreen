@@ -3,10 +3,11 @@ import AcademicsMore from "@/components/sections/Academies/AcademicsMore";
 import UpcomingAcademies from "@/components/sections/Academies/UpcomingAcademies";
 import Footer from "@/components/sections/Footer/Footer";
 import FooterTop from "@/components/sections/Footer/FooterTop";
-import Navbar from "@/components/sections/Navbar/Navbar";
+
 import client from "@/graphql/client";
 import { gql } from "@apollo/client";
 import { GreenKidsAcademyData } from "./GreenKidsAcademys";
+import Navbar from "@/components/sections/Navbar/Navbar";
 
 const GKA_GQL = gql`
   query GreenKidsAcademies {
@@ -58,14 +59,23 @@ const GKA_GQL = gql`
       flowChatTitle
     }
     upcomingAcademies {
+      amount
+      createdAt
       documentId
-      title
-      date
-      time
+      applications
+      endDate
       languge
+      locale
       location
+      locationType
+      maxParticipents
       name
+      pricing
+      registerationEndDate
       slug
+      startDate
+      time
+      title
     }
   }
 `;

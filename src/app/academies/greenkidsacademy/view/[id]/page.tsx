@@ -13,16 +13,31 @@ export const revalidate = 0;
 const GQL = gql`
   query UpcomingAcademies($filters: UpcomingAcademieFiltersInput) {
     upcomingAcademies(filters: $filters) {
+      amount
+      createdAt
       documentId
-      title
-      date
-      time
+      applications
+      endDate
       languge
+      locale
       location
+      locationType
+      maxParticipents
       name
-      content
+      pricing
+      publishedAt
+      registerationEndDate
       slug
-      maxParticipants
+      startDate
+      time
+      title
+      otherComments
+      program_Timeline
+      content
+      aboutTheSession
+      Flyer {
+        url
+      }
     }
   }
 `;

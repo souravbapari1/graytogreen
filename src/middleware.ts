@@ -8,7 +8,9 @@ export default auth((req) => {
   if (
     ((pathname.startsWith("/account") || pathname.startsWith("/donate")) &&
       !req.auth?.user) ||
-    (pathname.startsWith("/membership/apply") && !req.auth?.user)
+    (pathname.startsWith("/membership/apply") && !req.auth?.user) ||
+    (pathname.startsWith("/academies/sustainable-youth-academy/register") &&
+      !req.auth?.user)
   ) {
     const url = new URL("/auth/signin", req.nextUrl.origin);
     if (pathname !== "/auth/signin") {

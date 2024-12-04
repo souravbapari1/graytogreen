@@ -6,10 +6,10 @@ import RegisterForm from "./RegisterForm";
 
 function page() {
   return (
-    <div className="w-screen h-screen overflow-auto flex-col  md:bg-[url('https://forms.plant-for-the-planet.org/wp-content/uploads/2022/05/We-make-ourselveds-heard-Tinified.jpg')] bg-no-repeat bg-cover bg-center flex justify-start items-center">
+    <div className="w-full h-screen overflow-auto flex-col  md:bg-[url('/assets/form-bg.jpg')] bg-no-repeat bg-cover bg-center flex justify-start items-center">
       <div className="block md:mb-40">
         <div className="md:h-60"></div>
-        <div className="w-screen max-w-[700px]  md:mt-24 bg-white border-t-[5px] shadow-2xl md:rounded-3xl p-8 border-primary">
+        <div className="w-full max-w-[700px]  md:mt-24 bg-white border-t-[5px] shadow-2xl md:rounded-3xl p-8 border-primary">
           <br />
           <Link href="/" className="mt-6 mb-6">
             <Image
@@ -29,8 +29,8 @@ function page() {
             <p>
               Great that you would like to invite a Climate Justice Ambassador
               to speak at your event! Please fill in this questionnaire at the
-              best possible rate and send it to event@plant-for-the-planet.org.
-              We will then be searching for suitable speakers in your region.
+              best possible rate and send it to event@graytogreeen.org. We will
+              then be searching for suitable speakers in your region.
             </p>
             <br />
             <RegisterForm />

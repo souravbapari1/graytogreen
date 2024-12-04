@@ -96,7 +96,8 @@
     clip-path: polygon(0% 0%, 90% 0%, 100% 55%, 90% 100%, 0% 100%);
   }
 
-  table.tblView {
+  table.tblView,
+  .content table {
     @apply overflow-auto relative w-full;
 
     border-spacing: 0;
@@ -137,6 +138,10 @@
         }
       }
     }
+  }
+
+  .container table {
+    @apply border border-gray-100 max-w-[90vw] overflow-auto mx-auto;
   }
 
   .content {
@@ -401,4 +406,72 @@ button.react-multiple-carousel__arrow.react-multiple-carousel__arrow--left {
   background: transparent;
   position: absolute !important;
   z-index: 1;
+}
+
+/* Fix Google Translate at the bottom of the page */
+#google_translate_element {
+  position: fixed;
+  bottom: 10px; /* Distance from the bottom */
+  left: 50%; /* Center horizontally */
+  transform: translateX(-50%); /* Center the element */
+  background-color: #f4f4f4;
+  padding: 10px;
+  border-radius: 8px;
+  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1); /* Optional shadow */
+  z-index: 9999; /* Ensure it's on top */
+}
+
+/* Customize the dropdown style */
+.goog-te-combo {
+  background-color: #fff;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  padding: 5px;
+  font-size: 14px;
+  color: #333;
+}
+
+/* Hide Google branding (Optional, with caution) */
+.goog-logo-link {
+  display: none !important;
+}
+/* Hide the Google Translate toolbar */
+.goog-te-banner-frame {
+  display: none !important;
+}
+
+/* Optionally hide the "Google Translate" icon from the toolbar */
+.goog-te-gadget-icon {
+  display: none !important;
+}
+
+/* Hide the "Show Original" and "Options" buttons */
+.goog-te-gadget-button {
+  display: none !important;
+}
+
+/* Hide the Google Translate toolbar */
+.goog-te-banner-frame {
+  display: none !important;
+}
+
+/* Optionally hide the "Google Translate" icon from the toolbar */
+.goog-te-gadget-icon {
+  display: none !important;
+}
+
+/* Hide the "Show Original" and "Options" buttons */
+.goog-te-gadget-button {
+  display: none !important;
+}
+
+iframe#\:1\.container {
+  display: none;
+}
+body {
+  top: 0px !important;
+}
+
+a.VIpgJd-ZVi9od-l4eHX-hSRGPd {
+  display: none;
 }

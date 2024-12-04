@@ -8,6 +8,7 @@ import Image from "next/image";
 import Link from "next/link";
 import Qna from "./Qna";
 import NotFound from "@/app/not-found";
+import Icon from "@/icons/Icon";
 
 async function Page({ params }: { params: { id: string } }) {
   try {
@@ -39,6 +40,21 @@ async function Page({ params }: { params: { id: string } }) {
                       <h1 className="font-bold text-xl mb-6">{data.name}</h1>
                       <p className="font-semibold">{data.amount} OMR</p>
                       <p className="capitalize mb-5">Lifetime</p>
+                    </div>
+                    <div className="w-full flex justify-center items-center mb-4 gap-2 flex-col">
+                      {data.info?.map((info, i) => {
+                        return (
+                          <div
+                            key={i}
+                            className="flex justify-start items-center text-xs"
+                          >
+                            <div className="w-5 ">
+                              <Icon name={info.icon} size={12} />
+                            </div>
+                            <p>{info.title}</p>
+                          </div>
+                        );
+                      })}
                     </div>
                   </div>
                 </div>

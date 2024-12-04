@@ -7,7 +7,7 @@ import Link from "next/link";
 import { IoMdOpen } from "react-icons/io";
 import { auth } from "@/auth";
 
-async function Navbar() {
+async function Navbar(): Promise<JSX.Element> {
   const data = await auth();
   return (
     <div className="sticky top-0 right-0 z-40  lg:shadow-none shadow-md shadow-gray-950/5">
