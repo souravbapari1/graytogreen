@@ -10,32 +10,26 @@ declare global {
 }
 
 const GoogleTranslate: React.FC = () => {
-  const googleTranslateElementInit = () => {
-    new window.google.translate.TranslateElement(
-      {
-        pageLanguage: "en", // Specify the default language
-        autoDisplay: false, // Disable automatic pop-up
-        includedLanguages: "en,ar",
-      },
-      "google_translate_element" // ID of the container for the widget
-    );
-  };
-
   useEffect(() => {
-    const addScript = document.createElement("script");
-    addScript.src =
-      "//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit";
-    addScript.async = true;
-    const timer = setTimeout(() => {
+    if (!document.getElementById("google-translate-script")) {
+      const addScript = document.createElement("script");
+      addScript.src =
+        "//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit";
+      addScript.id = "google-translate-script"; // Ensure it's unique
+      addScript.async = true;
       document.body.appendChild(addScript);
-      // Set the initialization function to the global window object
-      window.googleTranslateElementInit = googleTranslateElementInit;
-    }, 100);
 
-    return () => {
-      clearTimeout(timer);
-      addScript.remove();
-    };
+      window.googleTranslateElementInit = () => {
+        new window.google.translate.TranslateElement(
+          {
+            pageLanguage: "en", // Default language
+            includedLanguages: "en,ar", // Only show English and Arabic
+            autoDisplay: false,
+          },
+          "google_translate_element"
+        );
+      };
+    }
   }, []);
 
   return <div id="google_translate_element" />;
