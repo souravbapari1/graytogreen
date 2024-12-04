@@ -85,7 +85,7 @@ const toolsMenu: ServicesMenuItems[] = [
     list: [
       {
         icon: "🧩",
-        href: "#",
+        href: "/rethink",
         id: "",
         title: "ReThink",
         subtitle:
