@@ -4,6 +4,7 @@ import { TbCopyCheckFilled, TbScreenShare } from "react-icons/tb";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { LuCopyCheck } from "react-icons/lu";
+import MicroActionsList from "./MicroActionsList";
 
 function page() {
   return (
@@ -73,7 +74,7 @@ function page() {
           </div>
         </div>
       </div>
-
+      <MicroActionsList />
       <div className=" mb-20 mt-10 bg-red-50 md:p-20 p-5 rounded-3xl">
         <h1 className="md:text-4xl text-2xl font-bold">About US</h1>
         <br />
