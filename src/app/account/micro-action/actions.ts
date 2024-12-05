@@ -1,7 +1,8 @@
 import { client } from "@/request/actions";
-import { MicroActionItem } from "./md";
+import { MAImpactItem, MicroActionItem } from "./md";
 import { Collection } from "@/interface/collection";
 import { auth } from "@/auth";
+import { isTwentyFourHoursOlder } from "@/helper/dateTime";
 
 export const getMicroActions = async () => {
   const user = await auth();
@@ -18,4 +19,54 @@ export const getMicroActions = async () => {
     .get("/api/collections/micro_actions/records")
     .send<Collection<MicroActionItem>>();
   return res;
+};
+
+export const createNewImpact = async (data: {
+  micro_action: string;
+  submit: number;
+  impact: number;
+  userData: string;
+  user?: string;
+  refer?: string;
+}) => {
+  let application: any = {
+    micro_action: data.micro_action,
+    submit: data.submit,
+    impact: data.impact,
+    userData: data.userData,
+  };
+  if (data.user) {
+    application.user = data.user;
+  }
+  if (data.refer) {
+    application.refer = data.refer;
+  }
+
+  let res = client
+    .post("/api/collections/micro_impact/records")
+    .json(application);
+
+  const action = await res.send<MAImpactItem>();
+  const old = localStorage.getItem("microAction");
+  const removeOld = JSON.parse(old || "[]").filter(
+    (item: MAImpactItem) => item.micro_action !== action.micro_action
+  );
+  localStorage.setItem(
+    "microAction",
+    JSON.stringify([...(removeOld || []), action])
+  );
+  return action;
+};
+
+export const isMAsubmitToday = (id: string) => {
+  const old = localStorage.getItem("microAction");
+  const microAction: MAImpactItem[] = JSON.parse(old || "[]");
+  const isSubmit = microAction.find((item) => item.micro_action === id);
+
+  if (isSubmit) {
+    const isOld = isTwentyFourHoursOlder(isSubmit.created);
+    return isOld;
+  } else {
+    return true;
+  }
 };

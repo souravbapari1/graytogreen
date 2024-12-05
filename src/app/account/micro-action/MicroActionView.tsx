@@ -1,19 +1,88 @@
 "use client";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
+import { UserItem } from "@/interface/user";
+import { Session } from "next-auth";
+import { useEffect, useState } from "react";
 import { TbCopyCheckFilled, TbScreenShare } from "react-icons/tb";
 import { useMicroActionState } from "./microActioonState";
-import { useSession } from "next-auth/react";
-function MicroActionView() {
-  const session = useSession();
-  const data = useMicroActionState();
+import UserImpactInfo from "./UserImpactInfo";
+import ThanksView from "./ThanksView";
+import { createNewImpact, isMAsubmitToday } from "./actions";
+import { useSearchParams } from "next/navigation";
+import toast from "react-hot-toast";
 
+function MicroActionView({ session }: { session: Session | null }) {
+  const data = useMicroActionState();
+  const [thankyou, setThankYou] = useState(false);
+  const [open, setOpen] = useState(false);
+
+  useEffect(() => {
+    if (session?.user) {
+      const userData = localStorage.getItem("user");
+
+      if (!userData) {
+        return;
+      }
+
+      const user: UserItem = JSON.parse(userData);
+      data.setData("name", user.first_name + " " + user.last_name || "");
+      data.setData("email", user.email || "");
+      data.setData("mobile_no", user.mobile_no || "");
+      data.setData("city", user.city || "");
+      data.setData("id", user.id || null);
+    }
+  }, [session]);
+
+  const params = useSearchParams();
+
+  const handelSubmit = async () => {
+    if (data.data.impact == undefined || data.data.impact <= 0) {
+      toast.error("action count is required");
+      return;
+    }
+    if (!session?.user) {
+      setOpen(true);
+      return;
+    }
+    if (data.validateData()) {
+      try {
+        toast.dismiss();
+        toast.loading("Submitting...");
+        const res = await createNewImpact({
+          micro_action: data.selected?.id || "",
+          submit: data.data.impact || 0,
+          impact: (data.data.impact || 0) * (data.selected?.kgPerUnit || 0),
+          userData: JSON.stringify(data.data),
+          user: data.data.id || undefined,
+          refer: params.get("refer") || undefined,
+        });
+        toast.dismiss();
+        toast.success("Submitted successfully");
+        setThankYou(true);
+        setOpen(false);
+      } catch (error) {
+        toast.dismiss();
+        toast.error("Submission failed");
+      }
+    } else {
+      setOpen(true);
+    }
+  };
   if (data.selected == null) {
     return null;
   }
 
   return (
     <div className="grid lg:grid-cols-2 gap-8">
+      <UserImpactInfo
+        open={open}
+        setOpen={setOpen}
+        onComplete={(e) => {
+          setThankYou(true);
+        }}
+      />
+      <ThanksView open={thankyou} setOpen={setThankYou} />
       <div className="">
         <h1 className="text-3xl font-bold">Impact</h1>
         <div className="grid md:grid-cols-2 gap-6 mt-5">
@@ -66,12 +135,26 @@ function MicroActionView() {
               />
             </div>
             <div className="flex flex-col justify-center items-center">
-              <Input className="shadow-none bg-white border-none p-6 mt-9" />
+              <Input
+                disabled={!isMAsubmitToday(data.selected.id)}
+                className="shadow-none bg-white border-none p-6 mt-9"
+                placeholder="Enter Your Micro Impact Count."
+                type="number"
+                value={data.data.impact}
+                onChange={(e) => data.setData("impact", +e.target.value)}
+              />
               <div className="flex gap-5 mt-7">
-                <Button className="shadow-none mt-3 mx-auto p-5 gap-3">
-                  Submit
-                </Button>
-                {session.data?.user.user_type == "ambassador" && (
+                {isMAsubmitToday(data.selected.id) ? (
+                  <Button
+                    onClick={handelSubmit}
+                    className="shadow-none mt-3 mx-auto p-5 gap-3"
+                  >
+                    Submit
+                  </Button>
+                ) : (
+                  <p>You can submit only once per day</p>
+                )}
+                {session?.user.user_type == "ambassador" && (
                   <Button className="shadow-none mt-3 mx-auto p-5 gap-3">
                     <TbCopyCheckFilled />
                     Copy Link

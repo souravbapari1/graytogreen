@@ -62,3 +62,20 @@ export function monthsAgo(isoDate: string): number {
   // Total months difference
   return yearsDiff * 12 + monthsDiff;
 }
+
+export function isTwentyFourHoursOlder(timestamp: string): boolean {
+  // Parse the input timestamp into a Date object
+  const providedTime = new Date(timestamp);
+
+  // Get the current time in UTC
+  const currentTime = new Date();
+
+  // Calculate the time difference in milliseconds
+  const timeDifference = currentTime.getTime() - providedTime.getTime();
+
+  // Convert the time difference into hours
+  const hoursDifference = timeDifference / (1000 * 60 * 60);
+
+  // Check if the difference is 24 hours or more
+  return hoursDifference >= 24;
+}

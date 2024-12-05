@@ -31,6 +31,9 @@ export default function RootLayout({
         </SessionProvider>
         <ToasterBox />
         <Toaster />
+        <div className="h-10 w-60 bg-red-500 fixed bottom-8 right-6 z-30 flex justify-center items-center text-white">
+          Under Development
+        </div>
       </body>
     </html>
   );

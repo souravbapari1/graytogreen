@@ -475,3 +475,12 @@ body {
 a.VIpgJd-ZVi9od-l4eHX-hSRGPd {
   display: none;
 }
+
+.hide-scroll {
+  scrollbar-width: none; /* For Firefox */
+  -ms-overflow-style: none; /* For Internet Explorer and Edge */
+}
+
+.hide-scroll::-webkit-scrollbar {
+  display: none; /* For Chrome, Safari, and Opera */
+}

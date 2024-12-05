@@ -15,3 +15,11 @@ export function isValidNumber(value: any) {
     return false;
   }
 }
+
+export function isValidEmail(email: string) {
+  // Regular expression for validating an email address
+  const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+
+  // Test if the email matches the pattern
+  return emailRegex.test(email);
+}

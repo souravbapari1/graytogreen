@@ -1,17 +1,20 @@
-import React from "react";
 import WorkSpace from "../components/workspace";
 
-import MicroActionsList from "./MicroActionsList";
+import { auth } from "@/auth";
 import { getMicroActions } from "./actions";
+import MicroActionsList from "./MicroActionsList";
 import MicroActionView from "./MicroActionView";
+import ThanksView from "./ThanksView";
 
 export const revalidate = 0;
 async function page() {
+  const user = await auth();
+
   const data = await getMicroActions();
 
   return (
     <WorkSpace>
-      <MicroActionView />
+      <MicroActionView session={user} />
       <MicroActionsList data={data.items} />
       <div className=" mb-20 mt-10 bg-red-50 md:p-20 p-5 rounded-3xl">
         <h1 className="md:text-4xl text-2xl font-bold">About US</h1>

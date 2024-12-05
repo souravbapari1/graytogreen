@@ -11,3 +11,26 @@ export interface MicroActionItem {
   title: string;
   updated: string;
 }
+
+export interface MAImpactItem {
+  collectionId: string;
+  collectionName: string;
+  created: string;
+  id: string;
+  impact: number;
+  micro_action: string;
+  refer: string;
+  submit: number;
+  updated: string;
+  user: string;
+  userData: UserData;
+}
+
+export interface UserData {
+  name: string;
+  code: string;
+  email: string;
+  mobile_no: string;
+  impact: number;
+  id: any;
+}

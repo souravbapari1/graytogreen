@@ -5,6 +5,7 @@ import React from "react";
 import { getMicroActions } from "../account/micro-action/actions";
 import MicroActionView from "../account/micro-action/MicroActionView";
 import MicroActionsList from "../account/micro-action/MicroActionsList";
+import { auth } from "@/auth";
 
 export const revalidate = 0;
 export const metadata = {
@@ -13,12 +14,13 @@ export const metadata = {
 };
 async function page() {
   const data = await getMicroActions();
+  const user = await auth();
 
   return (
     <div>
       <Navbar />
       <div className="container mt-10">
-        <MicroActionView />
+        <MicroActionView session={user} />
         <MicroActionsList data={data.items} />
       </div>
       <FooterTop />
