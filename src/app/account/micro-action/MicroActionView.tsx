@@ -8,9 +8,10 @@ import { TbCopyCheckFilled, TbScreenShare } from "react-icons/tb";
 import { useMicroActionState } from "./microActioonState";
 import UserImpactInfo from "./UserImpactInfo";
 import ThanksView from "./ThanksView";
-import { createNewImpact, isMAsubmitToday } from "./actions";
+import { createNewImpact, getImpactStatus, isMAsubmitToday } from "./actions";
 import { useSearchParams } from "next/navigation";
 import toast from "react-hot-toast";
+import { useMutation, useQuery } from "@tanstack/react-query";
 
 function MicroActionView({ session }: { session: Session | null }) {
   const data = useMicroActionState();
@@ -69,6 +70,17 @@ function MicroActionView({ session }: { session: Session | null }) {
       setOpen(true);
     }
   };
+  const statusData = useMutation({
+    mutationKey: ["status", data.selected?.id],
+    mutationFn: () => getImpactStatus(data.selected?.id || ""),
+  });
+
+  useEffect(() => {
+    if (data.selected?.id) {
+      statusData.mutate();
+    }
+  }, [data.selected?.id]);
+
   if (data.selected == null) {
     return null;
   }
@@ -88,14 +100,16 @@ function MicroActionView({ session }: { session: Session | null }) {
         <div className="grid md:grid-cols-2 gap-6 mt-5">
           <div className="w-full h-36 border rounded-2xl bg-primary/5 flex flex-col text-center justify-center items-center border-white shadow p-5">
             <p className=" font-medium text-gray-600 mb-3">Impacters from</p>
-            <h4 className="text-2xl font-bold text-primary">23 locations</h4>
+            <h4 className="text-2xl font-bold text-primary">
+              {statusData.data?.totalCity} locations
+            </h4>
           </div>
           <div className="w-full h-36 border rounded-2xl bg-primary/5  text-center flex flex-col justify-center items-center border-white shadow p-5">
             <p className=" font-medium text-gray-600 mb-1">
               Impact (ongoing micro-action)
             </p>
             <h4 className="text-xl font-bold text-primary">
-              498.6 Kgs CO2e
+              {statusData.data?.current.impact} Kgs CO2e
               <small className="text-xs"> (saved/year)</small>
             </h4>
           </div>
@@ -103,14 +117,16 @@ function MicroActionView({ session }: { session: Session | null }) {
             <p className="text-lg font-medium text-gray-600 mb-3">
               Sustainabilty Warriors
             </p>
-            <h4 className="text-2xl font-bold text-primary">60</h4>
+            <h4 className="text-2xl font-bold text-primary">
+              {statusData.data?.users.users}
+            </h4>
           </div>
           <div className="w-full h-36 border rounded-2xl bg-primary/5 text-center flex flex-col justify-center items-center border-white shadow p-5">
             <p className="text-lg font-medium text-gray-600 mb-3">
               Total impact of ReThink
             </p>
             <h4 className="text-xl font-bold text-primary">
-              498.6 Kgs CO2e
+              {statusData.data?.total.impact} Kgs CO2e
               <small className="text-xs"> (saved/year)</small>
             </h4>
           </div>

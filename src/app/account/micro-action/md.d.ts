@@ -34,3 +34,22 @@ export interface UserData {
   impact: number;
   id: any;
 }
+
+export interface ImpactCount {
+  current: Current;
+  total: Total;
+  totalCity: number;
+  users: Users;
+}
+
+export interface Current {
+  impact: number;
+}
+
+export interface Total {
+  impact: number;
+}
+
+export interface Users {
+  users: number;
+}

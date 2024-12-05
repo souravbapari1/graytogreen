@@ -1,5 +1,5 @@
 import { client } from "@/request/actions";
-import { MAImpactItem, MicroActionItem } from "./md";
+import { ImpactCount, MAImpactItem, MicroActionItem } from "./md";
 import { Collection } from "@/interface/collection";
 import { auth } from "@/auth";
 import { isTwentyFourHoursOlder } from "@/helper/dateTime";
@@ -69,4 +69,9 @@ export const isMAsubmitToday = (id: string) => {
   } else {
     return true;
   }
+};
+
+export const getImpactStatus = async (id: string) => {
+  const res = await client.get("/maimpact/status", { id }).send<ImpactCount>();
+  return res;
 };
