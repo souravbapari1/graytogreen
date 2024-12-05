@@ -16,11 +16,10 @@ function MenuLinks({ data }: { data: Session | null }) {
       <NavLink exact={true} href="/account/my-forest" className=" ">
         <p>My Forest</p>
       </NavLink>
-      {data?.user.user_type == "ambassador" && (
-        <NavLink exact={true} href="/account/micro-action" className=" ">
-          <p>Micro Action</p>
-        </NavLink>
-      )}
+      <NavLink exact={true} href="/account/micro-action" className=" ">
+        <p>Micro Action</p>
+      </NavLink>
+
       <NavLink exact={true} href="/account/climat-change-impact" className=" ">
         <p>Climat Change Impact</p>
       </NavLink>

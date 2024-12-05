@@ -4,6 +4,7 @@ import { Checkbox } from "@/components/ui/checkbox";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { montserrat } from "@/fonts/font";
+import { authUser, getUser } from "@/request/worker/auth";
 import { signIn } from "next-auth/react";
 import Image from "next/image";
 import Link from "next/link";
@@ -43,14 +44,19 @@ function AuthForm() {
       toast.dismiss();
       toast.loading("Signing in...");
       try {
+        const authUserData = await authUser({
+          email,
+          password,
+        });
+
         const res = await signIn("credentials", {
           redirect: false,
           email,
           password,
           callbackUrl: url || "/account",
         });
-
         if (res?.ok && !res.error) {
+          localStorage.setItem("user", JSON.stringify(authUserData.record));
           window.location.replace(res.url || "/account");
         } else {
           toast.dismiss();

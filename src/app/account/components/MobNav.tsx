@@ -1,16 +1,10 @@
-import {
-  Sheet,
-  SheetContent,
-  SheetDescription,
-  SheetHeader,
-  SheetTitle,
-  SheetTrigger,
-} from "@/components/ui/sheet";
-import { AiOutlineMenu } from "react-icons/ai";
-import ProfileMenu from "./ProfileMenu";
-import MenuLinks from "./MenuLinks";
+"use client";
 import NavLink from "@/components/sections/Navbar/NavLink";
+import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
 import { Session } from "next-auth";
+import { signOut } from "next-auth/react";
+import { AiOutlineMenu } from "react-icons/ai";
+import MenuLinks from "./MenuLinks";
 
 function MobNav({ data }: { data: Session | null }) {
   return (
@@ -24,9 +18,9 @@ function MobNav({ data }: { data: Session | null }) {
           <NavLink exact href="#" className=" ">
             <p>Profile</p>
           </NavLink>
-          <NavLink exact href="#" className=" ">
+          <p onClick={() => signOut()}>
             <p>Logout</p>
-          </NavLink>
+          </p>
         </SheetContent>
       </Sheet>
     </div>

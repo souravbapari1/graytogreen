@@ -25,7 +25,6 @@ function MicroActionView({ session }: { session: Session | null }) {
       if (!userData) {
         return;
       }
-
       const user: UserItem = JSON.parse(userData);
       data.setData("name", user.first_name + " " + user.last_name || "");
       data.setData("email", user.email || "");
@@ -61,6 +60,8 @@ function MicroActionView({ session }: { session: Session | null }) {
         toast.dismiss();
         toast.success("Submitted successfully");
         setThankYou(true);
+        statusData.mutate();
+
         setOpen(false);
       } catch (error) {
         toast.dismiss();
@@ -92,6 +93,7 @@ function MicroActionView({ session }: { session: Session | null }) {
         setOpen={setOpen}
         onComplete={(e) => {
           setThankYou(true);
+          statusData.mutate();
         }}
       />
       <ThanksView open={thankyou} setOpen={setThankYou} />
