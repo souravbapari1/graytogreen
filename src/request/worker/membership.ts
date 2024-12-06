@@ -4,7 +4,10 @@ import { MembershipItem, MemberShipPayment } from "@/interface/membership";
 
 export const getMembership = async (page: number = 1) => {
   const req = await client
-    .get("/api/collections/memberships/records", { page })
+    .get("/api/collections/memberships/records", {
+      page,
+      filter: `(active=true)`,
+    })
     .send<Collection<MembershipItem>>();
   return req;
 };
@@ -30,6 +33,7 @@ export const addNewMembershipPayment = async (data: {
   amount: number;
   gateway_response?: any;
   completeOrder: boolean;
+  qun: number;
   qna?: any;
   status?: "pending" | "confirm" | "cancel";
 }) => {
@@ -49,6 +53,7 @@ export const updateMembershipPayment = async (data: {
     gateway_response?: any;
     completeOrder?: boolean;
     sessionId?: string;
+    stocks?: number;
     status?: "pending" | "confirm" | "cancel";
     qna?: any;
   };

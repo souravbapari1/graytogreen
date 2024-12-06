@@ -11,7 +11,9 @@ export interface MembershipItem {
   name: string;
   qna: Qna[];
   status: string;
+  popular: boolean;
   updated: string;
+  stocks: number;
 }
 
 export interface Info {
@@ -36,6 +38,7 @@ export interface MemberShipPayment {
   membership: string;
   payurl: string;
   qna: Qna[];
+  qun: number;
   sessionId: string;
   updated: string;
   user: string;

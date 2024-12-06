@@ -14,7 +14,7 @@ const GoogleTranslate: React.FC = () => {
     window.googleTranslateElementInit = () => {
       new window.google.translate.TranslateElement(
         {
-          pageLanguage: "en", // Default language
+          pageLanguage: "ar", // Default language
           includedLanguages: "en,ar", // Only show English and Arabic
           autoDisplay: false,
         },

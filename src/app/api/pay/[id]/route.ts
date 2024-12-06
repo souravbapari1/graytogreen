@@ -24,10 +24,12 @@ export async function GET(
     const paymentStatus = verifyData.data.payment_status;
     if (paymentStatus !== "paid") {
       // 3. if the payment is not paid return
-      return NextResponse.json({
-        status: paymentStatus,
-        process: false,
-      });
+      return NextResponse.redirect(
+        new URL(
+          `/donate/thankyou?orderId=${params.id}&donate=${paymentIntent.donate}&done=true`,
+          localClient.baseUrl
+        ).toString()
+      );
     }
 
     // 4. update the payment intent with the verify data

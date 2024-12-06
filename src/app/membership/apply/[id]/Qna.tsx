@@ -9,7 +9,15 @@ import { useRouter } from "next/navigation";
 import React, { useState } from "react";
 import toast from "react-hot-toast";
 
-function Qna({ data, id }: { id: string; data: MembershipItem }) {
+function Qna({
+  data,
+  id,
+  qun,
+}: {
+  id: string;
+  data: MembershipItem;
+  qun: number;
+}) {
   const router = useRouter();
 
   const [answers, setAnswers] = useState<{ qus: string; answers: string }[]>(
@@ -21,14 +29,17 @@ function Qna({ data, id }: { id: string; data: MembershipItem }) {
     mutationFn: async () => {
       return await localClient
         .post(`/api/membership/${id}`)
-        .json({ qna: answers })
+        .json({ qna: answers, qun })
         .send<{ payUrl: string }>();
     },
     onSuccess: (data) => {
+      toast.dismiss();
+      toast.success("Redirecting...");
       router.replace(data.payUrl);
     },
-    onError: (error) => {
-      toast.error(error.message);
+    onError: (error: any) => {
+      toast.dismiss();
+      toast.error(error.response.message);
     },
   });
 
@@ -82,6 +93,7 @@ function Qna({ data, id }: { id: string; data: MembershipItem }) {
         <Button
           onClick={() => {
             if (answers.length === data.qna?.length) {
+              toast.loading("Please Wait. Redirecting...");
               payMutate.mutate();
             } else {
               toast.error("Please answer all questions");

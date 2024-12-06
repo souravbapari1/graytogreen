@@ -22,9 +22,11 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
+    // dir="rtl" lang="ar"
+    <html>
       <body className={lora.className}>
         <Script src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit" />
+        {/* <GoogleTranslate /> */}
         <NextTopLoader color="#11a665" />
         <SessionProvider>
           <Client> {children}</Client>

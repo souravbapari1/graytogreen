@@ -25,10 +25,12 @@ export async function GET(
     const paymentStatus = verifyData.data.payment_status;
     if (paymentStatus !== "paid") {
       // 3. if the payment is not paid return
-      return NextResponse.json({
-        status: paymentStatus,
-        process: false,
-      });
+      return NextResponse.redirect(
+        new URL(
+          `/donate/thankyou?orderId=${intent.id}&type=membership`,
+          localClient.baseUrl
+        ).toString()
+      );
     }
 
     if (intent.completeOrder == false) {
@@ -49,7 +51,7 @@ export async function GET(
       // 8. redirect to the thank you page
       return NextResponse.redirect(
         new URL(
-          `/donate/thankyou?orderId=${intent.id}&type=membership`,
+          `/donate/thankyou?orderId=${intent.id}&type=membership&done=true`,
           localClient.baseUrl
         ).toString()
       );

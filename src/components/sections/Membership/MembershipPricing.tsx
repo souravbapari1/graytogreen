@@ -1,3 +1,4 @@
+import SparklesText from "@/components/ui/sparkles-text";
 import { montserrat } from "@/fonts/font";
 import Icon from "@/icons/Icon";
 import { MembershipItem } from "@/interface/membership";
@@ -9,46 +10,80 @@ import React, { useState } from "react";
 
 function MembershipPricing({ data }: { data: MembershipItem[] }) {
   return (
-    <div className="flex justify-center py-20 items-center w-full">
-      <div className="max-w-[1200px] w-full">
-        <div className="container grid md:grid-cols-3 xl:gap-12 gap-6">
+    <div className="flex justify-center py-20 items-center w-full bg-gray-50">
+      <div className="max-w-[1200px] w-full px-4">
+        <h2
+          className={`${montserrat.className} text-center text-3xl font-bold mb-10`}
+        >
+          Choose Your Membership Plan
+        </h2>
+        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
           {data.map((e, i) => {
             return (
               <Link
-                href={"/membership/apply/" + e.id}
+                href={e.stocks == 0 ? "#" : "/membership/apply/" + e.id}
                 key={i + e.id}
-                className="w-full   bg-main/10 rounded-3xl overflow-hidden "
+                style={{ opacity: e.stocks == 0 ? 0.5 : 1 }}
+                className="block bg-white shadow-lg shadow-slate-200 rounded-3xl overflow-hidden transform transition-all duration-300 hover:scale-100 hover:shadow-xl"
               >
-                <div className="w-full h-48 bg-main/20 border-b-[8px] border-white flex justify-center items-center">
+                {e.popular && (
+                  <div className="absolute donateBtn rounded-none rounded-br-3xl  shadow-none top-0 left-0  px-6 py-2">
+                    <SparklesText
+                      text="Popular"
+                      className="text-sm font-semibold text-white"
+                    />
+                  </div>
+                )}
+                {e.stocks < 10 && (
+                  <div className="w-auto text-xs text-white  rounded-full absolute top-3 right-3 shadow-sm opacity-75 px-3 py-1 bg-red-500">
+                    {e.stocks == 0 ? "Out Of Stock" : `Only ${e.stocks} left`}
+                  </div>
+                )}
+                <div className="w-full h-48 bg-main/10 flex justify-center items-center border-b-4 border-gray-200">
                   <Image
                     src={genPbFiles(e, e.image)}
-                    alt=""
+                    alt={`${e.name} Image`}
                     width={1200}
                     height={1200}
                     className="h-20 w-auto"
                   />
                 </div>
                 <div
-                  className={`${montserrat.className} text-center  p-3 pt-10 pb-3 flex justify-between flex-col items-center`}
+                  className={`${montserrat.className} text-center p-6 flex flex-col justify-between h-full`}
                 >
                   <div className="">
-                    <h1 className="font-bold text-xl mb-6">{e.name}</h1>
-                    <p className="font-semibold">{e.amount.toFixed(2)} OMR</p>
-                    <p className="capitalize">Life Time</p>
-                  </div>
-
-                  <div className="w-full flex justify-center items-center mt-4 mb-4 gap-2 flex-col">
-                    {e.info?.map((info, i) => {
-                      return (
-                        <div className="flex justify-start items-center text-xs">
-                          <div className="w-5 ">
-                            <Icon name={info.icon} size={12} />
+                    <div>
+                      <h1 className="font-bold text-xl mb-4 text-gray-800">
+                        {e.name}
+                      </h1>
+                      <p className="line-through text-gray-400">
+                        {e.compare_amount.toFixed(2)} OMR
+                      </p>
+                      <p className="text-lg font-semibold text-gray-600">
+                        {e.amount.toFixed(2)} OMR
+                      </p>
+                      <p className="text-sm font-medium text-gray-500 capitalize">
+                        Life Time
+                      </p>
+                    </div>
+                    <div className="mt-3 text-left">
+                      {e.info?.map((info, i) => (
+                        <div
+                          className="flex items-start text-sm text-gray-600 mb-2"
+                          key={i}
+                        >
+                          <div className="w-5 flex-shrink-0 text-main mt-1">
+                            <Icon name={info.icon} size={14} />
                           </div>
-                          <p>{info.title}</p>
+                          <p className="ml-2 text-xs">{info.title}</p>
                         </div>
-                      );
-                    })}
+                      ))}
+                    </div>
                   </div>
+                  <div className="h-10"></div>
+                  <button className="mt-0 absolute bottom-0 left-0  w-full bg-main text-white text-sm font-semibold py-3 px-4 rounded-lg rounded-t-none hover:bg-main-dark transition-all duration-300">
+                    Apply Now
+                  </button>
                 </div>
               </Link>
             );

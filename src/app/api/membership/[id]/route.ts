@@ -17,7 +17,7 @@ export const POST = async (
 ) => {
   revalidatePath(`/api/membership/${params.id}`);
   try {
-    const body: { qna: any } = await req.json();
+    const body: { qna: any; qun: number } = await req.json();
     console.log(body.qna);
 
     const user = await auth();
@@ -52,11 +52,11 @@ export const POST = async (
       await addNewMembershipPayment({
         membership: id,
         user: user?.user.id,
-
-        amount: 10,
         completeOrder: true,
         qna: body.qna,
         status: "pending",
+        amount: 10,
+        qun: body.qna,
         payurl:
           localClient.baseUrl +
           `/donate/thankyou?orderId=${membership.id}&type=membership`,
@@ -73,6 +73,7 @@ export const POST = async (
       amount: 10,
       completeOrder: false,
       qna: body.qna,
+      qun: body.qun,
     });
 
     // 3. create the payment request payload
@@ -81,8 +82,8 @@ export const POST = async (
       mode: "payment",
       products: [
         {
-          name: user.user.name,
-          quantity: 1,
+          name: membership.name,
+          quantity: body.qun,
           unit_amount: membership.amount * 1000,
         },
       ],
@@ -94,7 +95,7 @@ export const POST = async (
         order_id: paymentIntent.id,
         donate: "membership",
         amount: membership.amount,
-        quantity: "1",
+        quantity: body.qun,
       },
     };
 
