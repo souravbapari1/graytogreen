@@ -35,7 +35,7 @@ export const addNewMembershipPayment = async (data: {
   completeOrder: boolean;
   qun: number;
   qna?: any;
-  status?: "pending" | "confirm" | "cancel";
+  status?: "new" | "processing" | "delivred" | "cancelled";
 }) => {
   return await client
     .post("/api/collections/memberships_payments/records")
@@ -54,7 +54,7 @@ export const updateMembershipPayment = async (data: {
     completeOrder?: boolean;
     sessionId?: string;
     stocks?: number;
-    status?: "pending" | "confirm" | "cancel";
+    status?: "new" | "processing" | "delivred" | "cancelled";
     qna?: any;
   };
 }) => {

@@ -54,7 +54,7 @@ export const POST = async (
         user: user?.user.id,
         completeOrder: true,
         qna: body.qna,
-        status: "pending",
+        status: "processing",
         amount: 10,
         qun: body.qna,
         payurl:
