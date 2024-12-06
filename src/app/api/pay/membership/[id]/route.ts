@@ -42,7 +42,7 @@ export async function GET(
         data: {
           completeOrder: true,
           gateway_response: verifyData,
-          status: "processing",
+          status: "new",
         },
       });
 
