@@ -126,6 +126,8 @@ const GQL = gql`
   }
 `;
 
+export const revalidate = 0;
+
 async function page() {
   const { data } = await client.query<ResearchesLabData>({ query: GQL });
 
