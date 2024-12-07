@@ -10,6 +10,7 @@ type UserData = {
   impact: number | undefined;
   id: string | null;
   city: string | null;
+  country: string | null;
 };
 
 export const useMicroActionState = create<{
@@ -27,6 +28,7 @@ export const useMicroActionState = create<{
     code: "+968",
     email: "",
     mobile_no: "",
+    country: "",
     impact: undefined,
     id: null,
     city: null,

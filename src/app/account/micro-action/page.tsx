@@ -4,7 +4,6 @@ import { auth } from "@/auth";
 import { getMicroActions } from "./actions";
 import MicroActionsList from "./MicroActionsList";
 import MicroActionView from "./MicroActionView";
-import ThanksView from "./ThanksView";
 
 export const revalidate = 0;
 async function page() {

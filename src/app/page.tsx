@@ -85,7 +85,7 @@ const HOME_PAGE = gql`
   }
 `;
 
-export const revalidate = 0;
+export const revalidate = 30;
 async function page({ searchParams }: { searchParams?: any }) {
   const { data } = await client.query<HomePages>({
     query: HOME_PAGE,

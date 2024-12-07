@@ -39,7 +39,7 @@ const ACADEMICS = gql`
     }
   }
 `;
-
+export const revalidate = 30;
 async function page({ searchParams }: { searchParams?: any }) {
   const { data } = await client.query<AcademiesAndLabs>({
     query: ACADEMICS,

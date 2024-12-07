@@ -1,14 +1,13 @@
-import React from "react";
+import { Button } from "@/components/ui/button";
 import {
   Dialog,
   DialogContent,
   DialogDescription,
   DialogHeader,
   DialogTitle,
-  DialogTrigger,
 } from "@/components/ui/dialog";
-import { Label } from "@/components/ui/label";
 import { Input } from "@/components/ui/input";
+import { Label } from "@/components/ui/label";
 import {
   Select,
   SelectContent,
@@ -16,15 +15,14 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
-import Link from "next/link";
-import { Button } from "@/components/ui/button";
 import { countryCodes } from "@/data/countryCodes";
-import { useMicroActionState } from "./microActioonState";
-import { createNewImpact } from "./actions";
-import { useSearchParams } from "next/navigation";
 import { extractErrors } from "@/request/actions";
+import Link from "next/link";
+import { useSearchParams } from "next/navigation";
 import toast from "react-hot-toast";
+import { createNewImpact } from "./actions";
 import { MAImpactItem } from "./md";
+import { useMicroActionState } from "./microActioonState";
 
 function UserImpactInfo({
   open,

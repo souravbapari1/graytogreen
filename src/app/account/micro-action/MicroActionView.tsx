@@ -2,16 +2,16 @@
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { UserItem } from "@/interface/user";
+import { useMutation } from "@tanstack/react-query";
 import { Session } from "next-auth";
-import { useEffect, useState } from "react";
-import { TbCopyCheckFilled, TbScreenShare } from "react-icons/tb";
-import { useMicroActionState } from "./microActioonState";
-import UserImpactInfo from "./UserImpactInfo";
-import ThanksView from "./ThanksView";
-import { createNewImpact, getImpactStatus, isMAsubmitToday } from "./actions";
 import { useSearchParams } from "next/navigation";
+import { useEffect, useState } from "react";
 import toast from "react-hot-toast";
-import { useMutation, useQuery } from "@tanstack/react-query";
+import { TbCopyCheckFilled, TbScreenShare } from "react-icons/tb";
+import { createNewImpact, getImpactStatus, isMAsubmitToday } from "./actions";
+import { useMicroActionState } from "./microActioonState";
+import ThanksView from "./ThanksView";
+import UserImpactInfo from "./UserImpactInfo";
 
 function MicroActionView({ session }: { session: Session | null }) {
   const data = useMicroActionState();
@@ -30,6 +30,7 @@ function MicroActionView({ session }: { session: Session | null }) {
       data.setData("email", user.email || "");
       data.setData("mobile_no", user.mobile_no || "");
       data.setData("city", user.city || "");
+      data.setData("country", user.country || "");
       data.setData("id", user.id || null);
     }
   }, [session]);

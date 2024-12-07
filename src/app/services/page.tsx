@@ -28,7 +28,7 @@ const SERVICE_PAGE = gql`
   }
 `;
 
-export const revalidate = 0;
+export const revalidate = 30;
 async function Services({ searchParams }: { searchParams?: any }) {
   const { data } = await client.query<ServicePages>({
     query: SERVICE_PAGE,
