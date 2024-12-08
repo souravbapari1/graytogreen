@@ -55,7 +55,7 @@ export const POST = async (
         completeOrder: true,
         qna: body.qna,
         status: "new",
-        amount: 10,
+        amount: membership.amount,
         qun: body.qna,
         payurl:
           localClient.baseUrl +
@@ -70,7 +70,7 @@ export const POST = async (
     const paymentIntent = await addNewMembershipPayment({
       membership: id,
       user: user?.user.id,
-      amount: 10,
+      amount: membership.amount,
       completeOrder: false,
       qna: body.qna,
       qun: body.qun,
