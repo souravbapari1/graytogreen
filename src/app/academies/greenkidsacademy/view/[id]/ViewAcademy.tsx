@@ -101,7 +101,6 @@ function ViewAcademy({ data }: { data: UpcomingAcademy }) {
             dangerouslySetInnerHTML={{ __html: data.content }}
           />
 
-          <ImageSlides data={data.aboutImages.map((e) => strApi + e.url)} />
           <h1 className="md:text-2xl text-xl font-bold mt-10">
             About the Session
           </h1>
@@ -109,8 +108,8 @@ function ViewAcademy({ data }: { data: UpcomingAcademy }) {
             className="mt-5"
             dangerouslySetInnerHTML={{ __html: data.aboutTheSession }}
           />
+          <ImageSlides data={data.aboutImages.map((e) => strApi + e.url)} />
 
-          <ImageSlides data={data.timeLineImages.map((e) => strApi + e.url)} />
           <h1 className="md:text-2xl text-xl font-bold mt-10">
             Program Timeline
           </h1>
@@ -118,16 +117,17 @@ function ViewAcademy({ data }: { data: UpcomingAcademy }) {
             className="mt-5"
             dangerouslySetInnerHTML={{ __html: data.program_Timeline }}
           />
+          <ImageSlides data={data.timeLineImages.map((e) => strApi + e.url)} />
 
-          <ImageSlides
-            data={data.otherCommentsImages.map((e) => strApi + e.url)}
-          />
           <h1 className="md:text-2xl text-xl font-bold mt-10">
             Other Comments
           </h1>
           <div
             className="mt-5"
             dangerouslySetInnerHTML={{ __html: data.otherComments }}
+          />
+          <ImageSlides
+            data={data.otherCommentsImages.map((e) => strApi + e.url)}
           />
         </div>
       </div>
