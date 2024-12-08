@@ -1,3 +1,4 @@
+import { MembershipPageData } from "@/app/membership/membership";
 import { montserrat } from "@/fonts/font";
 import Image from "next/image";
 import Link from "next/link";
@@ -7,7 +8,7 @@ import { HiOutlineReceiptTax } from "react-icons/hi";
 import { IoGiftOutline } from "react-icons/io5";
 import { MdOutlineMarkEmailRead } from "react-icons/md";
 
-function MembershipPlanDetails() {
+function MembershipPlanDetails({ data }: { data: MembershipPageData }) {
   return (
     <div className="">
       <div className="w-full relative mt-20 lg:h-[650px] h-auto">
@@ -96,15 +97,12 @@ function MembershipPlanDetails() {
             >
               <span className="text-main">Thanks to your support</span>
             </h1>
-            <p className={montserrat.className + "  mt-10 "}>
-              we empower children and young people in over 70 countries to
-              become ambassadors for climate justice, we restore and protect
-              forests around the world, we can operate our free pp.eco platform,
-              through which we support more than 200 restoration projects, and
-              can check their quality standards on site, we can support the work
-              of the restoration projects with free, self-programmed digital
-              tools, and much more.
-            </p>
+            <p
+              className={montserrat.className + "  mt-10 "}
+              dangerouslySetInnerHTML={{
+                __html: data.membershipPage.thankYouComment,
+              }}
+            />
           </div>
         </div>
       </div>
