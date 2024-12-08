@@ -4,6 +4,9 @@ import { LiveAndPopcastItem } from "@/interface/liveandpodcast";
 import { client } from "@/request/actions";
 import React from "react";
 import NoLive from "./NoLive";
+import Link from "next/link";
+import { FaLocationDot } from "react-icons/fa6";
+import { cn } from "@/lib/utils";
 
 export const revalidate = 0;
 async function LiveOrPodCastVideos() {
@@ -28,7 +31,7 @@ async function LiveOrPodCastVideos() {
   return (
     <div>
       {liveNowVideos.items.map((e, i) => {
-        return <NoLive key={e.id + i} id={e.videoId} />;
+        return <NoLive key={e.id + i} id={e.videoId} data={e} />;
       })}
       <div className="bg-green-50/50 h-auto lg:py-10 py-1 pb-28 w-full ">
         <div className="container mt-20">
@@ -55,7 +58,18 @@ async function LiveOrPodCastVideos() {
                   <p className="line-clamp-3 mt-2 text-sm text-gray-700">
                     {e.title}
                   </p>
-                  <p className="font-bold mt-2 text-main">{e.location}</p>
+                  <Link
+                    href={e.location_url}
+                    target="_blank"
+                    className="flex items-center gap-3 mt-2"
+                  >
+                    <FaLocationDot className={cn("text-primary")} />{" "}
+                    <span
+                      className={`text-lg ${montserrat.className} font-bold text-primary`}
+                    >
+                      {e.location}
+                    </span>
+                  </Link>
                 </div>
               );
             })}
@@ -87,7 +101,18 @@ async function LiveOrPodCastVideos() {
                   <p className="line-clamp-3 mt-2 text-sm text-gray-700">
                     {e.title}
                   </p>
-                  <p className="font-bold mt-2 text-main">{e.location}</p>
+                  <Link
+                    href={e.location_url}
+                    target="_blank"
+                    className="flex items-center gap-3 mt-2"
+                  >
+                    <FaLocationDot className={cn("text-primary")} />{" "}
+                    <span
+                      className={`text-lg ${montserrat.className} font-bold text-primary`}
+                    >
+                      {e.location}
+                    </span>
+                  </Link>
                 </div>
               );
             })}
