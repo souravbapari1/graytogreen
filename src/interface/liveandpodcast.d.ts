@@ -8,4 +8,5 @@ export interface LiveAndPopcastItem {
   title: string;
   updated: string;
   videoId: string;
+  category: string;
 }

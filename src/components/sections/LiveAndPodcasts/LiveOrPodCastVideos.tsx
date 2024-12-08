@@ -7,9 +7,16 @@ import NoLive from "./NoLive";
 import Link from "next/link";
 import { FaLocationDot } from "react-icons/fa6";
 import { cn } from "@/lib/utils";
+import ManagePodcastVideos from "./ManagePodcastVideos";
 
-export const revalidate = 0;
-async function LiveOrPodCastVideos() {
+async function LiveOrPodCastVideos({
+  category,
+}: {
+  category: {
+    id: string;
+    name: string;
+  }[];
+}) {
   const liveVideos = await client
     .get("/api/collections/lives/records", {
       perPage: 500,
@@ -83,40 +90,10 @@ async function LiveOrPodCastVideos() {
           >
             Our <span className="text-main">Podcasts</span>
           </h1>
-          <div className="grid lg:grid-cols-3 md:grid-cols-2 grid-cols-1 gap-12 mt-14">
-            {podcastVideos.items.map((e, i) => {
-              return (
-                <div className={montserrat.className}>
-                  <iframe
-                    width="560"
-                    height="315"
-                    src={"https://www.youtube.com/embed/" + e.videoId}
-                    title="YouTube video player"
-                    frameBorder="0"
-                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-                    referrerPolicy="strict-origin-when-cross-origin"
-                    allowFullScreen
-                    className="w-full lg:h-64 bg-gray-50 md:h-56 h-48 rounded object-cover"
-                  ></iframe>
-                  <p className="line-clamp-3 mt-2 text-sm text-gray-700">
-                    {e.title}
-                  </p>
-                  <Link
-                    href={e.location_url}
-                    target="_blank"
-                    className="flex items-center gap-3 mt-2"
-                  >
-                    <FaLocationDot className={cn("text-primary")} />{" "}
-                    <span
-                      className={`text-lg ${montserrat.className} font-bold text-primary`}
-                    >
-                      {e.location}
-                    </span>
-                  </Link>
-                </div>
-              );
-            })}
-          </div>
+          <ManagePodcastVideos
+            category={category}
+            videos={podcastVideos.items}
+          />
         </div>
       </div>
     </div>
