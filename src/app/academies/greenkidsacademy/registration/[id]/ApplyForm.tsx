@@ -2,7 +2,6 @@
 
 import * as React from "react";
 import { Label } from "@/components/ui/label";
-import { UpcomingAcademyData } from "../../view/[id]/academy";
 import { Input } from "@/components/ui/input";
 import {
   Select,
@@ -13,278 +12,365 @@ import {
 } from "@/components/ui/select";
 import { Textarea } from "@/components/ui/textarea";
 import { Button } from "@/components/ui/button";
-import countryData from "@/data/citycountry.json";
-import { useCallback } from "react";
-import { useMutation } from "@tanstack/react-query";
-import { submitAcademicRegistration } from "./actions";
 import toast from "react-hot-toast";
 import { useState } from "react";
-import { CheckCheck } from "lucide-react";
-import Link from "next/link";
+import { UpcomingAcademy } from "../../GreenKidsAcademys";
+import { submitAcademicRegistration } from "./actions";
+import { useRouter } from "next/navigation";
 
-function ApplyForm({
-  data,
-}: {
-  data: UpcomingAcademyData["upcomingAcademie"];
-}) {
-  const [submitted, setSubmitted] = useState(false);
-  const [name, setName] = React.useState("");
-  const [email, setEmail] = React.useState("");
-  const [phone, setPhone] = React.useState("");
-  const [age, setAge] = React.useState("");
-  const [gender, setGender] = React.useState("");
-  const [size, setSize] = React.useState("");
+// Define types for Participant and Parent
+interface Participant {
+  firstName: string;
+  lastName: string;
+  gender: string;
+  dob: string;
+  email: string;
+  school: string;
+  grade: string;
+  tshirtSize: string;
+}
 
-  const [country, setCountry] = React.useState("");
-  const [city, setCity] = React.useState("");
+interface ParentDetails {
+  title: string;
+  firstName: string;
+  lastName: string;
+  address: string;
+  email: string;
+  phone: string;
+}
 
-  const [note, setNote] = React.useState("");
-  const [errors, setErrors] = React.useState({
-    name: "",
+function ApplyForm({ data }: { data: UpcomingAcademy }) {
+  const [loading, setLoading] = useState(false);
+  const router = useRouter();
+  const [participants, setParticipants] = useState<Participant[]>([
+    {
+      firstName: "",
+      lastName: "",
+      gender: "",
+      dob: "",
+      email: "",
+      school: "",
+      grade: "",
+      tshirtSize: "",
+    },
+  ]);
+
+  const [parent, setParent] = useState<ParentDetails>({
+    title: "",
+    firstName: "",
+    lastName: "",
+    address: "",
     email: "",
     phone: "",
-    age: "",
-    gender: "",
-    size: "",
-    note: "",
-    country: "",
-    city: "",
   });
 
-  const handleSubmit = () => {
-    const errors: any = {};
-    if (!name) {
-      errors.name = "Name is required";
-    }
-    if (!email) {
-      errors.email = "Email is required";
-    }
-    if (!phone) {
-      errors.phone = "Phone is required";
-    }
-    if (!age) {
-      errors.age = "Age is required";
-    }
-    if (!gender) {
-      errors.gender = "Gender is required";
-    }
-    if (!size) {
-      errors.size = "Size is required";
-    }
-    if (!country) {
-      errors.country = "Country is required";
-    }
-    if (!city) {
-      errors.city = "City is required";
+  const [message, setMessage] = useState<string>("");
+  const [participantQuestion, setParticipantQuestion] = useState<string>("");
+
+  const handleParticipantChange = (
+    index: number,
+    field: keyof Participant,
+    value: string
+  ) => {
+    const updatedParticipants = [...participants];
+    updatedParticipants[index][field] = value;
+    setParticipants(updatedParticipants);
+  };
+
+  const handleParentChange = (field: keyof ParentDetails, value: string) => {
+    setParent({ ...parent, [field]: value });
+  };
+
+  const validateFields = () => {
+    let isValid = true;
+    toast.dismiss();
+    participants.forEach((participant, index) => {
+      for (const [key, value] of Object.entries(participant)) {
+        if (!value && key !== "email") {
+          isValid = false;
+          toast.error(`Participant ${index + 1} is missing ${key}.`);
+          return false;
+        }
+      }
+    });
+
+    for (const [key, value] of Object.entries(parent)) {
+      if (!value) {
+        isValid = false;
+        toast.error(`Parent is missing ${key}.`);
+        return false;
+      }
     }
 
-    setErrors(errors);
-    if (Object.keys(errors).length === 0) {
-      mutate.mutate();
+    if (!message) {
+      isValid = false;
+      toast.error("Message is required.");
+      return false;
+    }
+
+    if (!participantQuestion) {
+      isValid = false;
+      toast.error("Participant contact question is required.");
+      return false;
+    }
+
+    return isValid;
+  };
+
+  const addParticipant = () => {
+    setParticipants([
+      ...participants,
+      {
+        firstName: "",
+        lastName: "",
+        gender: "",
+        dob: "",
+        email: "",
+        school: "",
+        grade: "",
+        tshirtSize: "",
+      },
+    ]);
+  };
+
+  const removeParticipant = (index: number) => {
+    const updatedParticipants = participants.filter((_, i) => i !== index);
+    setParticipants(updatedParticipants);
+  };
+
+  const handleSubmit = async () => {
+    if (!validateFields()) return;
+
+    const applicationData = {
+      participants,
+      parent,
+      message,
+      participantQuestion,
+    };
+
+    try {
+      setLoading(true);
+      await submitAcademicRegistration({
+        academic: JSON.stringify(data),
+        applicationData: JSON.stringify(applicationData),
+      });
+      // Simulate submission
+      console.log("Submitting application data:", applicationData);
+      toast.success("Application submitted successfully!");
+      router.replace("/academies/greenkidsacademy/registration/thankyou");
+    } catch (error) {
+      setLoading(false);
+      toast.error("Failed to submit application.");
     }
   };
 
-  const getCountryCities = useCallback(() => {
-    const cData = countryData.data.find((item) => item.country === country);
-    return cData ? cData.cities : [];
-  }, [country]);
-
-  const mutate = useMutation({
-    mutationKey: ["apply"],
-    mutationFn: async () => {
-      return await submitAcademicRegistration({
-        academic: JSON.stringify(data),
-        applicationData: JSON.stringify({
-          name,
-          email,
-          phone,
-          age,
-          gender,
-          size,
-          country,
-          city,
-          note,
-        }),
-      });
-    },
-    onSuccess: () => {
-      toast.success("Application submitted successfully");
-      setSubmitted(true);
-    },
-    onError: () => {
-      toast.error("Application submission failed");
-    },
-  });
-
-  if (submitted) {
-    return (
-      <div className="flex flex-col gap-10 mt-10 justify-center items-center ">
-        <div className="text-primary bg-primary/5 w-32 h-32 rounded-full flex justify-center items-center">
-          <CheckCheck size={60} />
-        </div>
-        <h1 className="text-xl font-normal text-center">
-          Application submitted successfully
-        </h1>
-        <Link href="/">
-          <Button className="shadow-none mb-10">Back To Home</Button>
-        </Link>
-      </div>
-    );
-  }
-
   return (
-    <div className="flex flex-col gap-4">
-      <div>
-        <Label htmlFor="name">Name</Label>
-        <Input
-          id="name"
-          value={name}
-          onChange={(e) => setName(e.target.value)}
-          placeholder="Your Name"
-          className="py-5 mt-1 shadow-none"
-        />
-        {errors.name && (
-          <p className="text-red-600 text-xs mt-1 ml-2">{errors.name}</p>
-        )}
+    <div className="flex flex-col gap-6">
+      <h2 className="text-xl font-semibold">Application Form</h2>
+
+      {/* Participants */}
+      <div className="flex flex-col gap-4">
+        <h3 className="text-lg font-medium">Participants</h3>
+        {participants.map((participant, index) => (
+          <div
+            key={index}
+            className="p-4 border rounded-md flex flex-col gap-4"
+          >
+            <div className="grid md:grid-cols-2 gap-4">
+              <div>
+                <Label>First Name</Label>
+                <Input
+                  value={participant.firstName}
+                  onChange={(e) =>
+                    handleParticipantChange(index, "firstName", e.target.value)
+                  }
+                  placeholder="First Name"
+                  className="py-2"
+                />
+              </div>
+              <div>
+                <Label>Last Name</Label>
+                <Input
+                  value={participant.lastName}
+                  onChange={(e) =>
+                    handleParticipantChange(index, "lastName", e.target.value)
+                  }
+                  placeholder="Last Name"
+                  className="py-2"
+                />
+              </div>
+            </div>
+            <div className="grid md:grid-cols-3 gap-4">
+              <div>
+                <Label>Gender</Label>
+                <Select
+                  value={participant.gender}
+                  onValueChange={(value) =>
+                    handleParticipantChange(index, "gender", value)
+                  }
+                >
+                  <SelectTrigger className="py-2">
+                    <SelectValue placeholder="Select Gender" />
+                  </SelectTrigger>
+                  <SelectContent>
+                    <SelectItem value="male">Male</SelectItem>
+                    <SelectItem value="female">Female</SelectItem>
+                  </SelectContent>
+                </Select>
+              </div>
+              <div>
+                <Label>Date of Birth</Label>
+                <Input
+                  type="date"
+                  value={participant.dob}
+                  onChange={(e) =>
+                    handleParticipantChange(index, "dob", e.target.value)
+                  }
+                  className="py-2"
+                />
+              </div>
+
+              <div>
+                <Label>T-shirt Size</Label>
+                <Select
+                  value={participant.tshirtSize}
+                  onValueChange={(value) =>
+                    handleParticipantChange(index, "tshirtSize", value)
+                  }
+                >
+                  <SelectTrigger className="py-2">
+                    <SelectValue placeholder="Select Size" />
+                  </SelectTrigger>
+                  <SelectContent>
+                    <SelectItem value="xs">XS</SelectItem>
+                    <SelectItem value="sm">SM</SelectItem>
+                    <SelectItem value="md">MD</SelectItem>
+                    <SelectItem value="lg">LG</SelectItem>
+                    <SelectItem value="xl">XL</SelectItem>
+                  </SelectContent>
+                </Select>
+              </div>
+            </div>
+            <div className="grid md:grid-cols-2 w-full gap-4">
+              <div className="">
+                <Label>School Name</Label>
+                <Input
+                  type="test"
+                  value={participant.school}
+                  onChange={(e) =>
+                    handleParticipantChange(index, "school", e.target.value)
+                  }
+                  className="py-2"
+                />
+              </div>
+              <div className="">
+                <Label>Grade</Label>
+                <Input
+                  type="text"
+                  value={participant.grade}
+                  onChange={(e) =>
+                    handleParticipantChange(index, "grade", e.target.value)
+                  }
+                  className="py-2"
+                />
+              </div>
+            </div>
+
+            <Button
+              variant="destructive"
+              onClick={() => removeParticipant(index)}
+              disabled={participants.length === 1}
+              className="py-2"
+            >
+              Remove Participant
+            </Button>
+          </div>
+        ))}
+        <Button onClick={addParticipant} className="py-2">
+          Add Participant
+        </Button>
       </div>
 
-      <div>
-        <Label htmlFor="email">Email</Label>
-        <Input
-          id="email"
-          value={email}
-          onChange={(e) => setEmail(e.target.value)}
-          placeholder="Your Email"
-          className="py-5 mt-1 shadow-none"
-        />
-        {errors.email && (
-          <p className="text-red-600 text-xs mt-1 ml-2">{errors.email}</p>
-        )}
-      </div>
-
-      <div>
-        <Label htmlFor="phone">Phone</Label>
-        <Input
-          id="phone"
-          value={phone}
-          onChange={(e) => setPhone(e.target.value)}
-          placeholder="Your Phone"
-          className="py-5 mt-1 shadow-none"
-        />
-        {errors.phone && (
-          <p className="text-red-600 text-xs mt-1 ml-2">{errors.phone}</p>
-        )}
-      </div>
-
-      <div>
-        <Label htmlFor="age">Age</Label>
-        <Input
-          id="age"
-          value={age}
-          onChange={(e) => setAge(e.target.value)}
-          placeholder="Your Age"
-          className="py-5 mt-1 shadow-none"
-        />
-        {errors.age && (
-          <p className="text-red-600 text-xs mt-1 ml-2">{errors.age}</p>
-        )}
-      </div>
-
-      <div className="grid md:grid-cols-2 gap-5">
-        <div>
-          <Label htmlFor="gender">Gender</Label>
-          <Select value={gender} onValueChange={(e) => setGender(e)}>
-            <SelectTrigger className="w-full p-5 shadow-none font-semibold">
-              <SelectValue placeholder="Select Gender" />
-            </SelectTrigger>
-            <SelectContent>
-              <SelectItem value="male">Male</SelectItem>
-              <SelectItem value="female">Female</SelectItem>
-            </SelectContent>
-          </Select>
-          {errors.gender && (
-            <p className="text-red-600 text-xs mt-1 ml-2">{errors.gender}</p>
-          )}
+      {/* Parent Details */}
+      <div className="flex flex-col gap-4">
+        <h3 className="text-lg font-medium">Parent Details</h3>
+        <div className="grid md:grid-cols-2 gap-4">
+          <div>
+            <Label>Title</Label>
+            <Input
+              value={parent.title}
+              onChange={(e) => handleParentChange("title", e.target.value)}
+              placeholder="Title (Mr., Mrs., etc.)"
+              className="py-2"
+            />
+          </div>
+          <div>
+            <Label>First Name</Label>
+            <Input
+              value={parent.firstName}
+              onChange={(e) => handleParentChange("firstName", e.target.value)}
+              placeholder="First Name"
+              className="py-2"
+            />
+          </div>
+          <div>
+            <Label>Last Name</Label>
+            <Input
+              value={parent.lastName}
+              onChange={(e) => handleParentChange("lastName", e.target.value)}
+              placeholder="Last Name"
+              className="py-2"
+            />
+          </div>
+          <div>
+            <Label>Email</Label>
+            <Input
+              value={parent.email}
+              onChange={(e) => handleParentChange("email", e.target.value)}
+              placeholder="Email"
+              className="py-2"
+            />
+          </div>
+          <div>
+            <Label>Phone</Label>
+            <Input
+              value={parent.phone}
+              onChange={(e) => handleParentChange("phone", e.target.value)}
+              placeholder="Phone Number"
+              className="py-2"
+            />
+          </div>
         </div>
 
-        <div>
-          <Label htmlFor="size">T-shirt Size</Label>
-          <Select value={size} onValueChange={(e) => setSize(e)}>
-            <SelectTrigger className="w-full p-5 shadow-none font-semibold">
-              <SelectValue placeholder="Select Size" />
-            </SelectTrigger>
-            <SelectContent>
-              <SelectItem value="xs">XS</SelectItem>
-              <SelectItem value="sm">SM</SelectItem>
-              <SelectItem value="md">MD</SelectItem>
-              <SelectItem value="lg">LG</SelectItem>
-              <SelectItem value="xl">XL</SelectItem>
-              <SelectItem value="xxl">XXL</SelectItem>
-              <SelectItem value="xxxl">XXXL</SelectItem>
-            </SelectContent>
-          </Select>
-          {errors.size && (
-            <p className="text-red-600 text-xs mt-1 ml-2">{errors.size}</p>
-          )}
-        </div>
-      </div>
-
-      <div className="grid md:grid-cols-2 gap-5">
-        <div>
-          <Label htmlFor="country">Country</Label>
-          <Select value={country} onValueChange={(e) => setCountry(e)}>
-            <SelectTrigger className="w-full p-5 shadow-none font-semibold">
-              <SelectValue placeholder="Select Country" />
-            </SelectTrigger>
-            <SelectContent>
-              {countryData.data.map((item) => (
-                <SelectItem key={item.country} value={item.country}>
-                  {item.country}
-                </SelectItem>
-              ))}
-            </SelectContent>
-          </Select>
-          {errors.country && (
-            <p className="text-red-600 text-xs mt-1 ml-2">{errors.country}</p>
-          )}
-        </div>
-
-        <div>
-          <Label htmlFor="city">City</Label>
-          <Select value={city} onValueChange={(e) => setCity(e)}>
-            <SelectTrigger className="w-full p-5 shadow-none font-semibold">
-              <SelectValue placeholder="Select City" />
-            </SelectTrigger>
-            <SelectContent>
-              {getCountryCities().map((item) => (
-                <SelectItem key={item} value={item}>
-                  {item}
-                </SelectItem>
-              ))}
-            </SelectContent>
-          </Select>
-          {errors.city && (
-            <p className="text-red-600 text-xs mt-1 ml-2">{errors.city}</p>
-          )}
-        </div>
-      </div>
-
-      <div>
-        <Label htmlFor="note">Note</Label>
+        <Label>Address</Label>
         <Textarea
-          id="note"
-          value={note}
-          onChange={(e) => setNote(e.target.value)}
-          placeholder="Add a note (optional)"
-          className="shadow-none"
+          value={parent.address}
+          onChange={(e) => handleParentChange("address", e.target.value)}
+          placeholder="Full Address"
         />
       </div>
 
-      <Button
-        className="p-6 mt-6 shadow-none"
-        onClick={handleSubmit}
-        disabled={mutate.isPending}
-      >
+      {/* Other Details */}
+      <div>
+        <Label>Message</Label>
+        <Textarea
+          value={message}
+          onChange={(e) => setMessage(e.target.value)}
+          placeholder="Any additional message"
+        />
+      </div>
+
+      <div>
+        <Label>Participant Contact Question</Label>
+        <Textarea
+          value={participantQuestion}
+          onChange={(e) => setParticipantQuestion(e.target.value)}
+          placeholder="Contact Question for Participants"
+        />
+      </div>
+
+      {/* Submit Button */}
+      <Button onClick={handleSubmit} disabled={loading} className="py-3">
         Submit Application
       </Button>
     </div>

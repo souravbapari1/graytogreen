@@ -74,6 +74,8 @@ function ViewAcademy({ data }: { data: UpcomingAcademy }) {
                 {data.Flyer.map((e, i) => {
                   return (
                     <Link
+                      target="_blank"
+                      key={i + e.url}
                       className="text-xs text-primary"
                       href={strApi + e.url}
                     >
@@ -144,7 +146,7 @@ function ImageSlides({ data }: { data: string[] }) {
         <CarouselContent>
           {data.map((e, i) => {
             return (
-              <CarouselItem key={e}>
+              <CarouselItem key={e + i}>
                 <Image
                   alt=""
                   src={e}

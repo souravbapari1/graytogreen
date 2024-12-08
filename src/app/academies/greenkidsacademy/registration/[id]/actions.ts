@@ -24,7 +24,10 @@ export const submitAcademicRegistration = async (formData: {
   if (res) {
     const response = await client
       .post("/api/collections/academics_requests/records")
-      .json(formData)
+      .json({
+        ...formData,
+        status: "pending",
+      })
       .send<AcademicRegistrationItem>();
     return response;
   }
