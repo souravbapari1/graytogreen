@@ -22,13 +22,28 @@ export interface UpcomingAcademy {
   startDate: string;
   time: string;
   title: string;
-  otherComments: any;
-  program_Timeline: any;
+  otherComments: string;
+  program_Timeline: string;
   content: string;
-  aboutTheSession: any;
+  aboutTheSession: string;
   Flyer: Flyer[];
+  aboutImages: AboutImage[];
+  otherCommentsImages: OtherCommentsImage[];
+  timeLineImages: TimeLineImage[];
 }
 
 export interface Flyer {
+  url: string;
+}
+
+export interface AboutImage {
+  url: string;
+}
+
+export interface OtherCommentsImage {
+  url: string;
+}
+
+export interface TimeLineImage {
   url: string;
 }

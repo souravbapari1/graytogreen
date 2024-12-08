@@ -6,6 +6,13 @@ import { UpcomingAcademy } from "./academy";
 import { strApi } from "@/graphql/client";
 import { FaTable } from "react-icons/fa";
 import { Button } from "@/components/ui/button";
+import {
+  Carousel,
+  CarouselContent,
+  CarouselItem,
+  CarouselNext,
+  CarouselPrevious,
+} from "@/components/ui/carousel";
 
 function ViewAcademy({ data }: { data: UpcomingAcademy }) {
   return (
@@ -89,10 +96,38 @@ function ViewAcademy({ data }: { data: UpcomingAcademy }) {
 
           <br />
           <br />
-
           <div
             className=""
             dangerouslySetInnerHTML={{ __html: data.content }}
+          />
+
+          <ImageSlides data={data.aboutImages.map((e) => strApi + e.url)} />
+          <h1 className="md:text-2xl text-xl font-bold mt-10">
+            About the Session
+          </h1>
+          <div
+            className="mt-5"
+            dangerouslySetInnerHTML={{ __html: data.aboutTheSession }}
+          />
+
+          <ImageSlides data={data.timeLineImages.map((e) => strApi + e.url)} />
+          <h1 className="md:text-2xl text-xl font-bold mt-10">
+            Program Timeline
+          </h1>
+          <div
+            className="mt-5"
+            dangerouslySetInnerHTML={{ __html: data.program_Timeline }}
+          />
+
+          <ImageSlides
+            data={data.otherCommentsImages.map((e) => strApi + e.url)}
+          />
+          <h1 className="md:text-2xl text-xl font-bold mt-10">
+            Other Comments
+          </h1>
+          <div
+            className="mt-5"
+            dangerouslySetInnerHTML={{ __html: data.otherComments }}
           />
         </div>
       </div>
@@ -101,3 +136,29 @@ function ViewAcademy({ data }: { data: UpcomingAcademy }) {
 }
 
 export default ViewAcademy;
+
+function ImageSlides({ data }: { data: string[] }) {
+  return (
+    <div className="lg:px-0 px-12 mt-10">
+      <Carousel>
+        <CarouselContent>
+          {data.map((e, i) => {
+            return (
+              <CarouselItem key={e}>
+                <Image
+                  alt=""
+                  src={e}
+                  width={1200}
+                  height={1200}
+                  className="w-full md:h-96 h-56 object-cover"
+                />
+              </CarouselItem>
+            );
+          })}
+        </CarouselContent>
+        <CarouselPrevious />
+        <CarouselNext />
+      </Carousel>
+    </div>
+  );
+}

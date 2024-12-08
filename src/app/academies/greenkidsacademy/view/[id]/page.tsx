@@ -38,6 +38,15 @@ const GQL = gql`
       Flyer {
         url
       }
+      aboutImages {
+        url
+      }
+      otherCommentsImages {
+        url
+      }
+      timeLineImages {
+        url
+      }
     }
   }
 `;
