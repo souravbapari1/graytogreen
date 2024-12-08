@@ -6,6 +6,7 @@ import { getMicroActions } from "../account/micro-action/actions";
 import MicroActionView from "../account/micro-action/MicroActionView";
 import MicroActionsList from "../account/micro-action/MicroActionsList";
 import { auth } from "@/auth";
+import MicroAbout from "../account/micro-action/MicroAbout";
 
 export const revalidate = 0;
 export const metadata = {
@@ -22,6 +23,7 @@ async function page() {
       <div className="container mt-10">
         <MicroActionView session={user} />
         <MicroActionsList data={data.items} />
+        <MicroAbout />
       </div>
       <FooterTop />
       <Footer />
