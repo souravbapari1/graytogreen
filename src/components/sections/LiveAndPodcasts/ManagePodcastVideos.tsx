@@ -68,18 +68,14 @@ function ManagePodcastVideos({
                 <p className="line-clamp-3 mt-2 text-sm text-gray-700">
                   {e.title}
                 </p>
-                <Link
-                  href={e.location_url}
-                  target="_blank"
-                  className="flex items-center gap-3 mt-2"
-                >
+                <p className="flex items-center gap-3 mt-2">
                   <FaLocationDot className={cn("text-primary")} />{" "}
                   <span
                     className={`text-lg ${montserrat.className} font-bold text-primary`}
                   >
                     {e.location}
                   </span>
-                </Link>
+                </p>
               </div>
             );
           })}
@@ -104,18 +100,14 @@ function ManagePodcastVideos({
                   <p className="line-clamp-3 mt-2 text-sm text-gray-700">
                     {e.title}
                   </p>
-                  <Link
-                    href={e.location_url}
-                    target="_blank"
-                    className="flex items-center gap-3 mt-2"
-                  >
+                  <p className="flex items-center gap-3 mt-2">
                     <FaLocationDot className={cn("text-primary")} />{" "}
                     <span
                       className={`text-lg ${montserrat.className} font-bold text-primary`}
                     >
                       {e.location}
                     </span>
-                  </Link>
+                  </p>
                 </div>
               );
             })}
