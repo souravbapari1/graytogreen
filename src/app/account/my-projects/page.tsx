@@ -1,11 +1,14 @@
 import React from "react";
 import WorkSpace from "../components/workspace";
 import MyProjectsList from "./MyProjects";
+import { auth } from "@/auth";
 
-function MyProjects() {
+export const revalidate = 0;
+async function MyProjects() {
+  const user = await auth();
   return (
     <WorkSpace>
-      <MyProjectsList />
+      <MyProjectsList id={user?.user.id || ""} />
     </WorkSpace>
   );
 }

@@ -43,6 +43,9 @@ export interface MemberShipPayment {
   updated: string;
   user: string;
   status: "pending" | "confirm" | "cancel";
+  expand?: {
+    membership: MembershipItem;
+  };
 }
 
 export interface GatewayResponse {

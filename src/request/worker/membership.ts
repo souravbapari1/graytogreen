@@ -59,7 +59,9 @@ export const updateMembershipPayment = async (data: {
   };
 }) => {
   return await client
-    .patch("/api/collections/memberships_payments/records/" + data.id)
+    .patch("/api/collections/memberships_payments/records/" + data.id, {
+      expand: "membership",
+    })
     .json(data.data)
     .send<MemberShipPayment>();
 };

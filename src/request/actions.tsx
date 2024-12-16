@@ -10,7 +10,7 @@ export const paymentClient = new NextClient(process.env.PAY_URL, {
   headers: {
     "Content-Type": "application/json",
     "thawani-api-key": process.env.PRIVATE_KEY,
-  },
+  } as any,
 });
 
 export function AdminAuthToken() {

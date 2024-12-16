@@ -3,6 +3,7 @@ import { revalidatePath } from "next/cache";
 import { NextResponse } from "next/server";
 import { PaymentData } from "./payment";
 import { PaymentVerifyData } from "./pymentVerify";
+import { addTransition } from "@/request/worker/users";
 
 export const revalidate = 0;
 export async function GET(
@@ -13,7 +14,9 @@ export async function GET(
   try {
     // 1. get the payment intent
     const paymentIntent = await client
-      .get(`/api/collections/payments/records/${params.id}`)
+      .get(`/api/collections/payments/records/${params.id}`, {
+        expand: "project",
+      })
       .send<PaymentData>();
 
     // 2. verify the payment session
@@ -88,7 +91,13 @@ export async function GET(
           })
           .send();
       }
-
+      await addTransition({
+        user: paymentIntent.user,
+        amount: paymentIntent.amount,
+        actionBy: paymentIntent.user,
+        type: "DONATE",
+        reason: "Donation " + paymentIntent.expand?.project.name,
+      });
       // 8. redirect to the thank you page
       return NextResponse.redirect(
         new URL(

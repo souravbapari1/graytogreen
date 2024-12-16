@@ -25,12 +25,24 @@ import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { genPbFiles } from "@/request/actions";
 
-function MyProjectsList() {
+function MyProjectsList({ id }: { id: string }) {
   const [filter, setFilter] = useState("all");
   const [page, setPage] = useState(1);
+  const filterQuery = () => {
+    const conditions: string[] = [];
+    if (filter === "all") {
+      // No condition needed for "all"
+    } else if (filter === "tree") {
+      conditions.push("project_prefix='tree'");
+    } else if (filter === "others") {
+      conditions.push("project_prefix!='tree'");
+    }
+    conditions.push(`operated_by~'${id}'`);
+    return conditions.length > 0 ? `(${conditions.join(" && ")})` : "";
+  };
   const { data, isLoading } = useQuery({
     queryKey: ["MY_PROPJECTS", page, filter],
-    queryFn: () => getMyProjects(page, filter),
+    queryFn: () => getMyProjects(page, filterQuery()),
   });
 
   return (

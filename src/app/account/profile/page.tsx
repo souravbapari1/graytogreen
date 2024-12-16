@@ -1,12 +1,8 @@
-import React from "react";
-import WorkSpace from "../components/workspace";
-import ManagePorfile from "./ManagePorfile";
-import { client } from "@/request/actions";
-import { getUser } from "@/request/worker/auth";
 import { auth } from "@/auth";
+import { getUser } from "@/request/worker/auth";
+import WorkSpace from "../components/workspace";
 import CompanyProfile from "./CompanyProfile";
-import { UserItem } from "@/interface/user";
-import { Session } from "next-auth";
+import ManagePorfile from "./ManagePorfile";
 
 export const metadata = {
   title: "Profile",

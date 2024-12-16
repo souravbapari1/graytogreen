@@ -29,6 +29,10 @@ interface ProfileState {
     heardFrom: string;
     reasons: any[];
     location: string;
+    companyType: string;
+    annualBudget: string;
+    categoriesConsider: string;
+    othersComment: string;
   };
   setCompanyProfileState: (
     key: keyof ProfileState["state"],
@@ -65,6 +69,10 @@ export const useCompanyProfileState = create<ProfileState>((setState) => ({
     heardFrom: "",
     reasons: [],
     location: "",
+    companyType: "",
+    annualBudget: "",
+    categoriesConsider: "",
+    othersComment: "",
   },
   setCompanyProfileState: (key: keyof ProfileState["state"], value: any) => {
     return setState((state) => ({
@@ -103,6 +111,10 @@ export const useCompanyProfileState = create<ProfileState>((setState) => ({
         mr_ms: company.mr_ms,
         address: company.address,
         location: company.map_location,
+        companyType: company.companyType || "",
+        annualBudget: company.summery?.annualBudget || "",
+        categoriesConsider: company.summery?.categoriesConsider || "",
+        othersComment: company.summery?.othersComment || "",
       },
     }));
   },

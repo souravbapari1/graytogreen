@@ -1,5 +1,7 @@
 "use client";
 import { selectIndustryItems } from "@/app/auth/signup/CompanyForm";
+import SelectCity from "@/components/countryPicker/SelectCity";
+import SelectCountry from "@/components/countryPicker/SelectCountry";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -13,14 +15,13 @@ import {
   SelectValue,
 } from "@/components/ui/select";
 import { Textarea } from "@/components/ui/textarea";
-import { data } from "@/data/citycountry.json";
 import { Company, UserItem } from "@/interface/user";
 import { client, genPbFiles } from "@/request/actions";
 import { Session } from "next-auth";
-import { useEffect, useState } from "react";
-import { useCompanyProfileState } from "./companyProfileState";
-import toast from "react-hot-toast";
 import { useSession } from "next-auth/react";
+import { useEffect, useState } from "react";
+import toast from "react-hot-toast";
+import { useCompanyProfileState } from "./companyProfileState";
 function CompanyProfile({
   user,
   session,
@@ -37,11 +38,11 @@ function CompanyProfile({
   }, [user]);
 
   useEffect(() => {
-    const countryData = data.find(
-      (item) => item.country === state.state.country
-    );
-    // console.log("rebuild");
-    setCityList(countryData ? countryData.cities : []);
+    // const countryData = data.find(
+    //   (item) => item.country === state.state.country
+    // );
+    // // console.log("rebuild");
+    // setCityList(countryData ? countryData.cities : []);
   }, [state.state.country]);
 
   const onSave = async () => {
@@ -88,6 +89,12 @@ function CompanyProfile({
           resonses: JSON.stringify(state.state.reasons),
           map_location: state.state.location,
           address: state.state.address,
+          companyType: state.state.companyType,
+          summery: JSON.stringify({
+            annualBudget: state.state.annualBudget,
+            categoriesConsider: state.state.categoriesConsider,
+            othersComment: state.state.othersComment,
+          }),
         });
 
       const res = await Promise.all([
@@ -198,8 +205,20 @@ function CompanyProfile({
         </div>
         <div className="w-full">
           <Label>Country</Label>
-
-          <Select
+          {/* <SelectCountry
+            className="w-full p-6 mt-2 shadow-none"
+            props={{
+              value: state.state.country,
+            }}
+            select={{
+              defaultValue: state.state.country,
+              onChange: (e) => {
+                alert(e);
+                state.setCompanyProfileState("country", e);
+              },
+            }}
+          /> */}
+          {/* <Select
             name="country"
             value={state.state.country}
             onValueChange={(v) => {
@@ -219,13 +238,25 @@ function CompanyProfile({
                 </SelectItem>
               ))}
             </SelectContent>
-          </Select>
+          </Select> */}
         </div>
 
         <div className="w-full">
           <Label>City</Label>
-
-          <Select
+          {/* <SelectCity
+            props={{
+              value: state.state.city,
+            }}
+            select={{
+              defaultValue: state.state.city,
+              onChange: (e) => {
+                state.setCompanyProfileState("city", e);
+              },
+            }}
+            country={state.state.country}
+            className="w-full p-6 mt-2 shadow-none"
+          /> */}
+          {/* <Select
             name="city"
             value={state.state.city}
             onValueChange={(e) => {
@@ -242,7 +273,7 @@ function CompanyProfile({
                 </SelectItem>
               ))}
             </SelectContent>
-          </Select>
+          </Select> */}
         </div>
 
         <div className="w-full">
@@ -256,7 +287,34 @@ function CompanyProfile({
             }}
           >
             <SelectTrigger className="w-full p-6 mt-2 shadow-none">
-              <SelectValue placeholder="country" />
+              <SelectValue placeholder="company size" />
+            </SelectTrigger>
+            <SelectContent>
+              <SelectItem value="Start up Company">Start up Company</SelectItem>
+              <SelectItem value="Small Facility (1-49 Employees)">
+                Small Facility (1-49 Employees)
+              </SelectItem>
+              <SelectItem value="Medium Facility (50-249 Employees)">
+                Medium Facility (50-249 Employees)
+              </SelectItem>
+              <SelectItem value="Large Facility (250 Employees and More)">
+                Large Facility (250 Employees and More)
+              </SelectItem>
+            </SelectContent>
+          </Select>
+        </div>
+        <div className="w-full">
+          <Label>Org./Company Type *</Label>
+
+          <Select
+            name="company_size"
+            value={state.state.companyType}
+            onValueChange={(v) => {
+              state.setCompanyProfileState("companyType", v);
+            }}
+          >
+            <SelectTrigger className="w-full p-6 mt-2 shadow-none">
+              <SelectValue placeholder="company type" />
             </SelectTrigger>
             <SelectContent>
               <SelectItem value="Start up Company">Start up Company</SelectItem>
@@ -475,17 +533,62 @@ function CompanyProfile({
           />
         </div>
 
-        <div className="lg:col-span-4">
-          <Label>From where you heard about us *</Label>
-          <Textarea
-            value={state.state.breef}
-            onChange={(e) => {
-              state.setCompanyProfileState("breef", e.target.value);
-            }}
-            name="description"
-            placeholder="Description"
-            className="shadow-none h-36 mt-2"
-          />
+        <div className="lg:col-span-4 grid md:grid-cols-2 gap-5  ">
+          <div className="">
+            <Label>From where you heard about us *</Label>
+            <Textarea
+              value={state.state.breef}
+              onChange={(e) => {
+                state.setCompanyProfileState("breef", e.target.value);
+              }}
+              name="description"
+              className="shadow-none h-36 mt-2"
+            />
+          </div>
+
+          <div className="">
+            <Label>
+              Your Annual Bduget to acheive your Environmental and Social Goals
+              / Marketing (OMR)
+            </Label>
+            <Textarea
+              value={state.state.annualBudget}
+              onChange={(e) => {
+                state.setCompanyProfileState("annualBudget", e.target.value);
+              }}
+              name="description"
+              className="shadow-none h-36 mt-2"
+            />
+          </div>
+
+          <div className="">
+            <Label>
+              What are the most categories you are looking to consider ?
+            </Label>
+            <Textarea
+              value={state.state.categoriesConsider}
+              onChange={(e) => {
+                state.setCompanyProfileState(
+                  "categoriesConsider",
+                  e.target.value
+                );
+              }}
+              name="description"
+              className="shadow-none h-36 mt-2"
+            />
+          </div>
+
+          <div className="">
+            <Label>Other Comments</Label>
+            <Textarea
+              value={state.state.othersComment}
+              onChange={(e) => {
+                state.setCompanyProfileState("othersComment", e.target.value);
+              }}
+              name="description"
+              className="shadow-none h-36 mt-2"
+            />
+          </div>
         </div>
       </div>
       <br />

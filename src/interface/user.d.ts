@@ -32,6 +32,7 @@ export interface UserItem {
   targetTrees: string;
   targetPlastic: string;
   mamberships: string[];
+isBlocked?:boolean
 }
 
 export interface Expand {
@@ -50,6 +51,7 @@ export interface Company {
   country: string;
   created: string;
   id: string;
+  
   mr_ms: string;
   position: string;
   resonses: string[];
@@ -59,4 +61,11 @@ export interface Company {
   address: string;
   map_location: string;
   approved_status: "pending" | "approved" | "rejected";
+  companyType?: string;
+  summery?: {
+    annualBudget?: string;
+    categoriesConsider?: string;
+
+    othersComment?: string;
+  };
 }

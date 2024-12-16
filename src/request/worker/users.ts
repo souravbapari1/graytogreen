@@ -44,3 +44,21 @@ export const setUserMembership = async (
     } as any);
   return req;
 };
+
+export const addTransition = async (data: {
+  reason: string;
+  amount: number;
+  user: string;
+  actionBy: string;
+  type: "CREDIT" | "DEBIT" | "DONATE";
+}) => {
+  try {
+    const req = await client
+      .post("/api/collections/transactions/records")
+      .json(data)
+      .send();
+    return req;
+  } catch (error) {
+    console.log(error);
+  }
+};

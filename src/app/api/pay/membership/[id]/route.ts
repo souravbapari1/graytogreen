@@ -7,7 +7,7 @@ import {
 import { revalidatePath } from "next/cache";
 import { PaymentVerifyData } from "../../[id]/pymentVerify";
 import { NextResponse } from "next/server";
-import { setUserMembership } from "@/request/worker/users";
+import { addTransition, setUserMembership } from "@/request/worker/users";
 import { auth } from "@/auth";
 
 export const revalidate = 0;
@@ -45,7 +45,13 @@ export async function GET(
           status: "new",
         },
       });
-
+      await addTransition({
+        user: intent.user,
+        amount: intent.amount,
+        actionBy: intent.user,
+        type: "DONATE",
+        reason: "Buy Membership - " + intent.expand?.membership.name,
+      });
       // 6. set the user membership
 
       // 8. redirect to the thank you page

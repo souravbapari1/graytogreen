@@ -8,21 +8,8 @@ export const getMyProjects = async (page: number, filter?: string) => {
       expand: "docs,type,unit_types",
       perPage: 6,
       page,
-      filter: filterQuery(filter),
+      filter: filter || "",
     })
     .send<Collection<ProjectItem>>();
   return request;
-};
-
-const filterQuery = (filter?: string) => {
-  switch (filter) {
-    case "all":
-      return "";
-    case "tree":
-      return "(project_prefix='tree')";
-    case "others":
-      return "(project_prefix!='tree')";
-    default:
-      return "";
-  }
 };

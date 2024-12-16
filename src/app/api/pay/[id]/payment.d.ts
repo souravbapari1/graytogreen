@@ -1,3 +1,5 @@
+import { ProjectItem } from "@/interface/project";
+
 export interface PaymentData {
   amount: number;
   collectionId: string;
@@ -15,6 +17,9 @@ export interface PaymentData {
   updated: string;
   user: string;
   support?: string;
+  expand?: {
+    project: ProjectItem;
+  };
 }
 
 export interface Data {

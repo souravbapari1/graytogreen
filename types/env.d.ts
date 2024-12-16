@@ -6,7 +6,7 @@ declare namespace NodeJS {
         CLIENT_URL: string;
         POCKETBASE_URL: string;
         PAY_URL: string;
-        CLIENT_KEY: string;
+        CLIENT_KEYdddd  : string;
         PRIVATE_KEY: string;
     }
 }
