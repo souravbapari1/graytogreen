@@ -37,7 +37,7 @@ export async function GET(
       // 5. if the order is not placed
 
       // 7. update the payment intent with the order id
-      await updateMembershipPayment({
+      const data = await updateMembershipPayment({
         id: intent.id,
         data: {
           completeOrder: true,
@@ -47,10 +47,10 @@ export async function GET(
       });
       await addTransition({
         user: intent.user,
-        amount: intent.amount,
+        amount: intent.amount * intent.qun,
         actionBy: intent.user,
         type: "DONATE",
-        reason: "Buy Membership - " + intent.expand?.membership.name,
+        reason: "Buy Membership - " + data.expand?.membership.name,
       });
       // 6. set the user membership
 

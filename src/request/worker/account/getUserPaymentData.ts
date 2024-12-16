@@ -3,6 +3,7 @@
 import { auth } from "@/auth";
 import { Collection } from "@/interface/collection";
 import { OrderPayItem } from "@/interface/PaymentItem";
+import { UserItem } from "@/interface/user";
 import { client } from "@/request/actions";
 
 export type MyBalanceItem = {
@@ -46,4 +47,37 @@ export const getUserPaymentHistory = async (filter?: string) => {
     .send<Collection<OrderPayItem>>();
 
   return payments;
+};
+
+export const getTransitions = async (
+  page: number = 1,
+  user: string,
+  filter?: string
+) => {
+  const req = await client
+    .get("/api/collections/transactions/records", {
+      sort: "-created",
+      perPage: 500,
+      filter: `(user='${user}' ${filter && "&& " + filter})`,
+      expand: "actionBy",
+      page: page,
+    })
+    .send<
+      Collection<{
+        id: string;
+        collectionId: string;
+        collectionName: string;
+        created: string;
+        updated: string;
+        reason: string;
+        amount: 123;
+        user: string;
+        actionBy: string;
+        type: "CREDIT" | "DEBIT" | "DONATE";
+        expand: {
+          actionBy?: UserItem;
+        };
+      }>
+    >();
+  return req;
 };
