@@ -22,6 +22,8 @@ import { useSession } from "next-auth/react";
 import { useEffect, useState } from "react";
 import toast from "react-hot-toast";
 import { useCompanyProfileState } from "./companyProfileState";
+import { CountryDropdown } from "@/components/complete/country-dropdown";
+import { CityDropdown } from "@/components/complete/city-dropdown";
 function CompanyProfile({
   user,
   session,
@@ -205,75 +207,23 @@ function CompanyProfile({
         </div>
         <div className="w-full">
           <Label>Country</Label>
-          {/* <SelectCountry
+          <CountryDropdown
             className="w-full p-6 mt-2 shadow-none"
-            props={{
-              value: state.state.country,
-            }}
-            select={{
-              defaultValue: state.state.country,
-              onChange: (e) => {
-                alert(e);
-                state.setCompanyProfileState("country", e);
-              },
-            }}
-          /> */}
-          {/* <Select
-            name="country"
             value={state.state.country}
-            onValueChange={(v) => {
-              state.setCompanyProfileState("country", v);
+            onChange={(e) => {
+              state.setCompanyProfileState("country", e);
             }}
-          >
-            <SelectTrigger className="w-full p-6 mt-2 shadow-none">
-              <SelectValue placeholder="country" />
-            </SelectTrigger>
-            <SelectContent>
-              {data.map((country, i) => (
-                <SelectItem
-                  key={country.country + "-country-" + i}
-                  value={country.country}
-                >
-                  {country.country}
-                </SelectItem>
-              ))}
-            </SelectContent>
-          </Select> */}
+          />
         </div>
 
         <div className="w-full">
           <Label>City</Label>
-          {/* <SelectCity
-            props={{
-              value: state.state.city,
-            }}
-            select={{
-              defaultValue: state.state.city,
-              onChange: (e) => {
-                state.setCompanyProfileState("city", e);
-              },
-            }}
-            country={state.state.country}
+          <CityDropdown
             className="w-full p-6 mt-2 shadow-none"
-          /> */}
-          {/* <Select
-            name="city"
+            onChange={(e) => state.setCompanyProfileState("city", e)}
             value={state.state.city}
-            onValueChange={(e) => {
-              state.setCompanyProfileState("city", e);
-            }}
-          >
-            <SelectTrigger className="w-full p-6 mt-2 shadow-none">
-              <SelectValue placeholder={state.state.city || "city"} />
-            </SelectTrigger>
-            <SelectContent>
-              {cityList.map((city, i) => (
-                <SelectItem key={city + "-city-" + i} value={city}>
-                  {city}
-                </SelectItem>
-              ))}
-            </SelectContent>
-          </Select> */}
+            country={state.state.country}
+          />
         </div>
 
         <div className="w-full">
