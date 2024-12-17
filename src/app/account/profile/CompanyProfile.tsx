@@ -1,7 +1,7 @@
 "use client";
 import { selectIndustryItems } from "@/app/auth/signup/CompanyForm";
-import SelectCity from "@/components/countryPicker/SelectCity";
-import SelectCountry from "@/components/countryPicker/SelectCountry";
+import { CityDropdown } from "@/components/complete/city-dropdown";
+import { CountryDropdown } from "@/components/complete/country-dropdown";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -22,8 +22,6 @@ import { useSession } from "next-auth/react";
 import { useEffect, useState } from "react";
 import toast from "react-hot-toast";
 import { useCompanyProfileState } from "./companyProfileState";
-import { CountryDropdown } from "@/components/complete/country-dropdown";
-import { CityDropdown } from "@/components/complete/city-dropdown";
 function CompanyProfile({
   user,
   session,
@@ -38,14 +36,6 @@ function CompanyProfile({
   useEffect(() => {
     state.initCompanySate(user, user.expand!.company!);
   }, [user]);
-
-  useEffect(() => {
-    // const countryData = data.find(
-    //   (item) => item.country === state.state.country
-    // );
-    // // console.log("rebuild");
-    // setCityList(countryData ? countryData.cities : []);
-  }, [state.state.country]);
 
   const onSave = async () => {
     toast.loading("Updating profile...");

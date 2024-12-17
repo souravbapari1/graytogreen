@@ -29,7 +29,7 @@ function MembershipPricing({ data }: { data: MembershipItem[] }) {
                 {e.popular && (
                   <div className="absolute donateBtn rounded-none rounded-br-3xl  shadow-none top-0 left-0  px-6 py-2">
                     <SparklesText
-                      text="Popular"
+                      text="Feature"
                       className="text-sm font-semibold text-white"
                     />
                   </div>
