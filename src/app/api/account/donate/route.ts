@@ -2,15 +2,25 @@ import { auth } from "@/auth";
 import { loadPaginatedData } from "@/helper/loader";
 import { Collection } from "@/interface/collection";
 import { OrderPayItem } from "@/interface/PaymentItem";
+import { UserItem } from "@/interface/user";
 import { client } from "@/request/actions";
 import { revalidatePath } from "next/cache";
 import { NextResponse } from "next/server";
 
 export async function GET(req: Request) {
-  const user = await auth();
+  const params = new URL(req.url).searchParams;
+  const id = params.get("id");
+  let user;
+  if (id) {
+    user = await client
+      .get(`/api/collections/users/records/${id}`)
+      .send<UserItem>();
+  } else {
+    user = (await auth())?.user;
+  }
 
   revalidatePath("/api/account/donate");
-  if (!user?.user) {
+  if (!user) {
     return NextResponse.json(
       {
         message: "Unauthorized",
@@ -23,7 +33,7 @@ export async function GET(req: Request) {
   const data = await loadPaginatedData(() =>
     getOrderProjects(
       1,
-      `(status='paid' && orderPlaced=true && user='${user?.user.id}' )`
+      `(status='paid' && orderPlaced=true && user='${user.id}' )`
     )
   );
   return NextResponse.json(data);
