@@ -62,3 +62,15 @@ export const addTransition = async (data: {
     console.log(error);
   }
 };
+
+export const setLastLogin = async (id: string) => {
+  try {
+    const req = await client
+      .patch("/api/collections/users/records/" + id)
+      .json({ lastLogin: new Date() })
+      .send<UserItem>();
+    return req;
+  } catch (error) {
+    console.log(error);
+  }
+};

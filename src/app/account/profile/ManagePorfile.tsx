@@ -48,6 +48,7 @@ function ManageProfile({
     youtube: user.youtube,
     targetTrees: user.targetTrees,
     targetPlastic: user.targetPlastic,
+    location: user.location,
   });
 
   const [selectedImage, setSelectedImage] = useState<File | null>(null);
@@ -298,6 +299,17 @@ function ManageProfile({
           <Textarea
             name="breef"
             value={state.breef}
+            onChange={handleChange}
+            className="w-full p-6 mt-2 shadow-none"
+          />
+        </div>
+
+        <div className="w-full lg:col-span-2">
+          <Label>Enter Location (url)</Label>
+          <Input
+            type="url"
+            name="location"
+            value={state.location}
             onChange={handleChange}
             className="w-full p-6 mt-2 shadow-none"
           />

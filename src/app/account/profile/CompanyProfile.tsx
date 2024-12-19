@@ -58,6 +58,7 @@ function CompanyProfile({
           city: state.state.city,
           gender: state.state.gender,
           socail_state: state.state.position,
+          location: state.state.location,
         });
 
       if (state.state.file) {
@@ -93,6 +94,7 @@ function CompanyProfile({
         updateUser.send<UserItem>({ Authorization: session.user.token }),
         company.send<Company>({ Authorization: session.user.token }),
       ]);
+
       const userData = res[0];
       await update({
         data: {

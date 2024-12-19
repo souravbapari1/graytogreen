@@ -32,7 +32,17 @@ export interface UserItem {
   targetTrees: string;
   targetPlastic: string;
   mamberships: string[];
-isBlocked?:boolean
+  isBlocked?: boolean;
+  approvedBy?: string;
+  approvedDate: string;
+  level?: string;
+  lastLogin?: string;
+  allowPermission?: string[];
+  rejectReason?: string;
+  wallet: number;
+  position?: string;
+  dpartements?: string[] | null;
+  location?: string;
 }
 
 export interface Expand {
@@ -51,7 +61,7 @@ export interface Company {
   country: string;
   created: string;
   id: string;
-  
+
   mr_ms: string;
   position: string;
   resonses: string[];

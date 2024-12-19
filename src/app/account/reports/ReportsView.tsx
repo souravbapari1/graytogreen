@@ -10,10 +10,18 @@ import {
 import Link from "next/link";
 import { AiOutlinePlusCircle } from "react-icons/ai";
 import { cn } from "@/lib/utils";
-import { useQuery } from "@tanstack/react-query";
-import { getReports } from "@/request/worker/reports/manageReports";
-import { Eye } from "lucide-react";
+import { useMutation, useQuery } from "@tanstack/react-query";
+import {
+  deleteAlertRequest,
+  getAlertRequests,
+  getReports,
+} from "@/request/worker/reports/manageReports";
+import { BellDot, Eye, Trash } from "lucide-react";
 import { MonthlyReportItem } from "@/interface/monthlyReport";
+import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert";
+import { BiCloset } from "react-icons/bi";
+import toast from "react-hot-toast";
+
 const months = [
   "January",
   "February",
@@ -67,11 +75,57 @@ function ReportsView({ user }: { user: string }) {
 
   const monthDataView = reportCount(months[month]);
 
+  const requests = useQuery({
+    queryKey: ["requests"],
+    queryFn: () => getAlertRequests(user),
+  });
+
+  const deleteRequestMutate = useMutation({
+    mutationKey: ["deleteRequest", "requests"],
+    mutationFn: async (id: string) => {
+      return await deleteAlertRequest(id);
+    },
+    onSuccess: () => {
+      requests.refetch();
+    },
+    onError: () => {
+      toast.error("Failed to delete request");
+    },
+  });
+
   if (data.isLoading) return <p>Loading...</p>;
   if (data.isError) return <p>Error loading reports ! something went wrong</p>;
 
   return (
     <div>
+      <div className="grid grid-cols-2 gap-5">
+        {requests.data?.items.map((e, i) => {
+          return (
+            <Alert className="border mb-4  relative " key={e.id + i}>
+              <Link href={e.actionLink} className="flex gap-5 items-center">
+                <div className="w-8">
+                  <BellDot className="h-7 w-7" />
+                </div>
+                <div className="">
+                  <AlertTitle className="font-bold">{e.title}</AlertTitle>
+                  <AlertDescription>{e.description}</AlertDescription>
+                </div>
+              </Link>
+              <div className="absolute top-3 right-3">
+                <Trash
+                  onClick={() => {
+                    deleteRequestMutate.mutate(e.id);
+                  }}
+                  size={28}
+                  color="red"
+                  className="cursor-pointer  rounded-md bg-red-100 p-2"
+                />
+              </div>
+            </Alert>
+          );
+        })}
+      </div>
+
       <h1 className="text-2xl font-bold mb-10">Reports</h1>
       <div className="flex lg:flex-row flex-col gap-10">
         <div className="">

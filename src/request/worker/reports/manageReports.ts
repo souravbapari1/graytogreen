@@ -40,3 +40,32 @@ export const setTheReportOnDB = async (data: {
     .send<MonthlyReportItem>(token);
   return req;
 };
+
+export const getAlertRequests = async (user: string) => {
+  const req = await client
+    .get("/api/collections/user_alerts/records", {
+      filter: `(user='${user}')`,
+    })
+    .send<
+      Collection<{
+        id: string;
+        collectionId: string;
+        collectionName: string;
+        created: string;
+        updated: string;
+        title: string;
+        description: string;
+        actionLink: string;
+        reportID: string;
+        user: string;
+      }>
+    >();
+  return req;
+};
+
+export const deleteAlertRequest = async (id: string) => {
+  const req = await client
+    .delete("/api/collections/user_alerts/records/" + id)
+    .send();
+  return req;
+};

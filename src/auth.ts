@@ -2,6 +2,7 @@ import NextAuth from "next-auth";
 import Credentials from "next-auth/providers/credentials";
 import { authUser, getUsers } from "./request/worker/auth";
 import { genPbFiles } from "./request/actions";
+import { setLastLogin } from "./request/worker/users";
 
 export const { handlers, signIn, signOut, auth } = NextAuth({
   providers: [
@@ -26,6 +27,8 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
           if (!user) {
             throw new Error("User not found.");
           }
+
+          await setLastLogin(user.record.id);
 
           return {
             email: user?.record.email,
