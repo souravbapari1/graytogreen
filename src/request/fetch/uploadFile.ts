@@ -1,6 +1,6 @@
 import NextClient from "nextclient";
 
-const uploadUrl = "https://g2g-files.souravbapari.in";
+const uploadUrl = "https://files.grey-to-green.com";
 const fileClient = new NextClient(uploadUrl, {
   headers: {
     "x-secret-key": "123456",

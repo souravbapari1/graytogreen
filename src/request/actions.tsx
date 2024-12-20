@@ -1,9 +1,9 @@
 import NextClient from "nextclient";
 export const isProduction = process.env.NODE_ENV === "production";
 
-export const client = new NextClient("https://g2g-pocketbase.souravbapari.in");
+export const client = new NextClient("https://backend.grey-to-green.com");
 export const localClient = new NextClient(
-  isProduction ? "https://gray-to-green.com" : "http://localhost:3001"
+  isProduction ? "https://grey-to-green.com" : "http://localhost:3001"
 );
 
 export const paymentClient = new NextClient(process.env.PAY_URL, {
