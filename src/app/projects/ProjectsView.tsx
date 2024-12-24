@@ -8,26 +8,28 @@ import { Collection } from "@/interface/collection";
 import { ProjectItem } from "@/interface/project";
 
 function ProjectsView() {
-  const [loading, setloading] = useState<boolean>(true);
+  const [loading, setLoading] = useState<boolean>(true);
   const [Projects, setProjects] = useState<Collection<ProjectItem> | null>(
     null
   );
+  const [page, setPage] = useState(1);
   const loadProjects = async () => {
     const projects = await client
       .get("/api/collections/projects/records/", {
         expand: "operated_by,reports,sdgs,sdgs.sdg,unit_types,type",
-        perPage: 3,
+        perPage: 500,
         hideFields: "about_project,challenges_and_impact_details",
+        page: 1,
       })
       .send<Collection<ProjectItem>>();
 
     setProjects(projects);
-    setloading(false);
+    setLoading(false);
   };
 
   React.useEffect(() => {
     loadProjects();
-  }, []);
+  }, [page]);
 
   if (loading) {
     return (

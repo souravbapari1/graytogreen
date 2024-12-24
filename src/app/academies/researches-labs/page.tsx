@@ -16,13 +16,42 @@ import ResearchSlide from "@/components/sections/Research/ResearchSlide";
 import AllResearchPartner from "@/components/sections/Research/AllResearchPartner";
 
 const GQL = gql`
-  query ResearchesLabs {
+  query About {
     researchesLabs {
-      documentId
-      header {
-        id
+      about {
         title
-
+        linkUrl
+        linkText
+        image {
+          url
+        }
+        id
+        description
+        align
+      }
+      challenges {
+        title
+        sortTitle
+        id
+        experienceCard {
+          title
+          link {
+            linkUrl
+            linkText
+            id
+          }
+          id
+          description
+          image {
+            url
+          }
+          topImage {
+            url
+          }
+        }
+      }
+      header {
+        title
         description
         images {
           id
@@ -36,92 +65,63 @@ const GQL = gql`
             url
           }
         }
-      }
-      challenges {
         id
-        sortTitle
-        title
-        experienceCard {
-          id
-          title
-          description
-          topImage {
-            url
-          }
-          image {
-            url
-          }
-          link {
-            id
-            linkText
-            linkUrl
-          }
-        }
       }
+      documentId
       infoCards {
-        id
         title
+        id
         description
         cards {
-          id
           title
-          description
-          linkText
           linkUrl
+          linkText
+          id
+          description
           align
           image {
             url
           }
         }
       }
-      textSlides {
+      members {
+        title
         id
+        description
+        member {
+          name
+          position
+          image {
+            url
+          }
+          about
+          id
+          linkdinProfile
+        }
+      }
+      researchPartner {
+        title
+        id
+        member {
+          name
+          link
+          id
+          image {
+            url
+          }
+        }
+      }
+      textSlides {
         bgImage {
           url
         }
+        id
         text {
           id
           content
         }
       }
-      researchPartner {
-        id
-        title
-        member {
-          id
-          name
-          link
-          image {
-            url
-          }
-        }
-      }
-      about {
-        id
-        title
-        description
-        linkText
-        linkUrl
-        align
-        image {
-          url
-        }
-      }
-      members {
-        id
-        member {
-          id
-          name
-          about
-          image {
-            url
-          }
-          linkdinProfile
-          position
-        }
-        title
-        description
-      }
+      locale
     }
   }
 `;

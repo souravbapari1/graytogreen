@@ -1,24 +1,67 @@
 export interface ResearchesLabData {
   researchesLabs: ResearchesLab[];
 }
-
 export interface ResearchesLab {
-  documentId: string;
-  header: Header;
-  challenges: Challenges;
-  infoCards: InfoCards;
-  textSlides: TextSlides;
-  researchPartner: ResearchPartner[];
   about: About;
+  challenges: Challenges;
+  header: Header;
+  documentId: string;
+  infoCards: InfoCards;
   members: Members;
+  researchPartner: ResearchPartner[];
+  textSlides: TextSlides;
+  locale: string;
+}
+
+export interface About {
+  title: string;
+  linkUrl: string;
+  linkText: string;
+  image: Image;
+  id: string;
+  description: string;
+  align: string;
+}
+
+export interface Image {
+  url: string;
+}
+
+export interface Challenges {
+  title: string;
+  sortTitle: string;
+  id: string;
+  experienceCard: ExperienceCard[];
+}
+
+export interface ExperienceCard {
+  title: string;
+  link: Link;
+  id: string;
+  description: string;
+  image: Image2;
+  topImage: TopImage;
+}
+
+export interface Link {
+  linkUrl: string;
+  linkText: string;
+  id: string;
+}
+
+export interface Image2 {
+  url: string;
+}
+
+export interface TopImage {
+  url: string;
 }
 
 export interface Header {
-  id: string;
   title: string;
-
   description: string;
   images: Images;
+  id: string;
 }
 
 export interface Images {
@@ -40,82 +83,20 @@ export interface Right {
   url: string;
 }
 
-export interface Challenges {
-  id: string;
-  sortTitle: string;
-  title: string;
-  experienceCard: ExperienceCard[];
-}
-
-export interface ExperienceCard {
-  id: string;
-  title: string;
-  description: string;
-  topImage: TopImage;
-  image: Image;
-  link: Link;
-}
-
-export interface TopImage {
-  url: string;
-}
-
-export interface Image {
-  url: string;
-}
-
-export interface Link {
-  id: string;
-  linkText: string;
-  linkUrl: string;
-}
-
 export interface InfoCards {
-  id: string;
   title: string;
+  id: string;
   description: string;
   cards: Card[];
 }
 
 export interface Card {
-  id: string;
   title: string;
-  description: string;
-  linkText?: string;
   linkUrl?: string;
+  linkText?: string;
+  id: string;
+  description: string;
   align: string;
-  image: Image2;
-}
-
-export interface Image2 {
-  url: string;
-}
-
-export interface TextSlides {
-  id: string;
-  bgImage: BgImage;
-  text: Text[];
-}
-
-export interface BgImage {
-  url: string;
-}
-
-export interface Text {
-  id: string;
-  content: string;
-}
-
-export interface ResearchPartner {
-  id: string;
-  title: string;
-  member: Member[];
-}
-
-export interface Member {
-  id: string;
-  name?: string;
-  link?: string;
   image: Image3;
 }
 
@@ -123,36 +104,49 @@ export interface Image3 {
   url: string;
 }
 
-export interface About {
-  id: string;
+export interface Members {
   title: string;
+  id: string;
   description: string;
-  linkText: string;
-  linkUrl: string;
-  align: string;
+  member: Member[];
+}
+
+export interface Member {
+  name: string;
+  position: string;
   image: Image4;
+  about: string;
+  id: string;
+  linkdinProfile: string;
 }
 
 export interface Image4 {
   url: string;
 }
 
-export interface Members {
+export interface ResearchPartner {
+  title: string;
   id: string;
   member: Member2[];
-  title: string;
-  description: string;
 }
 
 export interface Member2 {
+  name?: string;
+  link?: string;
   id: string;
-  name: string;
-  about: string;
   image: Image5;
-  linkdinProfile: string;
-  position: string;
 }
 
 export interface Image5 {
+  url: string;
+}
+
+export interface TextSlides {
+  bgImage: BgImage;
+  id: string;
+  text: any[];
+}
+
+export interface BgImage {
   url: string;
 }
