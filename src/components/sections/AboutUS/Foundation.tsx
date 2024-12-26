@@ -35,7 +35,7 @@ function Foundation({
         >
           Foundation Council
         </h1>
-        <div className="grid lg:grid-cols-3 gap-10 mt-10 lg:px-20">
+        <div className="grid lg:grid-cols-3 gap-10 mt-10 lg:px-20 max-w-[1100px]">
           {data.member.map((e, i) => {
             return (
               <div
@@ -49,7 +49,7 @@ function Foundation({
                       height={3000}
                       alt=""
                       width={3000}
-                      className=" object-cover rounded-full w-80 h-80  border-main"
+                      className=" object-cover rounded-full w-56 h-56  border-main"
                     />
                   </div>
                 </div>

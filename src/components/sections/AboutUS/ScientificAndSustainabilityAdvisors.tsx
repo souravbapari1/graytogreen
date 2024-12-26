@@ -17,7 +17,7 @@ function ScientificAndSustainabilityAdvisors({
     <div className="w-full   bg-gradient-to-br from-[rgba(160,249,138,0.2)] via-[rgba(219,255,213,0)] to-[rgba(187,249,138,0.2)] mt-20 py-10">
       <div className="container flex justify-center items-center flex-col">
         <h1
-          className={`${montserrat.className} text-2xl lg:text-4xl font-bold text-center`}
+          className={`${montserrat.className} text-2xl lg:text-3xl font-bold text-center`}
           dangerouslySetInnerHTML={{ __html: data?.title || "" }}
         />
         <p
@@ -25,7 +25,7 @@ function ScientificAndSustainabilityAdvisors({
           dangerouslySetInnerHTML={{ __html: data?.description || "" }}
         />
 
-        <div className="grid lg:grid-cols-3 gap-10 mt-10 lg:px-20">
+        <div className="grid lg:grid-cols-3 gap-10 mt-10 lg:px-20 w-full max-w-[1100px]">
           {data.member.map((e, i) => {
             return (
               <div
@@ -39,7 +39,7 @@ function ScientificAndSustainabilityAdvisors({
                       height={3000}
                       alt=""
                       width={3000}
-                      className=" object-cover rounded-full w-80 h-80  border-main"
+                      className=" object-cover rounded-full w-56 h-56  border-main"
                     />
                   </div>
                 </div>

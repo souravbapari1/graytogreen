@@ -17,14 +17,14 @@ function AboutHero({ heroData }: { heroData?: AboutUse["header"] }) {
         className="w-64 h-64 absolute left-0 -ml-24 mt-40"
       />
 
-      <div className="grid lg:grid-cols-2 lg:gap-16 gap-8 container mt-10">
+      <div className="grid lg:grid-cols-2 lg:gap-16 gap-5 container mt-8">
         <div className="">
           <h1
-            className={montserrat.className + " lg:text-4xl text-3xl font-bold"}
+            className={montserrat.className + " lg:text-3xl text-3xl font-bold"}
             dangerouslySetInnerHTML={{ __html: heroData.title || "" }}
           />
           <p
-            className={montserrat.className + " lg:text-xl mt-10 mb-8"}
+            className={montserrat.className + " lg:text-lg mt-6 mb-6"}
             dangerouslySetInnerHTML={{ __html: heroData.description || "" }}
           />
         </div>
@@ -36,7 +36,7 @@ function AboutHero({ heroData }: { heroData?: AboutUse["header"] }) {
               width={1200}
               height={1200}
               alt=""
-              className="md:w-full w-[90%]  md:h-[380px]   object-cover h-48  "
+              className="md:w-full w-[90%]  md:h-[313px]   object-cover h-48  "
             />
             <Image
               src={strApi + heroData.images.right.url}

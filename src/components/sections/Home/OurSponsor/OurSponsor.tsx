@@ -59,24 +59,24 @@ function OurSponsor({
           <div className="flex flex-col justify-center items-center gap-10">
             <div className="grid lg:grid-cols-2 gap-10 mt-12">
               <div className="relative md:p-10 flex justify-center items-center">
-                <div className="w-[90%] h-48 md:h-[400px] bg-green-700/20 absolute -z-[1] lg:mr-12 mr-10 rounded-2xl mb-10"></div>
+                <div className="w-[90%] h-48 md:h-[320px] bg-green-700/20 absolute -z-[1] lg:mr-12 mr-10 rounded-2xl mb-10"></div>
                 <Image
                   src={strApi + academics.image.url}
                   width={1200}
                   height={1200}
                   alt=""
-                  className="md:w-full w-[90%]  md:h-[400px]  rounded-2xl object-cover h-48  "
+                  className="md:w-full w-[90%]  md:h-[320px]  rounded-2xl object-cover h-48  "
                 />
               </div>
               <div className="md:text-left text-center md:mt-5">
                 <h1
-                  className={`${montserrat.className} font-extrabold uppercase lg:text-4xl text-2xl`}
+                  className={`${montserrat.className} font-extrabold uppercase lg:text-3xl text-2xl`}
                   dangerouslySetInnerHTML={{ __html: academics.title }}
                 />
-                <p className="  mt-4">{academics.description}</p>
+                <p className="  mt-4 ">{academics.description}</p>
                 <Link
                   href="#"
-                  className="uppercase font-bold text-main mt-3 flex md:justify-start justify-center items-center"
+                  className="uppercase font-bold text-main mt-3 text-sm flex md:justify-start justify-center items-center"
                 >
                   Learn More About Our Vision <RiArrowDropRightLine size={35} />
                 </Link>

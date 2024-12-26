@@ -52,7 +52,7 @@ function OurStory({ data }: { data?: HomePage["howItWorks"] }) {
               allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
               referrerPolicy="strict-origin-when-cross-origin"
               allowFullScreen
-              className="w-full lg:h-96 h-52 rounded-3xl object-cover"
+              className="w-full lg:h-80 h-52 rounded-3xl object-cover"
             ></iframe>
             <div className="flex flex-col gap-5 justify-center">
               <h1

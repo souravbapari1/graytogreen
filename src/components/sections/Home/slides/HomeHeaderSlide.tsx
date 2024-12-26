@@ -15,7 +15,7 @@ function HomeHeaderSlide({ data }: { data?: HomePage["banner"] }) {
         cssClass="w-full "
         transitionDuration={500}
         indicators={true}
-        autoplay={false}
+        autoplay={true}
         infinite={true}
       >
         {data.map((e, i) => {

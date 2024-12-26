@@ -20,7 +20,7 @@ function EducationAdvisors({
   return (
     <div className="container flex justify-center items-center flex-col my-32">
       <h1
-        className={`${montserrat.className} md:text-4xl text-2xl font-bold text-center`}
+        className={`${montserrat.className} md:text-3xl text-2xl font-bold text-center`}
         dangerouslySetInnerHTML={{ __html: data?.title || "" }}
       />
       <p
@@ -28,7 +28,7 @@ function EducationAdvisors({
         dangerouslySetInnerHTML={{ __html: data?.description || "" }}
       />
 
-      <div className="grid lg:grid-cols-3 gap-10 mt-10 lg:px-20">
+      <div className="grid lg:grid-cols-3 gap-10 mt-10 lg:px-20 max-w-[1100px] w-full">
         {data.member.map((e, i) => {
           return (
             <div
@@ -42,7 +42,7 @@ function EducationAdvisors({
                     height={3000}
                     alt=""
                     width={3000}
-                    className=" object-cover rounded-full w-80 h-80  border-main"
+                    className=" object-cover rounded-full w-56 h-56  border-main"
                   />
                 </div>
               </div>

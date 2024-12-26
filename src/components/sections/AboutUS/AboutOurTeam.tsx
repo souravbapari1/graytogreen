@@ -51,11 +51,11 @@ function AboutOurTeam({ data }: { data: TeamMember }) {
           );
         })}
       </div>
-      <div className="grid xl:grid-cols-4 md:grid-cols-2   gap-8 mt-24">
+      <div className="grid xl:grid-cols-4 md:grid-cols-2   w-full max-w-[1100px] gap-8 mt-24">
         {viewData().map((e, i) => {
           return (
             <div className={montserrat.className} key={e.id}>
-              <div className="w-full group md:h-[420px] relative bg-gray-100 h-[300px] overflow-hidden rounded-3xl">
+              <div className="w-full group md:h-[350px]   relative bg-gray-100 h-[300px] overflow-hidden rounded-3xl">
                 <Image
                   src={strApi + e.image.url}
                   width={3200}

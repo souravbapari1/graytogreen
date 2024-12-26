@@ -8,7 +8,14 @@ import { FaMapMarkerAlt } from "react-icons/fa";
 
 function Footer() {
   return (
-    <div className="bg-[#326047] w-full mt-20 py-10 pb-0">
+    <div className="bg-[#326047] w-full mt-20 py-10 pb-0 relative">
+      <Image
+        src="/assets/planet.svg"
+        width={1000}
+        height={1000}
+        alt="Image"
+        className="lg:w-56 w-28 lg:h-56 h-28 absolute right-10 md:-top-28 -top-14"
+      />
       <div className="container">
         <Image
           src="/logo/main-logo.png"

@@ -16,14 +16,14 @@ function BordOfDirectors({ data }: { data?: AboutUse["bordMembers"] }) {
   const { title, description } = data || {};
   return (
     <div className="container mt-20 flex justify-center items-center flex-col gap-6 ">
-      <h1 className={`${montserrat.className} text-5xl font-bold text-center`}>
+      <h1 className={`${montserrat.className} text-4xl font-bold text-center`}>
         {title || "Board of Directors"}
       </h1>
-      <p className="text-center text-xl max-w-[800px] ">
+      <p className="text-center text-lg max-w-[800px] ">
         {description ||
           "We would like to thank our patrons who have accompanied  from the very beginning."}
       </p>
-      <div className="grid lg:grid-cols-3 gap-10 mt-10">
+      <div className="grid lg:grid-cols-3 gap-10 mt-10 max-w-[1100px]">
         {data.member.map((e, i) => {
           return (
             <div
@@ -37,7 +37,7 @@ function BordOfDirectors({ data }: { data?: AboutUse["bordMembers"] }) {
                     height={3000}
                     alt=""
                     width={3000}
-                    className=" object-cover rounded-full w-80 h-80  border-main"
+                    className=" object-cover rounded-full w-56 h-56  border-main"
                   />
                 </div>
               </div>
