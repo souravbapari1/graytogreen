@@ -4,6 +4,7 @@ import Link from "next/link";
 import React from "react";
 import { Standard } from "../standerds";
 import { strApi } from "@/graphql/client";
+import { Linkedin } from "lucide-react";
 
 function ReviewBoard({
   data,
@@ -38,11 +39,14 @@ function ReviewBoard({
                   height={3000}
                   alt=""
                   width={3000}
-                  className=" object-cover rounded-full w-80 h-80 border-[8px] border-[#5eb05b]"
+                  className=" object-cover rounded-full w-56 h-56 border-[8px] border-[#5eb05b]"
                 />
                 <h1 className="text-center font-bold text-xl mt-5">{e.name}</h1>
                 <p className="font-bold text-gray-700">{e.position}</p>
                 <p className="text-gray-500">{e.about}</p>
+                <Link href={e.linkdinProfile || "#"} target="_blank">
+                  <Linkedin />
+                </Link>
               </div>
             );
           })}

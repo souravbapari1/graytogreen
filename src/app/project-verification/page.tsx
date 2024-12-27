@@ -29,6 +29,11 @@ const PROJECT_VERIFICATION_GQL = gql`
         howToApply
         howReviewsWork
         description
+        Apply_Link {
+          linkUrl
+          linkText
+          id
+        }
       }
       cardList {
         align

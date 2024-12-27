@@ -6,6 +6,7 @@ import HowToApply from "./steps/HowToApply";
 import YourBenefits from "./steps/YourBenefits";
 import { cn } from "@/lib/utils";
 import { VerificationAndReview } from "./VerificationAndReviewData";
+import Link from "next/link";
 
 function VerificationApplyStep({
   data,
@@ -17,7 +18,7 @@ function VerificationApplyStep({
   }
   const [index, setIndex] = useState(0);
   return (
-    <div className="bg-gray-50 py-20">
+    <div className="bg-gray-50 py-20 mx-auto w-full">
       <div className={`container ${montserrat.className}`}>
         <h1 className="text-3xl font-bold text-center">{data.title}</h1>
         <p
@@ -35,7 +36,7 @@ function VerificationApplyStep({
                 `${index == 0 ? "border-primary" : null}`
               )}
             >
-              How reviews work
+              How to apply
             </h1>
             <h1
               onClick={() => {
@@ -46,8 +47,9 @@ function VerificationApplyStep({
                 `${index == 1 ? "border-primary" : null}`
               )}
             >
-              How to apply
+              How reviews work
             </h1>
+
             <h1
               onClick={() => {
                 setIndex(2);
@@ -63,13 +65,21 @@ function VerificationApplyStep({
           <div className="p-4">
             {
               [
-                <HowReviewsWork content={data.howReviewsWork} />,
                 <HowToApply content={data.howToApply} />,
+                <HowReviewsWork content={data.howReviewsWork} />,
                 <YourBenefits content={data.yourBenefits} />,
               ][index]
             }
           </div>
         </div>
+      </div>
+      <div className="w-full flex justify-center items-center">
+        <Link
+          className="donateBtn py-3 mx-auto mt-10 shadow-none"
+          href={data.Apply_Link.linkUrl}
+        >
+          {data.Apply_Link.linkText}
+        </Link>
       </div>
     </div>
   );

@@ -51,44 +51,16 @@ function ServicesListView({ data }: { data?: Service }) {
       <div className="w-full flex flex-col gap-12 xl:col-span-10 xl:mt-10 xl:mb-6">
         {/* Row 1 */}
         <div className="grid md:grid-cols-2 gap-8">
-          <ServiceCard
-            icon="🤝"
-            title="Partner With Us"
-            description="Lorem ipsum dolor sit amet consectetur adipisicing elit. Id ullam expedita vero aspernatur, placeat alias ipsam saepe dolore excepturi."
-            link="/partners"
-          />
-          <ServiceCard
-            icon="🎤"
-            title="Sustainable Event"
-            description="Lorem ipsum dolor sit amet consectetur adipisicing elit. Id ullam expedita vero aspernatur, placeat alias ipsam saepe dolore excepturi."
-            link="/sustainable-events"
-          />
-        </div>
-
-        {/* Row 2 */}
-        <div className="grid md:grid-cols-2 gap-8">
-          <ServiceCard
-            icon="🧩"
-            title="Membership"
-            description="Lorem ipsum dolor sit amet consectetur adipisicing elit. Id ullam expedita vero aspernatur, placeat alias ipsam saepe dolore excepturi."
-            link="/membership"
-          />
-          <ServiceCard
-            icon="💡"
-            title="Consultation"
-            description="Lorem ipsum dolor sit amet consectetur adipisicing elit. Id ullam expedita vero aspernatur, placeat alias ipsam saepe dolore excepturi."
-            link="/consultation"
-          />
-        </div>
-
-        {/* Row 3 */}
-        <div className="grid md:grid-cols-2 gap-8">
-          <ServiceCard
-            icon="💙"
-            title="Training Programs"
-            description="Lorem ipsum dolor sit amet consectetur adipisicing elit. Id ullam expedita vero aspernatur, placeat alias ipsam saepe dolore excepturi."
-            link="/academies"
-          />
+          {data?.Service_Cards.map((card, i) => (
+            <ServiceCard
+              key={i}
+              icon={strApi + card.Icon.url}
+              title={card.title}
+              description={card.Description}
+              linkText={card.link.linkText}
+              link={card.link.linkUrl}
+            />
+          ))}
         </div>
       </div>
     </div>
@@ -99,14 +71,27 @@ interface ServiceCardProps {
   icon: string;
   title: string;
   description: string;
+  linkText: string;
   link: string;
 }
 
-function ServiceCard({ icon, title, description, link }: ServiceCardProps) {
+function ServiceCard({
+  icon,
+  title,
+  description,
+  link,
+  linkText,
+}: ServiceCardProps) {
   return (
     <div className="w-full bg-white border border-gray-300 rounded-3xl p-10 flex flex-col gap-6 shadow-md hover:shadow-lg transition-all duration-300">
       <div className="w-16 h-16 rounded-full bg-main flex justify-center items-center text-4xl text-white">
-        {icon}
+        <Image
+          src={icon}
+          width={1200}
+          height={1200}
+          alt="Service Icon"
+          className="w-8 h-8 object-contain"
+        />
       </div>
       <p className="text-xl font-semibold text-gray-800">{title}</p>
       <p className="text-base text-gray-600 leading-relaxed">{description}</p>
@@ -114,7 +99,7 @@ function ServiceCard({ icon, title, description, link }: ServiceCardProps) {
         className="py-3 text-center w-full bg-main text-white font-semibold rounded-xl mt-4 hover:bg-main-dark transition duration-200"
         href={link}
       >
-        Let's Go
+        {linkText}
       </Link>
     </div>
   );

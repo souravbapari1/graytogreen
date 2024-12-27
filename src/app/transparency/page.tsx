@@ -27,7 +27,13 @@ const TransparenciesGQL = gql`
         description
         id
         title
-        bannerImage {
+        leftImage {
+          url
+        }
+        rightImage {
+          url
+        }
+        centerImage {
           url
         }
       }

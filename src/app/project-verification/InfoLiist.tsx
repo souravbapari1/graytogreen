@@ -41,13 +41,13 @@ function InfoList({ data }: { data?: VerificationAndReview["cardList"] }) {
             </div>
 
             <div className="relative md:p-10 flex justify-center items-center order-1">
-              <div className="w-[90%] h-48 md:h-[320px] bg-green-700/20 absolute -z-[1] lg:ml-12 ml-10 rounded-2xl mb-10"></div>
+              <div className="w-[90%] h-48 md:h-[280px] bg-green-700/20 absolute -z-[1] lg:ml-12 ml-10 rounded-2xl mb-10"></div>
               <Image
                 src={strApi + e.image.url}
                 width={1200}
                 height={1200}
                 alt=""
-                className="md:w-full w-[90%]  md:h-[320px]  rounded-2xl object-cover h-48  "
+                className="md:w-full w-[90%]  md:h-[280px]  rounded-2xl object-cover h-48  "
               />
             </div>
           </div>

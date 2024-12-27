@@ -3,28 +3,42 @@ export interface ServicePages {
 }
 
 export interface Service {
-  __typename: string;
   title: string;
   documentId: string;
   description: string;
   Industries: Industry[];
   language: Language;
+  createdAt: string;
+  Service_Cards: ServiceCard[];
 }
 
 export interface Industry {
-  __typename: string;
   id: string;
   image: Image;
   title: string;
 }
 
 export interface Image {
-  __typename: string;
   url: string;
 }
 
 export interface Language {
-  __typename: string;
   name: string;
+}
+
+export interface ServiceCard {
+  title: string;
+  link: Link;
   id: string;
+  Description: string;
+  Icon: Icon;
+}
+
+export interface Link {
+  linkUrl: string;
+  linkText: string;
+}
+
+export interface Icon {
+  url: string;
 }

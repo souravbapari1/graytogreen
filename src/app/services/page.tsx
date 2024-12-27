@@ -13,6 +13,7 @@ const SERVICE_PAGE = gql`
       title
       documentId
       description
+
       Industries {
         id
         image {
@@ -22,7 +23,19 @@ const SERVICE_PAGE = gql`
       }
       language {
         name
+      }
+      createdAt
+      Service_Cards {
+        title
+        link {
+          linkUrl
+          linkText
+        }
         id
+        Description
+        Icon {
+          url
+        }
       }
     }
   }
