@@ -50,7 +50,7 @@ function ViewAcademy({ data }: { data: UpcomingAcademy }) {
                 variant="secondary"
                 className=" py-5 px-8 cursor-not-allowed text-gray-800 shadow-none rounded-2xl"
               >
-                Register Closed
+                Registration Full
               </Button>
             )}
           </div>

@@ -20,6 +20,7 @@ const DONATE_FOR_LAND = gql`
         id
         email
         bookMeetLink
+        title
       }
       createdAt
       description

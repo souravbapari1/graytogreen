@@ -36,6 +36,7 @@ const STBGQL = gql`
         bookMeetLink
         email
         id
+        title
         mobileNo
         personImage {
           url

@@ -1,4 +1,4 @@
-import { AcademiesAndLab } from "@/app/academies/AcademiesAndLab";
+import { AcademiesAndLab, Slogon } from "@/app/academies/AcademiesAndLab";
 import { Button } from "@/components/ui/button";
 import { montserrat } from "@/fonts/font";
 import { strApi } from "@/graphql/client";
@@ -10,10 +10,12 @@ function AcademicsHero({
   headerDescription,
   headerImage,
   hraderTitle,
+  slogans,
 }: {
   hraderTitle?: string;
   headerDescription?: string;
   headerImage?: string;
+  slogans?: Slogon[];
 }) {
   return (
     <div className="relative">
@@ -47,33 +49,7 @@ function AcademicsHero({
       </div>
       <div className="container -mt-20 z-30">
         <div className="md:grid flex flex-wrap lg:grid-cols-5 items-center justify-center grid-cols-2 md:gap-5 z-30">
-          {[
-            {
-              image: "/assets/eco.png",
-              title: "Recycling",
-              desc: "Lorem ipsum dolor sit amet.",
-            },
-            {
-              image: "/assets/education.png",
-              title: "Educate",
-              desc: "Lorem ipsum dolor sit amet.",
-            },
-            {
-              image: "/assets/support.png",
-              title: "Engage",
-              desc: "Lorem ipsum dolor sit amet.",
-            },
-            {
-              image: "/assets/public-relation.png",
-              title: "Equid",
-              desc: "Lorem ipsum dolor sit amet.",
-            },
-            {
-              image: "/assets/plant.png",
-              title: "Equid",
-              desc: "Lorem ipsum dolor sit amet.",
-            },
-          ].map((e, i) => {
+          {slogans?.map((e, i) => {
             return (
               <div
                 className={cn(
@@ -88,14 +64,14 @@ function AcademicsHero({
                 )}
               >
                 <Image
-                  src={e.image}
+                  src={strApi + e.bannerImage.url}
                   width={300}
                   height={200}
                   alt=""
                   className="w-auto md:h-12 h-8"
                 />
                 <h1 className="lg:text-xl text-lg font-bold ">{e.title}</h1>
-                <p className="lg:text-sm text-sm opacity-60">{e.desc}</p>
+                <p className="px-2 text-xs opacity-60">{e.description}</p>
               </div>
             );
           })}

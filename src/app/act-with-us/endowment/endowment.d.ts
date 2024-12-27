@@ -26,6 +26,7 @@ export interface Contact {
   email: string;
   bookMeetLink: string;
   personImage: PersonImage;
+  title: string;
 }
 
 export interface PersonImage {

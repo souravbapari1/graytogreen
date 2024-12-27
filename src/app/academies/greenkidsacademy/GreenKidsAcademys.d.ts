@@ -28,33 +28,48 @@ export interface BannerImage {
 
 export interface Academies {
   id: string;
-  title: string;
   description: string;
-  image: Image;
-  links: Link[];
-}
-
-export interface Image {
-  url: string;
+  Title: string;
+  Links: Link[];
+  SideImages: SideImages;
 }
 
 export interface Link {
-  id: string;
   linkText: string;
   linkUrl: string;
+  id: string;
+}
+
+export interface SideImages {
+  right: Right;
+  left: Left;
+  id: string;
+  center: Center;
+}
+
+export interface Right {
+  url: string;
+}
+
+export interface Left {
+  url: string;
+}
+
+export interface Center {
+  url: string;
 }
 
 export interface Card {
   id: string;
   title: string;
   description: string;
-  linkText: string;
+  linkText?: string;
   linkUrl?: string;
   align: string;
-  image: Image2;
+  image: Image;
 }
 
-export interface Image2 {
+export interface Image {
   url: string;
 }
 
@@ -71,35 +86,20 @@ export interface FlowChatMobileImage {
   url: string;
 }
 
-export interface Root {
-  data: Data;
-}
-
 export interface UpcomingAcademy {
-  amount: number;
-  createdAt: string;
   documentId: string;
-  endDate: string;
-  languge: string;
-  locale: string;
-  location: string;
-  locationType: string;
-  maxParticipents: number;
-  name: string;
-  pricing: string;
-  publishedAt: string;
-  registerationEndDate: string;
-  slug: string;
-  startDate: string;
-  time: string;
   title: string;
-  otherComments: any;
-  program_Timeline: any;
-  content: string;
-  aboutTheSession: any;
-  Flyer: Flyer[];
-}
-
-export interface Flyer {
-  url: string;
+  time: string;
+  languge: string;
+  location: string;
+  name: string;
+  slug: string;
+  registerationEndDate: string;
+  startDate: string;
+  amount: number;
+  endDate: string;
+  applications?: number;
+  maxParticipents: number;
+  pricing: string;
+  locationType: string;
 }

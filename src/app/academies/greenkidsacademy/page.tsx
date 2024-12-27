@@ -23,15 +23,24 @@ const GKA_GQL = gql`
       }
       Academies {
         id
-        title
         description
-        image {
-          url
-        }
-        links {
-          id
+        Title
+        Links {
           linkText
           linkUrl
+          id
+        }
+        SideImages {
+          right {
+            url
+          }
+          left {
+            url
+          }
+          id
+          center {
+            url
+          }
         }
       }
       cards {
@@ -59,23 +68,22 @@ const GKA_GQL = gql`
       flowChatTitle
     }
     upcomingAcademies {
-      amount
-      createdAt
       documentId
-      applications
-      endDate
-      languge
-      locale
-      location
-      locationType
-      maxParticipents
-      name
-      pricing
-      registerationEndDate
-      slug
-      startDate
-      time
       title
+
+      time
+      languge
+      location
+      name
+      slug
+      registerationEndDate
+      startDate
+      amount
+      endDate
+      applications
+      maxParticipents
+      pricing
+      locationType
     }
   }
 `;

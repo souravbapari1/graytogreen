@@ -1,6 +1,7 @@
 export interface AboutUseData {
   aboutUses: AboutUse[];
   teamMember: TeamMember;
+  g2GAmbassador: G2Gambassador;
 }
 
 export interface AboutUse {
@@ -65,10 +66,17 @@ export interface Esg {
   linkUrl: string;
   align: string;
   image: Image3;
+  More_Links: MoreLink[];
 }
 
 export interface Image3 {
   url: string;
+}
+
+export interface MoreLink {
+  linkText: string;
+  linkUrl: string;
+  id: string;
 }
 
 export interface FoundationCouncil {
@@ -137,12 +145,12 @@ export interface MissionAndVission {
 }
 
 export interface Images2 {
-  center: Center2;
-  left: Left2;
   right: Right2;
+  left: Left2;
+  center: Center2;
 }
 
-export interface Center2 {
+export interface Right2 {
   url: string;
 }
 
@@ -150,7 +158,7 @@ export interface Left2 {
   url: string;
 }
 
-export interface Right2 {
+export interface Center2 {
   url: string;
 }
 
@@ -216,5 +224,30 @@ export interface Member6 {
 }
 
 export interface Image7 {
+  url: string;
+}
+
+export interface G2Gambassador {
+  Description: string;
+  Title: string;
+  Members: Member7[];
+}
+
+export interface Member7 {
+  tabName: string;
+  id: string;
+  members: Member8[];
+}
+
+export interface Member8 {
+  position: string;
+  name: string;
+  linkdinProfile: string;
+  id: string;
+  about: string;
+  image: Image8;
+}
+
+export interface Image8 {
   url: string;
 }

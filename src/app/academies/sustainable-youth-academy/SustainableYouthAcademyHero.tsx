@@ -5,6 +5,7 @@ import Image from "next/image";
 import React from "react";
 import { SustainableYouthAcademy } from "./SustainableYouthAcademy";
 import { strApi } from "@/graphql/client";
+import Link from "next/link";
 
 function SustainableYouthAcademyHero({
   data,
@@ -31,10 +32,17 @@ function SustainableYouthAcademyHero({
           <div
             className={` flex gap-5 mt-10 ${montserrat.className} md:mb-0 mb-32`}
           >
-            <Button className="rounded-none  p-6">Join Us</Button>
-            <Button className="rounded-none p-6 capitalize" variant="secondary">
-              What you will experiences
-            </Button>
+            <Link href="#Join">
+              <Button className="rounded-none  p-6">Join Us</Button>
+            </Link>
+            <Link href="#Experience">
+              <Button
+                className="rounded-none p-6 capitalize"
+                variant="secondary"
+              >
+                What you will experiences
+              </Button>
+            </Link>
           </div>
         </div>
       </div>

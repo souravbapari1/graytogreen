@@ -1,5 +1,7 @@
 import { UpcomingAcademy } from "@/app/academies/greenkidsacademy/GreenKidsAcademys";
 import { montserrat } from "@/fonts/font";
+import { isExpiryValid } from "@/helper/validate";
+import { cn } from "@/lib/utils";
 import Link from "next/link";
 import React from "react";
 import { BiCategory } from "react-icons/bi";
@@ -28,30 +30,68 @@ function UpcomingAcademies({
         }}
       />
       <div
-        className={` grid lg:grid-cols-3 md:grid-cols-2 gap-8 md:mt-6 mt-4 ${montserrat.className}`}
+        className={` grid lg:grid-cols-3 md:grid-cols-2 gap-5 md:mt-6 mt-4 ${montserrat.className}`}
       >
         {data?.map((e, i) => {
+          const isValid = isExpiryValid(e.registerationEndDate);
+          const isFull = e.maxParticipents <= (e.applications || 0);
+          const validate = () => {
+            if (isValid) {
+              return isFull;
+            }
+            return true;
+          };
           return (
-            <Link href={"/academies/greenkidsacademy/view/" + e.slug}>
+            <Link
+              href={
+                validate() ? "#" : "/academies/greenkidsacademy/view/" + e.slug
+              }
+            >
               <div
-                className=" bg-green-50/50   rounded-xl p-7 hover:shadow-md border border-green-50 shadow-green-950/10 transition-all flex flex-col justify-start items-start gap-2"
+                className={cn(
+                  " bg-green-600/10 text-primary text-sm  relative overflow-hidden rounded-xl p-5 hover:shadow-md border-2 border-green-600/10  shadow-green-450/50 transition-all flex flex-col justify-start items-start gap-2",
+                  validate() &&
+                    "cursor-not-allowed bg-gray-200 text-gray-600 border-gray-300 opacity-50"
+                )}
                 key={i}
               >
-                <p
-                  className="font-semibold text-green-950"
-                  dangerouslySetInnerHTML={{ __html: e.title }}
-                />
-                <div className=" flex justify-start items-center gap-2">
-                  <BiCategory />
+                {validate() && (
+                  <div className="absolute top-0 right-0 w-full h-full z-0  p-5 flex justify-center items-center">
+                    <p className=" font-semibold text-red-600 -rotate-12 bg-red-300/20 border-2  border-red-300 px-6 py-2 rounded-lg opacity-100  relative text-sm backdrop-blur-sm  block">
+                      {isFull ? "Registration Full" : "Registration Closed"}
+                    </p>
+                  </div>
+                )}
+                <div className="flex justify-between items-center gap-2 mb-2">
+                  <p className="text-xs font-bold bg-primary px-3 py-1 rounded-md text-white shadow-sm">
+                    {e.pricing.toUpperCase()}
+                  </p>
+                  {e.amount > 0 && (
+                    <p className="text-xs font-bold bg-white text-primary px-3 py-1 rounded-md  shadow-sm">
+                      {e.amount} OMR
+                    </p>
+                  )}
+                </div>
+
+                <div className=" flex justify-start items-center gap-2 font-bold">
+                  <div className="w-4">
+                    <BiCategory />
+                  </div>
                   <p>{e.title}</p>
                 </div>
-                <div className=" flex justify-start items-center gap-2">
-                  <FaRegHeart />
+                <div className=" flex justify-start items-center gap-2 ">
+                  <div className="w-4">
+                    <FaRegHeart />
+                  </div>
                   <p>{e.languge}</p>
                 </div>
                 <div className=" flex justify-start items-center gap-2">
-                  <MdOutlineLocationOn />
-                  <p>{e.location}</p>
+                  <div className="w-4">
+                    <MdOutlineLocationOn />
+                  </div>
+                  <p className="line-clamp-1">
+                    {e.locationType == "offline" ? e.location : "Online"}
+                  </p>
                 </div>
               </div>
             </Link>

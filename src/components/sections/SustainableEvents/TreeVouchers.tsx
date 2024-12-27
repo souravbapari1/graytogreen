@@ -7,6 +7,7 @@ import { ImWhatsapp } from "react-icons/im";
 import { FaPhone } from "react-icons/fa6";
 import { SustainableEvent } from "@/app/sustainable-events/SustainableEventsData";
 import { strApi } from "@/graphql/client";
+import { Button } from "@/components/ui/button";
 
 function TreeVouchers({ data }: { data?: SustainableEvent["contact"] }) {
   return (
@@ -62,10 +63,7 @@ function TreeVouchers({ data }: { data?: SustainableEvent["contact"] }) {
             />
           </div>
           <div className="flex flex-col justify-center items-start gap-8 ">
-            <h1 className="text-xl font-bold">
-              Maike Grundmann will be happy to answer any questions you may
-              have.
-            </h1>
+            <h1 className="text-xl font-bold">{data?.title}</h1>
             <p className="">
               Email:{" "}
               <Link href="#" className="text-main">
@@ -79,20 +77,11 @@ function TreeVouchers({ data }: { data?: SustainableEvent["contact"] }) {
               </Link>
             </p>
 
-            <div className="flex md:gap-5 gap-10 md:justify-start md:items-start justify-center items-center w-full">
-              <Link
-                href={"tel:" + data?.mobileNo}
-                className="w-12 h-12 bg-gray-100 hover:bg-primary  rounded-full text-primary hover:text-white text-lg flex justify-center items-center"
-              >
-                <FaPhone />
-              </Link>
-              <Link
-                href={"https://wa.me/" + data?.mobileNo}
-                className="w-12 h-12 bg-gray-100 hover:bg-primary  rounded-full text-primary hover:text-white text-xl flex justify-center items-center"
-              >
-                <ImWhatsapp />
-              </Link>
-            </div>
+            <Link href={data?.bookMeetLink}>
+              <Button className="donateBtn px-8 shadow-none rounded-full">
+                Book A Meeting
+              </Button>
+            </Link>
           </div>
         </div>
       )}

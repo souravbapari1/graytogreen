@@ -21,6 +21,7 @@ const GEBERALFUNDING = gql`
         email
         id
         mobileNo
+        title
         personImage {
           url
         }

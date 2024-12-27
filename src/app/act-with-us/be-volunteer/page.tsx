@@ -20,6 +20,7 @@ const BE_VOLUNTEER = gql`
         id
         email
         bookMeetLink
+        title
       }
       description
       createdAt

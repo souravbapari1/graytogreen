@@ -67,7 +67,7 @@ function CompanyApplicationForm({
   onChange,
   type,
 }: {
-  type: "Individual" | "Ambassador" | "Company" | null;
+  type: "Individual" | "Ambassador" | "Partner" | null;
   onChange: Function;
 }) {
   const [loading, setLoading] = useState(false);

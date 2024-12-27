@@ -34,30 +34,6 @@ function AcademicsInfoLists({
                   <h1
                     className={`md:text-6xl text-5xl font-bold text-center ${montserrat.className}`}
                   >
-                    {BootCamps}+
-                  </h1>
-                  <p
-                    className={`${montserrat.className} text-md text-center text-white/75`}
-                  >
-                    BootCamps
-                  </p>
-                </div>
-                <div className=" text-center flex flex-col justify-center items-center gap-5">
-                  <h1
-                    className={`md:text-6xl text-5xl font-bold text-center ${montserrat.className}`}
-                  >
-                    {releasedResearches}+
-                  </h1>
-                  <p
-                    className={`${montserrat.className} text-md text-center text-white/75`}
-                  >
-                    Released Researches
-                  </p>
-                </div>
-                <div className=" text-center flex flex-col justify-center items-center gap-5">
-                  <h1
-                    className={`md:text-6xl text-5xl font-bold text-center ${montserrat.className}`}
-                  >
                     {graduatedAmbassadors}+
                   </h1>
                   <p
@@ -78,6 +54,31 @@ function AcademicsInfoLists({
                     Workspace
                   </p>
                 </div>
+                <div className=" text-center flex flex-col justify-center items-center gap-5">
+                  <h1
+                    className={`md:text-6xl text-5xl font-bold text-center ${montserrat.className}`}
+                  >
+                    {BootCamps}+
+                  </h1>
+                  <p
+                    className={`${montserrat.className} text-md text-center text-white/75`}
+                  >
+                    BootCamps
+                  </p>
+                </div>
+                <div className=" text-center flex flex-col justify-center items-center gap-5">
+                  <h1
+                    className={`md:text-6xl text-5xl font-bold text-center ${montserrat.className}`}
+                  >
+                    {releasedResearches}+
+                  </h1>
+                  <p
+                    className={`${montserrat.className} text-md text-center text-white/75`}
+                  >
+                    Released Researches
+                  </p>
+                </div>
+
                 <div className=" text-center flex flex-col justify-center items-center gap-5">
                   <h1
                     className={`md:text-6xl text-5xl font-bold text-center ${montserrat.className}`}

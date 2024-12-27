@@ -20,9 +20,9 @@ function Foundation({
   }
   return (
     <div className="w-full  shadow-lg bg-gradient-to-br from-[rgba(160,249,138,0.2)] via-[rgba(219,255,213,0)] to-[rgba(187,249,138,0.2)] mt-20 py-10">
-      <div className="container flex justify-center items-center flex-col">
+      <div className=" flex justify-center w-full items-center flex-col">
         <h1
-          className={`${montserrat.className} md:text-4xl text-2xl font-bold text-center`}
+          className={`${montserrat.className} md:text-4xl text-2xl font-bold  text-center`}
           dangerouslySetInnerHTML={{ __html: data?.title || "" }}
         />
 
@@ -35,7 +35,7 @@ function Foundation({
         >
           Foundation Council
         </h1>
-        <div className="grid lg:grid-cols-3 gap-10 mt-10 lg:px-20 max-w-[1100px]">
+        <div className="grid lg:grid-cols-3 gap-10 mt-10  max-w-[1100px] w-full">
           {data.member.map((e, i) => {
             return (
               <div

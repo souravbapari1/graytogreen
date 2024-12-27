@@ -1,9 +1,29 @@
+"use client";
 import { SustainableEvent } from "@/app/sustainable-events/SustainableEventsData";
 import { montserrat } from "@/fonts/font";
 import { strApi } from "@/graphql/client";
 import Image from "next/image";
 import React from "react";
-
+import Carousel from "react-multi-carousel";
+const responsive = {
+  superLargeDesktop: {
+    // the naming can be any, depends on you.
+    breakpoint: { max: 4000, min: 3000 },
+    items: 3,
+  },
+  desktop: {
+    breakpoint: { max: 3000, min: 1024 },
+    items: 3,
+  },
+  tablet: {
+    breakpoint: { max: 1024, min: 464 },
+    items: 2,
+  },
+  mobile: {
+    breakpoint: { max: 464, min: 0 },
+    items: 1,
+  },
+};
 function Benefit({
   data,
   title,
@@ -23,7 +43,29 @@ function Benefit({
           <h1 className="text-3xl text-center uppercase font-bold max-w-[700px] mb-6">
             {title}
           </h1>
-          <div className="grid lg:grid-cols-3 lg:gap-6 gap-10 w-full my-10">
+          <div className="w-full h-full">
+            <Carousel responsive={responsive} autoPlay={true} infinite>
+              {data.map((e, i) => (
+                <div
+                  className="flex flex-col justify-center items-center text-center md:px-5 gap-4"
+                  key={e.id}
+                >
+                  <div className="bg-white flex justify-center items-center p-4 rounded-full">
+                    <Image
+                      src={strApi + e.image.url}
+                      width={230}
+                      height={120}
+                      alt=""
+                      className="w-12 h-12 "
+                    />
+                  </div>
+                  <h1 className="font-bold text-2xl">{e.title}</h1>
+                  <p className="text-sm bg-opacity-70">{e.description}</p>
+                </div>
+              ))}
+            </Carousel>
+          </div>
+          {/* <div className="grid lg:grid-cols-4 lg:gap-6 gap-10 w-full my-10">
             {data.map((e, i) => (
               <div
                 className="flex flex-col justify-center items-center text-center gap-4"
@@ -42,7 +84,7 @@ function Benefit({
                 <p className="text-sm bg-opacity-70">{e.description}</p>
               </div>
             ))}
-          </div>
+          </div> */}
         </div>
       </div>
     </div>

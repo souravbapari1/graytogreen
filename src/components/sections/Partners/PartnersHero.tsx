@@ -56,7 +56,7 @@ function PartnersHero({
               href={requestFormLink || "#"}
               className={`${montserrat.className} donateBtn py-3 shadow-none  text-sm`}
             >
-              Register as sponsor
+              Register as Partner
             </Link>
           </div>
         </div>

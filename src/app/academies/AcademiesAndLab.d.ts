@@ -3,7 +3,6 @@ export interface AcademiesAndLabs {
 }
 
 export interface AcademiesAndLab {
-  __typename: string;
   BootCamps: number;
   bannerImage: BannerImage;
   climateChangeExperts: number;
@@ -16,15 +15,14 @@ export interface AcademiesAndLab {
   publishedAt: string;
   infocard: Infocard[];
   language: Language;
+  Slogons: Slogon[];
 }
 
 export interface BannerImage {
-  __typename: string;
   url: string;
 }
 
 export interface Infocard {
-  __typename: string;
   id: string;
   link: string;
   title: string;
@@ -32,13 +30,22 @@ export interface Infocard {
 }
 
 export interface Image {
-  __typename: string;
   url: string;
   name: string;
 }
 
 export interface Language {
-  __typename: string;
   id: string;
   name: string;
+}
+
+export interface Slogon {
+  title?: string;
+  id: string;
+  description: string;
+  bannerImage: BannerImage2;
+}
+
+export interface BannerImage2 {
+  url: string;
 }

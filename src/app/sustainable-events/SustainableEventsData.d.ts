@@ -43,6 +43,7 @@ export interface Contact {
   email: string;
   id: string;
   mobileNo: string;
+  title: string;
   personImage: PersonImage;
 }
 

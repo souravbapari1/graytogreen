@@ -18,7 +18,7 @@ function SustainableYouthAcademyAbout({
   data?: SustainableYouthAcademy["sustainabilityRegisterCard"];
 }) {
   return (
-    <div className=" py-20">
+    <div className=" py-20" id="Join">
       <div className="container grid lg:grid-cols-2 gap-10">
         <div className="">
           <div className="relative md:p-10 flex justify-center items-center">

@@ -26,6 +26,7 @@ export interface Contact {
   id: string;
   mobileNo: string;
   personImage: PersonImage;
+  title: string;
 }
 
 export interface PersonImage {

@@ -23,3 +23,29 @@ export function isValidEmail(email: string) {
   // Test if the email matches the pattern
   return emailRegex.test(email);
 }
+
+export function isExpiryValid(expiryDateString: string): boolean {
+  // Step 1: Parse the expiry date string into a Date object
+  const expiryDate = new Date(expiryDateString);
+
+  // Step 2: Check if the parsed date is valid
+  if (isNaN(expiryDate.getTime())) {
+    console.error("Invalid expiry date format.");
+    return false;
+  }
+
+  // Step 3: Get the current date
+  const currentDate = new Date();
+
+  // Step 4: Compare the expiry date with the current date
+  if (expiryDate > currentDate) {
+    return true;
+  } else {
+    return false;
+  }
+}
+
+// Example usage:
+const expiryDateString = "2024-12-24T23:59:59Z"; // Example of expiry date
+const isValid = isExpiryValid(expiryDateString);
+console.log(isValid ? "The date is valid." : "The date has expired.");

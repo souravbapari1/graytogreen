@@ -22,6 +22,7 @@ export interface Contact {
   mobileNo: string;
   id: string;
   email: string;
+  title: string;
   bookMeetLink: string;
 }
 

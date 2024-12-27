@@ -94,10 +94,23 @@ function FoundationSecretariatBanner({
             />
             <Link
               href={seg?.linkUrl || "#"}
-              className="uppercase font-bold mb-8 text-main mt-11 flex md:justify-start justify-center items-center"
+              className="uppercase font-bold mb-2 text-main mt-5 flex md:justify-start justify-center items-center"
             >
               {seg?.linkText} <RiArrowDropRightLine size={35} />
             </Link>
+
+            {seg?.More_Links &&
+              seg.More_Links.map((e) => {
+                return (
+                  <Link
+                    key={e.id}
+                    href={e.linkUrl || "#"}
+                    className="uppercase font-bold mb-2 text-main  flex md:justify-start justify-center items-center"
+                  >
+                    {e.linkText} <RiArrowDropRightLine size={35} />
+                  </Link>
+                );
+              })}
           </div>
         </div>
       </div>

@@ -35,31 +35,47 @@ function AcademicsInfo({
       )}
       {academies && (
         <div className="bg-green-50/20 py-20">
-          <div className="container grid lg:grid-cols-2 gap-10">
-            <div className="">
-              <div className="relative md:p-10 flex justify-center items-center">
-                <div className="w-[90%] h-64 md:h-[380px] bg-green-700/20 absolute -z-[1] lg:mr-12 mr-10 rounded-2xl mb-10"></div>
-                <Image
-                  src={strApi + academies.image.url}
-                  width={1200}
-                  height={1200}
-                  alt=""
-                  className="md:w-full w-[90%]  md:h-[380px]  rounded-2xl object-cover h-64  "
-                />
+          <div className="container grid lg:grid-cols-2 gap-20">
+            <div className=" flex justify-center items-center">
+              <div className="w-full">
+                <div className="relative flex justify-center items-center">
+                  <Image
+                    src={strApi + academies.SideImages.center.url}
+                    width={1200}
+                    height={1200}
+                    alt=""
+                    className="md:w-full w-[90%]  md:h-[313px]   object-cover h-48  "
+                  />
+                  <Image
+                    src={strApi + academies.SideImages.right.url}
+                    width={1200}
+                    height={1200}
+                    alt=""
+                    className="md:w-52 w-28 absolute  md:h-[140px] md:-right-10 right-0 top-0 md:-top-10  border-2 border-white md:p-2 p-1  bg-white  object-cover h-20  "
+                  />
+                  <Image
+                    src={strApi + academies.SideImages.left.url}
+                    width={1200}
+                    height={1200}
+                    alt=""
+                    className="md:w-52 w-28 absolute  md:h-[140px] md:-left-10 left-0 bottom-0 md:-bottom-10 border-2 border-white bg-white md:p-2 p-1   object-cover h-20  "
+                  />
+                </div>
               </div>
             </div>
+
             <div className=" lg:mt-10 mt-4">
               <h1
                 className={`lg:text-4xl text-3xl text-main lg:mb-10 mb-5 font-bold ${montserrat.className}`}
-                dangerouslySetInnerHTML={{ __html: academies.title }}
+                dangerouslySetInnerHTML={{ __html: academies.Title }}
               />
               <p
                 className=" text-gray-700 "
                 dangerouslySetInnerHTML={{ __html: academies.description }}
               />
               <br />
-              {academies.links &&
-                academies.links.map((link) => (
+              {academies.Links &&
+                academies.Links.map((link) => (
                   <Link
                     key={link.id}
                     href={link.linkUrl}

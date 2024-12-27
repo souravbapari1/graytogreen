@@ -17,7 +17,10 @@ function DonateForLandAction({
   return (
     <div className={`py-20 ${montserrat.className}`}>
       <div className="container flex flex-col gap-5 justify-center items-center">
-        <div dangerouslySetInnerHTML={{ __html: description || "" }} />
+        <div
+          className="content"
+          dangerouslySetInnerHTML={{ __html: description || "" }}
+        />
         <Link className="donateBtn py-4 px-10 mt-10" href={applyLink || "#"}>
           Submit The Request
         </Link>
@@ -34,7 +37,7 @@ function DonateForLandAction({
         </div>
         <div className="flex flex-col justify-center items-start gap-8 ">
           <h1 className="text-xl font-bold">
-            Maike Grundmann will be happy to answer any questions you may have.
+            {conatctInfo?.title || "Contact Us"}
           </h1>
           <p className="">
             Email:{" "}

@@ -23,6 +23,7 @@ export interface Contact {
   id: string;
   email: string;
   bookMeetLink: string;
+  title: string;
 }
 
 export interface PersonImage {

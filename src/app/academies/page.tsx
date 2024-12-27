@@ -36,6 +36,14 @@ const ACADEMICS = gql`
         id
         name
       }
+      Slogons {
+        title
+        id
+        description
+        bannerImage {
+          url
+        }
+      }
     }
   }
 `;
@@ -57,6 +65,7 @@ async function page({ searchParams }: { searchParams?: any }) {
     <div>
       <Navbar />
       <AcademicsHero
+        slogans={getData()?.Slogons}
         headerDescription={getData()?.headerDescription}
         headerImage={getData()?.bannerImage?.url}
         hraderTitle={getData()?.headerTitle}

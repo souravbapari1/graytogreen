@@ -18,6 +18,7 @@ const ENDOWMENTS = gql`
         mobileNo
         id
         email
+        title
         bookMeetLink
         personImage {
           url

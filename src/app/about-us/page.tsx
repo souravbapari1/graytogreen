@@ -61,6 +61,11 @@ const GQL = gql`
         image {
           url
         }
+        More_Links {
+          linkText
+          linkUrl
+          id
+        }
       }
       foundationCouncil {
         id
@@ -109,15 +114,14 @@ const GQL = gql`
         id
         title
         description
-
         images {
-          center {
+          right {
             url
           }
           left {
             url
           }
-          right {
+          center {
             url
           }
         }
@@ -171,6 +175,24 @@ const GQL = gql`
       title
       description
     }
+    g2GAmbassador {
+      Description
+      Title
+      Members {
+        tabName
+        id
+        members {
+          position
+          name
+          linkdinProfile
+          id
+          about
+          image {
+            url
+          }
+        }
+      }
+    }
   }
 `;
 
@@ -197,7 +219,7 @@ async function AboutUs() {
         link2={pageData?.foundationCouncilLink2 || ""}
       />
       <BordOfDirectors data={pageData?.bordMembers} />
-      {/* <AboutOurAmbassadors /> */}
+      <AboutOurAmbassadors data={data.g2GAmbassador} />
       <ScientificAndSustainabilityAdvisors
         data={pageData?.scientificAndSustainabilityAdvisors}
       />

@@ -20,11 +20,11 @@ function ScientificAdvisors({
   return (
     <div className="container mt-20 mb-20 flex justify-center items-center flex-col gap-6 ">
       <h1
-        className={`${montserrat.className} text-5xl font-bold text-center text-main`}
+        className={`${montserrat.className} text-4xl font-bold text-center text-main`}
       >
         {title || "Scientific Advisors"}
       </h1>
-      <p className="text-center text-xl max-w-[800px] ">
+      <p className="text-center text-lg max-w-[800px] ">
         {desc ||
           "We would like to thank our patrons who have accompanied  from the very beginning."}
       </p>
@@ -42,12 +42,12 @@ function ScientificAdvisors({
                     height={3000}
                     alt=""
                     width={3000}
-                    className=" object-cover rounded-full w-80 h-80  border-main"
+                    className=" object-cover rounded-full w-56 h-56  border-main"
                   />
                 </div>
               </div>
-              <h1 className="text-2xl font-bold mt-8 mb-3">{e.name}</h1>
-              <p>{e.about}</p>
+              <h1 className="text-xl font-bold mt-8 mb-3">{e.name}</h1>
+              <p className="text-sm">{e.about}</p>
               <Link
                 target="_blank"
                 href={e?.linkdinProfile || "#"}
