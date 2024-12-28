@@ -1,9 +1,6 @@
 import { montserrat } from "@/fonts/font";
-import Image from "next/image";
-import Link from "next/link";
-import React from "react";
-import { Standard } from "../standerds";
 import { strApi } from "@/graphql/client";
+import { Standard } from "../standerds";
 
 function StandersHero({ data }: { data?: Standard["banner"] }) {
   if (!data) {

@@ -9,6 +9,7 @@ import React from "react";
 import { JobData } from "./job";
 import NotFound from "@/app/not-found";
 import { Metadata } from "next";
+import { Button } from "@/components/ui/button";
 export let metadata: Metadata = {};
 export const revalidate = 0;
 const JOB_GQL = gql`
@@ -20,6 +21,7 @@ const JOB_GQL = gql`
       slug
       content
       applyLink
+      Job_Status
       image {
         url
       }
@@ -63,13 +65,19 @@ async function page({ params }: { params: { job: string } }) {
             />
             <br />
             <br />
-            <Link
-              target="_blank"
-              href={pageData?.applyLink || "#"}
-              className="donateBtn py-4 mx-auto block text-center shadow-none"
-            >
-              Apply Now
-            </Link>
+            {pageData?.Job_Status != "CLOSED" ? (
+              <Link
+                target="_blank"
+                href={pageData?.applyLink || "#"}
+                className="donateBtn py-4 mx-auto block text-center shadow-none"
+              >
+                Apply Now
+              </Link>
+            ) : (
+              <Button className="w-full  " variant="destructive">
+                Job Closed
+              </Button>
+            )}
           </div>
         </div>
       </div>

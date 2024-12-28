@@ -32,7 +32,7 @@ function DonateBanner({
               allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
               referrerPolicy="strict-origin-when-cross-origin"
               allowFullScreen
-              className="w-full lg:h-96 h-52 rounded-3xl object-cover"
+              className="w-full lg:h-80 h-52 rounded-3xl object-cover"
             ></iframe>
             <div className="flex flex-col gap-5 justify-center">
               <h1
@@ -42,18 +42,22 @@ function DonateBanner({
               </h1>
               <p className="text-white/80 md:text-lg">{data.description}</p>
               <div className="flex justify-start items-center md:flex-row flex-col gap-10 mt-3">
-                <Button
-                  className={`${lora.className} text-xl py-[24px] md:w-auto w-full  px-8 rounded-full bg-green-500 shadow-none border-none`}
-                >
-                  Act Now
-                </Button>
-                <Link
-                  href="#"
-                  className="  text-white flex md:justify-start justify-center items-center"
-                >
-                  Explore reforestation projects{" "}
-                  <RiArrowDropRightLine size={35} />
-                </Link>
+                {data.Links.map((e, i) => {
+                  return (
+                    <Link href={e.linkUrl} key={i}>
+                      <Button
+                        className={
+                          i % 2
+                            ? `text-white hover:bg-transparent flex md:justify-start justify-center items-center bg-transparent shadow-none border-none`
+                            : `${lora.className} text-xl py-[24px] md:w-auto w-full  px-8 rounded-full bg-green-500 shadow-none border-none`
+                        }
+                      >
+                        {e.linkText}
+                        {i % 2 ? <RiArrowDropRightLine size={35} /> : ""}
+                      </Button>
+                    </Link>
+                  );
+                })}
               </div>
             </div>
           </div>

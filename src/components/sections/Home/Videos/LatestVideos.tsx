@@ -1,8 +1,10 @@
+import { Button } from "@/components/ui/button";
 import { montserrat } from "@/fonts/font";
 import { createResource } from "@/helper/createResource";
 import { Collection } from "@/interface/collection";
 import { LiveAndPopcastItem } from "@/interface/liveandpodcast";
 import { client } from "@/request/actions";
+import Link from "next/link";
 import React from "react";
 const videosResource = createResource(
   client
@@ -31,10 +33,17 @@ function LatestVideos() {
               allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
               referrerPolicy="strict-origin-when-cross-origin"
               allowFullScreen
-              className="w-full lg:h-64 md:h-56 h-48 rounded-3xl object-cover"
+              className="w-full lg:h-52 h-48 rounded-xl object-cover"
             ></iframe>
           );
         })}
+      </div>
+      <div className="w-full mt-10 flex justify-center items-center">
+        <Link href="/live-and-podcasts">
+          <Button className="donateBtn shadow-none border-none rounded-full mx-auto ">
+            View All Videos
+          </Button>
+        </Link>
       </div>
     </div>
   );

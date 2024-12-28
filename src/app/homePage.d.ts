@@ -3,7 +3,6 @@ export interface HomePages {
 }
 
 export interface HomePage {
-  __typename: string;
   documentId: string;
   banner: Banner[];
   sponsors: Sponsor[];
@@ -17,85 +16,125 @@ export interface HomePage {
 }
 
 export interface Banner {
-  __typename: string;
   image: Image;
   title: string;
   id: string;
 }
 
 export interface Image {
-  __typename: string;
   url: string;
   alternativeText: any;
 }
 
 export interface Sponsor {
-  __typename: string;
   brandImage: BrandImage;
   id: string;
 }
 
 export interface BrandImage {
-  __typename: string;
   url: string;
 }
 
 export interface Academies {
-  __typename: string;
   description: string;
   id: string;
   title: string;
-  image: Image2;
+  Academies: Academy[];
+  images: Images;
+  links: Link[];
 }
 
-export interface Image2 {
-  __typename: string;
-  url: string;
+export interface Academy {
+  title: string;
+  time: string;
+  startDate: string;
+  slug: string;
+  registerationEndDate: string;
+  pricing: string;
   name: string;
+  locationType: string;
+  location: string;
+  languge: string;
+  endDate: string;
+  applications?: number;
+  amount: number;
+  maxParticipents: number;
+}
+
+export interface Images {
+  center: Center;
+  left: Left;
+  right: Right;
+}
+
+export interface Center {
+  url: string;
+}
+
+export interface Left {
+  url: string;
+}
+
+export interface Right {
+  url: string;
+}
+
+export interface Link {
+  linkText: string;
+  id: string;
+  linkUrl: string;
 }
 
 export interface ActionSpeaks {
-  __typename: string;
   description: string;
   id: string;
   title: string;
   videoId: string;
+  Links: Link2[];
+}
+
+export interface Link2 {
+  id: string;
+  linkText: string;
+  linkUrl: string;
 }
 
 export interface ListCardView {
-  __typename: string;
   align: string;
   description: string;
   id: string;
   title: string;
   linkUrl: string;
   linkText: string;
-  image: Image3;
+  image: Image2;
 }
 
-export interface Image3 {
-  __typename: string;
+export interface Image2 {
   url: string;
   name: string;
 }
 
 export interface HowItWorks {
-  __typename: string;
   description: string;
   id: string;
   title: string;
   videoId: string;
+  Links: Link3[];
+}
+
+export interface Link3 {
+  linkUrl: string;
+  linkText: string;
+  id: string;
 }
 
 export interface Faq {
-  __typename: string;
   answer: string;
   id: string;
   question: string;
 }
 
 export interface Language {
-  __typename: string;
   name: string;
   id: string;
 }

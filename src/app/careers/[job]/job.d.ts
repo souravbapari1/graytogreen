@@ -10,6 +10,7 @@ export interface Job {
   content: string;
   applyLink: string;
   image: Image;
+  Job_Status: string;
 }
 
 export interface Image {

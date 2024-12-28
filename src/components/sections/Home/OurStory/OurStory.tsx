@@ -61,18 +61,22 @@ function OurStory({ data }: { data?: HomePage["howItWorks"] }) {
               />
               <p className=" md:text-lg">{data.description}</p>
               <div className="flex justify-start items-center md:flex-row flex-col gap-10 mt-3">
-                <Button
-                  className={`${lora.className} text-xl py-[24px] md:w-auto w-full  px-8 rounded-full bg-green-500 shadow-none border-none`}
-                >
-                  Act Now
-                </Button>
-                <Link
-                  href="#"
-                  className=" text-main flex md:justify-start justify-center items-center"
-                >
-                  Explore reforestation projects{" "}
-                  <RiArrowDropRightLine size={35} />
-                </Link>
+                {data.Links.map((e, i) => {
+                  return (
+                    <Link href={e.linkUrl} key={i}>
+                      <Button
+                        className={
+                          i % 2
+                            ? `text-primary hover:bg-white flex md:justify-start justify-center items-center bg-transparent shadow-none border-none`
+                            : `${lora.className} text-xl py-[24px] md:w-auto w-full  px-8 rounded-full bg-green-500 shadow-none border-none`
+                        }
+                      >
+                        {e.linkText}
+                        {i % 2 ? <RiArrowDropRightLine size={35} /> : ""}
+                      </Button>
+                    </Link>
+                  );
+                })}
               </div>
             </div>
           </div>

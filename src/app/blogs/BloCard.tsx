@@ -16,7 +16,7 @@ function BlogCard({
   return (
     <Link
       href={"/blogs/" + blog?.slug}
-      className={`${montserrat.className} bg-white  transition-all border hover:shadow-lg overflow-hidden`}
+      className={`${montserrat.className} bg-white  transition-all  hover:shadow-lg overflow-hidden`}
     >
       <Image
         src={strApi + blog?.previewImage?.url}
@@ -24,15 +24,15 @@ function BlogCard({
         height={2000}
         alt=""
         className={cn(
-          "w-full md:h-64 h-60 object-cover",
+          "w-full  h-60 object-cover",
           `${size == "sm" ? "md:h-40 h-40" : ""}`
         )}
       />
       <div className="flex flex-col gap-2 p-5">
-        <p className="font-semibold md:text-base text-sm text-gray-400">
+        <p className="font-semibold  text-xs uppercase text-gray-400">
           {formatTimestampCustom(blog?.publishedAt || "")}
         </p>
-        <h1 className="md:text-xl font-bold line-clamp-2">{blog?.title}</h1>
+        <h1 className="md:text-md font-bold line-clamp-2">{blog?.title}</h1>
         <p className="md:text-sm text-xs line-clamp-3 text-gray-500">
           {blog?.description}
         </p>

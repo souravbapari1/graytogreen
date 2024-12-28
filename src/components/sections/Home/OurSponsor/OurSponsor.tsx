@@ -11,6 +11,8 @@ import { MdOutlineLocationOn } from "react-icons/md";
 import { Button } from "@/components/ui/button";
 import { HomePage } from "@/app/homePage";
 import { strApi } from "@/graphql/client";
+import { isExpiryValid } from "@/helper/validate";
+import { cn } from "@/lib/utils";
 
 function OurSponsor({
   sponsers,
@@ -58,15 +60,33 @@ function OurSponsor({
         <>
           <div className="flex flex-col justify-center items-center gap-10">
             <div className="grid lg:grid-cols-2 gap-10 mt-12">
-              <div className="relative md:p-10 flex justify-center items-center">
-                <div className="w-[90%] h-48 md:h-[320px] bg-green-700/20 absolute -z-[1] lg:mr-12 mr-10 rounded-2xl mb-10"></div>
-                <Image
-                  src={strApi + academics.image.url}
-                  width={1200}
-                  height={1200}
-                  alt=""
-                  className="md:w-full w-[90%]  md:h-[320px]  rounded-2xl object-cover h-48  "
-                />
+              <div className="relative  flex justify-center items-center">
+                <div className="">
+                  <div className="relative md:p-10 flex justify-center items-center">
+                    {/* <div className="w-[90%] h-48 md:h-[380px] bg-green-700/20 absolute -z-[1] lg:-mr-12 -mr-10 rounded-2xl mb-10"></div> */}
+                    <Image
+                      src={strApi + academics.images.center.url}
+                      width={1200}
+                      height={1200}
+                      alt=""
+                      className="md:w-full w-[90%]  md:h-[313px]   object-cover h-48  "
+                    />
+                    <Image
+                      src={strApi + academics.images.right.url}
+                      width={1200}
+                      height={1200}
+                      alt=""
+                      className="md:w-52 w-28 absolute  md:h-[140px] right-0 top-0 border-2 border-white md:p-2 p-1  bg-white  object-cover h-20  "
+                    />
+                    <Image
+                      src={strApi + academics.images.left.url}
+                      width={1200}
+                      height={1200}
+                      alt=""
+                      className="md:w-52 w-28 absolute  md:h-[140px] left-0 bottom-0 border-2 border-white bg-white md:p-2 p-1   object-cover h-20  "
+                    />
+                  </div>
+                </div>
               </div>
               <div className="md:text-left text-center md:mt-5">
                 <h1
@@ -75,48 +95,100 @@ function OurSponsor({
                 />
                 <p className="  mt-4 ">{academics.description}</p>
                 <Link
-                  href="#"
+                  href="/about-us"
                   className="uppercase font-bold text-main mt-3 text-sm flex md:justify-start justify-center items-center"
                 >
                   Learn More About Our Vision <RiArrowDropRightLine size={35} />
                 </Link>
-                <div className="grid md:grid-cols-2 gap-4 md:mt-2 mt-4 ">
-                  {Array.from({ length: 2 }).map((_, i) => {
+                <div className="grid md:grid-cols-2 gap-4 md:mt-2 mt-4 text-sm">
+                  {academics.Academies?.map((e, i) => {
+                    const isValid = isExpiryValid(e.registerationEndDate);
+                    const isFull = e.maxParticipents <= (e.applications || 0);
+                    const validate = () => {
+                      if (isValid) {
+                        return isFull;
+                      }
+                      return true;
+                    };
                     return (
-                      <div
-                        className=" bg-green-50/50  rounded-xl p-5 shadow-md shadow-green-50/20 transition-all flex flex-col justify-start items-start gap-2"
-                        key={i}
+                      <Link
+                        href={
+                          validate()
+                            ? "#"
+                            : "/academies/greenkidsacademy/view/" + e.slug
+                        }
                       >
-                        <p className="font-semibold text-green-950">
-                          RiArrowDropRightLine
-                        </p>
-                        <div className=" flex justify-start items-center gap-2">
-                          <BiCategory />
-                          <p>2024-11-10</p>
+                        <div
+                          className={cn(
+                            " bg-green-600/10 text-primary text-sm  relative overflow-hidden rounded-xl p-5 hover:shadow-md border-2 border-green-600/10  shadow-green-450/50 transition-all flex flex-col justify-start items-start gap-2",
+                            validate() &&
+                              "cursor-not-allowed bg-gray-200 text-gray-600 border-gray-300 opacity-50"
+                          )}
+                          key={i}
+                        >
+                          {validate() && (
+                            <div className="absolute top-0 right-0 w-full h-full z-0  p-5 flex justify-center items-center">
+                              <p className=" font-semibold text-red-600 -rotate-12 bg-red-300/20 border-2  border-red-300 px-6 py-2 rounded-lg opacity-100  relative text-sm backdrop-blur-sm  block">
+                                {isFull
+                                  ? "Registration Full"
+                                  : "Registration Closed"}
+                              </p>
+                            </div>
+                          )}
+                          <div className="flex justify-between items-center gap-2 mb-2">
+                            <p className="text-xs font-bold bg-primary px-3 py-1 rounded-md text-white shadow-sm">
+                              {e.pricing.toUpperCase()}
+                            </p>
+                            {e.amount > 0 && (
+                              <p className="text-xs font-bold bg-white text-primary px-3 py-1 rounded-md  shadow-sm">
+                                {e.amount} OMR
+                              </p>
+                            )}
+                          </div>
+
+                          <div className=" flex justify-start items-center gap-2 font-bold">
+                            <div className="w-4">
+                              <BiCategory />
+                            </div>
+                            <p>{e.title}</p>
+                          </div>
+                          <div className=" flex justify-start items-center gap-2 ">
+                            <div className="w-4">
+                              <FaRegHeart />
+                            </div>
+                            <p>{e.languge}</p>
+                          </div>
+                          <div className=" flex justify-start items-center gap-2">
+                            <div className="w-4">
+                              <MdOutlineLocationOn />
+                            </div>
+                            <p className="line-clamp-1">
+                              {e.locationType == "offline"
+                                ? e.location
+                                : "Online"}
+                            </p>
+                          </div>
                         </div>
-                        <div className=" flex justify-start items-center gap-2">
-                          <FaRegHeart />
-                          <p>21508, Gelenary,DE</p>
-                        </div>
-                        <div className=" flex justify-start items-center gap-2">
-                          <MdOutlineLocationOn />
-                          <p>MdOutlineLocationOn</p>
-                        </div>
-                      </div>
+                      </Link>
                     );
                   })}
                 </div>
                 <div className="flex md:justify-start md:items-start gap-3 mt-6 justify-center items-center md:gap-4">
-                  <Button
-                    className={`${lora.className} text-xl py-[24px] md:w-auto w-full  px-8 rounded-full donateBtn border-none`}
-                  >
-                    Join US
-                  </Button>
-                  <Button
-                    className={`${lora.className} text-xl py-[22px] md:w-auto w-full  px-7 rounded-full  border-2 border-main bg-transparent text-main hover:text-white`}
-                  >
-                    Ideas & Tools
-                  </Button>
+                  {academics.links.map((e, i) => {
+                    return (
+                      <Link href={e.linkUrl} key={i}>
+                        <Button
+                          className={
+                            i % 2
+                              ? `${lora.className} text-md py-[20px] md:w-auto w-full  px-6 rounded-full  border-2 border-main bg-transparent text-main hover:text-white`
+                              : `${lora.className} text-md py-[20px] md:w-auto w-full  px-6 rounded-full donateBtn border-none`
+                          }
+                        >
+                          {e.linkText}
+                        </Button>
+                      </Link>
+                    );
+                  })}
                 </div>
               </div>
             </div>

@@ -8,6 +8,7 @@ export interface Job {
   location: string;
   image: Image;
   slug: string;
+  Job_Status: string;
 }
 
 export interface Image {

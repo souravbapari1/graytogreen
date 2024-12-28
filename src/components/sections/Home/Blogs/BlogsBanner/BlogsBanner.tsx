@@ -1,10 +1,13 @@
 "use client";
 import BlogCard from "@/app/blogs/BloCard";
 import { getBlogs } from "@/app/blogs/functions";
+import { Button } from "@/components/ui/button";
 import { montserrat } from "@/fonts/font";
 import { createResource } from "@/helper/createResource";
+import { ArrowUpRightFromCircle } from "lucide-react";
 
 import Image from "next/image";
+import Link from "next/link";
 import React, { useEffect, useRef, useState } from "react";
 
 const blogsResource = createResource(getBlogs(0));
@@ -63,6 +66,13 @@ function BlogsBanner() {
           {blogs?.data.blogPosts.map((e, i) => {
             return <BlogCard key={"vlog" + i} blog={e} />;
           })}
+        </div>
+        <div className="w-full mt-10 flex justify-center items-center">
+          <Link href="/live-and-podcasts">
+            <Button className="donateBtn px-5 shadow-none border-none rounded-full mx-auto flex justify-center items-center gap-3">
+              View All Blogs
+            </Button>
+          </Link>
         </div>
       </div>
     </div>

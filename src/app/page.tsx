@@ -42,9 +42,37 @@ const HOME_PAGE = gql`
         description
         id
         title
-        image {
-          url
+        Academies {
+          title
+          time
+          startDate
+          slug
+          registerationEndDate
+          pricing
           name
+          locationType
+          location
+          languge
+          endDate
+          applications
+          amount
+          maxParticipents
+        }
+        images {
+          center {
+            url
+          }
+          left {
+            url
+          }
+          right {
+            url
+          }
+        }
+        links {
+          linkText
+          id
+          linkUrl
         }
       }
       actionSpeaks {
@@ -52,6 +80,11 @@ const HOME_PAGE = gql`
         id
         title
         videoId
+        Links {
+          id
+          linkText
+          linkUrl
+        }
       }
       listCardView {
         align
@@ -70,6 +103,11 @@ const HOME_PAGE = gql`
         id
         title
         videoId
+        Links {
+          linkUrl
+          linkText
+          id
+        }
       }
       faqs {
         answer
