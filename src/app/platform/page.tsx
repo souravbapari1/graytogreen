@@ -14,7 +14,7 @@ async function page() {
   const project = await client
     .get("/api/collections/projects/records/", {
       expand: "operated_by,reports,sdgs,sdgs.sdg,unit_types,type",
-      perPage: 500
+      perPage: 500,
     })
     .send<Collection<ProjectItem>>();
 
@@ -22,7 +22,7 @@ async function page() {
     <div>
       <Navbar />
       <GGMapBox
-        style={{ width: "100%", height: "90.8vh" }}
+        style={{ width: "100%", height: "calc(100vh - 88px)" }}
         className="rounded-none shadow-none"
         data={project}
       />

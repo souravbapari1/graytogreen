@@ -39,7 +39,7 @@ function ProjectView() {
         <div className="">
           <PopupContent
             data={state.selectedProject}
-            className="w-full shadow-none mt-0 pt-0 px-3 text-sm"
+            className="w-full shadow-none mt-0 pt-0 px-3 text-sm border-none"
             key={"project_"}
           />
           <div
@@ -52,62 +52,18 @@ function ProjectView() {
           </div>
         </div>
         <br />
-        <div className="px-4">
-          <p className="font-bold ">About Project</p>
-          <div
-            className="text-xs "
-            dangerouslySetInnerHTML={{
-              __html: state.selectedProject?.about_project || "",
-            }}
-          />
-          <div className="mt-2 flex flex-col gap-2 hide-c-arrow">
-            <Carousel responsive={responseive}>
-              {state.selectedProject?.project_images.map((e, i) => {
-                return (
-                  <Image
-                    width={500}
-                    height={200}
-                    key={i + e}
-                    src={genPbFiles(state.selectedProject, e) || ""}
-                    alt=""
-                    className="w-full h-44 object-cover"
-                  />
-                );
-              })}
-            </Carousel>
-          </div>
-
-          <div className="mt-2 flex flex-col gap-2 hide-c-arrow">
-            <Carousel responsive={responseive}>
-              {state.selectedProject?.project_videos.map((e, i) => {
-                return (
-                  <video
-                    width={500}
-                    height={200}
-                    key={i}
-                    src={genPbFiles(state.selectedProject, e) || ""}
-                    controls
-                    className="h-48 object-cover w-full"
-                  />
-                );
-              })}
-            </Carousel>
-          </div>
-        </div>
-        <div className="px-4 mt-2">
-          <p className="font-bold ">Challenges</p>
-          <div
-            className="text-xs "
-            dangerouslySetInnerHTML={{
-              __html:
-                state.selectedProject?.challenges_and_impact_details || "",
-            }}
-          />
-
-          <div className="mt-2 flex flex-col gap-2 hide-c-arrow">
-            <Carousel responsive={responseive}>
-              {state.selectedProject?.challenges_and_impact_details_images.map(
-                (e, i) => {
+        <div className="p-2 ">
+          <div className="px-4 py-4  bg-green-600/5 rounded-md">
+            <p className="font-bold text-sm mb-3">About Project</p>
+            <div
+              className="text-xs"
+              dangerouslySetInnerHTML={{
+                __html: state.selectedProject?.about_project || "",
+              }}
+            />
+            <div className="mt-2 flex flex-col gap-2 hide-c-arrow">
+              <Carousel responsive={responseive}>
+                {state.selectedProject?.project_images.map((e, i) => {
                   return (
                     <Image
                       width={500}
@@ -118,15 +74,13 @@ function ProjectView() {
                       className="w-full h-44 object-cover"
                     />
                   );
-                }
-              )}
-            </Carousel>
-          </div>
+                })}
+              </Carousel>
+            </div>
 
-          <div className="mt-2 flex flex-col gap-2 hide-c-arrow">
-            <Carousel responsive={responseive}>
-              {state.selectedProject?.challenges_and_impact_details_videos.map(
-                (e, i) => {
+            <div className="mt-2 flex flex-col gap-2 hide-c-arrow">
+              <Carousel responsive={responseive}>
+                {state.selectedProject?.project_videos.map((e, i) => {
                   return (
                     <video
                       width={500}
@@ -137,19 +91,73 @@ function ProjectView() {
                       className="h-48 object-cover w-full"
                     />
                   );
-                }
-              )}
-            </Carousel>
+                })}
+              </Carousel>
+            </div>
           </div>
+        </div>
+        <div className="px-2">
+          <div className="px-4 py-4 mt-2 bg-blue-600/5 rounded-md">
+            <p className="font-bold mb-3 text-sm">Challenges</p>
+            <div
+              className="text-xs "
+              dangerouslySetInnerHTML={{
+                __html:
+                  state.selectedProject?.challenges_and_impact_details || "",
+              }}
+            />
 
+            <div className="mt-2 flex flex-col gap-2 hide-c-arrow">
+              <Carousel responsive={responseive}>
+                {state.selectedProject?.challenges_and_impact_details_images.map(
+                  (e, i) => {
+                    return (
+                      <Image
+                        width={500}
+                        height={200}
+                        key={i + e}
+                        src={genPbFiles(state.selectedProject, e) || ""}
+                        alt=""
+                        className="w-full h-44 object-cover"
+                      />
+                    );
+                  }
+                )}
+              </Carousel>
+            </div>
+
+            <div className="mt-2 flex flex-col gap-2 hide-c-arrow">
+              <Carousel responsive={responseive}>
+                {state.selectedProject?.challenges_and_impact_details_videos.map(
+                  (e, i) => {
+                    return (
+                      <video
+                        width={500}
+                        height={200}
+                        key={i}
+                        src={genPbFiles(state.selectedProject, e) || ""}
+                        controls
+                        className="h-48 object-cover w-full"
+                      />
+                    );
+                  }
+                )}
+              </Carousel>
+            </div>
+          </div>
+        </div>
+        <br />
+        <div className="px-4">
           <br />
-          <h1 className="font-bold mb-3">Sustainable Development Goals</h1>
+          <h1 className="font-bold mb-2 text-sm">
+            Sustainable Development Goals
+          </h1>
 
           {state.selectedProject?.expand?.sdgs?.map((v, i) => {
             return <SdgsView data={v} key={v.id} />;
           })}
           <br />
-          <h1 className="font-bold">Reports</h1>
+          <h1 className="font-bold text-sm">Reports</h1>
           <div className="">
             {state.selectedProject?.expand?.reports?.map((e, i) => {
               return (
@@ -170,10 +178,8 @@ function ProjectView() {
             })}
           </div>
         </div>
-        <br />
-
         <div className="flex flex-col gap-2 p-4">
-          <h1 className="font-bold">Contact Info</h1>
+          <h1 className="font-bold text-sm">Contact Info</h1>
           <p className="text-sm">{state.selectedProject?.website}</p>
           <p className="text-sm">{state.selectedProject?.email}</p>
           <p className="text-sm">{state.selectedProject?.address}</p>

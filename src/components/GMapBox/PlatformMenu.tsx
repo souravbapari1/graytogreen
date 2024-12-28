@@ -72,10 +72,10 @@ function PlatformMenu({ data }: { data?: ProjectItem[] }) {
 
   return (
     <div className="lg:w-96 w-full h-full z-10 left-0 md:top-0  bg-transparent absolute lg:px-3 py-3  overflow-hidden">
-      <div className="w-full h-full bg-white rounded-3xl shadow-xl overflow-hidden pt-3 mb-3">
+      <div className="w-full h-full bg-white  rounded-xl shadow-xl overflow-hidden pt-3 mb-3">
         <div className={`md:px-6 px-2 pb-2 ${montserrat.className}`}>
           <Tabs defaultValue="all" className="w-full ">
-            <TabsList className="w-full bg-main/10 ">
+            <TabsList className="w-full bg-white">
               <TabsTrigger
                 value="all"
                 className="w-full shadow-none "
@@ -102,19 +102,20 @@ function PlatformMenu({ data }: { data?: ProjectItem[] }) {
           <div className="flex justify-normal items-center gap-3 mt-3">
             <Checkbox
               checked={topChecked}
+              className="bg-white"
               onClick={() => setTopChecked(!topChecked)}
             />
             <p className="text-sm font-medium">Top Projects</p>
           </div>
           <Input
-            className="shadow-none mt-2  text-xs"
+            className="shadow-none mt-2  text-xs bg-white "
             placeholder="Search Project.. "
             value={search}
             onChange={(e) => setSearch(e.target.value)}
           />
         </div>
         <div
-          className={`${montserrat.className} w-full h-full text-xs md:px-5 px-2  overflow-auto pt-0 pb-20`}
+          className={`${montserrat.className} w-full h-full text-xs md:px-5 px-2   overflow-auto pt-0 pb-20`}
         >
           {data?.map((map, i) => {
             return (

@@ -55,7 +55,10 @@ export const PopupContent = ({
 
   return (
     <div
-      className={cn("w-72 h-auto bg-white rounded-2xl p-2 shadow", className)}
+      className={cn(
+        "w-72 h-auto bg-white rounded-xl p-2 border-gray-100 border-2",
+        className
+      )}
     >
       <div
         onClick={onClick}
@@ -87,7 +90,7 @@ export const PopupContent = ({
                 className="w-3 h-3 cursor-pointer"
               />
               <p className="font-semibold text-[10px]">
-                {data?.name || "NO NME"}
+                {data?.expand?.type?.name || "NO NME"}
               </p>
             </div>
             <p className="text-[12px] ">{data?.sort_title}</p>
@@ -126,7 +129,7 @@ export const PopupContent = ({
           getProjectColor(data?.expand?.type?.name, data?.status)
         )}
       >
-        <p>By Mama Saves The Planet</p>
+        <p>{data?.comments || "By Mama Saves The Planet"}</p>
       </div>
     </div>
   );
