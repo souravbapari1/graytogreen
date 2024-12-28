@@ -31,13 +31,13 @@ function RestorationAdviceTeam({ data }: { data?: ResearchesLab["about"] }) {
         </div>
         <div className="">
           <div className="relative md:p-10 flex justify-center items-center">
-            <div className="w-[90%] h-48 md:h-[380px] bg-green-700/20 absolute -z-[1] lg:mr-12 mr-10 rounded-2xl mb-10"></div>
+            <div className="w-[90%] h-48 md:h-[320px] bg-green-700/20 absolute -z-[1] lg:mr-12 mr-10 rounded-2xl mb-10"></div>
             <Image
               src={strApi + data.image.url}
               width={1200}
               height={1200}
               alt=""
-              className="md:w-full w-[90%]  md:h-[380px]  rounded-2xl object-cover h-48  "
+              className="md:w-full w-[90%]  md:h-[320px]  rounded-2xl object-cover h-48  "
             />
           </div>
         </div>

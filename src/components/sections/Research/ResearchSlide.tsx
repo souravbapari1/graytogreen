@@ -11,7 +11,7 @@ function ResearchSlide({ slide }: { slide: ResearchesLab["textSlides"] }) {
       cssClass="w-full "
       transitionDuration={500}
       indicators={true}
-      autoplay={false}
+      autoplay={true}
       infinite={true}
     >
       {slide.text.map((text, i) => {

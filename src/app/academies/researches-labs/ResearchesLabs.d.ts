@@ -1,6 +1,8 @@
 export interface ResearchesLabData {
   researchesLabs: ResearchesLab[];
+  researchLabsPrograms: ResearchLabsProgram[];
 }
+
 export interface ResearchesLab {
   about: About;
   challenges: Challenges;
@@ -31,30 +33,6 @@ export interface Challenges {
   title: string;
   sortTitle: string;
   id: string;
-  experienceCard: ExperienceCard[];
-}
-
-export interface ExperienceCard {
-  title: string;
-  link: Link;
-  id: string;
-  description: string;
-  image: Image2;
-  topImage: TopImage;
-}
-
-export interface Link {
-  linkUrl: string;
-  linkText: string;
-  id: string;
-}
-
-export interface Image2 {
-  url: string;
-}
-
-export interface TopImage {
-  url: string;
 }
 
 export interface Header {
@@ -97,10 +75,10 @@ export interface Card {
   id: string;
   description: string;
   align: string;
-  image: Image3;
+  image: Image2;
 }
 
-export interface Image3 {
+export interface Image2 {
   url: string;
 }
 
@@ -114,13 +92,13 @@ export interface Members {
 export interface Member {
   name: string;
   position: string;
-  image: Image4;
+  image: Image3;
   about: string;
   id: string;
   linkdinProfile: string;
 }
 
-export interface Image4 {
+export interface Image3 {
   url: string;
 }
 
@@ -134,19 +112,45 @@ export interface Member2 {
   name?: string;
   link?: string;
   id: string;
-  image: Image5;
+  image: Image4;
 }
 
-export interface Image5 {
+export interface Image4 {
   url: string;
 }
 
 export interface TextSlides {
   bgImage: BgImage;
   id: string;
-  text: any[];
+  text: Text[];
 }
 
 export interface BgImage {
+  url: string;
+}
+
+export interface Text {
+  id: string;
+  content: string;
+}
+
+export interface ResearchLabsProgram {
+  Apply_Link: string;
+  content: string;
+  createdAt: string;
+  description: string;
+  documentId: string;
+  icon: Icon;
+  image: Image5;
+  title: string;
+  publishedAt: string;
+  updatedAt: string;
+}
+
+export interface Icon {
+  url: string;
+}
+
+export interface Image5 {
   url: string;
 }

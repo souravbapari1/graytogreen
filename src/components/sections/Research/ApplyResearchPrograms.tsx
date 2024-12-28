@@ -32,8 +32,10 @@ const responsive = {
 
 function ApplyResearchPrograms({
   data,
+  labs,
 }: {
   data?: ResearchesLabData["researchesLabs"][0]["challenges"];
+  labs?: ResearchesLabData["researchLabsPrograms"];
 }) {
   if (!data) {
     return <></>;
@@ -52,15 +54,15 @@ function ApplyResearchPrograms({
         dangerouslySetInnerHTML={{ __html: data.title || "" }}
       />
       <Carousel responsive={responsive} itemClass="md:px-6 ">
-        {data.experienceCard.map((e, i) => {
+        {labs?.map((e, i) => {
           return (
             <div
               className="md:h-auto relative bg-green-900/5 md:p-8 p-6 select-none"
-              key={e.id}
+              key={e.documentId}
             >
               <div className="bg-main w-16 h-16 flex justify-center items-center text-white rounded-full">
                 <Image
-                  src={strApi + e.topImage.url}
+                  src={strApi + e.icon.url}
                   alt=""
                   width={1200}
                   height={1200}
@@ -81,11 +83,11 @@ function ApplyResearchPrograms({
                 width={1200}
                 height={2000}
               />
-              <Link href={e.link.linkUrl}>
+              <Link href={"/academies/researches-labs/apply/" + e.documentId}>
                 <Button
                   className={`${montserrat.className} w-full rounded-none mt-0 h-10`}
                 >
-                  {e.link.linkText}
+                  Apply Now
                 </Button>
               </Link>
             </div>

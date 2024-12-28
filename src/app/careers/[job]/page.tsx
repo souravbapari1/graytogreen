@@ -10,6 +10,7 @@ import { JobData } from "./job";
 import NotFound from "@/app/not-found";
 import { Metadata } from "next";
 import { Button } from "@/components/ui/button";
+
 export let metadata: Metadata = {};
 export const revalidate = 0;
 const JOB_GQL = gql`

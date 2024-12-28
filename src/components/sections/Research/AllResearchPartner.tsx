@@ -1,7 +1,9 @@
 import { ResearchesLab } from "@/app/academies/researches-labs/ResearchesLabs";
 import { montserrat } from "@/fonts/font";
 import { strApi } from "@/graphql/client";
+
 import Image from "next/image";
+import Link from "next/link";
 import React from "react";
 
 function AllResearchPartner({
@@ -24,14 +26,16 @@ function AllResearchPartner({
             <div className="flex  justify-center flex-wrap md:mt-10 mt-5 md:mb-14 items-center ">
               {e.member.map((member, i) => {
                 return (
-                  <Image
-                    src={strApi + member.image.url}
-                    key={i}
-                    alt=""
-                    className="w-28 h-28 object-contain md:mx-10  mx-5"
-                    width={100}
-                    height={100}
-                  />
+                  <Link href={member.link || "#"} key={i} target="_blank">
+                    <Image
+                      src={strApi + member.image.url}
+                      key={i}
+                      alt=""
+                      className="w-28 h-28 object-contain md:mx-10  mx-5"
+                      width={100}
+                      height={100}
+                    />
+                  </Link>
                 );
               })}
             </div>

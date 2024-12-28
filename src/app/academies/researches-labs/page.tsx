@@ -33,22 +33,6 @@ const GQL = gql`
         title
         sortTitle
         id
-        experienceCard {
-          title
-          link {
-            linkUrl
-            linkText
-            id
-          }
-          id
-          description
-          image {
-            url
-          }
-          topImage {
-            url
-          }
-        }
       }
       header {
         title
@@ -123,6 +107,22 @@ const GQL = gql`
       }
       locale
     }
+    researchLabsPrograms {
+      Apply_Link
+      content
+      createdAt
+      description
+      documentId
+      icon {
+        url
+      }
+      image {
+        url
+      }
+      title
+      publishedAt
+      updatedAt
+    }
   }
 `;
 
@@ -137,7 +137,10 @@ async function page() {
     <div>
       <Navbar />
       <ResearchHero header={pageData?.header} />
-      <ApplyResearchPrograms data={pageData?.challenges} />
+      <ApplyResearchPrograms
+        data={pageData?.challenges}
+        labs={data?.researchLabsPrograms}
+      />
       <OngoingResearch />
       <ResearchFellowships data={pageData?.infoCards} />
       <ScientificAdvisors

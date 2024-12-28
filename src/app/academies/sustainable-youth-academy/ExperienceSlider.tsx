@@ -37,7 +37,7 @@ function ExperienceSlider({
   }
   return (
     <div>
-      <Carousel responsive={responsive} itemClass="md:px-6 ">
+      <Carousel responsive={responsive} itemClass="md:px-6 " autoPlay={true}>
         {data?.map((e, i) => {
           return (
             <div

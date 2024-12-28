@@ -53,7 +53,7 @@ function MonthlySummitTalkContent({ data }: { data?: MonthlySummitTalk }) {
         <div className="flex text-main items-center gap-3 mb-4">
           <PiPlantFill />
           <p className={`${montserrat.className} text-sm font-semibold`}>
-            {data?.experience?.title}
+            {data?.experience?.sortTitle}
           </p>
         </div>
         <h1
@@ -139,26 +139,30 @@ function MonthlySummitTalkContent({ data }: { data?: MonthlySummitTalk }) {
           </div>
         </div> */}
       </div>
-      <div className="bg-green-600/5  w-full flex md:p-10 p-5 py-10 mt-10 justify-center items-center flex-col">
-        <h1 className="text-2xl font-bold mb-4">{data?.sessionsCards.title}</h1>
-        <p className="text-center md:text-base text-sm">
-          {data?.sessionsCards.description}
-        </p>
-        <div className="flex md:flex-row flex-col justify-center items-center md:gap-5 gap-0">
-          <Link
-            href={data?.sessionsCards.registerSessionLink || "#"}
-            target="_blank"
-            className="donateBtn py-3 shadow-none mt-6 capitalize text-center  text-xs"
-          >
-            Registering in Climate Justice Session{" "}
-          </Link>
-          <Link
-            href={data?.sessionsCards.registerIndividualsSessionLink || "#"}
-            target="_blank"
-            className="donateBtn py-3 shadow-none mt-6 capitalize text-center  text-xs"
-          >
-            Register Individuals
-          </Link>
+      <div className="bg-green-600/5  ">
+        <div className="w-full flex md:p-10 p-5 py-10 mt-10 justify-center items-center flex-col">
+          <h1 className="text-2xl font-bold mb-4">
+            {data?.sessionsCards.title}
+          </h1>
+          <p className="text-center md:text-base text-sm">
+            {data?.sessionsCards.description}
+          </p>
+          <div className="flex md:flex-row flex-col justify-center items-center md:gap-5 gap-0">
+            <Link
+              href={data?.sessionsCards.registerSessionLink || "#"}
+              target="_blank"
+              className="donateBtn py-3 shadow-none mt-6 capitalize text-center  text-xs"
+            >
+              Registering in Climate Justice Session{" "}
+            </Link>
+            <Link
+              href={data?.sessionsCards.registerIndividualsSessionLink || "#"}
+              target="_blank"
+              className="donateBtn py-3 shadow-none mt-6 capitalize text-center  text-xs"
+            >
+              Register Individuals
+            </Link>
+          </div>
         </div>
       </div>
       {data?.upcomingSession && (
