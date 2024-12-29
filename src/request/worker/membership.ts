@@ -6,6 +6,8 @@ export const getMembership = async (page: number = 1) => {
   const req = await client
     .get("/api/collections/memberships/records", {
       page,
+      perPage: 500,
+      sort: "-popular",
       filter: `(active=true)`,
     })
     .send<Collection<MembershipItem>>();

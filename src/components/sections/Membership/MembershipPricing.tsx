@@ -39,7 +39,7 @@ function MembershipPricing({ data }: { data: MembershipItem[] }) {
                     {e.stocks == 0 ? "Out Of Stock" : `Only ${e.stocks} left`}
                   </div>
                 )}
-                <div className="w-full h-48 bg-main/10 flex justify-center items-center border-b-4 border-gray-200">
+                <div className="w-full h-48 donateBtn shadow-none rounded-none flex justify-center items-center border-b-4 border-gray-200">
                   <Image
                     src={genPbFiles(e, e.image)}
                     alt={`${e.name} Image`}
@@ -59,12 +59,12 @@ function MembershipPricing({ data }: { data: MembershipItem[] }) {
                       <p className="line-through text-gray-400">
                         {e.compare_amount.toFixed(2)} OMR
                       </p>
-                      <p className="text-lg font-semibold text-gray-600">
+                      <p className="text-lg font-semibold text-gray-600 mb-5">
                         {e.amount.toFixed(2)} OMR
                       </p>
-                      <p className="text-sm font-medium text-gray-500 capitalize">
+                      {/* <p className="text-sm font-medium text-gray-500 capitalize">
                         Life Time
-                      </p>
+                      </p> */}
                     </div>
                     <div className="mt-3 text-left">
                       {e.info?.map((info, i) => (
@@ -81,8 +81,8 @@ function MembershipPricing({ data }: { data: MembershipItem[] }) {
                     </div>
                   </div>
                   <div className="h-10"></div>
-                  <button className="mt-0 absolute bottom-0 left-0  w-full bg-main text-white text-sm font-semibold py-3 px-4 rounded-lg rounded-t-none hover:bg-main-dark transition-all duration-300">
-                    Apply Now
+                  <button className="mt-0 donateBtn absolute bottom-0 left-0  w-full bg-main text-white text-sm font-semibold py-3 px-4 rounded-lg rounded-t-none hover:bg-main-dark transition-all duration-300">
+                    Act Now
                   </button>
                 </div>
               </Link>
