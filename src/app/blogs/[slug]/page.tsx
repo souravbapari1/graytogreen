@@ -32,26 +32,29 @@ async function ReadBlog({ params }: { params: { slug: string } }) {
         />
         <div className="w-full  md:h-96 h-44 bg-main/20 backdrop-blur-sm relative"></div>
       </div>
-      <div className="container  md:-mt-64 -mt-16 z-20 relative">
+      <div className="container  md:-mt-64 -mt-28 z-20 relative">
         <Image
           src={strApi + post?.previewImage?.url}
           width={2000}
           height={2000}
           alt=""
-          className="w-full lg:h-[500px] md:h-96 bg-white h-52 object-cover max-w-[900px] shadow-md rounded-3xl mx-auto"
+          className="w-full lg:h-[500px] md:h-96 bg-white h-52 object-cover max-w-[900px] shadow-md rounded-xl mx-auto"
         />
       </div>
       <div className={`container ${montserrat.className}`}>
         <div className=" max-w-[900px]  mx-auto">
           <h1 className="lg:text-2xl text-xl font-bold mt-10">{post?.title}</h1>
-          <p className="font-semibold md:text-base mt-5 text-sm text-gray-400">
-            {formatTimestampCustom(post?.publishedAt || "")}
-          </p>
+          <div className="flex justify-between items-center w-full  mt-3  text-sm ">
+            <p className="font-semibold md:text-base  text-sm text-gray-400">
+              {formatTimestampCustom(post?.publishedAt || "")}
+            </p>
+            <p> - {post.blog_category.name}</p>
+          </div>
           <br />
           <hr />
           <br />
           <div
-            className="content"
+            className={"content " + montserrat.className}
             dangerouslySetInnerHTML={{ __html: post?.content || "" }}
           />
         </div>

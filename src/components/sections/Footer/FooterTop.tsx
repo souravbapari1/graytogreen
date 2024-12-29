@@ -54,7 +54,7 @@ function FooterTop() {
           <FiInstagram />
         </Link>
       </div>
-      <p className="text-justify md:text-xl text-sm max-w-[1000px]">
+      <p className="text-justify  text-base max-w-[1000px]">
         is a global movement empowering young people and organizations to
         restore forest ecosystems and fight for climate justice. To do so,
         we educate young people, restore ecosystems, conduct restoration
