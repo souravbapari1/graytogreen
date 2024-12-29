@@ -9,8 +9,14 @@ export const getBlogs = async (page: number, filter?: string | null) => {
         $locale: I18NLocaleCode
         $pagination: PaginationArg
         $filters: BlogPostFiltersInput
+        $sort: [String]
       ) {
-        blogPosts(locale: $locale, pagination: $pagination, filters: $filters) {
+        blogPosts(
+          locale: $locale
+          pagination: $pagination
+          filters: $filters
+          sort: $sort
+        ) {
           blog_category {
             name
           }
@@ -28,6 +34,7 @@ export const getBlogs = async (page: number, filter?: string | null) => {
     `,
     variables: {
       locale: "en",
+      sort: ["publishedAt:desc"],
       pagination: {
         start: page * 9,
         limit: 9,
@@ -94,8 +101,14 @@ export const searchBlogs = async (search: string) => {
         $locale: I18NLocaleCode
         $pagination: PaginationArg
         $filters: BlogPostFiltersInput
+        $sort: [String]
       ) {
-        blogPosts(locale: $locale, pagination: $pagination, filters: $filters) {
+        blogPosts(
+          locale: $locale
+          pagination: $pagination
+          filters: $filters
+          sort: $sort
+        ) {
           blog_category {
             name
           }
@@ -113,6 +126,7 @@ export const searchBlogs = async (search: string) => {
     `,
     variables: {
       locale: "en",
+      sort: ["publishedAt:desc"],
       pagination: {
         start: 0,
         limit: 10,

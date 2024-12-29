@@ -29,7 +29,7 @@ async function ReadResearches({ params }: { params: { slug: string } }) {
         />
         <div className="w-full  md:h-96 h-44 bg-main/20 backdrop-blur-sm relative"></div>
       </div>
-      <div className="container  md:-mt-32 -mt-16 z-20 relative">
+      <div className="container  md:-mt-64 -mt-22 z-20 relative">
         <Image
           src={strApi + post?.previewImage?.url}
           width={2000}
@@ -41,9 +41,13 @@ async function ReadResearches({ params }: { params: { slug: string } }) {
       <div className={`container ${montserrat.className}`}>
         <div className=" max-w-[900px]  mx-auto">
           <h1 className="lg:text-2xl text-xl font-bold mt-10">{post?.title}</h1>
-          <p className="font-semibold md:text-base mt-5 text-sm text-gray-400">
-            {formatTimestampCustom(post?.publishedAt)}
-          </p>
+          <div className="mt-5 flex justify-between items-center w-full  ">
+            <p className="font-semibold md:text-base text-sm text-gray-400">
+              {formatTimestampCustom(post?.publishedAt)}
+            </p>
+
+            <p> - {post.research_category.name}</p>
+          </div>
           <br />
           <hr />
           <br />

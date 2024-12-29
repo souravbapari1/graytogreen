@@ -8,8 +8,9 @@ export const getResearchesLabs = async (state: string, page: number) => {
       query ResearchPosts(
         $filters: ResearchPostFiltersInput
         $pagination: PaginationArg
+        $sort: [String]
       ) {
-        researchPosts(filters: $filters, pagination: $pagination) {
+        researchPosts(filters: $filters, pagination: $pagination, sort: $sort) {
           documentId
           description
           locale
@@ -37,6 +38,7 @@ export const getResearchesLabs = async (state: string, page: number) => {
         limit: 9,
         start: page * 9,
       },
+      sort: ["publishedAt:desc"],
     },
   });
   return data;

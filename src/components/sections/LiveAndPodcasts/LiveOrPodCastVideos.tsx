@@ -20,6 +20,7 @@ async function LiveOrPodCastVideos({
   const liveVideos = await client
     .get("/api/collections/lives/records", {
       perPage: 500,
+      sort: "created",
       filter: "(liveNow=false)",
     })
     .send<Collection<LiveAndPopcastItem>>();
@@ -60,7 +61,7 @@ async function LiveOrPodCastVideos({
                     allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
                     referrerPolicy="strict-origin-when-cross-origin"
                     allowFullScreen
-                    className="w-full lg:h-64 bg-gray-50 md:h-56 h-48 rounded object-cover"
+                    className="w-full lg:h-52 bg-gray-50 md:h-56 h-48 rounded object-cover"
                   ></iframe>
                   <p className="line-clamp-3 mt-2 text-sm text-gray-700">
                     {e.title}
