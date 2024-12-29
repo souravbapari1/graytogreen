@@ -139,7 +139,7 @@ function MonthlySummitTalkContent({ data }: { data?: MonthlySummitTalk }) {
           </div>
         </div> */}
       </div>
-      <div className="bg-green-600/5  ">
+      <div className="bg-green-600/5  rounded-3xl border-2 border-green-500/10">
         <div className="w-full flex md:p-10 p-5 py-10 mt-10 justify-center items-center flex-col">
           <h1 className="text-2xl font-bold mb-4">
             {data?.sessionsCards.title}

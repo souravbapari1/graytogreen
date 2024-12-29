@@ -16,7 +16,7 @@ function BlogCard({
   return (
     <Link
       href={"/blogs/" + blog?.slug}
-      className={`${montserrat.className} bg-white  transition-all  hover:shadow-lg overflow-hidden`}
+      className={`${montserrat.className} bg-white   border-2 border-green-500/10 transition-all  hover:shadow-lg overflow-hidden`}
     >
       <Image
         src={strApi + blog?.previewImage?.url}

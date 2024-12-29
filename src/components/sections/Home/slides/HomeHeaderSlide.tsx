@@ -21,7 +21,7 @@ function HomeHeaderSlide({ data }: { data?: HomePage["banner"] }) {
         {data.map((e, i) => {
           return (
             <div
-              className="each-slide md:max-h-[600px] max-h-[300px]  h-[1200px] w-full overflow-hidden  "
+              className="each-slide md:max-h-[400px] max-h-[300px]  h-[1200px] w-full overflow-hidden  "
               key={"s" + i}
             >
               <div className="h-full relative w-full">
@@ -43,7 +43,7 @@ function HomeHeaderSlide({ data }: { data?: HomePage["banner"] }) {
                     alt=""
                     className="w-full h-full object-cover absolute top-0 right-0 bg-green-50"
                   />
-                  <div className="w-full h-full z-10 flex justify-center items-center p-20 mt-12 text-center  md:text-4xl font-extrabold text-xl">
+                  <div className="w-full h-full z-10 flex justify-center items-center p-20 text-center  md:text-3xl font-extrabold text-xl">
                     <h1>{e.title}</h1>
                   </div>
                 </div>

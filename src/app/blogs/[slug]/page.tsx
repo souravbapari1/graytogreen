@@ -32,7 +32,7 @@ async function ReadBlog({ params }: { params: { slug: string } }) {
         />
         <div className="w-full  md:h-96 h-44 bg-main/20 backdrop-blur-sm relative"></div>
       </div>
-      <div className="container  md:-mt-32 -mt-16 z-20 relative">
+      <div className="container  md:-mt-64 -mt-16 z-20 relative">
         <Image
           src={strApi + post?.previewImage?.url}
           width={2000}
