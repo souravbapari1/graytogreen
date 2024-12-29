@@ -1,4 +1,3 @@
-
 import Footer from "@/components/sections/Footer/Footer";
 import FooterTop from "@/components/sections/Footer/FooterTop";
 import Navbar from "@/components/sections/Navbar/Navbar";
@@ -24,14 +23,13 @@ function getBackgroundColor(percentage: number): string {
 export const revalidate = 0;
 export const metadata = {
   title: "Projects",
-}
+};
 
 async function Projects() {
-
   return (
     <div className="relative">
       <Navbar />
-    <ProjectsView/>
+      <ProjectsView />
       <FooterTop />
       <Footer />
     </div>

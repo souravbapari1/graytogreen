@@ -25,8 +25,17 @@ import {
 import { useFilterState } from "./useFilterState";
 import { Badge } from "../ui/badge";
 import { IoClose } from "react-icons/io5";
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuLabel,
+  DropdownMenuSeparator,
+  DropdownMenuTrigger,
+} from "@/components/ui/dropdown-menu";
+import { MdSortByAlpha } from "react-icons/md";
 
-interface FilterState {
+export interface FilterState {
   types: string[];
   mainInterventions: string[];
   countries: string[];
@@ -37,7 +46,6 @@ interface FilterState {
 }
 
 function FilterProjects() {
-  const [search, setSearch] = useState("");
   const selectedFilters = useFilterState();
 
   const state = useAppSelector((e) => e.platformSlice);
@@ -89,6 +97,25 @@ function FilterProjects() {
       );
     });
 
+    if (selectedFilters.filterBy) {
+      data = data.sort((a, b) => {
+        if (selectedFilters.filterBy === "PLTH") {
+          return a.omr_unit - b.omr_unit; // Price Low to High
+        } else if (selectedFilters.filterBy === "PHTL") {
+          return b.omr_unit - a.omr_unit; // Price High to Low
+        } else if (selectedFilters.filterBy === "NEWTOOLD") {
+          return new Date(b.created).getTime() - new Date(a.created).getTime(); // New to Old
+        } else if (selectedFilters.filterBy === "OLDTONEW") {
+          return new Date(a.created).getTime() - new Date(b.created).getTime(); // Old to New
+        } else if (selectedFilters.filterBy === "ATZ") {
+          return a.name.toLowerCase().localeCompare(b.name.toLowerCase()); // A-Z
+        } else if (selectedFilters.filterBy === "ZTA") {
+          return b.name.toLowerCase().localeCompare(a.name.toLowerCase()); // Z-A
+        }
+        return 0; // Default case, no sorting
+      });
+    }
+
     if (selectedFilters.search) {
       data = data.filter((e) =>
         e.name.toLowerCase().includes(selectedFilters.search.toLowerCase())
@@ -107,6 +134,7 @@ function FilterProjects() {
     selectedFilters.topProjects,
     selectedFilters.search,
     selectedFilters.filters,
+    selectedFilters.filterBy,
   ]);
 
   return (
@@ -121,6 +149,90 @@ function FilterProjects() {
           value={selectedFilters.search}
           onChange={(e) => selectedFilters.setSearch(e.target.value)}
         />
+        <DropdownMenu>
+          <DropdownMenuTrigger>
+            <div className="bg-white rounded-sm flex justify-center items-center p-1.5 px-2">
+              <MdSortByAlpha size={12} className="text-primary" />
+            </div>
+          </DropdownMenuTrigger>
+          <DropdownMenuContent className="shadow-sm text-[10px] rounded border-none">
+            <DropdownMenuLabel>Sort By</DropdownMenuLabel>
+            <DropdownMenuSeparator />
+            <DropdownMenuItem
+              className={
+                selectedFilters.filterBy == "PLTH"
+                  ? "bg-primary/20 text-xs"
+                  : "text-xs"
+              }
+              onClick={() => {
+                selectedFilters.setFilterBy("PLTH");
+              }}
+            >
+              Price, Low to High
+            </DropdownMenuItem>
+            <DropdownMenuItem
+              className={
+                selectedFilters.filterBy == "PHTL"
+                  ? "bg-primary/20 text-xs"
+                  : "text-xs"
+              }
+              onClick={() => {
+                selectedFilters.setFilterBy("PHTL");
+              }}
+            >
+              Price , High to Low
+            </DropdownMenuItem>
+            <DropdownMenuItem
+              className={
+                selectedFilters.filterBy == "NEWTOOLD"
+                  ? "bg-primary/20 text-xs"
+                  : "text-xs"
+              }
+              onClick={() => {
+                selectedFilters.setFilterBy("NEWTOOLD");
+              }}
+            >
+              Date, New to Old
+            </DropdownMenuItem>
+            <DropdownMenuItem
+              className={
+                selectedFilters.filterBy == "OLDTONEW"
+                  ? "bg-primary/20 text-xs"
+                  : "text-xs"
+              }
+              onClick={() => {
+                selectedFilters.setFilterBy("OLDTONEW");
+              }}
+            >
+              Date, Old To New
+            </DropdownMenuItem>
+            <DropdownMenuItem
+              className={
+                selectedFilters.filterBy == "ATZ"
+                  ? "bg-primary/20 text-xs"
+                  : "text-xs"
+              }
+              onClick={() => {
+                selectedFilters.setFilterBy("ATZ");
+              }}
+            >
+              A-Z
+            </DropdownMenuItem>
+            <DropdownMenuItem
+              className={
+                selectedFilters.filterBy == "ZTA"
+                  ? "bg-primary/20 text-xs"
+                  : "text-xs"
+              }
+              onClick={() => {
+                selectedFilters.setFilterBy("ZTA");
+              }}
+            >
+              Z-A
+            </DropdownMenuItem>
+          </DropdownMenuContent>
+        </DropdownMenu>
+
         <FilterProjectsOptions applyFilters={applyFilters}>
           <div className="bg-white rounded-sm flex justify-center items-center p-1.5 px-2">
             <Filter size={10} className="text-primary" />
@@ -130,7 +242,7 @@ function FilterProjects() {
       <div className="flex justify-between items-center">
         <div className="flex justify-start items-center gap-2 px-1 mt-2">
           <Checkbox
-            className="bg-white rounded text-xs shadow-none flex justify-center items-center"
+            className="bg-green-600/10 border-none rounded text-xs shadow-none flex justify-center items-center"
             checked={selectedFilters.topProjects}
             onClick={() =>
               selectedFilters.setTopProjects(!selectedFilters.topProjects)
@@ -145,7 +257,7 @@ function FilterProjects() {
             onClick={() => {
               dispatch(setPlatformFilter(state.dataSet || []));
               selectedFilters.setTopProjects(false);
-              setSearch("");
+
               selectedFilters.clearAllFilters();
             }}
           >
@@ -192,8 +304,10 @@ function FilterProjectsOptions({
   children: React.ReactNode;
   applyFilters: () => void;
 }) {
+  const [open, setOpen] = useState(false);
+
   const state = useAppSelector((e) => e.platformSlice);
-  const dispatch = useAppDispatch();
+
   const selectedFilters = useFilterState();
 
   const getProjectTypes = () => {
@@ -255,7 +369,7 @@ function FilterProjectsOptions({
   const projectTypes = getProjectTypes();
 
   return (
-    <Sheet>
+    <Sheet open={open} onOpenChange={(e) => setOpen(e)}>
       <SheetTrigger>{children}</SheetTrigger>
       <SheetContent side="left" className="w-[88vw] p-5 overflow-auto">
         <SheetHeader className="text-left">
@@ -285,7 +399,7 @@ function FilterProjectsOptions({
                         }
                       >
                         <Checkbox
-                          className="bg-white rounded text-xs shadow-none"
+                          className="bg-white rounded text-xs shadow-none border-none bg-green-600/10"
                           checked={selectedFilters.filters[
                             category as keyof FilterState
                           ].includes(value as string)}
@@ -304,6 +418,7 @@ function FilterProjectsOptions({
             variant="default"
             className="shadow-none rounded w-full "
             onClick={() => {
+              setOpen(false);
               applyFilters();
             }}
           >

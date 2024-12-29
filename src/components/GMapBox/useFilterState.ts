@@ -12,10 +12,14 @@ interface FilterState {
   };
   topProjects: boolean;
   search: string;
+  filterBy: null | "PLTH" | "PHTL" | "OLDTONEW" | "NEWTOOLD" | "ATZ" | "ZTA";
   toggleFilter: (category: keyof FilterState["filters"], value: string) => void;
   clearAllFilters: () => void;
   setTopProjects: (value: boolean) => void;
   setSearch: (value: string) => void;
+  setFilterBy: (
+    value: null | "PLTH" | "PHTL" | "OLDTONEW" | "NEWTOOLD" | "ATZ" | "ZTA"
+  ) => void;
 }
 
 export const useFilterState = create<FilterState>((set) => ({
@@ -30,11 +34,18 @@ export const useFilterState = create<FilterState>((set) => ({
     sdgs: [],
     accStandards: [],
   },
+  filterBy: null,
   setSearch: (value: string) => {
     set({ search: value });
   },
   setTopProjects: (value: boolean) => {
     set({ topProjects: value });
+  },
+
+  setFilterBy: (
+    value: null | "PLTH" | "PHTL" | "OLDTONEW" | "NEWTOOLD" | "ATZ" | "ZTA"
+  ) => {
+    set({ filterBy: value });
   },
 
   toggleFilter: (category: keyof FilterState["filters"], value: string) => {
@@ -61,6 +72,7 @@ export const useFilterState = create<FilterState>((set) => ({
       },
       search: "",
       topProjects: false,
+      filterBy: null,
     });
   },
 }));

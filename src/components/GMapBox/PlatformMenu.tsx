@@ -1,61 +1,17 @@
 "use client";
-import { PopupContent } from "./Parts/PopupContent";
-import { FiSearch } from "react-icons/fi";
+import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
 import { montserrat } from "@/fonts/font";
 import { LuListTodo } from "react-icons/lu";
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import {
-  Sheet,
-  SheetContent,
-  SheetTitle,
-  SheetTrigger,
-} from "@/components/ui/sheet";
-import { Input } from "../ui/input";
-import { Checkbox } from "../ui/checkbox";
+import { PopupContent } from "./Parts/PopupContent";
 
-import { useAppDispatch, useAppSelector } from "@/redux/hooks";
-import {
-  setPlatformFilter,
-  setSelectedProject,
-} from "@/redux/slices/platformSlice";
 import { ProjectItem } from "@/interface/project";
-import { useEffect, useState } from "react";
-import ProjectView from "./ProjectView";
+import { useAppDispatch, useAppSelector } from "@/redux/hooks";
+import { setSelectedProject } from "@/redux/slices/platformSlice";
 import FilterProjects from "./FilterProjects";
+import ProjectView from "./ProjectView";
 
 function PlatformMenu({ data }: { data?: ProjectItem[] }) {
   const dispatch = useAppDispatch();
-
-  // useEffect(() => {
-  //   if (search) {
-  //     setSearch("");
-  //   }
-  //   if (filter === "all") {
-  //     dispatch(setPlatformFilter(state.dataSet || []));
-  //   } else {
-  //     dispatch(
-  //       setPlatformFilter(
-  //         state.dataSet?.filter(
-  //           (e) => e.expand?.type?.name.toLowerCase() === filter
-  //         ) || []
-  //       )
-  //     );
-  //   }
-  // }, [filter]);
-
-  // useEffect(() => {
-  //   if (search) {
-  //     dispatch(
-  //       setPlatformFilter(
-  //         state.dataSet?.filter((e) =>
-  //           e.name.toLowerCase().includes(search.toLowerCase())
-  //         ) || []
-  //       )
-  //     );
-  //   } else {
-  //     dispatch(setPlatformFilter(state.dataSet || []));
-  //   }
-  // }, [search]);
 
   return (
     <div className="lg:w-96 w-full h-full z-10 left-0 md:top-0  bg-transparent absolute lg:px-3 py-3  overflow-hidden">

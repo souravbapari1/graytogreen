@@ -6,12 +6,15 @@ import { PopupContent } from "@/components/GMapBox/Parts/PopupContent";
 import { client } from "@/request/actions";
 import { Collection } from "@/interface/collection";
 import { ProjectItem } from "@/interface/project";
+import { useAppDispatch, useAppSelector } from "@/redux/hooks";
+import { setPlatformData } from "@/redux/slices/platformSlice";
 
 function ProjectsView() {
   const [loading, setLoading] = useState<boolean>(true);
-  const [Projects, setProjects] = useState<Collection<ProjectItem> | null>(
-    null
-  );
+  const state = useAppSelector((e) => e.platformSlice);
+  const dispatch = useAppDispatch();
+  const [totalItems, setTotalItems] = useState<number>(0);
+
   const [page, setPage] = useState(1);
   const loadProjects = async () => {
     const projects = await client
@@ -22,8 +25,9 @@ function ProjectsView() {
         page: 1,
       })
       .send<Collection<ProjectItem>>();
+    setTotalItems(projects.totalItems);
+    dispatch(setPlatformData(projects.items));
 
-    setProjects(projects);
     setLoading(false);
   };
 
@@ -47,17 +51,17 @@ function ProjectsView() {
       <MobFilterTab />
       <div className={`${montserrat.className} container`}>
         <div className=" grid lg:grid-cols-12  gap-10  py-5 relative">
-          <div className="xl:col-span-3 lg:col-span-4 mt-5 lg:block hidden">
-            <FilterTab />
+          <div className="xl:col-span-3 lg:col-span-4 mt-10 lg:block hidden">
+            <div className="sticky top-40">
+              <FilterTab />
+            </div>
           </div>
           <div className="xl:col-span-9 lg:col-span-8">
             <div className="flex justify-end items-end">
-              <h1 className="font-bold text-xl">
-                Project : {Projects?.totalItems}
-              </h1>
+              <h1 className="font-bold text-xl">Project : {totalItems}</h1>
             </div>
             <div className=" grid xl:grid-cols-3   md:grid-cols-2  gap-6">
-              {Projects?.items.map((e, i) => {
+              {state?.filter?.map((e, i) => {
                 return (
                   <PopupContent
                     className="w-full mt-3 text-sm"
