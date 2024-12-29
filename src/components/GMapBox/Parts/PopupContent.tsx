@@ -97,31 +97,31 @@ export const PopupContent = ({
           </div>
         </div>
       </div>
-      <div className="p-2 py-3 flex justify-between items-center gap-3">
-        <div className="flex flex-col gap-1">
-          <p>
-            <span className="font-bold">
-              {getTypeLabel(data?.expand?.type?.name) || "Trees"}
-            </span>
-          </p>
-          <p className="text-xs">
-            {data?.country} - {data?.city}
-          </p>
-          <p>
-            <span className="font-bold">﷼{data?.omr_unit || "123.00"}</span>{" "}
-            {getPriceLabel(data?.expand?.type?.name)}
-          </p>
+      <div className="p-2 py-3 flex justify-between flex-col items-start gap-3 w-full">
+        <p>
+          <span className="font-bold">{data?.name || "Trees"}</span>
+        </p>
+        <div className="flex justify-between items-center w-full">
+          <div className="flex flex-col gap-1 w-full ">
+            <p className="text-xs">
+              {data?.country} - {data?.city}
+            </p>
+            <p>
+              <span className="font-bold">﷼{data?.omr_unit || "123.00"}</span>{" "}
+              {getPriceLabel(data?.expand?.type?.name)}
+            </p>
+          </div>
+          <Link
+            href={`/donate?by=project&id=${data?.id}&donate=${
+              data?.project_prefix
+            }${
+              params?.get("support") ? "&support=" + params?.get("support") : ""
+            }`}
+            className="w-32 px-0 h-9 rounded-md donateBtn shadow-none flex justify-center items-center"
+          >
+            <p className="font-bold text-white cursor-pointer">Act Now</p>
+          </Link>
         </div>
-        <Link
-          href={`/donate?by=project&id=${data?.id}&donate=${
-            data?.project_prefix
-          }${
-            params?.get("support") ? "&support=" + params?.get("support") : ""
-          }`}
-          className="w-28 px-0 h-9 rounded-md donateBtn shadow-none flex justify-center items-center"
-        >
-          <p className="font-bold text-white cursor-pointer">Act Now</p>
-        </Link>
       </div>
       <div
         className={cn(

@@ -4,6 +4,7 @@ import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 export interface PlatformState {
   dataSet: ProjectItem[];
   filter: ProjectItem[];
+  topProjects: boolean;
   selectedProject?: ProjectItem;
   selectedProjectType?: string;
 }
@@ -13,6 +14,7 @@ const initialState: PlatformState = {
   selectedProject: undefined,
   filter: [],
   selectedProjectType: undefined,
+  topProjects: false,
 };
 
 const platformSlice = createSlice({
@@ -27,6 +29,9 @@ const platformSlice = createSlice({
       state.filter = action.payload;
     },
 
+    setTopProjects: (state, action: PayloadAction<boolean>) => {
+      state.topProjects = action.payload;
+    },
     setSelectedProject: (
       state,
       action: PayloadAction<{
@@ -50,6 +55,7 @@ export const {
   setSelectedProject,
   unselectPlatformProject,
   setPlatformFilter,
+  setTopProjects,
 } = platformSlice.actions;
 
 export default platformSlice.reducer;

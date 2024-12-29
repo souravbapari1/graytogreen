@@ -56,11 +56,14 @@ const GGMapBox: React.FC<{
     if (mapRef.current) {
       mapRef.current.resize(); // Trigger a resize to fix rendering issues
     }
-    dispatch(setPlatformData(data?.items || []));
-    dispatch(setPlatformFilter(data?.items || []));
 
     dispatch(unselectPlatformProject());
   }, []);
+
+  useEffect(() => {
+    dispatch(setPlatformData(data?.items || []));
+    dispatch(setPlatformFilter(data?.items || []));
+  }, [data]);
 
   useEffect(() => {
     mapboxgl.accessToken = MAPBOX_ACCESS_TOKEN;

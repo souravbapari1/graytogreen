@@ -69,6 +69,7 @@ export interface Expand {
   unit_types?: UnitItem[];
   reports?: ReportingItem[];
   docs?: ProjectDocument;
+  accredation_standars: AccredationStandars;
 }
 
 export interface Parameter {
@@ -140,4 +141,13 @@ export interface ProjectDocument {
   verification_and_validation_reports: string[];
   other_doc: string[];
   project: string;
+}
+
+export interface AccredationStandars {
+  collectionId: string;
+  collectionName: string;
+  created: string;
+  id: string;
+  title: string;
+  updated: string;
 }
