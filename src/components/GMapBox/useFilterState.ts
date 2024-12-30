@@ -13,6 +13,8 @@ interface FilterState {
   topProjects: boolean;
   search: string;
   filterBy: null | "PLTH" | "PHTL" | "OLDTONEW" | "NEWTOOLD" | "ATZ" | "ZTA";
+
+  mapCenter: null | { lat: number; lng: number };
   toggleFilter: (category: keyof FilterState["filters"], value: string) => void;
   clearAllFilters: () => void;
   setTopProjects: (value: boolean) => void;
@@ -20,6 +22,7 @@ interface FilterState {
   setFilterBy: (
     value: null | "PLTH" | "PHTL" | "OLDTONEW" | "NEWTOOLD" | "ATZ" | "ZTA"
   ) => void;
+  setMapCenter: (value: null | { lat: number; lng: number }) => void;
 }
 
 export const useFilterState = create<FilterState>((set) => ({
@@ -35,6 +38,7 @@ export const useFilterState = create<FilterState>((set) => ({
     accStandards: [],
   },
   filterBy: null,
+  mapCenter: null,
   setSearch: (value: string) => {
     set({ search: value });
   },
@@ -47,7 +51,9 @@ export const useFilterState = create<FilterState>((set) => ({
   ) => {
     set({ filterBy: value });
   },
-
+  setMapCenter(value) {
+    set({ mapCenter: value });
+  },
   toggleFilter: (category: keyof FilterState["filters"], value: string) => {
     set((prev) => ({
       ...prev,

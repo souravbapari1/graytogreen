@@ -1,5 +1,5 @@
 import { useAppDispatch, useAppSelector } from "@/redux/hooks";
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { PopupContent } from "./Parts/PopupContent";
 import { montserrat } from "@/fonts/font";
 import { IoIosArrowBack } from "react-icons/io";
@@ -14,6 +14,18 @@ import SdgsView from "./SdgsView";
 import { Compass, LandPlot, Mail } from "lucide-react";
 import { FaLocationPin } from "react-icons/fa6";
 import { FaPhone } from "react-icons/fa";
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuLabel,
+  DropdownMenuSeparator,
+  DropdownMenuTrigger,
+} from "@/components/ui/dropdown-menu";
+import { useGlobalDataContext } from "@/context/useGlobalDataContext";
+import { ProjectItem } from "@/interface/project";
+import { useFilterState } from "./useFilterState";
+
 const responseive = {
   desktop: {
     breakpoint: { max: 3000, min: 1024 },
@@ -31,24 +43,108 @@ const responseive = {
 function ProjectView() {
   const state = useAppSelector((e) => e.platformSlice);
   const dispatch = useAppDispatch();
+  const { map } = useGlobalDataContext();
+  const [selectedArea, setSelectedArea] = useState<any>(null);
+
+  function getCenterLatLng(
+    areaName: string,
+    fullData: ProjectItem["workareas"]
+  ) {
+    // Find area ID from areaInfo using areaName
+    const areaInfo = fullData.areaInfo.find(
+      (area) => area.areaName === areaName
+    );
+    if (!areaInfo) {
+      return null;
+    }
+
+    // Find the matching feature in workAreaData using the area ID
+    const areaFeature = fullData.workAreaData.features.find(
+      (feature) => feature.id === areaInfo.id
+    );
+    if (!areaFeature) {
+      return null;
+    }
+
+    const coordinates = areaFeature.geometry.coordinates[0]; // Polygon coordinates
+
+    // Calculate centroid
+    let totalLat = 0;
+    let totalLng = 0;
+    coordinates.forEach(([lng, lat]) => {
+      totalLat += lat;
+      totalLng += lng;
+    });
+
+    const numPoints = coordinates.length;
+    const centerLat = totalLat / numPoints;
+    const centerLng = totalLng / numPoints;
+
+    return { lat: centerLat, lng: centerLng };
+  }
+  const { setMapCenter } = useFilterState();
+
+  useEffect(() => {
+    if (selectedArea && state.selectedProject?.workareas) {
+      const center = getCenterLatLng(
+        selectedArea.areaName as string,
+        state.selectedProject?.workareas
+      );
+
+      if (center) {
+        setMapCenter(center);
+      }
+    }
+  }, [selectedArea]);
+
   return (
     <div className="">
-      <div className="w-80 h-20 bg-white z-20 fixed top-24 right-14 rounded-xl shadow-md p-1 overflow-auto">
-        {state.selectedProject?.workareas.areaInfo.map((e, i) => {
-          return (
-            <div
-              className="flex justify-start gap-4  mb-1 hover:bg-slate-50 items-center p-2 rounded-xl"
-              key={i}
-            >
+      <DropdownMenu>
+        <DropdownMenuTrigger className="w-64  bg-white z-20 fixed top-24 right-3 rounded-xl shadow-md p-1 ">
+          {selectedArea ? (
+            <div className="flex justify-start gap-4 w-full   hover:bg-slate-50 items-start p-2 rounded-xl">
               <LandPlot className="text-primary" />
-              <div className="text-xs">
-                <p className="font-bold text-sm">{e.areaType}</p>
-                <p> {e.areaName}</p>
+              <div className="text-xs text-left">
+                <p className="font-bold text-sm">{selectedArea.areaType}</p>
+                <p>{selectedArea.areaName}</p>
               </div>
             </div>
-          );
-        })}
-      </div>
+          ) : (
+            <div className="flex justify-start gap-4 w-full   hover:bg-slate-50 items-center p-2 rounded-xl">
+              <LandPlot className="text-primary" />
+              <div className="text-xs">
+                <p className="font-bold text-sm">Select Area</p>
+              </div>
+            </div>
+          )}
+        </DropdownMenuTrigger>
+        <DropdownMenuContent>
+          <DropdownMenuLabel>Select Area</DropdownMenuLabel>
+          <DropdownMenuSeparator />
+          {state.selectedProject?.workareas.areaInfo.map((e, i) => {
+            return (
+              <DropdownMenuItem key={i} className="p-0">
+                <div
+                  onClick={() => {
+                    setSelectedArea(e);
+                  }}
+                  className={
+                    "flex justify-start gap-4 w-60   hover:bg-slate-50 items-center  rounded-xl text-sm px-2 py-1 " +
+                    montserrat.className
+                  }
+                >
+                  <LandPlot className="text-gray-950" />
+                  <div className="text-xs">
+                    <p className="font-bold ">{e.areaType}</p>
+                    <p>{e.areaName}</p>
+                  </div>
+                </div>
+              </DropdownMenuItem>
+            );
+          })}
+        </DropdownMenuContent>
+      </DropdownMenu>
+
       <div className="lg:w-96 w-full h-full z-10 left-0 md:top-0  bg-transparent absolute lg:px-3 py-3 rounded-3xl overflow-hidden">
         <div
           className={

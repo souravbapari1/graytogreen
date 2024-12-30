@@ -19,6 +19,8 @@ import {
   unselectPlatformProject,
 } from "@/redux/slices/platformSlice";
 import ProjectView from "./ProjectView";
+import { useGlobalDataContext } from "@/context/useGlobalDataContext";
+import { useFilterState } from "./useFilterState";
 
 export const Markersmages = {
   bilding: "/assets/bilding.svg",
@@ -52,6 +54,8 @@ const GGMapBox: React.FC<{
     57.22343956645474, 21.288218077111807,
   ]);
 
+  const { mapCenter } = useFilterState();
+
   useEffect(() => {
     if (mapRef.current) {
       mapRef.current.resize(); // Trigger a resize to fix rendering issues
@@ -84,7 +88,8 @@ const GGMapBox: React.FC<{
         new mapboxgl.NavigationControl({
           showCompass: true,
           visualizePitch: false,
-        })
+        }),
+        "bottom-right"
       );
 
       // Listen for the `load` event to know when the map is fully loaded
@@ -106,6 +111,17 @@ const GGMapBox: React.FC<{
       }
     };
   }, []);
+
+  useEffect(() => {
+    if (mapCenter) {
+      if (mapRef.current) {
+        mapRef.current.flyTo({
+          center: mapCenter,
+          zoom: 15,
+        });
+      }
+    }
+  }, [mapCenter]);
 
   useEffect(() => {
     if (state.selectedProject) {
