@@ -19,7 +19,8 @@ function ProjectsView() {
   const loadProjects = async () => {
     const projects = await client
       .get("/api/collections/projects/records/", {
-        expand: "operated_by,reports,sdgs,sdgs.sdg,unit_types,type",
+        expand:
+          "operated_by,reports,sdgs,sdgs.sdg,unit_types,type,accredation_standars",
         perPage: 500,
         hideFields: "about_project,challenges_and_impact_details",
         page: 1,

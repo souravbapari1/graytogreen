@@ -1,13 +1,6 @@
 import Footer from "@/components/sections/Footer/Footer";
 import FooterTop from "@/components/sections/Footer/FooterTop";
 import Navbar from "@/components/sections/Navbar/Navbar";
-import { montserrat } from "@/fonts/font";
-import React from "react";
-import FilterTab, { MobFilterTab } from "./FilterTab";
-import { client } from "@/request/actions";
-import { Collection } from "@/interface/collection";
-import { ProjectItem } from "@/interface/project";
-import { PopupContent } from "@/components/GMapBox/Parts/PopupContent";
 import ProjectsView from "./ProjectsView";
 
 function getBackgroundColor(percentage: number): string {
