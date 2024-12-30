@@ -8,7 +8,7 @@ import { authUser, getUser } from "@/request/worker/auth";
 import { signIn } from "next-auth/react";
 import Image from "next/image";
 import Link from "next/link";
-import { useSearchParams } from "next/navigation";
+import { redirect, useSearchParams } from "next/navigation";
 import { useEffect, useState } from "react";
 import toast from "react-hot-toast";
 
@@ -39,6 +39,7 @@ function AuthForm() {
 
   const handleSignIn = async () => {
     // Implement the sign-in logic here
+
     if (email && password) {
       setLoading(true);
       toast.dismiss();
@@ -57,7 +58,7 @@ function AuthForm() {
         });
         if (res?.ok && !res.error) {
           localStorage.setItem("user", JSON.stringify(authUserData.record));
-          window.location.replace(res.url || "/account");
+          window.location.replace(url || "/account");
         } else {
           toast.dismiss();
           toast.error("Invalid Credentials");
