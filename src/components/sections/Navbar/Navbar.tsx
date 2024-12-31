@@ -29,7 +29,7 @@ async function Navbar(): Promise<JSX.Element> {
           <Link className="lg:block hidden" href="/blogs">
             Blogs
           </Link>
-          <Link className="lg:block hidden" href="/researchs">
+          <Link className="lg:block hidden" href="/research">
             Researchs
           </Link>
           {data?.user.token ? (

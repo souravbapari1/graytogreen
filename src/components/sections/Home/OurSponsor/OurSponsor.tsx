@@ -32,7 +32,7 @@ function OurSponsor({
             <div className="flex  justify-center md:mt-14 mt-5 md:mb-10 items-center ">
               {sponsers.map((e, i) => {
                 return (
-                  <Link href={e.url || "#"} target="_blank">
+                  <Link href={e.url || "#"} target="_blank" key={e.id}>
                     <Image
                       src={strApi + e.brandImage.url}
                       key={i}
