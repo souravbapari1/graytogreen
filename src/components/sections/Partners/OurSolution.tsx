@@ -21,10 +21,7 @@ function OurSolution({ data }: { data?: PartenerWithUse["ourSolution"] }) {
       <div>
         {data.map((e, i) => {
           return (
-            <div
-              className="container grid lg:grid-cols-2 gap-10 mt-12 "
-              key={e.id}
-            >
+            <div className=" grid lg:grid-cols-2 gap-10 mt-12 " key={e.id}>
               <div
                 className={cn(
                   "md:text-left text-center md:mt-20 ",
@@ -51,7 +48,7 @@ function OurSolution({ data }: { data?: PartenerWithUse["ourSolution"] }) {
                 )}
               </div>
 
-              <div className="relative md:p-10 flex justify-center items-center order-1">
+              <div className="relative md:py-10 md:pr-20 flex justify-center items-center order-1">
                 <div className="w-[90%] h-48 md:h-[280px] bg-green-700/20 absolute -z-[1] lg:ml-12 ml-10 rounded-2xl mb-10"></div>
                 <Image
                   src={strApi + e.image.url}

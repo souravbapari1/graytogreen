@@ -11,7 +11,7 @@ function TreeCounter() {
       >
         What you will get for your event
       </h1>
-      <div className="mb-10 relative w-full grid xl:grid-cols-5  gap-5">
+      <div className="mb-20 relative w-full grid xl:grid-cols-5  gap-5">
         <div className=" h-full xl:col-span-2  w-full">
           <div className=" mt-4 flex flex-col justify-center items-start h-full">
             <h1

@@ -50,6 +50,7 @@ const GYA_GQL = gql`
         sideImage {
           url
         }
+        Opening_State
       }
       Experience {
         id

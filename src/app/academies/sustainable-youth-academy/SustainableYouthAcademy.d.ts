@@ -30,6 +30,7 @@ export interface SustainabilityRegisterCard {
   registerBtn: RegisterBtn;
   viewMoreBtn: ViewMoreBtn;
   sideImage: SideImage;
+  Opening_State: string;
 }
 
 export interface Info {
@@ -67,10 +68,9 @@ export interface Experience {
 }
 
 export interface ExperienceCard {
-  __typename: string;
-  description: string;
   id: string;
   title: string;
+  description: string;
   topImage: TopImage;
   image: Image;
 }

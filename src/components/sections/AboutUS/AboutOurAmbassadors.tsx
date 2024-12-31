@@ -5,6 +5,8 @@ import { useCallback, useState } from "react";
 import { G2Gambassador, TeamMember } from "@/app/about-us/aboutus";
 import { FaLinkedinIn } from "react-icons/fa";
 import { strApi } from "@/graphql/client";
+import { Button } from "@/components/ui/button";
+import Link from "next/link";
 
 function AboutOurAmbassadors({ data }: { data: G2Gambassador }) {
   const [tabIndex, setTabIndex] = useState(0);
@@ -77,7 +79,7 @@ function AboutOurAmbassadors({ data }: { data: G2Gambassador }) {
                   />
                 </div>
               </div>
-              <div className="flex justify-between py-6  px-2">
+              <div className="flex justify-between pt-6  px-2">
                 <div className="">
                   <p
                     className="font-bold text-xl"
@@ -92,6 +94,27 @@ function AboutOurAmbassadors({ data }: { data: G2Gambassador }) {
                   <FaLinkedinIn className="hover:text-gray-900" />
                 </div>
               </div>
+              {e.Other_Links &&
+                e.Other_Links.map((e, i) => {
+                  return (
+                    <div key={i} className="flex text-sm flex-row gap-4  ">
+                      <Link
+                        href={e.linkUrl}
+                        target="_blank"
+                        rel="noreferrer"
+                        className="hover:text-gray-900 w-full mt-3"
+                      >
+                        <Button
+                          size="sm"
+                          variant="outline"
+                          className="shadow-none rounded p-0 w-full"
+                        >
+                          {e.linkText}
+                        </Button>
+                      </Link>
+                    </div>
+                  );
+                })}
             </div>
           );
         })}

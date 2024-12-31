@@ -11,7 +11,7 @@ import Link from "next/link";
 import { get } from "http";
 import Carousel from "react-multi-carousel";
 import SdgsView from "./SdgsView";
-import { Compass, LandPlot, Mail } from "lucide-react";
+import { ArrowDownUpIcon, Compass, LandPlot, Mail } from "lucide-react";
 import { FaLocationPin } from "react-icons/fa6";
 import { FaPhone } from "react-icons/fa";
 import {
@@ -100,21 +100,33 @@ function ProjectView() {
   return (
     <div className="">
       <DropdownMenu>
-        <DropdownMenuTrigger className="w-64  bg-white z-20 fixed top-24 right-3 rounded-xl shadow-md p-1 ">
+        <DropdownMenuTrigger className="w-64  bg-white z-20 absolute top-3 right-3 rounded-xl shadow-md p-1 ">
           {selectedArea ? (
-            <div className="flex justify-start gap-4 w-full   hover:bg-slate-50 items-start p-2 rounded-xl">
-              <LandPlot className="text-primary" />
-              <div className="text-xs text-left">
-                <p className="font-bold text-sm">{selectedArea.areaType}</p>
-                <p>{selectedArea.areaName}</p>
+            <div className="flex justify-between gap-4 w-full   hover:bg-slate-50 items-center p-2 rounded-xl">
+              <div className="flex justify-center items-center gap-3">
+                <LandPlot className="text-primary" />
+                <div className="text-xs text-left">
+                  <p className="font-bold text-sm">{selectedArea.areaType}</p>
+                  <p>{selectedArea.areaName}</p>
+                </div>
               </div>
+              <ArrowDownUpIcon
+                size={24}
+                className="text-primary/90 bg-primary/10 p-1.5 rounded-sm"
+              />
             </div>
           ) : (
-            <div className="flex justify-start gap-4 w-full   hover:bg-slate-50 items-center p-2 rounded-xl">
-              <LandPlot className="text-primary" />
-              <div className="text-xs">
-                <p className="font-bold text-sm">Select Area</p>
+            <div className="flex justify-between gap-4 w-full   hover:bg-slate-50 items-center p-2 rounded-xl">
+              <div className="flex justify-center items-center gap-3">
+                <LandPlot className="text-primary" />
+                <div className="text-xs">
+                  <p className="font-bold text-sm">Select Area</p>
+                </div>
               </div>
+              <ArrowDownUpIcon
+                size={24}
+                className="text-primary/90 bg-primary/10 p-1.5 rounded-sm"
+              />
             </div>
           )}
         </DropdownMenuTrigger>

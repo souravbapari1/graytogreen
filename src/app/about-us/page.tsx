@@ -190,6 +190,11 @@ const GQL = gql`
           image {
             url
           }
+          Other_Links {
+            linkUrl
+            linkText
+            id
+          }
         }
       }
     }

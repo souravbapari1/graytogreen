@@ -105,8 +105,8 @@ async function ProjectVerification({ searchParams }: { searchParams?: any }) {
         data={getData()?.banner}
         link={getData()?.headerLink}
       />
-      <VerificationStep data={getData()?.verificationSteps} />
       <VerificationApplyStep data={getData()?.applyInfoSteps} />
+      <VerificationStep data={getData()?.verificationSteps} />
       <InfoList data={getData()?.cardList} />
       <ReviewBoard
         data={getData()?.members.member}

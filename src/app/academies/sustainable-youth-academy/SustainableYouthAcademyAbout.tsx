@@ -71,23 +71,29 @@ function SustainableYouthAcademyAbout({
               );
             })}
           </div>
-          <div
-            className={`flex justify-normal items-center gap-6 mt-8 ${montserrat.className}`}
-          >
-            <Link target="_blank" href={data?.registerBtn.linkUrl || "#"}>
-              <Button className=" shadow-none font-bold donateBtn px-10 py-6">
-                {data?.registerBtn.linkText}
-              </Button>
-            </Link>
-            <Link target="_blank" href={data?.viewMoreBtn.linkUrl || "#"}>
-              <Button
-                className=" shadow-none font-bold  px-10 py-6"
-                variant="secondary"
-              >
-                {data?.viewMoreBtn.linkText}
-              </Button>
-            </Link>
-          </div>
+          {data?.Opening_State != "OPEN" ? (
+            <div className="w-full h-10 bg-red-300 flex justify-center items-center rounded font-bold text-red-600 mt-3">
+              <p>CLOSED NOW</p>
+            </div>
+          ) : (
+            <div
+              className={`flex justify-normal items-center gap-6 mt-8 ${montserrat.className}`}
+            >
+              <Link target="_blank" href={data?.registerBtn.linkUrl || "#"}>
+                <Button className=" shadow-none font-bold donateBtn px-10 py-6">
+                  {data?.registerBtn.linkText}
+                </Button>
+              </Link>
+              <Link target="_blank" href={data?.viewMoreBtn.linkUrl || "#"}>
+                <Button
+                  className=" shadow-none font-bold  px-10 py-6"
+                  variant="secondary"
+                >
+                  {data?.viewMoreBtn.linkText}
+                </Button>
+              </Link>
+            </div>
+          )}
         </div>
       </div>
     </div>

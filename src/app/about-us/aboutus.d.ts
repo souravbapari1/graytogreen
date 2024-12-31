@@ -66,17 +66,11 @@ export interface Esg {
   linkUrl: string;
   align: string;
   image: Image3;
-  More_Links: MoreLink[];
+  More_Links: any[];
 }
 
 export interface Image3 {
   url: string;
-}
-
-export interface MoreLink {
-  linkText: string;
-  linkUrl: string;
-  id: string;
 }
 
 export interface FoundationCouncil {
@@ -246,8 +240,15 @@ export interface Member8 {
   id: string;
   about: string;
   image: Image8;
+  Other_Links: OtherLink[];
 }
 
 export interface Image8 {
   url: string;
+}
+
+export interface OtherLink {
+  linkUrl: string;
+  linkText: string;
+  id: string;
 }
