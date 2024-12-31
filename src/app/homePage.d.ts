@@ -29,6 +29,7 @@ export interface Image {
 export interface Sponsor {
   brandImage: BrandImage;
   id: string;
+  url: string;
 }
 
 export interface BrandImage {

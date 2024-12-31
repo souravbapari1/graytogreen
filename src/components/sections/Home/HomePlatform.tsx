@@ -10,7 +10,8 @@ import React from "react";
 const allProjects = createResource(
   client
     .get("/api/collections/projects/records/", {
-      expand: "operated_by,reports,sdgs,sdgs.sdg,unit_types,type",
+      expand:
+        "operated_by,reports,sdgs,sdgs.sdg,unit_types,type,accredation_standars",
     })
     .send<Collection<ProjectItem>>()
 );

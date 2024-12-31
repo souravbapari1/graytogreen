@@ -99,7 +99,7 @@ function AcademicsInfoLists({
         </div>
       </div>
 
-      <div className="container ">
+      <div className="container " id="academies">
         <div className="w-full mt-28 mx-auto  ">
           <div className={`${montserrat.className} md:text-left text-center`}>
             <p className="lg:text-xl text-lg mb-2 font-bold text-main">

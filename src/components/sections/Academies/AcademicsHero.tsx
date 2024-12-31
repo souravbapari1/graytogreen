@@ -4,6 +4,7 @@ import { montserrat } from "@/fonts/font";
 import { strApi } from "@/graphql/client";
 import { cn } from "@/lib/utils";
 import Image from "next/image";
+import Link from "next/link";
 import React from "react";
 
 function AcademicsHero({
@@ -40,10 +41,11 @@ function AcademicsHero({
           <div
             className={` flex gap-5 mt-10 ${montserrat.className} md:mb-0 mb-32`}
           >
-            <Button className="rounded-none  p-6">Find Out More</Button>
-            <Button className="rounded-none p-6" variant="secondary">
-              Join With Us
-            </Button>
+            <Link href="#academies">
+              <Button className="rounded-none p-6" variant="secondary">
+                Join With Us
+              </Button>
+            </Link>
           </div>
         </div>
       </div>

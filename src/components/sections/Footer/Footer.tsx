@@ -11,11 +11,11 @@ const footerLinks = [
     title: "About Us",
     links: [
       { text: "About Us", href: "/about-us" },
-      { text: "Team", href: "/team" },
-      { text: "Ambassador", href: "/ambassador" },
+      { text: "Team", href: "/about-us#teams" },
+      { text: "Ambassador", href: "/about-us#ambassadors" },
       { text: "Blog", href: "/blogs" },
       { text: "Transparency", href: "/transparency" },
-      { text: "Clubs", href: "/clubs" },
+      { text: "Clubs", href: "/soon" },
       { text: "FAQ", href: "/pages/faq" },
     ],
   },
@@ -23,30 +23,33 @@ const footerLinks = [
     title: "Children & Youth",
     links: [
       { text: "Academies", href: "/academies" },
-      { text: "Re-thinks", href: "/re-thinks" },
-      { text: "Youth Summit Talks", href: "/youth-summit-talks" },
-      { text: "Volunteers", href: "/volunteers" },
+      { text: "Re-thinks", href: "/rethink" },
+      { text: "Youth Summit Talks", href: "/monthly-summit-talk" },
+      { text: "Volunteers", href: "/act-with-us/be-volunteer" },
     ],
   },
   {
     title: "Partner with us",
     links: [
-      { text: "Become Partner", href: "/become-partner" },
+      { text: "Become Partner", href: "/partners" },
       { text: "Sustainable Events", href: "/sustainable-events" },
       { text: "Services", href: "/services" },
-      { text: "Consultation", href: "/consultation" },
+      { text: "Consultation", href: "/book/consultation" },
     ],
   },
   {
     title: "Support Us",
     links: [
-      { text: "Planting Trees", href: "/planting-trees" },
-      { text: "Acting on Reducing Plastics Waste", href: "/reducing-plastics" },
-      { text: "Support Researches & Experiments", href: "/research-support" },
-      { text: "General Funding", href: "/general-funding" },
-      { text: "Donate for Land", href: "/donate-land" },
-      { text: "Endowment", href: "/endowment" },
-      { text: "Be a Volunteer", href: "/be-volunteer" },
+      { text: "Planting Trees", href: "/act-with-us/plante-tree" },
+      { text: "Acting on Reducing Plastics Waste", href: "/soon" },
+      {
+        text: "Support Researches & Experiments",
+        href: "/act-with-us/support-research-and-epirement",
+      },
+      { text: "General Funding", href: "/act-with-us/general-funding" },
+      { text: "Donate for Land", href: "/act-with-us/donate-for-land" },
+      { text: "Endowment", href: "/act-with-us/endowment" },
+      { text: "Be a Volunteer", href: "/act-with-us/be-volunteer" },
     ],
   },
   {
@@ -55,8 +58,8 @@ const footerLinks = [
       { text: "Platform", href: "/platform" },
       { text: "Projects", href: "/projects" },
       { text: "Standards", href: "/standards" },
-      { text: "Tracking Tools", href: "/tracking-tools" },
-      { text: "Statics", href: "/statics" },
+      { text: "Tracking Tools", href: "/soon" },
+      { text: "Statics", href: "/soon" },
     ],
   },
   {
@@ -69,7 +72,7 @@ const footerLinks = [
         href: "/licenses-and-certification",
       },
       { text: "Standards", href: "/standards" },
-      { text: "Verification & Reviews", href: "/verification-reviews" },
+      { text: "Verification & Reviews", href: "/project-verification" },
       { text: "Jobs", href: "/jobs" },
       { text: "Green Movement Plans", href: "/membership" },
     ],
@@ -86,7 +89,7 @@ function Footer() {
         alt="Image"
         className="lg:w-56 w-28 lg:h-56 h-28 absolute right-10 md:-top-28 -top-14"
       />
-      <div className="container">
+      <div className="md:px-20 px-4">
         <Image
           src="/logo/main-logo.png"
           width={1000}
@@ -94,7 +97,7 @@ function Footer() {
           alt=""
           className="w-48 h-auto"
         />
-        <div className="grid xl:grid-cols-8 md:grid-cols-3 grid-cols-2 gap-8 gap-x-3 mt-10">
+        <div className="grid xl:grid-cols-8 md:grid-cols-3 grid-cols-1 gap-8 gap-x-3 mt-10">
           {footerLinks.map((section, index) => (
             <div key={index} className="flex flex-col gap-3">
               <h1 className={`${montserrat.className} font-bold text-white`}>
@@ -113,7 +116,7 @@ function Footer() {
               </div>
             </div>
           ))}
-          <div className="flex flex-col gap-3 xl:col-span-2 md:col-span-1 col-span-2">
+          <div className="flex flex-col gap-3 xl:col-span-2 md:col-span-1 ">
             <h1 className={`${montserrat.className} font-bold text-white`}>
               Contact us
             </h1>
@@ -145,7 +148,7 @@ function Footer() {
       </div>
       <div className="w-full md:h-16 h-12 bg-green-900 mt-16">
         <div className="container text-white h-full flex md:text-base text-xs justify-center text-center items-center">
-          <p>@ Gray to Green all rights reserved 2024</p>
+          <p>@ Gray to Green all rights reserved {new Date().getFullYear()}</p>
         </div>
       </div>
     </div>

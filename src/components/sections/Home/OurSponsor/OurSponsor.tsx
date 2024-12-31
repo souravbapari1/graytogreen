@@ -28,11 +28,11 @@ function OurSponsor({
           <h1 className="md:text-4xl text-3xl md:mt-16 mt-10 font-extrabold text-center">
             Our <span className="text-main ">Sponsor</span>
           </h1>
-          <Marquee className="">
+          <Marquee pauseOnHover className="">
             <div className="flex  justify-center md:mt-14 mt-5 md:mb-10 items-center ">
               {sponsers.map((e, i) => {
                 return (
-                  <Link href="/sponsors/brand">
+                  <Link href={e.url || "#"} target="_blank">
                     <Image
                       src={strApi + e.brandImage.url}
                       key={i}
@@ -145,7 +145,11 @@ function OurSponsor({
                               </p>
                             )}
                           </div>
-
+                          {e.locationType == "online" && (
+                            <div className="absolute -top-2 -right-8 w-28 text-center mt-4 rotate-45 bg-primary/20 text-primary px-4 py-1 text-[9px] shadow shadow-primary/10 font-bold">
+                              ONLINE
+                            </div>
+                          )}
                           <div className=" flex justify-start items-center gap-2 font-bold">
                             <div className="w-4">
                               <BiCategory />

@@ -37,6 +37,7 @@ const HOME_PAGE = gql`
           url
         }
         id
+        url
       }
       Academies {
         description

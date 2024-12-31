@@ -6,6 +6,7 @@ import MobileMenuBar from "./MobileMenuBar";
 import Link from "next/link";
 import { IoMdOpen } from "react-icons/io";
 import { auth } from "@/auth";
+import { LogIn, User } from "lucide-react";
 
 async function Navbar(): Promise<JSX.Element> {
   const data = await auth();
@@ -28,13 +29,16 @@ async function Navbar(): Promise<JSX.Element> {
           <Link className="lg:block hidden" href="/blogs">
             Blogs
           </Link>
+          <Link className="lg:block hidden" href="/researchs">
+            Researchs
+          </Link>
           {data?.user.token ? (
             <Link className="lg:block hidden" href="/account">
-              Account
+              <User size={15} />
             </Link>
           ) : (
             <Link className="lg:block hidden" href="/auth/signin">
-              Sign In
+              <LogIn size={15} />
             </Link>
           )}
           <Link

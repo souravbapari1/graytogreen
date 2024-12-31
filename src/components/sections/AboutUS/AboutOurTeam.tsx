@@ -27,7 +27,10 @@ function AboutOurTeam({ data }: { data: TeamMember }) {
   }, [data, tabIndex]);
 
   return (
-    <div className="flex flex-col justify-center items-center text-center mt-40 container">
+    <div
+      className="flex flex-col justify-center items-center text-center mt-40 container"
+      id="teams"
+    >
       <h1
         className={`${montserrat.className} text-2xl lg:text-4xl font-bold text-center capitalize`}
         dangerouslySetInnerHTML={{ __html: data?.title || "" }}

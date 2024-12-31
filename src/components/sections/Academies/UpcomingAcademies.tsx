@@ -62,6 +62,12 @@ function UpcomingAcademies({
                     </p>
                   </div>
                 )}
+                {e.locationType == "online" && (
+                  <div className="absolute -top-2 -right-8 w-28 text-center mt-4 rotate-45 bg-primary/20 text-primary px-4 py-1 text-[9px] shadow shadow-primary/10 font-bold">
+                    ONLINE
+                  </div>
+                )}
+
                 <div className="flex justify-between items-center gap-2 mb-2">
                   <p className="text-xs font-bold bg-primary px-3 py-1 rounded-md text-white shadow-sm">
                     {e.pricing.toUpperCase()}

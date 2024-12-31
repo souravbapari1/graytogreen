@@ -204,18 +204,24 @@ export const navData: NavDataSet[] = [
     isSubmenu: false,
   },
   {
-    title: "Services",
-    href: "/services",
-    isSubmenu: false,
-  },
-  {
     title: "Projects",
     href: "/projects",
     isSubmenu: false,
   },
   {
+    title: "Clubs",
+    href: "/soon",
+    isSubmenu: false,
+  },
+  {
     title: "Academies & Labs ",
     href: "/academies",
+    isSubmenu: false,
+  },
+
+  {
+    title: "Services",
+    href: "/services",
     isSubmenu: false,
   },
 
@@ -228,11 +234,11 @@ export const navData: NavDataSet[] = [
     submenu: toolsMenu,
     className: "gap-1",
   },
-  {
-    title: "⁠Researchs",
-    href: "/research",
-    isSubmenu: false,
-  },
+  // {
+  //   title: "⁠Researchs",
+  //   href: "/research",
+  //   isSubmenu: false,
+  // },
 
   {
     title: "Act With Us",
