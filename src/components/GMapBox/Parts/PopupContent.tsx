@@ -1,8 +1,10 @@
 "use client";
 
+import { Progress } from "@/components/ui/progress";
 import { ProjectItem } from "@/interface/project";
 import { cn } from "@/lib/utils";
 import { client, genPbFiles } from "@/request/actions";
+import { useQuery } from "@tanstack/react-query";
 import Link from "next/link";
 import { useSearchParams } from "next/navigation";
 import React from "react";
@@ -53,16 +55,33 @@ export const PopupContent = ({
     return type === "Tree Project" ? "Trees" : type;
   }
 
+  const complete = useQuery({
+    queryKey: ["complete", data?.id],
+    queryFn: async () => {
+      const res = await client
+        .get("/project/target", {
+          id: data?.id || "",
+          type: data?.project_prefix || "",
+        })
+        .send<{ total: number }>();
+      return res.total < 100 ? res.total : 100;
+    },
+  });
+
+  function calculatePercentage(completed: number, target: number): string {
+    return ((completed / target) * 100).toFixed(2);
+  }
+
   return (
     <div
       className={cn(
-        "w-72 h-auto bg-white rounded-xl p-2 border-gray-100 border-2",
+        "w-72 h-auto bg-white rounded p-2 border-gray-100 border-2",
         className
       )}
     >
       <div
         onClick={onClick}
-        className="rounded-xl relative  md:h-44 h-40 cursor-pointer  overflow-hidden"
+        className="rounded relative  md:h-44 h-40 cursor-pointer  overflow-hidden rounded-b-none "
       >
         <img
           src={genPbFiles(data, data?.preview_image!)}
@@ -97,6 +116,16 @@ export const PopupContent = ({
           </div>
         </div>
       </div>
+      <Progress
+        className="rounded-t-none h-1"
+        value={
+          +calculatePercentage(
+            complete.data || 0,
+            data?.number_of_target_unit || 0
+          ) || 0
+        }
+        max={100}
+      />
       <div className="p-2 py-3 flex justify-between flex-col items-start gap-3 w-full">
         <p>
           <span className="font-bold">{data?.name || "Trees"}</span>
@@ -106,6 +135,7 @@ export const PopupContent = ({
             <p className="text-xs">
               {data?.country} - {data?.city}
             </p>
+
             <p>
               <span className="font-bold">﷼{data?.omr_unit || "123.00"}</span>{" "}
               {getPriceLabel(data?.expand?.type?.name)}

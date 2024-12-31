@@ -4,10 +4,7 @@ import Navbar from "@/components/sections/Navbar/Navbar";
 import { client } from "@/request/actions";
 import { ProjectItem } from "@/interface/project";
 import { Collection } from "@/interface/collection";
-
-const GGMapBox = dynamic(() => import("@/components/GMapBox/GGMapBox"), {
-  ssr: false,
-});
+import GGMapBox from "@/components/GMapBox/GGMapBox";
 
 export const revalidate = 0;
 async function page() {

@@ -12,13 +12,13 @@ const queryClient = new QueryClient();
 
 function Client({ children }: { children: ReactNode }) {
   return (
-    <QueryClientProvider client={queryClient}>
-      <ApolloProvider client={client}>
-        <Provider store={store}>
+    <ApolloProvider client={client}>
+      <Provider store={store}>
+        <QueryClientProvider client={queryClient}>
           <GlobalContextProvider>{children}</GlobalContextProvider>
-        </Provider>
-      </ApolloProvider>
-    </QueryClientProvider>
+        </QueryClientProvider>
+      </Provider>
+    </ApolloProvider>
   );
 }
 

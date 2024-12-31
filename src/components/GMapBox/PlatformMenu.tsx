@@ -12,6 +12,7 @@ import ProjectView from "./ProjectView";
 
 function PlatformMenu({ data }: { data?: ProjectItem[] }) {
   const dispatch = useAppDispatch();
+  console.log("rerender");
 
   return (
     <div className="lg:w-96 w-full h-full z-10 left-0 md:top-0  bg-transparent absolute lg:px-3 py-3  overflow-hidden">
