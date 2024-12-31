@@ -7,7 +7,7 @@ import { client, genPbFiles } from "@/request/actions";
 import { useQuery } from "@tanstack/react-query";
 import Link from "next/link";
 import { useSearchParams } from "next/navigation";
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { FaStar } from "react-icons/fa";
 
 export const PopupContent = ({
@@ -55,22 +55,28 @@ export const PopupContent = ({
     return type === "Tree Project" ? "Trees" : type;
   }
 
-  const complete = useQuery({
-    queryKey: ["complete", data?.id],
-    queryFn: async () => {
-      const res = await client
-        .get("/project/target", {
-          id: data?.id || "",
-          type: data?.project_prefix || "",
-        })
-        .send<{ total: number }>();
-      return res.total < 100 ? res.total : 100;
-    },
-  });
+  const [complete, setComplate] = useState({ data: 0 });
 
   function calculatePercentage(completed: number, target: number): string {
     return ((completed / target) * 100).toFixed(2);
   }
+
+  const loadComplete = async () => {
+    const res = await client
+      .get("/project/target", {
+        id: data?.id || "",
+        type: data?.project_prefix || "",
+      })
+      .send<{ total: number }>();
+
+    setComplate({
+      data: res.total,
+    });
+  };
+
+  useEffect(() => {
+    loadComplete();
+  }, []);
 
   return (
     <div
