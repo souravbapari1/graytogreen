@@ -1,5 +1,6 @@
 import { Button } from "@/components/ui/button";
 import { lora, montserrat } from "@/fonts/font";
+import Link from "next/link";
 import React from "react";
 
 function ProtectingAndRestoring() {
@@ -17,16 +18,21 @@ function ProtectingAndRestoring() {
           and bring back a further one trillion trees
         </p>
         <div className="flex md:justify-start md:items-start gap-3 mt-6 justify-center items-center md:gap-4">
-          <Button
-            className={`${lora.className} text-xl py-[24px] md:w-auto w-full  px-8 rounded-full donateBtn border-none`}
-          >
-            Join US
-          </Button>
-          <Button
-            className={`${lora.className} text-xl py-[22px] md:w-auto w-full  px-7 rounded-full  border-2 border-main bg-transparent text-main hover:text-white`}
-          >
-            Support Us
-          </Button>
+          <Link href="/academies">
+            <Button
+              className={`${lora.className} text-xl py-[24px] md:w-auto w-full  px-8 rounded-full donateBtn border-none`}
+            >
+              Join US
+            </Button>
+          </Link>
+
+          <Link href="/platform">
+            <Button
+              className={`${lora.className} text-xl py-[22px] md:w-auto w-full  px-7 rounded-full  border-2 border-main bg-transparent text-main hover:text-white`}
+            >
+              Support Us
+            </Button>
+          </Link>
         </div>
       </div>
     </div>

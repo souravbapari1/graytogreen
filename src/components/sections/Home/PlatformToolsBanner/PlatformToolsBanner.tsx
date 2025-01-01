@@ -22,7 +22,7 @@ function PlatformToolsBanner() {
             within minutes.
           </p>
           <Link
-            href="#"
+            href="/platform"
             className="  text-main flex md:justify-start justify-center  text-xl items-center"
           >
             Explore reforestation projects <RiArrowDropRightLine size={35} />
@@ -57,13 +57,15 @@ function PlatformToolsBanner() {
                 together.
               </p>
               <div className="flex justify-center items-center gap-5 w-full  md:gap-10 mt-3">
-                <Button
-                  className={`${lora.className} text-xl py-[24px] md:w-auto w-full  px-8 rounded-full bg-green-500 shadow-none border-none`}
-                >
-                  Join Us
-                </Button>
+                <Link href="/academies">
+                  <Button
+                    className={`${lora.className} text-xl py-[24px] md:w-auto w-full  px-8 rounded-full bg-green-500 shadow-none border-none`}
+                  >
+                    Join Us
+                  </Button>
+                </Link>
                 <Link
-                  href="#"
+                  href="/soon"
                   className="  text-white flex md:justify-start md:w-auto w-full justify-center items-center"
                 >
                   Ideas & Tools
