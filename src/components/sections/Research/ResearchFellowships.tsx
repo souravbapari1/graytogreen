@@ -25,7 +25,7 @@ function ResearchFellowships({
         dangerouslySetInnerHTML={{ __html: data?.description || "" }}
       />
       {/* Research Team */}
-      <div className="container mt-16 md:mt-20">
+      <div className=" mt-16 md:mt-20">
         {/* ======≠≠===========≠≠≠≠≠≠≠≠≠≠≠=========== */}
         {data.cards.map((e, i) => {
           return (

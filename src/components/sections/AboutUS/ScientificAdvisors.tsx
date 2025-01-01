@@ -28,7 +28,7 @@ function ScientificAdvisors({
         {desc ||
           "We would like to thank our patrons who have accompanied  from the very beginning."}
       </p>
-      <div className="grid lg:grid-cols-3 gap-10 mt-10">
+      <div className="grid lg:grid-cols-4 gap-10 mt-10">
         {data.map((e, i) => {
           return (
             <div
@@ -36,13 +36,13 @@ function ScientificAdvisors({
               key={e.id}
             >
               <div className="">
-                <div className=" bg-gradient-to-r from-green-600 to-green-900 p-3 rounded-full">
+                <div className=" bg-gradient-to-r from-green-600 to-green-900 p-2 rounded-full">
                   <Image
                     src={strApi + e.image.url}
                     height={3000}
                     alt=""
                     width={3000}
-                    className=" object-cover rounded-full w-56 h-56  border-main"
+                    className=" object-cover rounded-full w-48 h-48  border-main"
                   />
                 </div>
               </div>

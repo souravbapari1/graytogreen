@@ -25,20 +25,20 @@ function DesktopMenuBar() {
             </NavLink>
             {e.isSubmenu && (
               <div className="w-full h-72 -z-10 bg-green-50 fixed shadow-md shadow-gray-50 top-12 right-0 transition-all duration-500 transform -translate-y-96 group-hover:translate-y-10 ">
-                <div className=" h-full flex justify-evenly items-start  macAir:px-40 gap-3">
+                <div className="container h-full flex justify-start items-start  macAir:px-40 gap-10">
                   <div className="h-full  justify-center items-center  mid:flex hidden">
                     <Image
                       src={e.image!}
                       width={800}
                       height={800}
                       alt=""
-                      className="h-56  w-auto"
+                      className="h-56  w-auto object-cover"
                     />
                   </div>
                   {e.submenu?.map((menu, i) => {
                     return (
                       <div
-                        className="flex justify-start flex-col gap-4 pt-5"
+                        className="flex justify-start flex-col gap-2 pt-8"
                         key={"submenu-" + i + "sad"}
                       >
                         <h1 className="text-gray-600/40 uppercase font-semibold mb-1 macAir:text-sm text-xs">

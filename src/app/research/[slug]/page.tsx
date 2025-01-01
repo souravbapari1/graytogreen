@@ -7,6 +7,7 @@ import { strApi } from "@/graphql/client";
 import { formatTimestampCustom } from "@/helper/dateTime";
 import Image from "next/image";
 import { getResearchPostBySlug } from "../function";
+import { Badge } from "@/components/ui/badge";
 
 export const revalidate = 0;
 async function ReadResearches({ params }: { params: { slug: string } }) {
@@ -46,7 +47,14 @@ async function ReadResearches({ params }: { params: { slug: string } }) {
               {formatTimestampCustom(post?.publishedAt)}
             </p>
 
-            <p> - {post.research_category.name}</p>
+            <div className="flex capitalize gap-3">
+              <Badge className="shadow-none " variant="default">
+                Status: {post.state}
+              </Badge>
+              <Badge className="shadow-none " variant="secondary">
+                Category: {post.research_category.name}
+              </Badge>
+            </div>
           </div>
           <br />
           <hr />

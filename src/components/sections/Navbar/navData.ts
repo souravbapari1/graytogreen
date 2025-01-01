@@ -80,6 +80,39 @@ const toolsMenu: ServicesMenuItems[] = [
       },
     ],
   },
+  // {
+  //   title: "Initiatives",
+  //   list: [
+  //     {
+  //       icon: "🧩",
+  //       href: "/rethink",
+  //       id: "",
+  //       title: "ReThink",
+  //       subtitle:
+  //         "Reduce and compensate emissions and invite young speakers to talk about the climate crisis.",
+  //     },
+
+  //     {
+  //       icon: "🌱",
+  //       href: "#",
+  //       id: "",
+  //       title: "Stop Talking , Start Planting",
+  //       subtitle:
+  //         "Reduce and compensate emissions and invite young speakers to talk about the climate crisis.",
+  //     },
+  //     {
+  //       icon: "🤝🏻",
+  //       href: "#",
+  //       id: "",
+  //       title: "Monthly Environmental Day",
+  //       subtitle:
+  //         "Reduce and compensate emissions and invite young speakers to talk about the climate crisis.",
+  //     },
+  //   ],
+  // },
+];
+
+const InitiativesListMenu: ServicesMenuItems[] = [
   {
     title: "Initiatives",
     list: [
@@ -226,12 +259,21 @@ export const navData: NavDataSet[] = [
   },
 
   {
-    title: "Tools & initiatives",
+    title: "Tools",
     href: "#",
     isSubmenu: true,
     image:
       "https://www.plant-for-the-planet.org/wp-content/uploads/2022/10/20191015_ac_curitiba_rethoricalpractice_3.jpg",
     submenu: toolsMenu,
+    className: "gap-1",
+  },
+  {
+    title: "Initiatives",
+    href: "#",
+    isSubmenu: true,
+    image:
+      "https://www.plant-for-the-planet.org/wp-content/uploads/2022/10/20191015_ac_curitiba_rethoricalpractice_3.jpg",
+    submenu: InitiativesListMenu,
     className: "gap-1",
   },
   // {

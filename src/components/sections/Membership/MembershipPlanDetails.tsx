@@ -11,7 +11,7 @@ import { MdOutlineMarkEmailRead } from "react-icons/md";
 function MembershipPlanDetails({ data }: { data: MembershipPageData }) {
   return (
     <div className="">
-      <div className="w-full relative mt-20 lg:h-[650px] h-auto">
+      {/* <div className="w-full relative mt-20 lg:h-[650px] h-auto">
         <Image
           src="/assets/wave.svg"
           className="w-full absolute bottom-0 right-0 z-10 block  object-fill float-end "
@@ -85,7 +85,7 @@ function MembershipPlanDetails({ data }: { data: MembershipPageData }) {
             </div>
           </div>
         </div>
-      </div>
+      </div> */}
       <div className="">
         <div className="container mt-10">
           <div className="">

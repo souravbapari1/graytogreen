@@ -376,12 +376,13 @@ function FilterProjectsOptions({
           <SheetTitle>Filter Projects</SheetTitle>
         </SheetHeader>
         <div className="mt-3">
-          <Accordion
-            type="multiple"
-            className="bg-gray-50 px-2 py-2 rounded border-b shadow-none"
-          >
+          <Accordion type="multiple" className="bg-white  rounded  shadow-none">
             {Object.entries(projectTypes).map(([category, values]) => (
-              <AccordionItem key={category} value={category}>
+              <AccordionItem
+                key={category}
+                value={category}
+                className="bg-gray-100 mt-3 rounded"
+              >
                 <AccordionTrigger className="px-3 py-2 capitalize text-sm font-semibold  rounded">
                   {category.replace(/([A-Z])/g, " $1")} ({values.length})
                 </AccordionTrigger>

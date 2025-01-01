@@ -73,7 +73,7 @@ const footerLinks = [
       },
       { text: "Standards", href: "/standards" },
       { text: "Verification & Reviews", href: "/project-verification" },
-      { text: "Jobs", href: "/jobs" },
+      { text: "Jobs", href: "/careers" },
       { text: "Green Movement Plans", href: "/membership" },
     ],
   },

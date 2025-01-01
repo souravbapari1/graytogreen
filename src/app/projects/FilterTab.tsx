@@ -220,11 +220,11 @@ function FilterTab() {
       <div className="mt-3">
         <Accordion
           type="multiple"
-          className="bg-gray-50 px-2 py-2 rounded border-b shadow-none"
+          className="bg-white  py-2 rounded  shadow-none"
         >
           {Object.entries(projectTypes).map(([category, values]) => (
             <AccordionItem key={category} value={category}>
-              <AccordionTrigger className="px-3 py-2 capitalize text-sm font-semibold  rounded">
+              <AccordionTrigger className="px-3 py-2 capitalize text-sm bg-gray-100 mt-2 font-semibold  rounded">
                 {category.replace(/([A-Z])/g, " $1")} ({values.length})
               </AccordionTrigger>
               <AccordionContent>
@@ -232,7 +232,7 @@ function FilterTab() {
                   {values.map((value, i) => (
                     <div
                       key={i}
-                      className="flex items-center gap-2 mt-0 cursor-pointer hover:bg-gray-200 px-3 py-2 rounded shadow-none"
+                      className="flex items-center gap-2 mt-0 cursor-pointer hover:bg-gray-200 px-2 py-2 rounded shadow-none"
                       onClick={() =>
                         toggleFilter(
                           category as keyof FilterState,

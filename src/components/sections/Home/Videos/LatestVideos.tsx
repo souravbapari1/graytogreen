@@ -8,7 +8,7 @@ import Link from "next/link";
 import React from "react";
 const videosResource = createResource(
   client
-    .get("/api/collections/podcasts/records?perPage=6")
+    .get("/api/collections/podcasts/records", { perPage: 6 })
     .send<Collection<LiveAndPopcastItem>>()
 );
 function LatestVideos() {

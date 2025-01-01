@@ -13,9 +13,9 @@ function MembershipPricing({ data }: { data: MembershipItem[] }) {
     <div className="flex justify-center py-20 items-center w-full bg-gray-50">
       <div className="max-w-[1200px] w-full px-4">
         <h2
-          className={`${montserrat.className} text-center text-3xl font-bold mb-10`}
+          className={`${montserrat.className} text-center text-3xl font-bold mb-20`}
         >
-          Choose Your Membership Plan
+          Green Movement Plans
         </h2>
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
           {data.map((e, i) => {
@@ -26,28 +26,30 @@ function MembershipPricing({ data }: { data: MembershipItem[] }) {
                 style={{ opacity: e.stocks == 0 ? 0.5 : 1 }}
                 className="block bg-white shadow-lg shadow-slate-200 rounded-3xl overflow-hidden transform transition-all duration-300 hover:scale-100 hover:shadow-xl"
               >
-                {e.popular && (
-                  <div className="absolute donateBtn rounded-none rounded-br-3xl  shadow-none top-0 left-0  px-6 py-2">
-                    <SparklesText
-                      text="Feature"
-                      className="text-sm font-semibold text-white"
-                    />
-                  </div>
-                )}
-                {e.stocks < 10 && (
-                  <div className="w-auto text-xs text-white  rounded-full absolute top-3 right-3 shadow-sm opacity-75 px-3 py-1 bg-red-500">
-                    {e.stocks == 0 ? "Out Of Stock" : `Only ${e.stocks} left`}
-                  </div>
-                )}
-                <div className="w-full h-48 donateBtn shadow-none rounded-none flex justify-center items-center border-b-4 border-gray-200">
+                <div className="w-full h-48 relative donateBtn bg-[url('/assets/green-bg.jpg')] shadow-none rounded-none flex justify-center items-center border-b-4 border-gray-200">
+                  <div className="w-full h-full bg-black/75 absolute top-0 right-0 "></div>
                   <Image
                     src={genPbFiles(e, e.image)}
                     alt={`${e.name} Image`}
                     width={1200}
                     height={1200}
-                    className="h-20 w-auto"
+                    className="h-20 w-auto relative"
                   />
+                  {e.popular && (
+                    <div className="absolute donateBtn rounded-none rounded-br-3xl  shadow-none top-0 left-0  px-6 py-2">
+                      <SparklesText
+                        text="Feature"
+                        className="text-sm font-semibold text-white"
+                      />
+                    </div>
+                  )}
+                  {e.stocks < 10 && (
+                    <div className="w-auto text-xs text-white  rounded-full absolute top-3 right-3 shadow-sm opacity-75 px-3 py-1 bg-red-500">
+                      {e.stocks == 0 ? "Out Of Stock" : `Only ${e.stocks} left`}
+                    </div>
+                  )}
                 </div>
+
                 <div
                   className={`${montserrat.className} text-center p-6 flex flex-col justify-between h-full`}
                 >

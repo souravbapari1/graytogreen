@@ -8,6 +8,7 @@ import Link from "next/link";
 import { FaLocationDot } from "react-icons/fa6";
 import { cn } from "@/lib/utils";
 import ManagePodcastVideos from "./ManagePodcastVideos";
+import { Button } from "@/components/ui/button";
 
 async function LiveOrPodCastVideos({
   category,
@@ -19,9 +20,8 @@ async function LiveOrPodCastVideos({
 }) {
   const liveVideos = await client
     .get("/api/collections/lives/records", {
-      perPage: 500,
+      perPage: 6,
       sort: "created",
-      filter: "(liveNow=false)",
     })
     .send<Collection<LiveAndPopcastItem>>();
 
@@ -29,18 +29,18 @@ async function LiveOrPodCastVideos({
     .get("/api/collections/podcasts/records")
     .send<Collection<LiveAndPopcastItem>>();
 
-  const liveNowVideos = await client
-    .get("/api/collections/lives/records", {
-      perPage: 500,
-      filter: "(liveNow=true)",
-    })
-    .send<Collection<LiveAndPopcastItem>>();
+  // const liveNowVideos = await client
+  //   .get("/api/collections/lives/records", {
+  //     perPage: 6,
+
+  //   })
+  //   .send<Collection<LiveAndPopcastItem>>();
 
   return (
     <div>
-      {liveNowVideos.items.map((e, i) => {
+      {/* {liveNowVideos.items.map((e, i) => {
         return <NoLive key={e.id + i} id={e.videoId} data={e} />;
-      })}
+      })} */}
       <div className="bg-green-50/50 h-auto lg:py-10 py-1 pb-28 w-full ">
         <div className="container mt-20">
           <h1
@@ -82,6 +82,17 @@ async function LiveOrPodCastVideos({
               );
             })}
           </div>
+          <div className="w-full flex justify-center items-center">
+            <Link
+              href="https://www.youtube.com/watch?v=oN9bqO5-T88&ab_channel=UNEnvironmentProgramme"
+              target="_blank"
+              className="mt-10 block mx-auto"
+            >
+              <Button className="rounded-full px-10 mx-auto " size="lg">
+                <p>View All Live Videos</p>
+              </Button>
+            </Link>
+          </div>
         </div>
       </div>
       <div className=" h-auto lg:py-10 py-1 pb-28 w-full">
@@ -95,6 +106,17 @@ async function LiveOrPodCastVideos({
             category={category}
             videos={podcastVideos.items}
           />
+          <div className="w-full flex justify-center items-center">
+            <Link
+              href="https://www.youtube.com/watch?v=oN9bqO5-T88&ab_channel=UNEnvironmentProgramme"
+              target="_blank"
+              className="mt-10 block mx-auto"
+            >
+              <Button className="rounded-full px-10 mx-auto " size="lg">
+                <p>View All Podcasts</p>
+              </Button>
+            </Link>
+          </div>
         </div>
       </div>
     </div>

@@ -18,7 +18,7 @@ function PartnersHero({
   }
   return (
     <div className="container ">
-      <div className="w-full  mt-10 lg:h-[80vh] h-[50vh] min-h-[460px] max-h-[800px] rounded-3xl overflow-hidden shadow-md relative">
+      <div className="w-full  mt-10 lg:h-[80vh] h-[50vh] min-h-[460px] max-h-[600px] rounded-3xl overflow-hidden shadow-md relative">
         <Image
           src={strApi + data?.bannerImage.url}
           width={3000}
@@ -27,11 +27,13 @@ function PartnersHero({
           className="w-full h-full object-cover"
         />
         <div className="absolute top-0 right-0 w-full h-full">
-          <Button
-            className={`bg-white/80 shadow-md backdrop-blur-sm lg:px-10 lg:py-6 lg:text-base text-xs rounded-full absolute right-10 top-8 text-main hover:text-white uppercase font-bold ${montserrat.className}`}
-          >
-            Partner Dashboard
-          </Button>
+          <Link href="/account">
+            <Button
+              className={`bg-white/80 shadow-md backdrop-blur-sm lg:px-10 lg:py-6 lg:text-base text-xs rounded-full absolute right-10 top-8 text-main hover:text-white uppercase font-bold ${montserrat.className}`}
+            >
+              Partner Dashboard
+            </Button>
+          </Link>
           <div className="absolute bottom-20 lg:left-16 left-5">
             <div className=" w-72">
               <div

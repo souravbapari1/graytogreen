@@ -13,6 +13,7 @@ function ResearchSlide({ slide }: { slide: ResearchesLab["textSlides"] }) {
       indicators={true}
       autoplay={true}
       infinite={true}
+      duration={2000}
     >
       {slide.text.map((text, i) => {
         return (

@@ -25,7 +25,7 @@ function ResearchCard({
         width={2000}
         height={2000}
         alt=""
-        className="w-full md:h-64 h-60 object-cover rounded-3xl"
+        className="w-full h-56  object-cover rounded-3xl"
       />
       <div className="flex flex-col gap-2 py-5">
         <h1 className="md:text-xl font-bold line-clamp-2">{data.title}</h1>

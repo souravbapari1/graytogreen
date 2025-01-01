@@ -10,6 +10,7 @@ import React from "react";
 import { JobsData } from "./jobs";
 import { Badge } from "@/components/ui/badge";
 import { cn } from "@/lib/utils";
+import { IoClose } from "react-icons/io5";
 
 export const metadata = {
   title: "Available Jobs",
@@ -40,7 +41,7 @@ async function Careers() {
     <div>
       <Navbar />
       <div className={`${montserrat.className} container md:py-20 py-14`}>
-        <h1 className="font-bold lg:text-5xl text-2xl text-center">
+        <h1 className="font-bold lg:text-4xl text-2xl text-center">
           Careers at Gray To Green
         </h1>
         <p className="text-center md:mt-5 md:text-base text-xs">
@@ -51,14 +52,23 @@ async function Careers() {
             return (
               <Link
                 key={e.documentId}
-                href={"/careers/" + e.slug}
+                href={e.Job_Status == "CLOSED" ? "#" : "/careers/" + e.slug}
                 className={cn(
-                  "flex justify-center relative items-center flex-col w-full bg-primary/10 border-2 border-green-500/10 rounded-lg p-4",
+                  "flex justify-center relative items-center overflow-hidden flex-col w-full bg-primary/10 border-2 border-green-500/10 rounded-lg p-4",
                   e.Job_Status == "CLOSED"
-                    ? "opacity-50 bg-red-200/20 border-red-500/10 "
+                    ? " bg-red-200/20 border-red-500/10 "
                     : "opacity-100"
                 )}
               >
+                {e.Job_Status == "CLOSED" && (
+                  <div className="w-full h-full bg-red-600/30 absolute top-0 right-0 flex justify-center items-center text-white flex-col gap-2">
+                    <IoClose
+                      size={60}
+                      className="bg-red-600 p-2 rounded-full"
+                    />
+                    <p className="font-bold text-sm">No openning Role</p>
+                  </div>
+                )}
                 <Badge
                   variant={e.Job_Status == "CLOSED" ? "destructive" : "default"}
                   className="absolute top-6 right-6 rounded-sm shadow-lg border-2 border-primary/10"

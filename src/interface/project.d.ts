@@ -49,7 +49,7 @@ export interface ProjectItem {
   workareas: WorkAreas;
 
   impactPerUnit?: number;
-  comments?: string;
+  comment?: string;
 
   orders?: TreeOrderItem[];
   byArea?: { [key: string]: Tree[] };

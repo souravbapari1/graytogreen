@@ -95,11 +95,11 @@ function AboutOurAmbassadors({ data }: { data: G2Gambassador }) {
                 </div>
               </div>
               {e.Other_Links &&
-                e.Other_Links.map((e, i) => {
+                e.Other_Links.map((l, i) => {
                   return (
                     <div key={i} className="flex text-sm flex-row gap-4  ">
                       <Link
-                        href={e.linkUrl}
+                        href={l.linkUrl}
                         target="_blank"
                         rel="noreferrer"
                         className="hover:text-gray-900 w-full mt-3"
@@ -109,7 +109,7 @@ function AboutOurAmbassadors({ data }: { data: G2Gambassador }) {
                           variant="outline"
                           className="shadow-none rounded p-0 w-full"
                         >
-                          {e.linkText}
+                          {l.linkText} {e.name.split(" ")[0]}
                         </Button>
                       </Link>
                     </div>

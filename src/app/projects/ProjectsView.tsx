@@ -23,6 +23,7 @@ function ProjectsView() {
           "operated_by,reports,sdgs,sdgs.sdg,unit_types,type,accredation_standars",
         perPage: 500,
         hideFields: "about_project,challenges_and_impact_details",
+        filter: "(allow=true)",
         page: 1,
       })
       .send<Collection<ProjectItem>>();

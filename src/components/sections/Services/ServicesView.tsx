@@ -13,7 +13,7 @@ function ServicesListView({ data }: { data?: Service }) {
       className={`${montserrat.className} container grid xl:grid-cols-10 my-20 gap-10`}
     >
       {/* Top Section */}
-      <div className="w-full md:bg-main/10 rounded-3xl xl:col-span-10 sm:p-6 md:p-8 lg:p-12 shadow-lg">
+      <div className="w-full  xl:col-span-10 ">
         <h1
           className="text-3xl sm:text-2xl md:text-4xl lg:text-5xl font-extrabold mb-4 sm:mb-4 md:mb-6 leading-tight text-gray-900"
           dangerouslySetInnerHTML={{ __html: data?.title || "" }}
@@ -24,11 +24,11 @@ function ServicesListView({ data }: { data?: Service }) {
         <h2 className="text-2xl sm:text-xl md:text-3xl font-bold col-span-10 mb-4 sm:mb-6 text-main">
           Industries
         </h2>
-        <div className="grid sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-0">
+        <div className="grid sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-5">
           {data?.Industries.map((industry, i) => (
             <div
               key={i}
-              className="h-48 md:h-64 lg:h-40 relative w-full overflow-hidden  hover:scale-105 transition-transform duration-300"
+              className="h-48 md:h-64 lg:h-40 relative w-full overflow-hidden   hover:scale-105 transition-transform duration-300"
             >
               <Image
                 src={strApi + industry.image.url}
@@ -50,7 +50,7 @@ function ServicesListView({ data }: { data?: Service }) {
       {/* Bottom Section */}
       <div className="w-full flex flex-col gap-12 xl:col-span-10 xl:mt-10 xl:mb-6">
         {/* Row 1 */}
-        <div className="grid md:grid-cols-2 gap-8">
+        <div className="grid lg:grid-cols-3 md:grid-cols-2 gap-10">
           {data?.Service_Cards.map((card, i) => (
             <ServiceCard
               key={i}
@@ -83,7 +83,7 @@ function ServiceCard({
   linkText,
 }: ServiceCardProps) {
   return (
-    <div className="w-full bg-white border border-gray-300 rounded-3xl p-10 flex flex-col gap-6 shadow-md hover:shadow-lg transition-all duration-300">
+    <div className="w-full bg-white border-2 border-primary/10 rounded p-8 flex flex-col gap-6  transition-all duration-300">
       <div className="w-16 h-16 rounded-full bg-main flex justify-center items-center text-4xl text-white">
         <Image
           src={icon}
@@ -96,7 +96,7 @@ function ServiceCard({
       <p className="text-xl font-semibold text-gray-800">{title}</p>
       <p className="text-base text-gray-600 leading-relaxed">{description}</p>
       <Link
-        className="py-3 text-center w-full bg-main text-white font-semibold rounded-xl mt-4 hover:bg-main-dark transition duration-200"
+        className="py-3 text-center w-full donateBtn shadow-none text-white font-semibold rounded mt-4 hover:bg-main-dark transition duration-200"
         href={link}
       >
         {linkText}

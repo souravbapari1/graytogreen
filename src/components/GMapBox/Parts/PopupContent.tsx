@@ -77,6 +77,7 @@ export const PopupContent = ({
   useEffect(() => {
     loadComplete();
   }, []);
+  console.log(data);
 
   return (
     <div
@@ -165,7 +166,7 @@ export const PopupContent = ({
           getProjectColor(data?.expand?.type?.name, data?.status)
         )}
       >
-        <p>{data?.comments || "By Mama Saves The Planet"}</p>
+        <p>{data?.comment?.toString() || "No Comment"}</p>
       </div>
     </div>
   );

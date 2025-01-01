@@ -55,10 +55,19 @@ async function page({ params }: { params: { id: string } }) {
     <div>
       <Navbar />
       <div className="container">
-        <div className="flex flex-col gap-10 mt-20">
-          <h1 className="text-3xl font-bold text-center">
-            {data?.researchLabsPrograms[0].title}
-          </h1>
+        <div className="flex flex-col gap-10 mt-20 w-full">
+          <div className="flex justify-between items-center w-full">
+            <h1 className="text-3xl font-bold text-center">
+              {data?.researchLabsPrograms[0].title}
+            </h1>
+            <Link
+              target="_blank"
+              href={data?.researchLabsPrograms[0].Apply_Link}
+              className="donateBtn py-2 shadow-none rounded-md"
+            >
+              Apply Now
+            </Link>
+          </div>
           <div
             className="content"
             dangerouslySetInnerHTML={{
@@ -67,13 +76,6 @@ async function page({ params }: { params: { id: string } }) {
           />
           <br />
           <br />
-          <Link
-            target="_blank"
-            href={data?.researchLabsPrograms[0].Apply_Link}
-            className="donateBtn py-2 mx-auto block text-center shadow-none"
-          >
-            Apply Now
-          </Link>
         </div>
       </div>
       <FooterTop />

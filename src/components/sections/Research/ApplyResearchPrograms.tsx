@@ -50,10 +50,10 @@ function ApplyResearchPrograms({
         />
       </div>
       <h1
-        className={`lg:text-3xl max-w-[600px] text-xl text-gray-900 lg:mb-10 mb-5 font-bold ${montserrat.className}`}
+        className={`lg:text-2xl max-w-[600px] text-xl text-gray-900 lg:mb-10 mb-5 font-bold ${montserrat.className}`}
         dangerouslySetInnerHTML={{ __html: data.title || "" }}
       />
-      <Carousel responsive={responsive} itemClass="md:px-6 ">
+      <Carousel responsive={responsive} itemClass="md:px-6 " autoPlay infinite>
         {labs?.map((e, i) => {
           return (
             <div

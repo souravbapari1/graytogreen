@@ -23,8 +23,8 @@ function ResearchHero({
         className="w-64 h-64 absolute left-0 -ml-24 mt-40"
       />
 
-      <div className="grid lg:grid-cols-2  gap-8 container mt-10">
-        <div className="">
+      <div className="grid lg:grid-cols-2  gap-8 container mt-16">
+        <div className="mt-12">
           <h1
             className={montserrat.className + " lg:text-4xl text-3xl font-bold"}
             dangerouslySetInnerHTML={{ __html: header.title || "" }}

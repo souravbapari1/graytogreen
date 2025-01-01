@@ -14,14 +14,7 @@ import SdgsView from "./SdgsView";
 import { ArrowDownUpIcon, Compass, LandPlot, Mail } from "lucide-react";
 import { FaLocationPin } from "react-icons/fa6";
 import { FaPhone } from "react-icons/fa";
-import {
-  DropdownMenu,
-  DropdownMenuContent,
-  DropdownMenuItem,
-  DropdownMenuLabel,
-  DropdownMenuSeparator,
-  DropdownMenuTrigger,
-} from "@/components/ui/dropdown-menu";
+
 import { useGlobalDataContext } from "@/context/useGlobalDataContext";
 import { ProjectItem } from "@/interface/project";
 import { useFilterState } from "./useFilterState";
@@ -44,119 +37,9 @@ function ProjectView() {
   const state = useAppSelector((e) => e.platformSlice);
   const dispatch = useAppDispatch();
   const { map } = useGlobalDataContext();
-  const [selectedArea, setSelectedArea] = useState<any>(null);
-
-  function getCenterLatLng(
-    areaName: string,
-    fullData: ProjectItem["workareas"]
-  ) {
-    // Find area ID from areaInfo using areaName
-    const areaInfo = fullData.areaInfo.find(
-      (area) => area.areaName === areaName
-    );
-    if (!areaInfo) {
-      return null;
-    }
-
-    // Find the matching feature in workAreaData using the area ID
-    const areaFeature = fullData.workAreaData.features.find(
-      (feature) => feature.id === areaInfo.id
-    );
-    if (!areaFeature) {
-      return null;
-    }
-
-    const coordinates = areaFeature.geometry.coordinates[0]; // Polygon coordinates
-
-    // Calculate centroid
-    let totalLat = 0;
-    let totalLng = 0;
-    coordinates.forEach(([lng, lat]) => {
-      totalLat += lat;
-      totalLng += lng;
-    });
-
-    const numPoints = coordinates.length;
-    const centerLat = totalLat / numPoints;
-    const centerLng = totalLng / numPoints;
-
-    return { lat: centerLat, lng: centerLng };
-  }
-  const { setMapCenter } = useFilterState();
-
-  useEffect(() => {
-    if (selectedArea && state.selectedProject?.workareas) {
-      const center = getCenterLatLng(
-        selectedArea.areaName as string,
-        state.selectedProject?.workareas
-      );
-
-      if (center) {
-        setMapCenter(center);
-      }
-    }
-  }, [selectedArea]);
 
   return (
     <div className="">
-      <DropdownMenu>
-        <DropdownMenuTrigger className="w-64  bg-white z-20 absolute top-3 right-3 rounded-xl shadow-md p-1 ">
-          {selectedArea ? (
-            <div className="flex justify-between gap-4 w-full   hover:bg-slate-50 items-center p-2 rounded-xl">
-              <div className="flex justify-center items-center gap-3">
-                <LandPlot className="text-primary" />
-                <div className="text-xs text-left">
-                  <p className="font-bold text-sm">{selectedArea.areaType}</p>
-                  <p>{selectedArea.areaName}</p>
-                </div>
-              </div>
-              <ArrowDownUpIcon
-                size={24}
-                className="text-primary/90 bg-primary/10 p-1.5 rounded-sm"
-              />
-            </div>
-          ) : (
-            <div className="flex justify-between gap-4 w-full   hover:bg-slate-50 items-center p-2 rounded-xl">
-              <div className="flex justify-center items-center gap-3">
-                <LandPlot className="text-primary" />
-                <div className="text-xs">
-                  <p className="font-bold text-sm">Select Area</p>
-                </div>
-              </div>
-              <ArrowDownUpIcon
-                size={24}
-                className="text-primary/90 bg-primary/10 p-1.5 rounded-sm"
-              />
-            </div>
-          )}
-        </DropdownMenuTrigger>
-        <DropdownMenuContent>
-          <DropdownMenuLabel>Select Area</DropdownMenuLabel>
-          <DropdownMenuSeparator />
-          {state.selectedProject?.workareas.areaInfo.map((e, i) => {
-            return (
-              <DropdownMenuItem key={i} className="p-0">
-                <div
-                  onClick={() => {
-                    setSelectedArea(e);
-                  }}
-                  className={
-                    "flex justify-start gap-4 w-60   hover:bg-slate-50 items-center  rounded-xl text-sm px-2 py-1 " +
-                    montserrat.className
-                  }
-                >
-                  <LandPlot className="text-gray-950" />
-                  <div className="text-xs">
-                    <p className="font-bold ">{e.areaType}</p>
-                    <p>{e.areaName}</p>
-                  </div>
-                </div>
-              </DropdownMenuItem>
-            );
-          })}
-        </DropdownMenuContent>
-      </DropdownMenu>
-
       <div className="lg:w-96 w-full h-full z-10 left-0 md:top-0  bg-transparent absolute lg:px-3 py-3 rounded-3xl overflow-hidden">
         <div
           className={
@@ -177,6 +60,42 @@ function ProjectView() {
               className="w-10 h-10 cursor-pointer bg-white rounded-full flex justify-center items-center border absolute top-7 left-8"
             >
               <IoIosArrowBack />
+            </div>
+          </div>
+          <div className="px-2">
+            <div className="border rounded-lg  p-4 max-w-md text-xs mx-auto">
+              <div className="flex justify-between">
+                <div>
+                  <p className="font-bold">Main Interventions :</p>
+                  <p className="text-gray-600">
+                    {state.selectedProject?.main_interventions.join(", ")}
+                  </p>
+                </div>
+                <div>
+                  <p className="font-bold">Target Units:</p>
+                  <p className="text-gray-600">
+                    {state.selectedProject?.number_of_target_unit}{" "}
+                    {state.selectedProject?.unit_measurement}
+                  </p>
+                </div>
+              </div>
+              <div className="mt-4 flex justify-between">
+                <div>
+                  <p className="font-bold">Accrediting Standards :</p>
+                  <p className="text-gray-600">
+                    {state.selectedProject?.expand?.accredation_standars?.title}
+                  </p>
+                </div>
+                <div>
+                  <p className="font-bold">Start Date :</p>
+                  <p className="text-gray-600">
+                    {state.selectedProject?.start_date
+                      ?.split("-")
+                      .reverse()
+                      .join("/")}
+                  </p>
+                </div>
+              </div>
             </div>
           </div>
           <br />
@@ -224,6 +143,7 @@ function ProjectView() {
               </div>
             </div>
           </div>
+
           <div className="px-2">
             <div className="px-4 py-4 mt-2 bg-blue-600/5 rounded-md">
               <p className="font-bold mb-3 text-sm">Challenges</p>
@@ -278,7 +198,10 @@ function ProjectView() {
           <div className="px-4">
             <br />
             <h1 className="font-bold mb-2 text-sm">
-              Sustainable Development Goals
+              Sustainable Development Goals{" "}
+              <span className="text-primary">
+                ({state.selectedProject?.expand?.sdgs?.length})
+              </span>
             </h1>
 
             {state.selectedProject?.expand?.sdgs?.map((v, i) => {

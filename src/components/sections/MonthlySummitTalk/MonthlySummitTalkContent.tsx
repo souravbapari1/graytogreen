@@ -139,32 +139,7 @@ function MonthlySummitTalkContent({ data }: { data?: MonthlySummitTalk }) {
           </div>
         </div> */}
       </div>
-      <div className="bg-green-600/5  rounded-3xl border-2 border-green-500/10">
-        <div className="w-full flex md:p-10 p-5 py-10 mt-10 justify-center items-center flex-col">
-          <h1 className="text-2xl font-bold mb-4">
-            {data?.sessionsCards.title}
-          </h1>
-          <p className="text-center md:text-base text-sm">
-            {data?.sessionsCards.description}
-          </p>
-          <div className="flex md:flex-row flex-col justify-center items-center md:gap-5 gap-0">
-            <Link
-              href={data?.sessionsCards.registerSessionLink || "#"}
-              target="_blank"
-              className="donateBtn py-3 shadow-none mt-6 capitalize text-center  text-xs"
-            >
-              Registering in Climate Justice Session{" "}
-            </Link>
-            <Link
-              href={data?.sessionsCards.registerIndividualsSessionLink || "#"}
-              target="_blank"
-              className="donateBtn py-3 shadow-none mt-6 capitalize text-center  text-xs"
-            >
-              Register Individuals
-            </Link>
-          </div>
-        </div>
-      </div>
+
       {data?.upcomingSession && (
         <div className="grid lg:grid-cols-2 gap-10 mt-20">
           <div className="flex items-center justify-center md:mt-0 mt-10 md:mb-0 mb-8">
@@ -215,6 +190,34 @@ function MonthlySummitTalkContent({ data }: { data?: MonthlySummitTalk }) {
           </div>
         </div>
       )}
+
+      <div className="bg-green-600/10 bg-[url('/assets/green-bg.jpg')] bg-no-repeat overflow-hidden bg-cover bg-center  mt-20 rounded-3xl  py-5 border-green-500/20 relative">
+        <div className="w-full h-full bg-black/75  absolute top-0 right-0 "></div>
+        <div className="w-full flex p-10 mb-4  justify-center items-center flex-col relative">
+          <h1 className="text-3xl font-bold mb-4 text-white">
+            {data?.sessionsCards.title}
+          </h1>
+          <p className="text-center md:text-base lg:px-36 text-sm text-white/80">
+            {data?.sessionsCards.description}
+          </p>
+          <div className="flex md:flex-row flex-col justify-center items-center md:gap-5 gap-0">
+            <Link
+              href={data?.sessionsCards.registerSessionLink || "#"}
+              target="_blank"
+              className="donateBtn py-3 shadow-none mt-6 capitalize text-center  text-xs"
+            >
+              Registering in Climate Justice Session{" "}
+            </Link>
+            <Link
+              href={data?.sessionsCards.registerIndividualsSessionLink || "#"}
+              target="_blank"
+              className="donateBtn py-3 shadow-none mt-6 capitalize text-center  text-xs"
+            >
+              Register Individuals
+            </Link>
+          </div>
+        </div>
+      </div>
     </div>
   );
 }
