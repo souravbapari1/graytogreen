@@ -16,7 +16,7 @@ async function page() {
     <WorkSpace>
       <MicroActionView session={user} />
       <MicroActionsList data={data.items} />
-      <MicroAbout />
+      {/* <MicroAbout /> */}
     </WorkSpace>
   );
 }
