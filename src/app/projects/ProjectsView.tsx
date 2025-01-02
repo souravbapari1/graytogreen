@@ -60,7 +60,9 @@ function ProjectsView() {
           </div>
           <div className="xl:col-span-9 lg:col-span-8">
             <div className="flex justify-end items-end">
-              <h1 className="font-bold text-xl">Project : {totalItems}</h1>
+              <h1 className="font-bold text-xl">
+                Project : {state?.filter?.length}
+              </h1>
             </div>
             <div className=" grid xl:grid-cols-3   md:grid-cols-2  gap-6">
               {state?.filter?.map((e, i) => {

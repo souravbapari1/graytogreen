@@ -9,4 +9,10 @@ export interface LiveAndPopcastItem {
   updated: string;
   videoId: string;
   category: string;
+  expand: {
+    category: {
+      id: string;
+      name: string;
+    };
+  };
 }

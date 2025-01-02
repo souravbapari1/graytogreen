@@ -27,7 +27,7 @@ function PartnersHero({
           className="w-full h-full object-cover"
         />
         <div className="absolute top-0 right-0 w-full h-full">
-          <Link href="/account">
+          <Link href="/auth/signin">
             <Button
               className={`bg-white/80 shadow-md backdrop-blur-sm lg:px-10 lg:py-6 lg:text-base text-xs rounded-full absolute right-10 top-8 text-main hover:text-white uppercase font-bold ${montserrat.className}`}
             >

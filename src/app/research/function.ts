@@ -2,15 +2,38 @@ import client from "@/graphql/client";
 import { ResearchItem } from "@/interface/researches";
 import { gql } from "@apollo/client";
 
+export interface ResearchCategory {
+  researchCategories: ResearchCategory[];
+}
+
+export interface ResearchCategory {
+  name: string;
+  documentId: string;
+}
+
+export const getResearchCategory = async () => {
+  const data = await client.query<ResearchCategory>({
+    query: gql`
+      query ResearchCategories {
+        researchCategories {
+          name
+          documentId
+        }
+      }
+    `,
+  });
+  return data;
+};
+
 export const getResearchesLabs = async (state: string, page: number) => {
   const data = await client.query<ResearchItem>({
     query: gql`
       query ResearchPosts(
         $filters: ResearchPostFiltersInput
-        $pagination: PaginationArg
         $sort: [String]
+        $pagination: PaginationArg
       ) {
-        researchPosts(filters: $filters, pagination: $pagination, sort: $sort) {
+        researchPosts(filters: $filters, sort: $sort, pagination: $pagination) {
           documentId
           description
           locale
@@ -30,8 +53,13 @@ export const getResearchesLabs = async (state: string, page: number) => {
 
     variables: {
       filters: {
-        state: {
-          eq: state,
+        research_category: {
+          name:
+            state == "All"
+              ? {}
+              : {
+                  eq: state,
+                },
         },
       },
       pagination: {

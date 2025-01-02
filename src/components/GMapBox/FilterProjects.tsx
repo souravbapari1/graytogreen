@@ -139,7 +139,7 @@ function FilterProjects() {
 
   return (
     <div className="md:px-0 px-3">
-      <div className="flex justify-between items-center gap-3 px-3 bg-primary/10 rounded-md">
+      <div className="flex justify-between items-center gap-2 px-3  shadow bg-white border border-primary/10 rounded-md">
         <div>
           <Search className="text-primary" size={15} />
         </div>
@@ -151,8 +151,8 @@ function FilterProjects() {
         />
         <DropdownMenu>
           <DropdownMenuTrigger>
-            <div className="bg-white rounded-sm flex justify-center items-center p-1.5 px-2">
-              <MdSortByAlpha size={12} className="text-primary" />
+            <div className="bg-primary rounded-full text-white flex justify-center items-center p-1.5">
+              <MdSortByAlpha size={14} className="text-white" />
             </div>
           </DropdownMenuTrigger>
           <DropdownMenuContent className="shadow-sm text-[10px] rounded border-none">
@@ -234,8 +234,8 @@ function FilterProjects() {
         </DropdownMenu>
 
         <FilterProjectsOptions applyFilters={applyFilters}>
-          <div className="bg-white rounded-sm flex justify-center items-center p-1.5 px-2">
-            <Filter size={10} className="text-primary" />
+          <div className="bg-primary rounded-full flex justify-center items-center p-1.5 ">
+            <Filter size={14} className="text-white" />
           </div>
         </FilterProjectsOptions>
       </div>
@@ -248,22 +248,29 @@ function FilterProjects() {
               selectedFilters.setTopProjects(!selectedFilters.topProjects)
             }
           />
-          <p className="text-xs text-primary font-medium">Top Projects</p>
+          <p className="text-xs text-primary font-medium text-nowrap">
+            Top Projects
+          </p>
         </div>
-        {state.filter.length != state.dataSet.length && (
-          <Badge
-            className="text-[7px] font-bold mt-2 shadow-none rounded flex justify-center items-center cursor-pointer"
-            variant="destructive"
-            onClick={() => {
-              dispatch(setPlatformFilter(state.dataSet || []));
-              selectedFilters.setTopProjects(false);
+        <div className="w-full flex justify-end items-center gap-2  ">
+          <p className="text-xs font-semibold mt-2">
+            Projects : {state.filter.length}
+          </p>
+          {state.filter.length != state.dataSet.length && (
+            <Badge
+              className="text-[7px] font-bold mt-2 shadow-none rounded flex justify-center items-center cursor-pointer"
+              variant="destructive"
+              onClick={() => {
+                dispatch(setPlatformFilter(state.dataSet || []));
+                selectedFilters.setTopProjects(false);
 
-              selectedFilters.clearAllFilters();
-            }}
-          >
-            Clear Filters
-          </Badge>
-        )}
+                selectedFilters.clearAllFilters();
+              }}
+            >
+              Clear Filters
+            </Badge>
+          )}
+        </div>
       </div>
       <div className="flex justify-start items-start gap-1 mt-2 flex-wrap">
         {Object.keys(selectedFilters.filters).map((category, i) => {

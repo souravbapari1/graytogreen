@@ -34,7 +34,7 @@ function ResearchCard({
         </p>
         <p className="font-semibold md:text-base text-sm text-gray-400">
           {formatTimestampCustom(data.publishedAt)} -{" "}
-          <span className="uppercase">{data.state}</span>
+          <span className="uppercase">{data.research_category.name}</span>
         </p>
       </div>
     </Link>

@@ -8,6 +8,8 @@ import NoLive from "./NoLive";
 import Link from "next/link";
 import { FaLocationDot } from "react-icons/fa6";
 import { cn } from "@/lib/utils";
+import { GiCargoCrate } from "react-icons/gi";
+import { ListTodoIcon } from "lucide-react";
 function ManagePodcastVideos({
   category,
   videos,
@@ -69,11 +71,11 @@ function ManagePodcastVideos({
                   {e.title}
                 </p>
                 <p className="flex items-center gap-3 mt-2">
-                  <FaLocationDot className={cn("text-primary")} />{" "}
+                  <ListTodoIcon className={cn("text-primary")} />{" "}
                   <span
                     className={`text-lg ${montserrat.className} font-bold text-primary`}
                   >
-                    {e.location}
+                    {e.expand.category.name}
                   </span>
                 </p>
               </div>

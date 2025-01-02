@@ -37,7 +37,12 @@ function ExperienceSlider({
   }
   return (
     <div>
-      <Carousel responsive={responsive} itemClass="md:px-6 " autoPlay={true}>
+      <Carousel
+        responsive={responsive}
+        itemClass="md:px-6 "
+        autoPlay={true}
+        infinite
+      >
         {data?.map((e, i) => {
           return (
             <div
@@ -61,7 +66,7 @@ function ExperienceSlider({
                 />
               </div>
               <Image
-                className="mt-5 w-full object-cover  "
+                className="mt-5 w-full object-cover  h-40"
                 src={strApi + e.image.url}
                 alt=""
                 width={1200}

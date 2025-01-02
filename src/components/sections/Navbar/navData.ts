@@ -32,25 +32,25 @@ const toolsMenu: ServicesMenuItems[] = [
     list: [
       {
         icon: "📟",
-        href: "#",
+        href: "/soon",
         id: "co2",
         title: "CO2 Calculator ",
       },
       {
         icon: "🧰",
-        href: "#",
+        href: "/soon",
         id: "",
         title: "GCX Platform",
       },
       {
         icon: "🌳",
-        href: "#",
+        href: "/soon",
         id: "",
         title: "GTG Nursery",
       },
       {
         icon: "🗂️",
-        href: "#",
+        href: "/soon",
         id: "",
         title: "Sustainability Marketplace",
       },
@@ -68,13 +68,13 @@ const toolsMenu: ServicesMenuItems[] = [
       },
       {
         icon: "👨🏻‍💻",
-        href: "#",
+        href: "/soon",
         id: "",
         title: "Partener Platform",
       },
       {
         icon: "🌿",
-        href: "#",
+        href: "/soon",
         id: "",
         title: "Trees restoration Tracking Tool",
       },
@@ -100,7 +100,7 @@ const toolsMenu: ServicesMenuItems[] = [
 
   //     {
   //       icon: "🌱",
-  //       href: "#",
+  //       href: "/soon",
   //       id: "",
   //       title: "Stop Talking , Start Planting",
   //       subtitle:
@@ -108,7 +108,7 @@ const toolsMenu: ServicesMenuItems[] = [
   //     },
   //     {
   //       icon: "🤝🏻",
-  //       href: "#",
+  //       href: "/soon",
   //       id: "",
   //       title: "Monthly Environmental Day",
   //       subtitle:
@@ -133,7 +133,7 @@ const InitiativesListMenu: ServicesMenuItems[] = [
 
       {
         icon: "🌱",
-        href: "#",
+        href: "/soon",
         id: "",
         title: "Stop Talking , Start Planting",
         subtitle:
@@ -141,7 +141,7 @@ const InitiativesListMenu: ServicesMenuItems[] = [
       },
       {
         icon: "🤝🏻",
-        href: "#",
+        href: "/soon",
         id: "",
         title: "Monthly Environmental Day",
         subtitle:
@@ -168,7 +168,7 @@ const supportMenu: ServicesMenuItems[] = [
         title: "Planting Trees",
       },
       {
-        href: "/soon",
+        href: "/act-with-us/acting-on-reducing-plastics-waste",
         icon: "📎",
         id: "Acting_on_Reducing_Plastics_Waste",
         title: "Acting on Reducing Plastics Waste",

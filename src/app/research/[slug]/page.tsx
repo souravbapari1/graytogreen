@@ -48,9 +48,6 @@ async function ReadResearches({ params }: { params: { slug: string } }) {
             </p>
 
             <div className="flex capitalize gap-3">
-              <Badge className="shadow-none " variant="default">
-                Status: {post.state}
-              </Badge>
               <Badge className="shadow-none " variant="secondary">
                 Category: {post.research_category.name}
               </Badge>

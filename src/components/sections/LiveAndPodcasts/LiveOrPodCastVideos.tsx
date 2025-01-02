@@ -26,7 +26,11 @@ async function LiveOrPodCastVideos({
     .send<Collection<LiveAndPopcastItem>>();
 
   const podcastVideos = await client
-    .get("/api/collections/podcasts/records")
+    .get("/api/collections/podcasts/records", {
+      perPage: 6,
+      sort: "created",
+      expand: "category",
+    })
     .send<Collection<LiveAndPopcastItem>>();
 
   // const liveNowVideos = await client

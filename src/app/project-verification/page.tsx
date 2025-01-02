@@ -101,13 +101,13 @@ async function ProjectVerification({ searchParams }: { searchParams?: any }) {
   return (
     <div>
       <Navbar />
-      <ProjectVerificationHero
+      {/* <ProjectVerificationHero
         data={getData()?.banner}
         link={getData()?.headerLink}
-      />
+      /> */}
       <VerificationApplyStep data={getData()?.applyInfoSteps} />
-      <VerificationStep data={getData()?.verificationSteps} />
-      <InfoList data={getData()?.cardList} />
+      {/* <VerificationStep data={getData()?.verificationSteps} /> */}
+      {/* <InfoList data={getData()?.cardList} /> */}
       <ReviewBoard
         data={getData()?.members.member}
         title={getData()?.members.title}

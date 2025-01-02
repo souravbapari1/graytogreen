@@ -11,6 +11,7 @@ const footerLinks = [
     title: "About Us",
     links: [
       { text: "About Us", href: "/about-us" },
+      { text: "Help Center", href: "/pages/contact-us" },
       { text: "Team", href: "/about-us#teams" },
       { text: "Ambassador", href: "/about-us#ambassadors" },
       { text: "Blog", href: "/blogs" },
@@ -41,7 +42,10 @@ const footerLinks = [
     title: "Support Us",
     links: [
       { text: "Planting Trees", href: "/act-with-us/plante-tree" },
-      { text: "Acting on Reducing Plastics Waste", href: "/soon" },
+      {
+        text: "Acting on Reducing Plastics Waste",
+        href: "/act-with-us/acting-on-reducing-plastics-waste",
+      },
       {
         text: "Support Researches & Experiments",
         href: "/act-with-us/support-research-and-epirement",
@@ -97,7 +101,7 @@ function Footer() {
           alt=""
           className="w-48 h-auto"
         />
-        <div className="grid xl:grid-cols-8 md:grid-cols-3 grid-cols-1 gap-8 gap-x-3 mt-10">
+        <div className="grid xl:grid-cols-6 md:grid-cols-3 grid-cols-1 gap-8 gap-x-3 mt-10">
           {footerLinks.map((section, index) => (
             <div key={index} className="flex flex-col gap-3">
               <h1 className={`${montserrat.className} font-bold text-white`}>
@@ -116,7 +120,7 @@ function Footer() {
               </div>
             </div>
           ))}
-          <div className="flex flex-col gap-3 xl:col-span-2 md:col-span-1 ">
+          {/* <div className="flex flex-col gap-3 xl:col-span-2 md:col-span-1 ">
             <h1 className={`${montserrat.className} font-bold text-white`}>
               Contact us
             </h1>
@@ -143,7 +147,7 @@ function Footer() {
                 <span>102-Complex, Xyz Road City name, State, 136458</span>
               </Link>
             </div>
-          </div>
+          </div> */}
         </div>
       </div>
       <div className="w-full md:h-16 h-12 bg-green-900 mt-16">

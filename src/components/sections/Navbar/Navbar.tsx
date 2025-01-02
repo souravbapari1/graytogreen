@@ -29,6 +29,9 @@ async function Navbar(): Promise<JSX.Element> {
           <Link className="lg:block hidden" href="/blogs">
             Blogs
           </Link>
+          <Link className="lg:block hidden" href="/pages/contact-us">
+            Help Center
+          </Link>
           <Link className="lg:block hidden" href="/research">
             Researchs
           </Link>

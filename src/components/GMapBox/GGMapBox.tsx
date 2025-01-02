@@ -86,7 +86,6 @@ const GGMapBox: React.FC<{
       mapRef.current = new mapboxgl.Map({
         container: mapContainerRef.current,
         center: center,
-
         zoom: 5,
       });
       if (disableScroll) {

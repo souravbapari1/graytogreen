@@ -29,7 +29,7 @@ function SdgsView({ data }: { data: ProjectSDG }) {
       <div className="w-full bg-gray-50 mt-1">
         <div
           style={{
-            background: `linear-gradient(to right, ${data.expand?.sdg?.main_color}, ${data.expand?.sdg?.sub_color})`,
+            background: `${data.expand?.sdg?.main_color}`,
           }}
           className="w-full h-5 bg-main p-4 text-sm text-white flex justify-between items-center"
         >
@@ -48,7 +48,7 @@ function SdgsView({ data }: { data: ProjectSDG }) {
                   <div
                     className="w-3 h-3 rounded-full mr-2"
                     style={{
-                      background: `linear-gradient(to right, ${data?.expand?.sdg?.main_color}, ${data?.expand?.sdg?.sub_color})`,
+                      background: `${data?.expand?.sdg?.sub_color}`,
                     }}
                   ></div>
                   <p>{e.name}</p>

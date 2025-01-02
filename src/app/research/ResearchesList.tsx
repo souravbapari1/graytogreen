@@ -4,15 +4,23 @@ import ResearchCard from "@/components/sections/Research/ResearchCard";
 import { Button } from "@/components/ui/button";
 import { montserrat } from "@/fonts/font";
 import { ResearchItem } from "@/interface/researches";
-import { useEffect, useState } from "react";
-import { getResearchesLabs } from "./function";
+import { useCallback, useEffect, useState } from "react";
+import { getResearchCategory, getResearchesLabs } from "./function";
 
 function OngoingResearch() {
   const [loading, setLoading] = useState(false);
   const [data, setData] = useState<ResearchItem["researchPosts"] | null>(null);
   const [page, setPage] = useState(0);
-  const [filter, setFilter] = useState<string>("active");
+  const [filter, setFilter] = useState<string>("All");
   const [isLast, setIsLast] = useState(false);
+  const [category, setCategory] = useState<string[]>(["Loading..."]);
+
+  const getResearchCategoryList = useCallback(async () => {
+    const data = await getResearchCategory();
+    const list = data?.data.researchCategories.map((e) => e.name) || [];
+    const setData = new Set(list);
+    setCategory(Array.from(setData));
+  }, []);
 
   const loadData = async () => {
     try {
@@ -29,6 +37,7 @@ function OngoingResearch() {
 
   useEffect(() => {
     loadData();
+    getResearchCategoryList();
   }, [page, filter]);
 
   return (
@@ -42,7 +51,7 @@ function OngoingResearch() {
         <div
           className={`flex justify-center items-center md:gap-6 gap-3 ${montserrat.className} mt-10 md:text-base text-sm font-bold`}
         >
-          {["active", "completed", "restoration", "planting"].map((e) => (
+          {["All", ...category].map((e) => (
             <p
               key={e}
               onClick={() => {
