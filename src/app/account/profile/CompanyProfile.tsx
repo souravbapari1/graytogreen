@@ -22,6 +22,7 @@ import { useSession } from "next-auth/react";
 import { useEffect, useState } from "react";
 import toast from "react-hot-toast";
 import { useCompanyProfileState } from "./companyProfileState";
+import { Badge } from "@/components/ui/badge";
 function CompanyProfile({
   user,
   session,
@@ -141,6 +142,15 @@ function CompanyProfile({
             <AvatarFallback>G</AvatarFallback>
           </Avatar>
         </label>
+      </div>
+      <div className="flex gap-2 mt-8 mb-5 capitalize">
+        <Badge variant="secondary" className="shadow-none text-xs capitalize">
+          Level: {user.level || "N/A"}
+        </Badge>
+
+        <Badge variant="outline" className="shadow-none text-xs">
+          {user.user_type || "N/A"}
+        </Badge>
       </div>
       <div className="grid lg:grid-cols-4 gap-6 ">
         <div className="w-full">

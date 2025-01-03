@@ -47,7 +47,7 @@ function getCurrentDateData(): { year: string; month: number } {
 }
 
 function ReportsView({ user }: { user: string }) {
-  const [year, setYear] = useState("2024");
+  const [year, setYear] = useState("2025");
   const [month, setMonth] = useState(0);
   const data = useQuery({
     queryKey: ["reports", year, user],
@@ -134,7 +134,6 @@ function ReportsView({ user }: { user: string }) {
                 <SelectValue placeholder={year} />
               </SelectTrigger>
               <SelectContent>
-                <SelectItem value="2024">2024</SelectItem>
                 <SelectItem value="2025">2025</SelectItem>
                 <SelectItem value="2026">2026</SelectItem>
               </SelectContent>
@@ -165,7 +164,9 @@ function ReportsView({ user }: { user: string }) {
                 <div className="w-full h-32 flex justify-between items-center shadow px-6 py-2 rounded-2xl bg-white">
                   <div className="h-full flex justify-center flex-col items-start">
                     <h1 className="text-2xl font-bold mb-3">Week {i + 1}</h1>
-                    <p>{`${7 * i + 1}st-${7 * i + 7}th`} - Sep 2024</p>
+                    <p>
+                      {`${7 * i + 1}st-${7 * i + 7}th`} - {months[month]} {year}
+                    </p>
                   </div>
                   <div className="flex flex-col justify-end items-center">
                     {monthDataView?.data?.[e as keyof MonthlyReportItem] && (
