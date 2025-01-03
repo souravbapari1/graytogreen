@@ -23,7 +23,7 @@ async function page() {
       <div className="container mt-10">
         <MicroActionView session={user} />
         <MicroActionsList data={data.items} />
-        <MicroAbout />
+        {/* <MicroAbout /> */}
       </div>
       <FooterTop />
       <Footer />

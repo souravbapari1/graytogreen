@@ -1,5 +1,6 @@
 "use client";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
+import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
@@ -14,6 +15,7 @@ import { Textarea } from "@/components/ui/textarea";
 import { data } from "@/data/citycountry.json";
 import { UserItem } from "@/interface/user";
 import { client, extractErrors, genPbFiles } from "@/request/actions";
+import { Send } from "lucide-react";
 import { Session } from "next-auth";
 import { useSession } from "next-auth/react";
 import React, { useCallback, useState } from "react";
@@ -150,6 +152,25 @@ function ManageProfile({
           </Avatar>
         </label>
       </div>
+      <div className="flex gap-2 mt-8">
+        <Badge variant="secondary" className="shadow-none text-xs">
+          Level: {user.level || "N/A"}
+        </Badge>
+
+        <Badge variant="outline" className="shadow-none text-xs">
+          {user.user_type || "N/A"}
+        </Badge>
+      </div>
+      {user.user_type == "individual" && (
+        <Button
+          size="sm"
+          variant="default"
+          className="flex gap-4 shadow-none mt-4"
+        >
+          <Send size={14} />
+          Request Ambassador
+        </Button>
+      )}
 
       <div className="grid lg:grid-cols-2 mt-16 md:gap-8 gap-4 w-full">
         <div className="w-full">

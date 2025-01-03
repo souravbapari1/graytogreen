@@ -88,14 +88,14 @@ function MyBalance({
   return (
     <div>
       {getStatus()}
-      <Tabs defaultValue="All" className="w-full">
+      {/* <Tabs defaultValue="All" className="w-full">
         <TabsList>
           <TabsTrigger value="All">All</TabsTrigger>
           <TabsTrigger value="Carbon Offset">Carbon Offset</TabsTrigger>
           <TabsTrigger value="Plastic Offset">Plastic Offset</TabsTrigger>
           <TabsTrigger value="Others">Others</TabsTrigger>
         </TabsList>
-      </Tabs>
+      </Tabs> */}
       <div className="grid lg:grid-cols-3 mt-6 gap-10">
         <div className="lg:col-span-2">
           <div className=" gap-5 grid lg:grid-cols-2 ">
@@ -196,9 +196,11 @@ function MyBalance({
                       <TableHead className=" font-bold py-3 text-center border-r">
                         Amount (OMR)
                       </TableHead>
-                      <TableHead className=" font-bold py-3 text-center">
-                        Initiate By
-                      </TableHead>
+                      {user.user_type == "partner" && (
+                        <TableHead className=" font-bold py-3 text-center">
+                          Initiate By
+                        </TableHead>
+                      )}
                     </TableRow>
                   </TableHeader>
                   <TableBody>
@@ -227,13 +229,15 @@ function MyBalance({
                               : ""}{" "}
                             {e.amount.toFixed(2)} OMR
                           </TableCell>
-                          <TableCell className="py-3 text-center">
-                            {e.expand.actionBy
-                              ? e.expand.actionBy.first_name +
-                                " " +
-                                e.expand.actionBy.last_name
-                              : "N/A"}{" "}
-                          </TableCell>
+                          {user.user_type == "partner" && (
+                            <TableCell className="py-3 text-center">
+                              {e.expand.actionBy
+                                ? e.expand.actionBy.first_name +
+                                  " " +
+                                  e.expand.actionBy.last_name
+                                : "N/A"}{" "}
+                            </TableCell>
+                          )}
                         </TableRow>
                       );
                     })}

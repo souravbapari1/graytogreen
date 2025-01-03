@@ -60,7 +60,7 @@ const EnvironmentalStatistics = ({
                   <div
                     className="w-4 h-4 rounded-full"
                     style={{
-                      background: `linear-gradient(to right, ${data[index].main_color}, ${data[index].sub_color})`,
+                      background: `${data[index].sub_color}`,
                     }}
                   />
                   <p className="font-semibold">{v.name}</p>
