@@ -6,8 +6,9 @@ import { montserrat } from "@/fonts/font";
 import { ResearchItem } from "@/interface/researches";
 import { useCallback, useEffect, useState } from "react";
 import { getResearchCategory, getResearchesLabs } from "./function";
+import Link from "next/link";
 
-function OngoingResearch() {
+function OngoingResearch({ viewAll = false }: { viewAll?: boolean }) {
   const [loading, setLoading] = useState(false);
   const [data, setData] = useState<ResearchItem["researchPosts"] | null>(null);
   const [page, setPage] = useState(0);
@@ -82,6 +83,14 @@ function OngoingResearch() {
               className="spinner-border animate-spin  inline-block w-8 h-8 border-4 border-t-primary rounded-full"
               role="status"
             ></div>
+          </div>
+        ) : viewAll ? (
+          <div className="w-full mx-auto flex justify-center items-center mt-10">
+            <Link href="/research">
+              <Button className="donateBtn rounded-full p-5">
+                View All Researches
+              </Button>
+            </Link>
           </div>
         ) : (
           <div className="mx-auto flex justify-center items-center mt-10">

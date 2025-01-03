@@ -141,7 +141,7 @@ async function page() {
         data={pageData?.challenges}
         labs={data?.researchLabsPrograms}
       />
-      <OngoingResearch />
+      <OngoingResearch viewAll={true} />
       <ResearchFellowships data={pageData?.infoCards} />
       <ScientificAdvisors
         data={pageData?.members.member}
