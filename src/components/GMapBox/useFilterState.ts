@@ -13,7 +13,8 @@ interface FilterState {
   topProjects: boolean;
   search: string;
   filterBy: null | "PLTH" | "PHTL" | "OLDTONEW" | "NEWTOOLD" | "ATZ" | "ZTA";
-
+  minPrice: number;
+  maxPrice: number;
   mapCenter: null | { lat: number; lng: number };
   toggleFilter: (category: keyof FilterState["filters"], value: string) => void;
   clearAllFilters: () => void;
@@ -23,11 +24,16 @@ interface FilterState {
     value: null | "PLTH" | "PHTL" | "OLDTONEW" | "NEWTOOLD" | "ATZ" | "ZTA"
   ) => void;
   setMapCenter: (value: null | { lat: number; lng: number }) => void;
+
+  setMinPrice: (value: number) => void;
+  setMaxPrice: (value: number) => void;
 }
 
 export const useFilterState = create<FilterState>((set) => ({
   topProjects: false,
   search: "",
+  maxPrice: 100,
+  minPrice: 0,
   filters: {
     types: [],
     mainInterventions: [],
@@ -44,6 +50,13 @@ export const useFilterState = create<FilterState>((set) => ({
   },
   setTopProjects: (value: boolean) => {
     set({ topProjects: value });
+  },
+
+  setMinPrice: (value: number) => {
+    set({ minPrice: value });
+  },
+  setMaxPrice: (value: number) => {
+    set({ maxPrice: value });
   },
 
   setFilterBy: (
@@ -76,6 +89,7 @@ export const useFilterState = create<FilterState>((set) => ({
         sdgs: [],
         accStandards: [],
       },
+      minPrice: 0,
       search: "",
       topProjects: false,
       filterBy: null,

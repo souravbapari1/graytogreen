@@ -1,5 +1,5 @@
 "use client";
-import React, { useEffect, useState } from "react";
+import React, { useCallback, useEffect, useState } from "react";
 import { Input } from "../ui/input";
 import { Filter, Search } from "lucide-react";
 import { Checkbox } from "../ui/checkbox";
@@ -34,6 +34,7 @@ import {
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 import { MdSortByAlpha } from "react-icons/md";
+import { DualRangeSlider } from "../ui/DualRangeSlider";
 
 export interface FilterState {
   types: string[];
@@ -53,6 +54,10 @@ function FilterProjects() {
 
   const applyFilters = () => {
     let data = state.dataSet?.filter((e) => {
+      // Filter by price
+      const priceMatch =
+        selectedFilters.minPrice <= e.omr_unit &&
+        e.omr_unit <= selectedFilters.maxPrice;
       // Apply filter logic only if the filter array is not empty
       const typeMatch =
         selectedFilters.filters.types.length === 0 ||
@@ -86,6 +91,7 @@ function FilterProjects() {
 
       // Return true if the project matches all non-empty filters
       return (
+        priceMatch &&
         (selectedFilters.filters.types.length === 0 || typeMatch) &&
         (selectedFilters.filters.mainInterventions.length === 0 ||
           interventionMatch) &&
@@ -128,6 +134,13 @@ function FilterProjects() {
       dispatch(setPlatformFilter(data));
     }
   };
+
+  useEffect(() => {
+    const pringPrice = state.dataSet.map((e) => e.omr_unit);
+    const max = Math.max(...pringPrice);
+    selectedFilters.setMaxPrice(max);
+  }, [state.dataSet]);
+
   useEffect(() => {
     applyFilters();
   }, [
@@ -135,6 +148,8 @@ function FilterProjects() {
     selectedFilters.search,
     selectedFilters.filters,
     selectedFilters.filterBy,
+    selectedFilters.minPrice,
+    selectedFilters.maxPrice,
   ]);
 
   return (
@@ -372,7 +387,12 @@ function FilterProjectsOptions({
   const toggleFilter = (category: keyof FilterState, value: string) => {
     selectedFilters.toggleFilter(category, value);
   };
-
+  const maxPrice = useCallback(() => {
+    const pringPrice = state.dataSet.map((e) => e.omr_unit);
+    const max = Math.max(...pringPrice);
+    // selectedFilters.setMaxPrice(max);
+    return max;
+  }, [state.dataSet]);
   const projectTypes = getProjectTypes();
 
   return (
@@ -420,6 +440,23 @@ function FilterProjectsOptions({
               </AccordionItem>
             ))}
           </Accordion>
+          <div className="mt-10">
+            <DualRangeSlider
+              label={(value) => (
+                <span className="text-xs text-nowrap bg-primary text-white px-2 py-1 rounded-2xl">
+                  {value}-OMR
+                </span>
+              )}
+              value={[selectedFilters.minPrice, selectedFilters.maxPrice]}
+              onValueChange={([min, max]) => {
+                selectedFilters.setMinPrice(min);
+                selectedFilters.setMaxPrice(max);
+              }}
+              min={0}
+              max={maxPrice()}
+              step={1}
+            />
+          </div>
         </div>
         <div className="w-full flex justify-end items-center gap-2 mt-3">
           <Button

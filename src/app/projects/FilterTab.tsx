@@ -9,6 +9,7 @@ import {
 } from "@/components/ui/accordion";
 import { Badge } from "@/components/ui/badge";
 import { Checkbox } from "@/components/ui/checkbox";
+import { DualRangeSlider } from "@/components/ui/DualRangeSlider";
 import { Input } from "@/components/ui/input";
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
 import { Tabs, TabsList, TabsTrigger } from "@/components/ui/tabs";
@@ -17,7 +18,7 @@ import { montserrat } from "@/fonts/font";
 import { useAppDispatch, useAppSelector } from "@/redux/hooks";
 import { setPlatformFilter } from "@/redux/slices/platformSlice";
 import { Search } from "lucide-react";
-import { useEffect, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import { FaFilter } from "react-icons/fa";
 import { IoClose } from "react-icons/io5";
 
@@ -26,9 +27,13 @@ function FilterTab() {
 
   const state = useAppSelector((e) => e.platformSlice);
   const dispatch = useAppDispatch();
-
   const applyFilters = () => {
     let data = state.dataSet?.filter((e) => {
+      // Filter by price
+      const priceMatch =
+        selectedFilters.minPrice <= e.omr_unit &&
+        e.omr_unit <= selectedFilters.maxPrice;
+
       // Apply filter logic only if the filter array is not empty
       const typeMatch =
         selectedFilters.filters.types.length === 0 ||
@@ -60,8 +65,9 @@ function FilterTab() {
           e.expand?.accredation_standars?.title || ""
         );
 
-      // Return true if the project matches all non-empty filters
+      // Return true if the project matches all non-empty filters including pricing
       return (
+        priceMatch &&
         (selectedFilters.filters.types.length === 0 || typeMatch) &&
         (selectedFilters.filters.mainInterventions.length === 0 ||
           interventionMatch) &&
@@ -73,12 +79,14 @@ function FilterTab() {
       );
     });
 
+    // Filter by search term
     if (selectedFilters.search) {
       data = data.filter((e) =>
         e.name.toLowerCase().includes(selectedFilters.search.toLowerCase())
       );
     }
 
+    // Filter by top projects
     if (selectedFilters.topProjects) {
       dispatch(setPlatformFilter(data.filter((e) => e.top_project)));
     } else {
@@ -142,7 +150,20 @@ function FilterTab() {
     selectedFilters.toggleFilter(category, value);
   };
 
+  const maxPrice = useCallback(() => {
+    const pringPrice = state.dataSet.map((e) => e.omr_unit);
+    const max = Math.max(...pringPrice);
+    // selectedFilters.setMaxPrice(max);
+    return max;
+  }, [state.dataSet]);
+
   const projectTypes = getProjectTypes();
+
+  useEffect(() => {
+    const pringPrice = state.dataSet.map((e) => e.omr_unit);
+    const max = Math.max(...pringPrice);
+    selectedFilters.setMaxPrice(max);
+  }, [state.dataSet]);
 
   useEffect(() => {
     applyFilters();
@@ -150,6 +171,8 @@ function FilterTab() {
     selectedFilters.topProjects,
     selectedFilters.search,
     selectedFilters.filters,
+    selectedFilters.minPrice,
+    selectedFilters.maxPrice,
   ]);
 
   return (
@@ -183,7 +206,7 @@ function FilterTab() {
             onClick={() => {
               dispatch(setPlatformFilter(state.dataSet || []));
               selectedFilters.setTopProjects(false);
-
+              selectedFilters.setMaxPrice(maxPrice());
               selectedFilters.clearAllFilters();
             }}
           >
@@ -254,6 +277,23 @@ function FilterTab() {
             </AccordionItem>
           ))}
         </Accordion>
+      </div>
+      <div className="mt-10">
+        <DualRangeSlider
+          label={(value) => (
+            <span className="text-xs text-nowrap bg-primary text-white px-2 py-1 rounded-2xl">
+              {value}-OMR
+            </span>
+          )}
+          value={[selectedFilters.minPrice, selectedFilters.maxPrice]}
+          onValueChange={([min, max]) => {
+            selectedFilters.setMinPrice(min);
+            selectedFilters.setMaxPrice(max);
+          }}
+          min={0}
+          max={maxPrice()}
+          step={1}
+        />
       </div>
     </div>
   );

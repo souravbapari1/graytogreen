@@ -13,6 +13,7 @@ async function page() {
       expand:
         "operated_by,reports,sdgs,sdgs.sdg,unit_types,type,accredation_standars",
       perPage: 500,
+      filter: "(allow=true)",
     })
     .send<Collection<ProjectItem>>();
 

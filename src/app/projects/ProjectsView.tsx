@@ -13,7 +13,6 @@ function ProjectsView() {
   const [loading, setLoading] = useState<boolean>(true);
   const state = useAppSelector((e) => e.platformSlice);
   const dispatch = useAppDispatch();
-  const [totalItems, setTotalItems] = useState<number>(0);
 
   const [page, setPage] = useState(1);
   const loadProjects = async () => {
@@ -27,7 +26,7 @@ function ProjectsView() {
         page: 1,
       })
       .send<Collection<ProjectItem>>();
-    setTotalItems(projects.totalItems);
+
     dispatch(setPlatformData(projects.items));
 
     setLoading(false);
