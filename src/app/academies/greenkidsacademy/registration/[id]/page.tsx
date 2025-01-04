@@ -7,10 +7,13 @@ import ApplyForm from "./ApplyForm";
 import client from "@/graphql/client";
 import { gql } from "@apollo/client";
 import { UpcomingAcademyData } from "../../view/[id]/academy";
+import { auth } from "@/auth";
+import { getUser } from "@/request/worker/auth";
 
 export const revalidate = 0;
 async function page({ params }: { params: { id: string } }) {
   const id = params.id;
+
   const data = await client.query<UpcomingAcademyData>({
     query: gql`
       query UpcomingAcademie($documentId: ID!) {
@@ -37,7 +40,17 @@ async function page({ params }: { params: { id: string } }) {
       documentId: id,
     },
   });
-  console.log(data);
+
+  const session = await auth();
+
+  const getUserData = async () => {
+    if (session?.user) {
+      return await getUser(session?.user.id);
+    }
+    return null;
+  };
+
+  const userData = await getUserData();
 
   return (
     <div className="w-full h-screen overflow-auto flex-col  md:bg-[url('/assets/form-bg.jpg')] bg-no-repeat bg-cover bg-center flex justify-start items-center">
@@ -67,7 +80,7 @@ async function page({ params }: { params: { id: string } }) {
               {data.data.upcomingAcademie.endDate} at{" "}
             </p>
             <br />
-            <ApplyForm data={data.data.upcomingAcademie} />
+            <ApplyForm data={data.data.upcomingAcademie} userData={userData} />
           </div>
         </div>
       </div>

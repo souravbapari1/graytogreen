@@ -62,13 +62,13 @@ const toolsMenu: ServicesMenuItems[] = [
     list: [
       {
         icon: "🔍",
-        href: "/tacking",
+        href: "/tracking",
         id: "",
         title: "Tracking Tool",
       },
       {
         icon: "👨🏻‍💻",
-        href: "/soon",
+        href: "/platform",
         id: "",
         title: "Partener Platform",
       },

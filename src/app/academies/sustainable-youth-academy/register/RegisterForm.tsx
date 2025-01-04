@@ -19,6 +19,7 @@ import { set } from "date-fns";
 import toast from "react-hot-toast";
 import { CheckCheck } from "lucide-react";
 import Link from "next/link";
+import { UserItem } from "@/interface/user";
 
 export interface FormState {
   firstName: string;
@@ -58,22 +59,22 @@ interface FormErrors {
   sortBreif: string;
 }
 
-const RegisterForm: React.FC = () => {
+const RegisterForm = ({ user }: { user: UserItem }) => {
   const [state, setState] = React.useState<FormState>({
-    gender: "",
-    firstName: "",
-    lastName: "",
-    mobileNo: "",
-    emailID: "",
-    address: "",
-    city: "",
-    country: "",
-    postCode: "",
+    gender: user.gender || "",
+    firstName: user.first_name || "",
+    lastName: user.last_name || "",
+    mobileNo: user.mobile_no || "",
+    emailID: user.email || "",
+    address: user.country || "",
+    city: user.city || "",
+    country: user.country || "",
+    postCode: "N/A",
     eduState: "",
     universityName: "",
     document: null,
     pic: null,
-    dob: "",
+    dob: user.dob || "",
     nationality: "",
     sortBreif: "",
   });
@@ -139,9 +140,9 @@ const RegisterForm: React.FC = () => {
       sortBreif: "",
     };
 
-    if (state.gender.trim() === "") {
-      errors.gender = "Gender is required";
-    }
+    // if (state.gender.trim() === "") {
+    //   errors.gender = "Gender is required";
+    // }
 
     if (state.firstName.trim() === "") {
       errors.firstName = "First Name is required";
@@ -149,24 +150,24 @@ const RegisterForm: React.FC = () => {
     if (state.lastName.trim() === "") {
       errors.lastName = "Last Name is required";
     }
-    if (state.mobileNo.trim() === "") {
-      errors.mobileNo = "Mobile No is required";
-    }
+    // if (state.mobileNo.trim() === "") {
+    //   errors.mobileNo = "Mobile No is required";
+    // }
     if (state.emailID.trim() === "") {
       errors.emailID = "Email ID is required";
     }
-    if (state.address.trim() === "") {
-      errors.address = "Address is required";
-    }
-    if (state.city.trim() === "") {
-      errors.city = "City is required";
-    }
-    if (state.country.trim() === "") {
-      errors.country = "Country is required";
-    }
-    if (state.postCode.trim() === "") {
-      errors.postCode = "PostCode is required";
-    }
+    // if (state.address.trim() === "") {
+    //   errors.address = "Address is required";
+    // }
+    // if (state.city.trim() === "") {
+    //   errors.city = "City is required";
+    // }
+    // if (state.country.trim() === "") {
+    //   errors.country = "Country is required";
+    // }
+    // if (state.postCode.trim() === "") {
+    //   errors.postCode = "PostCode is required";
+    // }
     if (state.eduState.trim() === "") {
       errors.eduState = "Educational State is required";
     }
@@ -176,13 +177,13 @@ const RegisterForm: React.FC = () => {
     if (!state.document) {
       errors.document = "CV or other document in PDF is required";
     }
-    if (!state.pic) {
-      errors.pic = "Picture is required";
-    }
+    // if (!state.pic) {
+    //   errors.pic = "Picture is required";
+    // }
 
-    if (state.dob.trim() === "") {
-      errors.dob = "Date of Birth is required";
-    }
+    // if (state.dob.trim() === "") {
+    //   errors.dob = "Date of Birth is required";
+    // }
 
     if (state.nationality.trim() === "") {
       errors.nationality = "Nationality is required";
@@ -254,7 +255,7 @@ const RegisterForm: React.FC = () => {
   return (
     <div>
       <div className="grid grid-cols-1 gap-6">
-        <div>
+        {/* <div>
           <Label className="text-lg text-gray-600">Gender</Label>
           <Select
             value={state.gender}
@@ -280,7 +281,7 @@ const RegisterForm: React.FC = () => {
           {errors.gender && (
             <p className="text-red-600 text-xs mt-1">{errors.gender}</p>
           )}
-        </div>
+        </div> */}
       </div>
       <div className="grid md:grid-cols-2 gap-6 mt-6">
         <div>
@@ -342,7 +343,7 @@ const RegisterForm: React.FC = () => {
           )}
         </div>
       </div>
-      <div className="mt-4">
+      {/* <div className="mt-4">
         <Label className="font-medium mb-2  text-gray-600">
           DOB<span className="text-red-600">*</span>
         </Label>
@@ -356,23 +357,66 @@ const RegisterForm: React.FC = () => {
         {errors.dob && (
           <p className="text-red-600 text-xs mt-1">{errors.dob}</p>
         )}
-      </div>
-      <div className="mt-4">
-        <Label className="font-medium mb-2  text-gray-600">
-          Eduicational State<span className="text-red-600">*</span>
+      </div> */}
+
+      <div className="mt-6">
+        <Label className="font-medium mb-2 text-gray-600">
+          Nationality<span className="text-red-600">*</span>
         </Label>
         <Input
-          name="eduState"
-          type="text"
-          value={state.eduState}
+          name="nationality"
+          value={state.nationality}
           onChange={handleChange}
-          className="py-6 mt-2 block"
+          className="py-6 mt-2"
         />
+        {errors.nationality && (
+          <p className="text-red-600 text-xs mt-1">{errors.nationality}</p>
+        )}
+      </div>
+
+      <div className="mt-4">
+        <Label className="font-medium mb-2  text-gray-600">
+          Are You Currently ?<span className="text-red-600">*</span>
+        </Label>
+
+        <Select
+          name="eduState"
+          value={state.eduState}
+          onValueChange={(e) => {
+            setState((prevState) => ({
+              ...prevState,
+              eduState: e,
+            }));
+            setErrors((prevState) => ({
+              ...prevState,
+              eduState: "",
+            }));
+          }}
+        >
+          <SelectTrigger className="py-6 mt-2">
+            <SelectValue placeholder="Select Country" />
+          </SelectTrigger>
+          <SelectContent>
+            {[
+              "School Student",
+              "Academic Student (University or College)",
+              "Academic or Individual Researcher",
+              "Job Seeker",
+              "Employee",
+              "Other",
+            ].map((value, index) => (
+              <SelectItem key={index} value={value}>
+                {value}
+              </SelectItem>
+            ))}
+          </SelectContent>
+        </Select>
+
         {errors.eduState && (
           <p className="text-red-600 text-xs mt-1">{errors.eduState}</p>
         )}
       </div>
-      <div className="grid md:grid-cols-2 gap-6 mt-6">
+      {/* <div className="grid md:grid-cols-2 gap-6 mt-6">
         <div>
           <Label className="font-medium mb-2 text-gray-600">
             Address<span className="text-red-600">*</span>
@@ -471,38 +515,11 @@ const RegisterForm: React.FC = () => {
             <p className="text-red-600 text-xs mt-1">{errors.postCode}</p>
           )}
         </div>
-      </div>
+      </div> */}
+
       <div className="mt-6">
         <Label className="font-medium mb-2 text-gray-600">
-          Nationality<span className="text-red-600">*</span>
-        </Label>
-        <Input
-          name="nationality"
-          value={state.nationality}
-          onChange={handleChange}
-          className="py-6 mt-2"
-        />
-        {errors.nationality && (
-          <p className="text-red-600 text-xs mt-1">{errors.nationality}</p>
-        )}
-      </div>
-      <div className="mt-6">
-        <Label className="font-medium mb-2 text-gray-600">
-          Sort Breif<span className="text-red-600">*</span>
-        </Label>
-        <Textarea
-          name="sortBreif"
-          value={state.sortBreif}
-          onChange={handleChange}
-          className="py-6 mt-2"
-        />
-        {errors.sortBreif && (
-          <p className="text-red-600 text-xs mt-1">{errors.sortBreif}</p>
-        )}
-      </div>
-      <div className="mt-6">
-        <Label className="font-medium mb-2 text-gray-600">
-          University or School Name<span className="text-red-600">*</span>
+          School/ Uiversity/ College / Institute / Company / Other Name
         </Label>
         <Input
           name="universityName"
@@ -514,6 +531,23 @@ const RegisterForm: React.FC = () => {
           <p className="text-red-600 text-xs mt-1">{errors.universityName}</p>
         )}
       </div>
+
+      <div className="mt-6">
+        <Label className="font-medium mb-2 text-gray-600">
+          Describe Briefly your experience during your volunteering period{" "}
+          <span className="text-red-600">*</span>
+        </Label>
+        <Textarea
+          name="sortBreif"
+          value={state.sortBreif}
+          onChange={handleChange}
+          className="py-6 mt-2"
+        />
+        {errors.sortBreif && (
+          <p className="text-red-600 text-xs mt-1">{errors.sortBreif}</p>
+        )}
+      </div>
+
       <div className="mt-6">
         <Label className="font-medium mb-2 text-gray-600">
           CV or Document (PDF)<span className="text-red-600">*</span>
@@ -528,7 +562,7 @@ const RegisterForm: React.FC = () => {
           <p className="text-red-600 text-xs mt-1">{errors.document}</p>
         )}
       </div>
-      <div className="mt-6">
+      {/* <div className="mt-6">
         <Label className="font-medium mb-2 text-gray-600">
           Upload Your Picture<span className="text-red-600">*</span>
         </Label>
@@ -541,7 +575,7 @@ const RegisterForm: React.FC = () => {
         {errors.pic && (
           <p className="text-red-600 text-xs mt-1">{errors.pic}</p>
         )}
-      </div>
+      </div> */}
       <Button
         onClick={handleSubmit}
         disabled={loading}

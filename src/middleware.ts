@@ -9,6 +9,8 @@ export default auth((req) => {
     ((pathname.startsWith("/account") || pathname.startsWith("/donate")) &&
       !req.auth?.user) ||
     (pathname.startsWith("/membership/apply") && !req.auth?.user) ||
+    (pathname.startsWith("/academies/greenkidsacademy/registration") &&
+      !req.auth?.user) ||
     (pathname.startsWith("/academies/sustainable-youth-academy/register") &&
       !req.auth?.user)
   ) {

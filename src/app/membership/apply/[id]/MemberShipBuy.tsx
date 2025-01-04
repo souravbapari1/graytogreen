@@ -34,8 +34,8 @@ function MemberShipBuy({ data, id }: { data: MembershipItem; id: string }) {
         <h1 className="text-center font-bold text-2xl underline">
           {data.name}
         </h1>
-        <div className="mt-10 grid lg:grid-cols-2 gap-8">
-          <div className="flex justify-center flex-col  items-center">
+        <div className="mt-10 grid lg:grid-cols-3 gap-8">
+          <div className="flex justify-start flex-col mt-10 items-center">
             <div className="w-full max-w-80   bg-main/10 rounded-3xl overflow-hidden  ">
               <div className="w-full h-48 bg-main/20 border-b-[8px] border-white flex justify-center items-center">
                 <Image
@@ -43,7 +43,7 @@ function MemberShipBuy({ data, id }: { data: MembershipItem; id: string }) {
                   alt=""
                   width={1200}
                   height={1200}
-                  className="h-20 w-auto"
+                  className="h-full w-full"
                 />
               </div>
               <div
@@ -76,6 +76,8 @@ function MemberShipBuy({ data, id }: { data: MembershipItem; id: string }) {
                 </div>
               </div>
             </div>
+          </div>
+          <div className="lg:col-span-2">
             <div
               className={cn(
                 "w-full flex text-left justify-start  items-start mb-4 gap-4 flex-col mt-10",
@@ -100,10 +102,10 @@ function MemberShipBuy({ data, id }: { data: MembershipItem; id: string }) {
                 );
               })}
             </div>
-          </div>
-          <div className="">
-            <h3 className="text-xl">Answer these basic questions.</h3>
-            <Qna data={data} id={id} qun={qun} />
+            <div className=" mt-20">
+              <h3 className="text-xl">Answer these basic questions.</h3>
+              <Qna data={data} id={id} qun={qun} />
+            </div>
           </div>
         </div>
       </div>

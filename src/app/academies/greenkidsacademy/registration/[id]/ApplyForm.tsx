@@ -17,6 +17,10 @@ import { useState } from "react";
 import { UpcomingAcademy } from "../../GreenKidsAcademys";
 import { submitAcademicRegistration } from "./actions";
 import { useRouter } from "next/navigation";
+import { UserItem } from "@/interface/user";
+import { PhoneInput } from "@/components/ui/phone-input";
+import { CountryDropdown } from "@/components/complete/country-dropdown";
+import { CityDropdown } from "@/components/complete/city-dropdown";
 
 // Define types for Participant and Parent
 interface Participant {
@@ -37,9 +41,19 @@ interface ParentDetails {
   address: string;
   email: string;
   phone: string;
+  relation: string;
+  country: string;
+  city: string;
+  state: string;
 }
 
-function ApplyForm({ data }: { data: UpcomingAcademy }) {
+function ApplyForm({
+  data,
+  userData,
+}: {
+  data: UpcomingAcademy;
+  userData: UserItem | null;
+}) {
   const [loading, setLoading] = useState(false);
   const router = useRouter();
   const [participants, setParticipants] = useState<Participant[]>([
@@ -56,12 +70,16 @@ function ApplyForm({ data }: { data: UpcomingAcademy }) {
   ]);
 
   const [parent, setParent] = useState<ParentDetails>({
-    title: "",
-    firstName: "",
-    lastName: "",
+    title: userData?.gender === "male" ? "Mr." : "Mrs.",
+    firstName: userData?.first_name || "",
+    lastName: userData?.last_name || "",
     address: "",
-    email: "",
-    phone: "",
+    email: userData?.email || "",
+    phone: userData?.mobile_no || "",
+    relation: "",
+    city: userData?.city || "",
+    country: userData?.country || "",
+    state: "",
   });
 
   const [message, setMessage] = useState<string>("");
@@ -102,17 +120,17 @@ function ApplyForm({ data }: { data: UpcomingAcademy }) {
       }
     }
 
-    if (!message) {
-      isValid = false;
-      toast.error("Message is required.");
-      return false;
-    }
+    // if (!message) {
+    //   isValid = false;
+    //   toast.error("Message is required.");
+    //   return false;
+    // }
 
-    if (!participantQuestion) {
-      isValid = false;
-      toast.error("Participant contact question is required.");
-      return false;
-    }
+    // if (!participantQuestion) {
+    //   isValid = false;
+    //   toast.error("Participant contact question is required.");
+    //   return false;
+    // }
 
     return isValid;
   };
@@ -152,7 +170,10 @@ function ApplyForm({ data }: { data: UpcomingAcademy }) {
       setLoading(true);
       await submitAcademicRegistration({
         academic: JSON.stringify(data),
-        applicationData: JSON.stringify(applicationData),
+        applicationData: JSON.stringify({
+          applicationData,
+          userId: userData?.id,
+        }),
       });
       // Simulate submission
       console.log("Submitting application data:", applicationData);
@@ -167,6 +188,116 @@ function ApplyForm({ data }: { data: UpcomingAcademy }) {
   return (
     <div className="flex flex-col gap-6">
       <h2 className="text-xl font-semibold">Application Form</h2>
+
+      {/* Parent Details */}
+      <div className="flex flex-col gap-4">
+        <h3 className="text-lg font-medium">Parent Details</h3>
+        <div className="grid md:grid-cols-2 gap-4">
+          <div>
+            <Label>Title</Label>
+            <Input
+              value={parent.title}
+              onChange={(e) => handleParentChange("title", e.target.value)}
+              placeholder="Title (Mr., Mrs., etc.)"
+              className="py-2"
+            />
+          </div>
+          <div>
+            <Label>First Name</Label>
+            <Input
+              value={parent.firstName}
+              onChange={(e) => handleParentChange("firstName", e.target.value)}
+              placeholder="First Name"
+              className="py-2"
+            />
+          </div>
+          <div>
+            <Label>Last Name</Label>
+            <Input
+              value={parent.lastName}
+              onChange={(e) => handleParentChange("lastName", e.target.value)}
+              placeholder="Last Name"
+              className="py-2"
+            />
+          </div>
+          <div>
+            <Label>Email</Label>
+            <Input
+              value={parent.email}
+              onChange={(e) => handleParentChange("email", e.target.value)}
+              placeholder="Email"
+              className="py-2"
+            />
+          </div>
+          <div>
+            <Label>Phone</Label>
+            <PhoneInput
+              value={parent.phone}
+              onChange={(e) => handleParentChange("phone", e)}
+              placeholder="Phone Number"
+            />
+          </div>
+          <div className="">
+            <Label>Relation</Label>
+            <Select
+              value={parent.relation}
+              onValueChange={(value) => handleParentChange("relation", value)}
+            >
+              <SelectTrigger className="py-2">
+                <SelectValue placeholder="Select Relation" />
+              </SelectTrigger>
+              <SelectContent>
+                {[
+                  "Father",
+                  "Mother",
+                  "Brother",
+                  "Sister",
+                  "Grandfather",
+                  "Grandmother",
+                  "Uncle",
+                  "Aunt",
+                  "Other",
+                ].map((value, index) => (
+                  <SelectItem key={index} value={value}>
+                    {value}
+                  </SelectItem>
+                ))}
+              </SelectContent>
+            </Select>
+          </div>
+          <div className="">
+            <Label>Country</Label>
+            <CountryDropdown
+              value={parent.country}
+              className="w-full"
+              onChange={(value) => handleParentChange("country", value)}
+            />
+          </div>
+          <div className="">
+            <Label>City</Label>
+            <CityDropdown
+              onChange={(value) => handleParentChange("city", value)}
+              value={parent.city}
+              className="w-full"
+              country={parent.country}
+            />
+          </div>
+          <div className="">
+            <Label>State</Label>
+            <Input
+              value={parent.state}
+              onChange={(e) => handleParentChange("state", e.target.value)}
+            />
+          </div>
+        </div>
+
+        <Label>Address</Label>
+        <Textarea
+          value={parent.address}
+          onChange={(e) => handleParentChange("address", e.target.value)}
+          placeholder="Full Address"
+        />
+      </div>
 
       {/* Participants */}
       <div className="flex flex-col gap-4">
@@ -289,65 +420,6 @@ function ApplyForm({ data }: { data: UpcomingAcademy }) {
         <Button onClick={addParticipant} className="py-2">
           Add Participant
         </Button>
-      </div>
-
-      {/* Parent Details */}
-      <div className="flex flex-col gap-4">
-        <h3 className="text-lg font-medium">Parent Details</h3>
-        <div className="grid md:grid-cols-2 gap-4">
-          <div>
-            <Label>Title</Label>
-            <Input
-              value={parent.title}
-              onChange={(e) => handleParentChange("title", e.target.value)}
-              placeholder="Title (Mr., Mrs., etc.)"
-              className="py-2"
-            />
-          </div>
-          <div>
-            <Label>First Name</Label>
-            <Input
-              value={parent.firstName}
-              onChange={(e) => handleParentChange("firstName", e.target.value)}
-              placeholder="First Name"
-              className="py-2"
-            />
-          </div>
-          <div>
-            <Label>Last Name</Label>
-            <Input
-              value={parent.lastName}
-              onChange={(e) => handleParentChange("lastName", e.target.value)}
-              placeholder="Last Name"
-              className="py-2"
-            />
-          </div>
-          <div>
-            <Label>Email</Label>
-            <Input
-              value={parent.email}
-              onChange={(e) => handleParentChange("email", e.target.value)}
-              placeholder="Email"
-              className="py-2"
-            />
-          </div>
-          <div>
-            <Label>Phone</Label>
-            <Input
-              value={parent.phone}
-              onChange={(e) => handleParentChange("phone", e.target.value)}
-              placeholder="Phone Number"
-              className="py-2"
-            />
-          </div>
-        </div>
-
-        <Label>Address</Label>
-        <Textarea
-          value={parent.address}
-          onChange={(e) => handleParentChange("address", e.target.value)}
-          placeholder="Full Address"
-        />
       </div>
 
       {/* Other Details */}

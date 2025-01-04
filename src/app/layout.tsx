@@ -7,6 +7,7 @@ import "react-multi-carousel/lib/styles.css";
 import "react-slideshow-image/dist/styles.css";
 import Client from "./client";
 import "./globals.css";
+import "react-phone-number-input/style.css";
 import { SessionProvider } from "next-auth/react";
 import { Toaster as ToasterBox } from "react-hot-toast";
 import GoogleTranslate from "./GoogleTranslate";

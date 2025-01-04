@@ -3,8 +3,13 @@ import Image from "next/image";
 import Link from "next/link";
 import React from "react";
 import RegisterForm from "./RegisterForm";
+import { auth } from "@/auth";
+import { getUser } from "@/request/worker/auth";
 
-function page() {
+async function page() {
+  const authUser = await auth();
+  const user = await getUser(authUser!.user.id);
+
   return (
     <div className="w-full h-screen overflow-auto flex-col  md:bg-[url('/assets/form-bg.jpg')] bg-no-repeat bg-cover bg-center flex justify-start items-center">
       <div className="block md:mb-40">
@@ -33,7 +38,7 @@ function page() {
               then be searching for suitable speakers in your region.
             </p>
             <br />
-            <RegisterForm />
+            <RegisterForm user={user} />
           </div>
         </div>
       </div>

@@ -285,7 +285,12 @@ button.nav.default-nav {
 .react-slideshow-container + ul.indicators {
   gap: 6px;
 }
-
+.PhoneInput {
+  width: 100% !important;
+  border: 1px solid #ddd !important;
+  text-align: left !important;
+  @apply p-4 py-3 rounded-none shadow-none mt-2 w-full  border border-input bg-transparent transition-colors file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:cursor-not-allowed disabled:opacity-50;
+}
 button.each-slideshow-indicator.active {
   width: 10px !important;
   border-radius: 5px !important;

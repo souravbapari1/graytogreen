@@ -9,6 +9,14 @@ import {
 } from "@/components/ui/accordion";
 import { Badge } from "@/components/ui/badge";
 import { Checkbox } from "@/components/ui/checkbox";
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuLabel,
+  DropdownMenuSeparator,
+  DropdownMenuTrigger,
+} from "@/components/ui/dropdown-menu";
 import { DualRangeSlider } from "@/components/ui/DualRangeSlider";
 import { Input } from "@/components/ui/input";
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
@@ -21,6 +29,7 @@ import { Search } from "lucide-react";
 import { useCallback, useEffect, useState } from "react";
 import { FaFilter } from "react-icons/fa";
 import { IoClose } from "react-icons/io5";
+import { MdSortByAlpha } from "react-icons/md";
 
 function FilterTab() {
   const selectedFilters = useFilterState();
@@ -78,6 +87,25 @@ function FilterTab() {
         (selectedFilters.filters.accStandards.length === 0 || accStandardMatch)
       );
     });
+
+    if (selectedFilters.filterBy) {
+      data = data.sort((a, b) => {
+        if (selectedFilters.filterBy === "PLTH") {
+          return a.omr_unit - b.omr_unit; // Price Low to High
+        } else if (selectedFilters.filterBy === "PHTL") {
+          return b.omr_unit - a.omr_unit; // Price High to Low
+        } else if (selectedFilters.filterBy === "NEWTOOLD") {
+          return new Date(b.created).getTime() - new Date(a.created).getTime(); // New to Old
+        } else if (selectedFilters.filterBy === "OLDTONEW") {
+          return new Date(a.created).getTime() - new Date(b.created).getTime(); // Old to New
+        } else if (selectedFilters.filterBy === "ATZ") {
+          return a.name.toLowerCase().localeCompare(b.name.toLowerCase()); // A-Z
+        } else if (selectedFilters.filterBy === "ZTA") {
+          return b.name.toLowerCase().localeCompare(a.name.toLowerCase()); // Z-A
+        }
+        return 0; // Default case, no sorting
+      });
+    }
 
     // Filter by search term
     if (selectedFilters.search) {
@@ -173,6 +201,7 @@ function FilterTab() {
     selectedFilters.filters,
     selectedFilters.minPrice,
     selectedFilters.maxPrice,
+    selectedFilters.filterBy,
   ]);
 
   return (
@@ -187,6 +216,89 @@ function FilterTab() {
           value={selectedFilters.search}
           onChange={(e) => selectedFilters.setSearch(e.target.value)}
         />
+        <DropdownMenu>
+          <DropdownMenuTrigger>
+            <div className="bg-primary rounded-full text-white flex justify-center items-center p-1.5">
+              <MdSortByAlpha size={14} className="text-white" />
+            </div>
+          </DropdownMenuTrigger>
+          <DropdownMenuContent className="shadow-sm text-[10px] rounded border-none">
+            <DropdownMenuLabel>Sort By</DropdownMenuLabel>
+            <DropdownMenuSeparator />
+            <DropdownMenuItem
+              className={
+                selectedFilters.filterBy == "PLTH"
+                  ? "bg-primary/20 text-xs"
+                  : "text-xs"
+              }
+              onClick={() => {
+                selectedFilters.setFilterBy("PLTH");
+              }}
+            >
+              Price, Low to High
+            </DropdownMenuItem>
+            <DropdownMenuItem
+              className={
+                selectedFilters.filterBy == "PHTL"
+                  ? "bg-primary/20 text-xs"
+                  : "text-xs"
+              }
+              onClick={() => {
+                selectedFilters.setFilterBy("PHTL");
+              }}
+            >
+              Price , High to Low
+            </DropdownMenuItem>
+            <DropdownMenuItem
+              className={
+                selectedFilters.filterBy == "NEWTOOLD"
+                  ? "bg-primary/20 text-xs"
+                  : "text-xs"
+              }
+              onClick={() => {
+                selectedFilters.setFilterBy("NEWTOOLD");
+              }}
+            >
+              Date, New to Old
+            </DropdownMenuItem>
+            <DropdownMenuItem
+              className={
+                selectedFilters.filterBy == "OLDTONEW"
+                  ? "bg-primary/20 text-xs"
+                  : "text-xs"
+              }
+              onClick={() => {
+                selectedFilters.setFilterBy("OLDTONEW");
+              }}
+            >
+              Date, Old To New
+            </DropdownMenuItem>
+            <DropdownMenuItem
+              className={
+                selectedFilters.filterBy == "ATZ"
+                  ? "bg-primary/20 text-xs"
+                  : "text-xs"
+              }
+              onClick={() => {
+                selectedFilters.setFilterBy("ATZ");
+              }}
+            >
+              A-Z
+            </DropdownMenuItem>
+            <DropdownMenuItem
+              className={
+                selectedFilters.filterBy == "ZTA"
+                  ? "bg-primary/20 text-xs"
+                  : "text-xs"
+              }
+              onClick={() => {
+                selectedFilters.setFilterBy("ZTA");
+              }}
+            >
+              Z-A
+            </DropdownMenuItem>
+          </DropdownMenuContent>
+        </DropdownMenu>
       </div>
       <div className="flex justify-between items-center">
         <div className="flex justify-start items-center gap-2 px-1 mt-2">

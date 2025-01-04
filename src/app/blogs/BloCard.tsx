@@ -1,3 +1,4 @@
+import { Badge } from "@/components/ui/badge";
 import { montserrat } from "@/fonts/font";
 import { strApi } from "@/graphql/client";
 import { formatTimestampCustom } from "@/helper/dateTime";
@@ -29,9 +30,12 @@ function BlogCard({
         )}
       />
       <div className="flex flex-col gap-2 p-5">
-        <p className="font-semibold  text-xs uppercase text-gray-400">
-          {formatTimestampCustom(blog?.publishedAt || "")}
-        </p>
+        <div className="flex justify-between items-center">
+          <p className="font-semibold  text-xs uppercase text-gray-400">
+            {formatTimestampCustom(blog?.publishedAt || "")}
+          </p>
+          <Badge variant="secondary">{blog?.blog_category.name}</Badge>
+        </div>
         <h1 className="md:text-md font-bold line-clamp-2">{blog?.title}</h1>
         <p className="md:text-sm text-xs line-clamp-3 text-gray-500">
           {blog?.description}

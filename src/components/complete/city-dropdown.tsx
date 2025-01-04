@@ -46,7 +46,8 @@ export function CityDropdown({
     mutationKey: ["city"],
     mutationFn: async () => {
       const data = await fetch(
-        `https://country-api.grey-to-green.com/city/${country}?search=` + search
+        `https://country-city.grey-to-green.com/city/${country}?search=` +
+          search
       );
       return await data.json();
     },
