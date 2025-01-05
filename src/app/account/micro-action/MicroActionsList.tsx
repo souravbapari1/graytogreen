@@ -10,17 +10,26 @@ import {
 import { Card, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
 import { MicroActionItem } from "./md";
 import { useMicroActionState } from "./microActioonState";
+import { useSearchParams } from "next/navigation";
 
 function MicroActionsList({ data }: { data: MicroActionItem[] }) {
+  const params = useSearchParams();
   const maState = useMicroActionState();
   const maList = useCallback(() => {
     return data.filter((e) => e.id !== maState.selected?.id);
   }, [data, maState.selected]);
 
   useEffect(() => {
-    const select = data.find((e) => e.isPrimary === true);
-    if (select) {
-      maState.setSelected(select);
+    if (params.get("id")) {
+      const select = data.find((e) => e.id === params.get("id"));
+      if (select) {
+        maState.setSelected(select);
+      }
+    } else {
+      const select = data.find((e) => e.isPrimary === true);
+      if (select) {
+        maState.setSelected(select);
+      }
     }
   }, [data]);
 

@@ -86,7 +86,7 @@ const MicroActionSubmission = ({ data, session, handelSubmit }: any) => (
               className="shadow-lg bg-green-500 hover:bg-green-600 text-white rounded-lg px-6 py-3 flex items-center gap-2"
               onClick={() => {
                 navigator.clipboard.writeText(
-                  `https://gray-to-green.com/rethink?id=${session?.user.id}&by=${data.selected?.id}`
+                  `https://gray-to-green.com/rethink?id=${data?.selected.id}&refer=${session?.user?.id}`
                 );
                 toast.success("Link Copy To clipboard");
               }}
@@ -114,6 +114,7 @@ function MicroActionView({ session }: { session: Session | null }) {
       if (!userData) {
         return;
       }
+
       const user: UserItem = JSON.parse(userData);
       data.setData("name", user.first_name + " " + user.last_name || "");
       data.setData("email", user.email || "");
@@ -161,7 +162,8 @@ function MicroActionView({ session }: { session: Session | null }) {
 
   const statusData = useMutation({
     mutationKey: ["status", data.selected?.id],
-    mutationFn: () => getImpactStatus(data.selected?.id || ""),
+    mutationFn: () =>
+      getImpactStatus(data.selected?.id || "", params.get("refer") || ""),
   });
 
   useEffect(() => {
@@ -186,7 +188,7 @@ function MicroActionView({ session }: { session: Session | null }) {
         }}
       />
 
-      <div>
+      <div className="">
         <h1 className="font-bold text-2xl text-center">
           {data.selected.title}
         </h1>
@@ -196,9 +198,21 @@ function MicroActionView({ session }: { session: Session | null }) {
           handelSubmit={handelSubmit}
         />
       </div>
-      <div>
+
+      <div className="">
         <h1 className="text-2xl font-bold text-center">Impact Statistics</h1>
-        <MicroActionMetrics statusData={statusData} />
+        <div className="">
+          <MicroActionMetrics statusData={statusData} />
+          {session?.user.user_type == "ambassador" && (
+            <div className="w-full h-20 donateBtn rounded-2xl mt-5  shadow-none border-none flex text-xl justify-between items-center">
+              <h1>Impact By Ambassador</h1>
+              <p>
+                {statusData.data?.ambassadorImpact.impact || 0} Kg co2 Save
+                <small>(saved/year)</small>
+              </p>
+            </div>
+          )}
+        </div>
       </div>
     </div>
   );

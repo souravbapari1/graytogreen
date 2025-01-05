@@ -71,7 +71,9 @@ export const isMAsubmitToday = (id: string) => {
   }
 };
 
-export const getImpactStatus = async (id: string) => {
-  const res = await client.get("/maimpact/status", { id }).send<ImpactCount>();
+export const getImpactStatus = async (id: string, amb: string = "") => {
+  const res = await client
+    .get("/maimpact/status", { id, amb })
+    .send<ImpactCount>();
   return res;
 };
