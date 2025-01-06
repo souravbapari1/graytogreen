@@ -32,6 +32,7 @@ export async function POST(req: Request) {
       donate: string;
       support?: string | null;
     } = await req.json();
+    console.log(body);
 
     // Basic validation rules
     if (!body.userId || typeof body.userId !== "string") {
@@ -70,6 +71,7 @@ export async function POST(req: Request) {
         { status: 400 }
       );
     }
+    console.log("---------------OK");
 
     const paymentIntent = await client
       .post("/api/collections/payments/records")

@@ -13,6 +13,8 @@ import { createNewImpact, getImpactStatus, isMAsubmitToday } from "./actions";
 import ThanksView from "./ThanksView";
 import UserImpactInfo from "./UserImpactInfo";
 import { useMicroActionState } from "./microActioonState";
+import Image from "next/image";
+import { Leaf } from "lucide-react";
 
 const MicroActionMetrics = ({ statusData }: { statusData: any }) => (
   <div className="grid md:grid-cols-2 gap-6 mt-5">
@@ -50,12 +52,19 @@ const MicroActionMetrics = ({ statusData }: { statusData: any }) => (
   </div>
 );
 const MicroActionSubmission = ({ data, session, handelSubmit }: any) => (
-  <div className="md:mt-5 mt-3">
-    <div className="bg-yellow-400/30 rounded-2xl p-8 shadow-lg">
+  <div className="md:mt-5 mt-3 border-2 border-primary/10 relative bg-white rounded-md p-8 ">
+    <div className="mb-5">
+      <Image
+        src="/assets/brand-shape.png"
+        width={40}
+        height={40}
+        alt=""
+        className="object-contain  absolute -top-3 h-28 "
+      />
+      <h1 className="font-bold text-2xl text-center">{data.selected.title}</h1>
+    </div>
+    <div>
       <div className="flex flex-col md:flex-row gap-5 items-start md:items-center">
-        <div className="w-16 flex justify-center items-center bg-orange-100 rounded-full p-3">
-          <TbScreenShare size={40} className="text-orange-700" />
-        </div>
         <div
           className="text-sm text-left flex-1 leading-relaxed"
           dangerouslySetInnerHTML={{ __html: data.selected?.description || "" }}
@@ -64,8 +73,8 @@ const MicroActionSubmission = ({ data, session, handelSubmit }: any) => (
       <div className="flex flex-col justify-center items-center mt-6">
         <Input
           disabled={!isMAsubmitToday(data.selected.id)}
-          className="shadow-md bg-white border border-gray-300 p-4 rounded-md w-full max-w-md"
           placeholder="Enter Your Micro Impact Count."
+          className="shadow-none rounded-none bg-primary/15 p-6 border-none"
           type="number"
           value={data.data.impact}
           onChange={(e) => data.setData("impact", +e.target.value)}
@@ -74,16 +83,17 @@ const MicroActionSubmission = ({ data, session, handelSubmit }: any) => (
           {isMAsubmitToday(data.selected.id) ? (
             <Button
               onClick={handelSubmit}
-              className="shadow-lg bg-blue-600 hover:bg-blue-700 text-white rounded-lg px-6 py-3"
+              className=" shadow-none text-white rounded px-6 py-3 "
             >
-              Submit
+              <Leaf size={15} className="mr-3" /> Apply Your Impact
             </Button>
           ) : (
-            <p className="text-gray-600">You can submit only once per day</p>
+            <></>
           )}
           {session?.user.user_type === "ambassador" && (
             <Button
-              className="shadow-lg bg-green-500 hover:bg-green-600 text-white rounded-lg px-6 py-3 flex items-center gap-2"
+              variant="outline"
+              className="shadow-none text-primary border-primary/20 rounded flex items-center gap-2"
               onClick={() => {
                 navigator.clipboard.writeText(
                   `https://gray-to-green.com/rethink?id=${data?.selected.id}&refer=${session?.user?.id}`
@@ -92,10 +102,12 @@ const MicroActionSubmission = ({ data, session, handelSubmit }: any) => (
               }}
             >
               <TbCopyCheckFilled />
-              Copy Link
             </Button>
           )}
         </div>
+        {!isMAsubmitToday(data.selected.id) && (
+          <p className="text-gray-600 mt-8">You can submit only once per day</p>
+        )}
       </div>
     </div>
   </div>
@@ -189,9 +201,6 @@ function MicroActionView({ session }: { session: Session | null }) {
       />
 
       <div className="">
-        <h1 className="font-bold text-2xl text-center">
-          {data.selected.title}
-        </h1>
         <MicroActionSubmission
           data={data}
           session={session}

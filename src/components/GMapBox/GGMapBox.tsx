@@ -9,6 +9,15 @@ import { PopupContent } from "./Parts/PopupContent";
 
 import PlatformMenu, { MobPlatformMenu } from "./PlatformMenu";
 
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuLabel,
+  DropdownMenuSeparator,
+  DropdownMenuTrigger,
+} from "@/components/ui/dropdown-menu";
+import { montserrat } from "@/fonts/font";
 import { Collection } from "@/interface/collection";
 import { ProjectItem } from "@/interface/project";
 import { useAppDispatch, useAppSelector } from "@/redux/hooks";
@@ -18,19 +27,11 @@ import {
   setSelectedProject,
   unselectPlatformProject,
 } from "@/redux/slices/platformSlice";
-import ProjectView from "./ProjectView";
-import { useGlobalDataContext } from "@/context/useGlobalDataContext";
-import { useFilterState } from "./useFilterState";
-import {
-  DropdownMenu,
-  DropdownMenuContent,
-  DropdownMenuItem,
-  DropdownMenuLabel,
-  DropdownMenuSeparator,
-  DropdownMenuTrigger,
-} from "@/components/ui/dropdown-menu";
 import { ArrowDownUpIcon, LandPlot } from "lucide-react";
-import { montserrat } from "@/fonts/font";
+import { useSearchParams } from "next/navigation";
+import ProjectView from "./ProjectView";
+import { useFilterState } from "./useFilterState";
+import SupportBox from "./SupportBox";
 export const Markersmages = {
   bilding: "/assets/bilding.svg",
   bird: "/assets/bird.svg",
@@ -64,6 +65,7 @@ const GGMapBox: React.FC<{
   ]);
 
   const { mapCenter } = useFilterState();
+  const params = useSearchParams();
 
   useEffect(() => {
     if (mapRef.current) {
@@ -207,6 +209,11 @@ const GGMapBox: React.FC<{
 
   return (
     <div className="relative">
+      {params.get("support") && (
+        <div className="w-full flex justify-center items-center  mx-auto fixed top-24 right-0 left-0 z-50">
+          <SupportBox />
+        </div>
+      )}
       {state.selectedProject && (
         <DropdownMenu>
           <DropdownMenuTrigger className="w-64  bg-white z-20 absolute top-3 right-3 rounded-xl shadow-md p-1 ">

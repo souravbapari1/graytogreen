@@ -11,6 +11,7 @@ import { Card, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
 import { MicroActionItem } from "./md";
 import { useMicroActionState } from "./microActioonState";
 import { useSearchParams } from "next/navigation";
+import Image from "next/image";
 
 function MicroActionsList({ data }: { data: MicroActionItem[] }) {
   const params = useSearchParams();
@@ -50,10 +51,25 @@ function MicroActionsList({ data }: { data: MicroActionItem[] }) {
                 maState.selected?.id === e.id
                   ? "border-blue-500"
                   : "border-gray-200"
-              } overflow-hidden text-center   bg-white duration-300`}
+              } overflow-hidden text-center select-none relative rounded-none py-6 px-5 border-2  shadow-none  border-primary/10 bg-white duration-300`}
             >
+              <Image
+                src="/assets/arrow.png"
+                width={40}
+                height={40}
+                alt=""
+                style={{ transform: "rotate(90deg)" }}
+                className="object-contain  absolute right-8 bottom-5   h-36 "
+              />
+              <Image
+                src="/assets/testi-shape-3.png"
+                width={40}
+                height={40}
+                alt=""
+                className="object-contain  absolute left-0 -top-3  -rotate-[20deg]  w-14 "
+              />
               <CardHeader className="">
-                <CardTitle className="text-xl font-semibold text-gray-800">
+                <CardTitle className="text-md font-semibold text-gray-800">
                   {e.title}
                 </CardTitle>
                 <p className="text-sm text-gray-600 mt-2">
@@ -62,7 +78,7 @@ function MicroActionsList({ data }: { data: MicroActionItem[] }) {
               </CardHeader>
               <CardFooter
                 onClick={() => maState.setSelected(e)}
-                className="donateBtn rounded-none cursor-pointer text-white text-center flex justify-center items-center p-3 text-sm font-medium transition-colors duration-300"
+                className="donateBtn shadow-none rounded-md cursor-pointer text-white text-center flex justify-center items-center p-3 text-sm font-medium transition-colors duration-300"
               >
                 Apply Your Impact
               </CardFooter>
