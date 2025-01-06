@@ -131,16 +131,21 @@ export interface Geometry {
 }
 
 export interface ProjectDocument {
-  id: string;
+  auditing_and_reviewing_reports: string[];
   collectionId: string;
   collectionName: string;
   created: string;
-  updated: string;
-  registration_doc: string[];
-  auditing_and_reviewing_reports: string[];
-  verification_and_validation_reports: string[];
+  id: string;
   other_doc: string[];
   project: string;
+  registration_doc: string[];
+  updated: string;
+
+  verification_and_validation_reports: string[];
+  sdgs_vs_oman_vsion: string[];
+  ESG: string[];
+  retirement_cancellation_report: string[];
+  financial_report: string[];
 }
 
 export interface AccredationStandars {

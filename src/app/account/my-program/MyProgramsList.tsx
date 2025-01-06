@@ -65,8 +65,9 @@ export const MyProgramsList = ({ data }: { data: Collection<FSLPItem> }) => {
               setSelected(pending);
             } else if (e == "approved") {
               setSelected(approved);
-            } else if (e == "complete") {
-              setSelected(complete);
+              // }
+              // else if (e == "complete") {
+              //   setSelected(complete);
             } else if (e == "cancel") {
               setSelected(cancel);
             }
@@ -80,10 +81,10 @@ export const MyProgramsList = ({ data }: { data: Collection<FSLPItem> }) => {
             <TabsTrigger value="approved">
               Approved ({approved.length})
             </TabsTrigger>
-            <TabsTrigger value="complete">
+            {/* <TabsTrigger value="complete">
               Complete ({complete.length})
-            </TabsTrigger>
-            <TabsTrigger value="cancel">Cancel ({cancel.length})</TabsTrigger>
+            </TabsTrigger> */}
+            <TabsTrigger value="cancel">Rejected ({cancel.length})</TabsTrigger>
           </TabsList>
         </Tabs>
         <br />
@@ -135,7 +136,7 @@ export const MyProgramsList = ({ data }: { data: Collection<FSLPItem> }) => {
                         <li>Address: {e.application.address}</li>
                         <li>City: {e.application.city}</li>
                         <li>Country: {e.application.country}</li>
-                        <li>Post Code: {e.application.postCode}</li>
+                        {/* <li>Post Code: {e.application.postCode}</li> */}
                         <li>DOB: {e.application.dob}</li>
                         <li>DOB: {e.application.dob}</li>
                         <li>Gender: {e.application.gender}</li>

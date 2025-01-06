@@ -99,6 +99,14 @@ function MyProjectsList({ id }: { id: string }) {
               <TableHead className="text-center">
                 Verification and Validation Reports
               </TableHead>
+              <TableHead className="text-center">
+                SDGs vS Oman Vsion 2040
+              </TableHead>
+              <TableHead className="text-center">ESG</TableHead>
+              <TableHead className="text-center">
+                Retirement/Cancellation Report
+              </TableHead>
+              <TableHead className="text-center">Financial Report</TableHead>
               <TableHead className="text-center">Other Doc</TableHead>
             </TableRow>
           </TableHeader>
@@ -182,6 +190,66 @@ function MyProjectsList({ id }: { id: string }) {
                         );
                       }
                     )}
+                  </TableCell>
+
+                  <TableCell className="text-center">
+                    {e.expand?.docs?.sdgs_vs_oman_vsion.map((doc) => {
+                      return (
+                        <Link
+                          className="text-xs text-primary"
+                          href={genPbFiles(e.expand?.docs, doc)}
+                          target="_blank"
+                          key={doc}
+                        >
+                          <p>{doc}</p>
+                        </Link>
+                      );
+                    })}
+                  </TableCell>
+
+                  <TableCell className="text-center">
+                    {e.expand?.docs?.ESG.map((doc) => {
+                      return (
+                        <Link
+                          className="text-xs text-primary"
+                          href={genPbFiles(e.expand?.docs, doc)}
+                          target="_blank"
+                          key={doc}
+                        >
+                          <p>{doc}</p>
+                        </Link>
+                      );
+                    })}
+                  </TableCell>
+                  <TableCell className="text-center">
+                    {e.expand?.docs?.retirement_cancellation_report.map(
+                      (doc) => {
+                        return (
+                          <Link
+                            className="text-xs text-primary"
+                            href={genPbFiles(e.expand?.docs, doc)}
+                            target="_blank"
+                            key={doc}
+                          >
+                            <p>{doc}</p>
+                          </Link>
+                        );
+                      }
+                    )}
+                  </TableCell>
+                  <TableCell className="text-center">
+                    {e.expand?.docs?.financial_report.map((doc) => {
+                      return (
+                        <Link
+                          className="text-xs text-primary"
+                          href={genPbFiles(e.expand?.docs, doc)}
+                          target="_blank"
+                          key={doc}
+                        >
+                          <p>{doc}</p>
+                        </Link>
+                      );
+                    })}
                   </TableCell>
 
                   <TableCell className="text-center">
