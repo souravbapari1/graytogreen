@@ -18,18 +18,11 @@ export const getUserPaymentInfo = async () => {
   const user = await auth();
   try {
     const balance = await client
-      .get(`/api/collections/my_donations/records/${user?.user.id}`)
-      .send<MyBalanceItem>();
+      .get(`/user/donate/${user?.user.id}`)
+      .send<number>();
     return balance;
   } catch (error) {
-    return {
-      totalAmount: 0,
-      totalQuantity: 0,
-      collectionId: "",
-      collectionName: "",
-      id: "",
-      user: user?.user.id,
-    } as MyBalanceItem;
+    return 0;
   }
 };
 

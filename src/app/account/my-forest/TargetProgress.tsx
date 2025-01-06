@@ -42,8 +42,6 @@ function TargetProgress({ user }: { user: UserItem }) {
     lodeCommunity();
   }, [sort]);
 
-  console.log(community);
-
   return (
     <>
       <div className="w-full  bg-white shadow-md p-3 rounded-3xl mt-10">

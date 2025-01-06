@@ -34,13 +34,8 @@ import { formatTimestampCustom } from "@/helper/dateTime";
 import { Terminal } from "lucide-react";
 import { UserItem } from "@/interface/user";
 import Link from "next/link";
-function MyBalance({
-  balance,
-  user,
-}: {
-  balance: MyBalanceItem;
-  user: UserItem;
-}) {
+import ChartBar from "./ChartBar";
+function MyBalance({ balance, user }: { balance: number; user: UserItem }) {
   const [start_date, setStart_date] = useState("");
   const [end_date, setEnd_date] = useState("");
   const filterQuery = () => {
@@ -108,7 +103,7 @@ function MyBalance({
               </CardHeader>
               <CardContent>
                 <div className="text-2xl font-bold">
-                  {balance.totalAmount.toFixed(2)} OMR
+                  {balance.toFixed(2)} OMR
                 </div>
                 <p className="text-xs text-muted-foreground">
                   your total donatio
@@ -196,11 +191,6 @@ function MyBalance({
                       <TableHead className=" font-bold py-3 text-center border-r">
                         Amount (OMR)
                       </TableHead>
-                      {user.user_type == "partner" && (
-                        <TableHead className=" font-bold py-3 text-center">
-                          Initiate By
-                        </TableHead>
-                      )}
                     </TableRow>
                   </TableHeader>
                   <TableBody>
@@ -229,15 +219,6 @@ function MyBalance({
                               : ""}{" "}
                             {e.amount.toFixed(2)} OMR
                           </TableCell>
-                          {user.user_type == "partner" && (
-                            <TableCell className="py-3 text-center">
-                              {e.expand.actionBy
-                                ? e.expand.actionBy.first_name +
-                                  " " +
-                                  e.expand.actionBy.last_name
-                                : "N/A"}{" "}
-                            </TableCell>
-                          )}
                         </TableRow>
                       );
                     })}
@@ -248,25 +229,7 @@ function MyBalance({
           </div>
         </div>
         <div className="flex justify-center items-start">
-          <div className="w-full md:max-w-[100%]  ">
-            <Card className="shadow-none md:border border-none">
-              <CardHeader className="flex justify-center items-end">
-                <Select>
-                  <SelectTrigger className="w-[180px]">
-                    <SelectValue placeholder="2024" />
-                  </SelectTrigger>
-                  <SelectContent>
-                    <SelectItem value="light">2024</SelectItem>
-                    <SelectItem value="dark">2023</SelectItem>
-                    <SelectItem value="system">2022</SelectItem>
-                  </SelectContent>
-                </Select>
-              </CardHeader>
-              <CardContent className="md:p-5 p-0 ">
-                <ChartViewComponent />
-              </CardContent>
-            </Card>
-          </div>
+          <ChartBar />
         </div>
       </div>
     </div>

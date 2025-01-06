@@ -1,4 +1,3 @@
-import GGMapBox from "@/components/GMapBox/GGMapBox";
 import { montserrat } from "@/fonts/font";
 import { createResource } from "@/helper/createResource";
 import { Collection } from "@/interface/collection";
@@ -6,6 +5,7 @@ import { ProjectItem } from "@/interface/project";
 import { client } from "@/request/actions";
 import Link from "next/link";
 import React from "react";
+const GGMapBox = React.lazy(() => import("@/components/GMapBox/GGMapBox"));
 
 const allProjects = createResource(
   client
