@@ -31,12 +31,15 @@ function ReportView({
       <h1 className="text-2xl text-center font-bold mb-20">{genPageTitle()}</h1>
       <div className="">
         <p className="font-bold mb-2">Summary Of This Week</p>
-        <p>{week?.summery}</p>
+        <div
+          className="content mt-2"
+          dangerouslySetInnerHTML={{ __html: week?.summery || "" }}
+        />
       </div>
 
       <h1 className="font-bold text-xl mt-10 mb-2">Events List</h1>
-      <div className="w-full overflow-auto border max-h-[80vh] ">
-        <table className="tblView table-fixed">
+      <div className="w-full overflow-auto  max-h-[80vh] ">
+        <table className="tblView w-full table-fixed">
           <thead>
             <tr>
               <th>Sno</th>
@@ -51,17 +54,37 @@ function ReportView({
               return (
                 <tr>
                   <td>{i + 1}</td>
-                  <td>{e.title}</td>
-                  <td>{e.activates}</td>
-                  <td>{e.outcomes}</td>
                   <td>
-                    <Link
-                      className="text-main"
-                      href={e.file.url}
-                      target="_blank"
-                    >
-                      {e.file.file.filename}
-                    </Link>
+                    <div
+                      className="content"
+                      dangerouslySetInnerHTML={{ __html: e.title || "" }}
+                    />
+                  </td>
+                  <td>
+                    <div
+                      className="content"
+                      dangerouslySetInnerHTML={{ __html: e.activates || "" }}
+                    />
+                  </td>
+                  <td>
+                    <div
+                      className="content"
+                      dangerouslySetInnerHTML={{ __html: e.outcomes || "" }}
+                    />
+                  </td>
+                  <td>
+                    <div className="flex flex-col gap-2">
+                      {e.file?.map((file) => (
+                        <Link
+                          className="text-main max-w-40 w-full block underline line-clamp-1 text-ellipsis"
+                          href={file.url}
+                          key={file.id}
+                          target="_blank"
+                        >
+                          {file.file.filename}
+                        </Link>
+                      ))}
+                    </div>
                   </td>
                 </tr>
               );
@@ -73,8 +96,8 @@ function ReportView({
       <h1 className="font-bold text-xl mt-10 mb-3">
         Challenges you Faced How How You solved it
       </h1>
-      <div className="w-full overflow-auto border max-h-[80vh] ">
-        <table className="tblView table-fixed">
+      <div className="w-full overflow-auto  max-h-[80vh] ">
+        <table className="tblView table-fixed w-full">
           <thead>
             <tr>
               <th>Sno</th>
@@ -88,16 +111,31 @@ function ReportView({
               return (
                 <tr>
                   <td>{i + 1}</td>
-                  <td>{e.title}</td>
-                  <td>{e.whatYouDid}</td>
                   <td>
-                    <Link
-                      className="text-main"
-                      href={e.file.url}
-                      target="_blank"
-                    >
-                      {e.file.file.filename}
-                    </Link>
+                    <div
+                      className="content"
+                      dangerouslySetInnerHTML={{ __html: e.title || "" }}
+                    />
+                  </td>
+                  <td>
+                    <div
+                      className="content"
+                      dangerouslySetInnerHTML={{ __html: e.whatYouDid || "" }}
+                    />
+                  </td>
+                  <td>
+                    <div className="flex flex-col gap-2">
+                      {e.file?.map((file) => (
+                        <Link
+                          className="text-main max-w-40 w-full block underline line-clamp-1 text-ellipsis"
+                          href={file.url}
+                          key={file.id}
+                          target="_blank"
+                        >
+                          {file.file.filename}
+                        </Link>
+                      ))}
+                    </div>
                   </td>
                 </tr>
               );
@@ -107,7 +145,10 @@ function ReportView({
       </div>
       <div className="">
         <p className="font-bold mb-2 mt-10">Plan For Next Week</p>
-        <p>{week?.nextStep}</p>
+        <div
+          className="content"
+          dangerouslySetInnerHTML={{ __html: week?.nextStep || "" }}
+        />
       </div>
     </div>
   );

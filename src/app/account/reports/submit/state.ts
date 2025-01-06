@@ -15,13 +15,15 @@ export interface EventState {
   validateEvents: (state: EventsList[]) => boolean;
 
   resetEvents: () => void;
+  addFile: (index: number, file: FIleData) => void;
+  removeFile: (index: number, imageId: number) => void;
 }
 
 export const useReportEventState = create<EventState>((set) => ({
   events: [
     {
       activates: "",
-      file: null,
+      file: [],
       outcomes: "",
       title: "",
     },
@@ -46,6 +48,27 @@ export const useReportEventState = create<EventState>((set) => ({
     set((state) => ({
       events: state.events.map((event, i) =>
         i === index ? { ...event, [field]: value } : event
+      ),
+    }));
+  },
+
+  addFile: (index: number, file: FIleData) => {
+    set((state) => ({
+      events: state.events.map((event, i) =>
+        i === index ? { ...event, file: [...(event.file || []), file] } : event
+      ),
+    }));
+  },
+
+  removeFile: (index: number, imageId: number) => {
+    set((state) => ({
+      events: state.events.map((event, i) =>
+        i === index
+          ? {
+              ...event,
+              file: event.file?.filter((file) => file.id !== imageId) || [],
+            }
+          : event
       ),
     }));
   },
@@ -90,6 +113,8 @@ export interface ChallengeState {
   updateChallenge: (index: number, field: keyof Challenge, value: any) => void;
   validateChallenge: (state: ChallengeState["challenges"]) => boolean;
   resetChallenge: () => void;
+  addChallengeFile: (index: number, file: FIleData) => void;
+  removeChallengeFile: (index: number, imageId: number) => void;
 }
 
 export const useReportChallengeState = create<ChallengeState>((set) => ({
@@ -153,6 +178,29 @@ export const useReportChallengeState = create<ChallengeState>((set) => ({
       ],
     }));
   },
+
+  addChallengeFile: (index: number, file: FIleData) => {
+    set((state) => ({
+      challenges: state.challenges.map((challenge, i) =>
+        i === index
+          ? { ...challenge, file: [...(challenge.file || []), file] }
+          : challenge
+      ),
+    }));
+  },
+
+  removeChallengeFile: (index: number, imageId: number) => {
+    set((state) => ({
+      challenges: state.challenges.map((challenge, i) =>
+        i === index
+          ? {
+              ...challenge,
+              file: challenge.file?.filter((file) => file.id !== imageId) || [],
+            }
+          : challenge
+      ),
+    }));
+  },
 }));
 
 export interface EventStates {
@@ -168,11 +216,11 @@ export interface EventsList {
   title: string;
   activates: string;
   outcomes: string;
-  file: FIleData | null;
+  file: FIleData[] | null;
 }
 
 export interface Challenge {
   title: string;
   whatYouDid: string;
-  file: FIleData | null;
+  file: FIleData[] | null;
 }

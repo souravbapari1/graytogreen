@@ -106,7 +106,7 @@ function MyBalance({ balance, user }: { balance: number; user: UserItem }) {
                   {balance.toFixed(2)} OMR
                 </div>
                 <p className="text-xs text-muted-foreground">
-                  your total donatio
+                  your total donation
                 </p>
               </CardContent>
             </Card>
@@ -122,7 +122,7 @@ function MyBalance({ balance, user }: { balance: number; user: UserItem }) {
                 <div className="">
                   <div className="text-2xl font-bold">00.00 OMR</div>
                   <p className="text-xs text-muted-foreground">
-                    your total donatio
+                    your wallet amount
                   </p>
                 </div>
                 <Button
