@@ -25,7 +25,7 @@ export const MyProgramsList = ({ data }: { data: Collection<FSLPItem> }) => {
   const approved = data.items.filter((e) => e.status == "approved");
   // const complete = data.items.filter((e) => e.status == "complete");
 
-  const [selected, setSelected] = useState<FSLPItem[]>(pending);
+  const [selected, setSelected] = useState<FSLPItem[]>(data.items);
   const [activeTab, setActiveTab] = useState("all");
 
   return (
