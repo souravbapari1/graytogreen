@@ -14,12 +14,14 @@ import { Collection } from "@/interface/collection";
 import { OrderPayItem } from "@/interface/PaymentItem";
 import { client } from "@/request/actions";
 import TargetProgressBarCount from "./_components/TargetProgressBarCount";
+import CouminityDonationList from "./_components/CouminityDonationList";
+import CouminityCo2Save from "./_components/CommunityCo2Save";
 
 function TargetProgress({ user }: { user: UserItem }) {
   const { mydonation, status } = useMyDonation();
   const [loading, setloading] = useState(true);
   const [community, setCommunity] = useState<OrderPayItem[]>([]);
-  const [sort, setSort] = useState("created");
+  const [sort, setSort] = useState("recent");
   const lodeCommunity = async () => {
     setloading(true);
     try {
@@ -87,15 +89,15 @@ function TargetProgress({ user }: { user: UserItem }) {
                   <TabsList className="bg-white rounded-sm">
                     <TabsTrigger
                       className="rounded-sm shadow-none"
-                      value="created"
-                      onClick={() => setSort("created")}
+                      value="recent"
+                      onClick={() => setSort("recent")}
                     >
                       Most recent
                     </TabsTrigger>
                     <TabsTrigger
                       className="rounded-sm shadow-none"
-                      value="quantity"
-                      onClick={() => setSort("quantity")}
+                      value="c02"
+                      onClick={() => setSort("c02")}
                     >
                       Most Co2 Save
                     </TabsTrigger>
@@ -111,33 +113,8 @@ function TargetProgress({ user }: { user: UserItem }) {
               className="object-contain bottom-0 h-28 mt-5"
             />
           </div>
-          <div className="w-full h-[552px] overflow-auto   rounded-b-3xl text-sm font-semibold p-5  bg-white">
-            {community.length == 0 && (
-              <div className="flex justify-center items-center mt-10">
-                <p className="text-center text-xl font-bold text-primary">
-                  No Community Contribution Found
-                </p>
-              </div>
-            )}
-            {community.map((e, i) => {
-              return (
-                <div
-                  className="flex justify-between items-center py-4 border-b"
-                  key={e.id + "commmunity"}
-                >
-                  <p>
-                    {sort == "created"
-                      ? e.expand.user.first_name + " " + e.expand.user.last_name
-                      : "Example Project Type"}
-                  </p>
-                  <p>
-                    {" "}
-                    {e.quantity} {sort == "created" ? "trees" : "Co2 Saved"}
-                  </p>
-                </div>
-              );
-            })}
-          </div>
+          {sort == "recent" && <CouminityDonationList user={user} />}
+          {sort == "c02" && <CouminityCo2Save user={user} />}
         </div>
       </div>
     </>

@@ -192,7 +192,7 @@ function MyProjectsList({ id }: { id: string }) {
                     )}
                   </TableCell>
 
-                  <TableCell className="text-center">
+                  <TableCell className="text-center border-r">
                     {e.expand?.docs?.sdgs_vs_oman_vsion.map((doc) => {
                       return (
                         <Link
@@ -207,7 +207,7 @@ function MyProjectsList({ id }: { id: string }) {
                     })}
                   </TableCell>
 
-                  <TableCell className="text-center">
+                  <TableCell className="text-center border-r">
                     {e.expand?.docs?.ESG.map((doc) => {
                       return (
                         <Link
@@ -221,7 +221,7 @@ function MyProjectsList({ id }: { id: string }) {
                       );
                     })}
                   </TableCell>
-                  <TableCell className="text-center">
+                  <TableCell className="text-center border-r">
                     {e.expand?.docs?.retirement_cancellation_report.map(
                       (doc) => {
                         return (
