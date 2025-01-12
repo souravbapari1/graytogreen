@@ -7,6 +7,7 @@ type Category =
   | "membership"
   | "fslp"
   | "academic"
+  | "fund"
   | "others";
 export interface RequestOrderHistoryData {
   status: string;

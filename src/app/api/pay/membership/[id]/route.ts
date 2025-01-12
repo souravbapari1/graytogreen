@@ -60,7 +60,7 @@ export async function GET(
         status: "Successful",
         reason:
           data.expand?.membership.name + " Membership" || "Buy Membership",
-        payment_type: "Credit/Debit Card",
+        payment_type: "membership",
         pricing_sum: `${intent.amount * intent.qun}OMR x ${intent.qun} = ${intent.amount} OMR`,
         quntity: intent.qun,
         donat_unit: "membership",

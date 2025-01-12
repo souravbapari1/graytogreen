@@ -32,7 +32,7 @@ export async function GET(
       amount: intent.academic?.amount,
       status: "Successful",
       reason: intent.academic.name || "Apply to Academic",
-      payment_type: "Credit/Debit Card",
+      payment_type: "academic",
       pricing_sum: `${intent.academic?.amount}OMR`,
       quntity: intent.applicationData?.participants?.length || 1,
       donat_unit: "academic",
