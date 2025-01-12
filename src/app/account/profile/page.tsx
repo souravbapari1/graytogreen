@@ -1,5 +1,5 @@
 import { auth } from "@/auth";
-import { getUser } from "@/request/worker/auth";
+import { getAmbasiderRequestState, getUser } from "@/request/worker/auth";
 import WorkSpace from "../components/workspace";
 import CompanyProfile from "./CompanyProfile";
 import ManagePorfile from "./ManagePorfile";
@@ -15,10 +15,16 @@ async function page() {
     expand: "company",
   });
 
+  const ambasiderRequestState = await getAmbasiderRequestState(data?.user.id);
+
   return (
     <WorkSpace>
       {profile.user_type != "partner" && (
-        <ManagePorfile user={profile} session={data!} />
+        <ManagePorfile
+          user={profile}
+          session={data!}
+          ambassadorRequestState={ambasiderRequestState}
+        />
       )}
       {profile.user_type == "partner" && (
         <CompanyProfile user={profile} session={data!} />

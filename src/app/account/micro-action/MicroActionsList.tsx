@@ -80,7 +80,7 @@ function MicroActionsList({ data }: { data: MicroActionItem[] }) {
                 onClick={() => maState.setSelected(e)}
                 className="donateBtn shadow-none rounded-md cursor-pointer text-white text-center flex justify-center items-center p-3 text-sm font-medium transition-colors duration-300"
               >
-                Apply Your Impact
+                Submit Your Impact
               </CardFooter>
             </Card>
           </CarouselItem>

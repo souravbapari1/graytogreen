@@ -1,3 +1,5 @@
+import { CityDropdown } from "@/components/complete/city-dropdown";
+import { CountryDropdown } from "@/components/complete/country-dropdown";
 import { Button } from "@/components/ui/button";
 import { Checkbox } from "@/components/ui/checkbox";
 import { Input } from "@/components/ui/input";
@@ -12,6 +14,7 @@ import {
 import { useToast } from "@/hooks/use-toast";
 import { client, extractErrors } from "@/request/actions";
 import { createUser } from "@/request/worker/users";
+import { LoaderCircle } from "lucide-react";
 import { signIn } from "next-auth/react";
 import Image from "next/image";
 import Link from "next/link";
@@ -33,13 +36,17 @@ function SignupForm({
     lastName: "",
     email: "",
     mobileNo: "",
-    countryCity: "",
+    country: "",
+    city: "",
     gender: "",
     socialState: "",
     dob: "",
     password: "",
     confirmPassword: "",
     termsAccepted: false,
+    othersState: "",
+    breef: "",
+    whyYouHere: "",
   });
 
   // Handle input changes
@@ -88,7 +95,7 @@ function SignupForm({
       return false;
     }
 
-    if (formData.countryCity === "") {
+    if (formData.country === "") {
       toast.toast({
         title: "Please Enter Country or City",
         description: "Please enter your country or city.",
@@ -114,11 +121,27 @@ function SignupForm({
       });
       return false;
     }
+    if (formData.socialState === "other" && formData.othersState === "") {
+      toast.toast({
+        title: "Please Enter Social State",
+        description: "Please enter your social state.",
+        variant: "destructive",
+      });
+      return false;
+    }
 
     if (formData.dob === "") {
       toast.toast({
         title: "Please Enter Date of Birth",
         description: "Please enter your date of birth.",
+        variant: "destructive",
+      });
+      return false;
+    }
+    if (formData.whyYouHere === "") {
+      toast.toast({
+        title: "Please Select",
+        description: "How did you hear about the Grey to Green platform?",
         variant: "destructive",
       });
       return false;
@@ -184,16 +207,20 @@ function SignupForm({
           first_name: formData.firstName,
           last_name: formData.lastName,
           mobile_no: formData.mobileNo,
-          country: formData.countryCity,
-          city: formData.countryCity,
+          country: formData.country,
+          city: formData.city,
           gender: formData.gender,
-          socail_state: formData.socialState,
+          socail_state: formData.socialState
+            ? formData.socialState
+            : formData.othersState,
           dob: formData.dob,
           user_type: "individual",
           company: "",
           role: "USER",
           tree_orders: [],
           complete: true,
+          breef: formData.breef,
+          whyYouHere: formData.whyYouHere,
         });
         if (type?.trim().toLocaleLowerCase() === "ambassador") {
           await client
@@ -297,12 +324,20 @@ function SignupForm({
           />
         </div>
         <div>
-          <Label>Country / City</Label>
-          <Input
-            name="countryCity"
-            value={formData.countryCity}
-            onChange={handleInputChange}
-            className="py-6 mt-2 shadow-none rounded-none"
+          <Label>Country</Label>
+          <CountryDropdown
+            value={formData.country}
+            onChange={(value) => handleSelectChange("country", value)}
+            className="py-6 mt-2 shadow-none rounded-none w-full"
+          />
+        </div>
+        <div>
+          <Label>City</Label>
+          <CityDropdown
+            country={formData.country}
+            value={formData.city}
+            onChange={(value) => handleSelectChange("city", value)}
+            className="py-6 mt-2 shadow-none rounded-none w-full"
           />
         </div>
         <div>
@@ -329,17 +364,31 @@ function SignupForm({
               <SelectValue placeholder="Select social state" />
             </SelectTrigger>
             <SelectContent>
-              <SelectItem value="student">Student</SelectItem>
-              <SelectItem value="graduated">Graduated</SelectItem>
-              <SelectItem value="job_seeker">Job Seeker</SelectItem>
-              <SelectItem value="private_sector_employee">
+              <SelectItem value="Student">Student</SelectItem>
+              <SelectItem value="Graduated">Graduated</SelectItem>
+              <SelectItem value="Job Seeker">Job Seeker</SelectItem>
+              <SelectItem value="Private Sector Employee">
                 Private Sector Employee
               </SelectItem>
-              <SelectItem value="gov_employee">Government Employee</SelectItem>
-              <SelectItem value="entrepreneur">Entrepreneur</SelectItem>
+              <SelectItem value="Government Employee">
+                Government Employee
+              </SelectItem>
+              <SelectItem value="Entrepreneur">Entrepreneur</SelectItem>
+              <SelectItem value="other">Other</SelectItem>
             </SelectContent>
           </Select>
         </div>
+        {formData.socialState === "other" && (
+          <div>
+            <Label>Enter Your Social State</Label>
+            <Input
+              name="othersState"
+              value={formData.othersState}
+              onChange={handleInputChange}
+              className="py-6 mt-2 shadow-none rounded-none w-full"
+            />
+          </div>
+        )}
         <div>
           <Label>DOB</Label>
           <Input
@@ -349,6 +398,59 @@ function SignupForm({
             onChange={handleInputChange}
             className="py-6 mt-2 shadow-none w-full block rounded-none"
           />
+        </div>
+        <div className="md:col-span-3">
+          <div className="">
+            <Label>How did you hear about the Grey to Green platform?</Label>
+            <Select
+              name="whyYouHere"
+              onValueChange={(e) => {
+                handleSelectChange("whyYouHere", e);
+              }}
+            >
+              <SelectTrigger className="w-full py-6 mt-2 shadow-none rounded-none">
+                <SelectValue placeholder="Select marketing source" />
+              </SelectTrigger>
+              <SelectContent>
+                <SelectItem value="Social media">
+                  Social Media (LinkedIn, Facebook, Instagram, etc.)
+                </SelectItem>
+                <SelectItem value="Search engine">
+                  Search Engine (Google, Bing, etc.)
+                </SelectItem>
+                <SelectItem value="Email newsletter">
+                  Email Newsletter
+                </SelectItem>
+                <SelectItem value="Online ads">
+                  Online Ads (Google Ads, Facebook Ads, etc.)
+                </SelectItem>
+                <SelectItem value="Blogs or articles">
+                  Blogs or Articles
+                </SelectItem>
+                <SelectItem value="Affiliate links">Affiliate Links</SelectItem>
+                <SelectItem value="Customer review sites">
+                  Customer Review Sites
+                </SelectItem>
+                <SelectItem value="Promotional videos">
+                  Promotional Videos
+                </SelectItem>
+                <SelectItem value="Television">Television</SelectItem>
+                <SelectItem value="Newspaper">Newspaper</SelectItem>
+                <SelectItem value="Podcast">Podcast</SelectItem>
+                <SelectItem value="Webinar">Webinar</SelectItem>
+                <SelectItem value="Corporate outing/social">
+                  Corporate Outing/Social
+                </SelectItem>
+                <SelectItem value="Networking event">
+                  Networking Event
+                </SelectItem>
+                <SelectItem value="Training seminar">
+                  Training Seminar
+                </SelectItem>
+                <SelectItem value="Ambassador">Ambassador</SelectItem>
+              </SelectContent>
+            </Select>
+          </div>
         </div>
         <div>
           <Label>Password</Label>
@@ -399,6 +501,9 @@ function SignupForm({
             type="submit"
             className="md:w-96 w-full rounded-none donateBtn py-6 font-bold mt-8 mb-10"
           >
+            {loading && (
+              <LoaderCircle size={15} className="mr-3 animate-spin" />
+            )}{" "}
             Register Now
           </Button>
         </div>

@@ -84,3 +84,19 @@ export const getAccessToken = async () => {
     }
   }
 };
+
+export const getAmbasiderRequestState = async (id?: string) => {
+  const req = await client
+    .get("/api/collections/ambassador_requests/records", {
+      filter: `(user='${id}')`,
+      perPage: 1,
+    })
+    .send<
+      Collection<{ user: string; status: "pending" | "approved" | "reject" }>
+    >();
+  return (req.items?.[0]?.status || null) as
+    | "pending"
+    | "approved"
+    | "reject"
+    | null;
+};

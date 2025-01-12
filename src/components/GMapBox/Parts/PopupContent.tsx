@@ -154,7 +154,7 @@ export const PopupContent = ({
             }${
               params?.get("support") ? "&support=" + params?.get("support") : ""
             }`}
-            className="w-32 px-0 h-9 rounded-md donateBtn shadow-none flex justify-center items-center"
+            className="w-32 px-0 h-9 rounded-md donateBtn shadow-none flex justify-center items-center text-xs"
           >
             <p className="font-bold text-white cursor-pointer">Act Now</p>
           </Link>

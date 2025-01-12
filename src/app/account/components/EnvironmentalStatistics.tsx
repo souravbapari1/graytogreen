@@ -26,9 +26,13 @@ const EnvironmentalStatistics = ({
             return (
               <div
                 className={cn(
-                  "flex justify-start items-center gap-4 border-2 cursor-pointer p-2",
-                  index == i && "border-main bg-main text-white"
+                  "flex justify-start items-center gap-4  cursor-pointer p-2",
+                  index == i && " bg-main text-white"
                 )}
+                style={{
+                  background: index == i ? `${data[index].main_color}` : "#fff",
+                  border: index == i ? "2px solid #fff" : "2px solid #dadada",
+                }}
                 key={e.id}
                 onClick={() => setIndex(i)}
               >
@@ -46,7 +50,7 @@ const EnvironmentalStatistics = ({
         </div>
         <div className="col-span-3">
           <h1 className="text-2xl font-bold underline mb-7">Impact Reports</h1>
-          {data[index].count.map((v, i) => {
+          {data[index]?.count?.map((v, i) => {
             return (
               <div
                 className={cn(

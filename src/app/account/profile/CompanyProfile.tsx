@@ -60,6 +60,7 @@ function CompanyProfile({
           gender: state.state.gender,
           socail_state: state.state.position,
           location: state.state.location,
+          targetCo2Save: parseInt(state.state.targetCo2Save),
         });
 
       if (state.state.file) {
@@ -484,7 +485,18 @@ function CompanyProfile({
             className="w-full p-6 mt-2 shadow-none"
           />
         </div>
-
+        <div className="w-full">
+          <Label>Target Carbon To be remove (kg)</Label>
+          <Input
+            type="number"
+            name="targetCo2Save"
+            value={state.state.targetCo2Save}
+            onChange={(e) => {
+              state.setCompanyProfileState("targetCo2Save", e.target.value);
+            }}
+            className="w-full p-6 mt-2 shadow-none"
+          />
+        </div>
         <div className="lg:col-span-4 grid md:grid-cols-2 gap-5  ">
           <div className="">
             <Label>From where you heard about us *</Label>

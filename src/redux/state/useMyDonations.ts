@@ -8,8 +8,6 @@ export const useMyDonation = create<{
   status: {
     country: number;
     projects: number;
-    totalTrees: number;
-    totalPlastic: number;
   };
   loadMyDonation: () => Promise<void>;
 }>((set) => ({
@@ -18,8 +16,6 @@ export const useMyDonation = create<{
   status: {
     country: 0,
     projects: 0,
-    totalTrees: 0,
-    totalPlastic: 0,
   },
   loadMyDonation: async () => {
     set({ loading: true });
@@ -34,9 +30,8 @@ export const useMyDonation = create<{
           country: Array.from(
             new Set(data.map((e) => e.expand.project.country))
           ).length,
-          projects: data.length,
-          totalPlastic: 0,
-          totalTrees: data.reduce((a, b) => a + b.quantity, 0),
+          projects: Array.from(new Set(data.map((e) => e.expand.project.id)))
+            .length,
         },
       });
     } catch (error) {

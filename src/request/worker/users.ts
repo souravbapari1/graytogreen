@@ -20,6 +20,8 @@ export const createUser = async (data: {
   role: string;
   tree_orders: string[];
   complete: boolean;
+  breef: string;
+  whyYouHere: string;
 }) => {
   const req = await client
     .post("/api/collections/users/records")

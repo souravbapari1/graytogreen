@@ -18,10 +18,11 @@ import { UpcomingAcademy } from "../../GreenKidsAcademys";
 import { submitAcademicRegistration } from "./actions";
 import { useRouter } from "next/navigation";
 import { UserItem } from "@/interface/user";
-import { PhoneInput } from "@/components/ui/phone-input";
 import { CountryDropdown } from "@/components/complete/country-dropdown";
 import { CityDropdown } from "@/components/complete/city-dropdown";
-
+import PhoneInput from "react-phone-number-input";
+import { localClient } from "@/request/actions";
+import { LoaderCircle } from "lucide-react";
 // Define types for Participant and Parent
 interface Participant {
   firstName: string;
@@ -168,17 +169,32 @@ function ApplyForm({
 
     try {
       setLoading(true);
-      await submitAcademicRegistration({
-        academic: JSON.stringify(data),
-        applicationData: JSON.stringify({
-          applicationData,
-          userId: userData?.id,
-        }),
-      });
-      // Simulate submission
-      console.log("Submitting application data:", applicationData);
-      toast.success("Application submitted successfully!");
-      router.replace("/academies/greenkidsacademy/registration/thankyou");
+      if (data.amount != 0 && data.pricing == "paid") {
+        const res = await localClient
+          .post("/api/pay/academic")
+          .json({
+            academic: data,
+            userId: userData?.id,
+            applicationData: applicationData,
+            amount: data.amount,
+          })
+          .send<any>();
+
+        window.location.replace(res.payUrl);
+      } else {
+        await submitAcademicRegistration({
+          academic: JSON.stringify(data),
+          applicationData: JSON.stringify({
+            applicationData,
+            userId: userData?.id,
+          }),
+          user: userData?.id || "",
+        });
+        // Simulate submission
+        console.log("Submitting application data:", applicationData);
+        toast.success("Application submitted successfully!");
+        router.replace("/academies/greenkidsacademy/registration/thankyou");
+      }
     } catch (error) {
       setLoading(false);
       toast.error("Failed to submit application.");
@@ -229,15 +245,19 @@ function ApplyForm({
               className="py-2"
             />
           </div>
-          <div>
+          <div className="col-span-2">
             <Label>Phone</Label>
+
             <PhoneInput
+              name="phone"
+              style={{ width: "100%", border: 1, borderColor: "red" }}
               value={parent.phone}
-              onChange={(e) => handleParentChange("phone", e)}
-              placeholder="Phone Number"
+              onChange={(value) => handleParentChange("phone", value || "")}
+              required
+              className="p-0 mt-0"
             />
           </div>
-          <div className="">
+          <div className="col-span-2">
             <Label>Relation</Label>
             <Select
               value={parent.relation}
@@ -443,7 +463,10 @@ function ApplyForm({
 
       {/* Submit Button */}
       <Button onClick={handleSubmit} disabled={loading} className="py-3">
-        Submit Application
+        {loading && <LoaderCircle className="animate-spin mr-3" size={14} />}{" "}
+        {data.pricing == "free"
+          ? "Proceed To Apply"
+          : `Proceed To Pay ${data.amount.toFixed(1)} OMR`}
       </Button>
     </div>
   );

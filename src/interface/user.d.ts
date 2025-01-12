@@ -25,12 +25,14 @@ export interface UserItem {
   verified: boolean;
   tree_orders?: string[];
   breef: string;
+  whyYouHere: string;
   linkedin: string;
   instagram: string;
   twitter: string;
   youtube: string;
   targetTrees: string;
   targetPlastic: string;
+  targetCo2Save: string;
   mamberships: string[];
   isBlocked?: boolean;
   approvedBy?: string;

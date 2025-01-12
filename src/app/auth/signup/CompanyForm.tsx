@@ -21,10 +21,9 @@ import { signIn } from "next-auth/react";
 import Link from "next/link";
 import { FaArrowLeft } from "react-icons/fa";
 
-import PhoneInput from "react-phone-number-input";
-import { CountryDropdown } from "@/components/complete/country-dropdown";
 import { CityDropdown } from "@/components/complete/city-dropdown";
-import { Label } from "@/components/ui/label";
+import { CountryDropdown } from "@/components/complete/country-dropdown";
+import PhoneInput from "react-phone-number-input";
 
 export const selectIndustryItems = [
   { value: "Food and Drink", label: "Food and Drink" },
@@ -157,6 +156,7 @@ function CompanyApplicationForm({
     country: "",
     city: "",
     branch: "",
+    whyYouHere: "",
   });
 
   const validateFields = () => {
@@ -344,6 +344,8 @@ function CompanyApplicationForm({
               user_type: "partner",
               password: formData.password,
               passwordConfirm: formData.confirmPassword,
+              breef: "",
+              whyYouHere: "",
             });
 
             localStorage.setItem("user", JSON.stringify(user));

@@ -13,6 +13,7 @@ import Link from "next/link";
 import { Collection } from "@/interface/collection";
 import { OrderPayItem } from "@/interface/PaymentItem";
 import { client } from "@/request/actions";
+import TargetProgressBarCount from "./_components/TargetProgressBarCount";
 
 function TargetProgress({ user }: { user: UserItem }) {
   const { mydonation, status } = useMyDonation();
@@ -44,81 +45,7 @@ function TargetProgress({ user }: { user: UserItem }) {
 
   return (
     <>
-      <div className="w-full  bg-white shadow-md p-3 rounded-3xl mt-10">
-        {user.targetTrees ? (
-          <div className="w-full h-full py-4 -10 bg-primary/5 rounded-3xl flex gap-5 justify-start items-center px-5">
-            <div className="w-10 h-10 ">
-              <div className="bg-primary w-10 h-10 text-xl flex justify-center items-center text-white rounded-xl">
-                <PiPlant />
-              </div>
-            </div>
-            <div className="flex w-full justify-center text-xs font-semibold items-start gap-1 flex-col">
-              <h1>
-                {status.totalTrees} of {user.targetTrees} trees planted
-              </h1>
-              <div className="flex justify-between w-full gap-6 items-center">
-                <div className="w-full relative">
-                  <Progress
-                    className="w-[100%]"
-                    value={(status.totalTrees / +user.targetTrees) * 100}
-                  />
-                </div>
-                <p className="text-nowrap">
-                  {((status.totalTrees / +user.targetTrees) * 100).toFixed(2)} %
-                </p>
-              </div>
-              {user.user_type == "ambassador" && (
-                <p className="text-[10px] font-normal">
-                  765.8 from your community
-                </p>
-              )}
-            </div>
-          </div>
-        ) : (
-          <div className="flex justify-center items-center text-main underline">
-            <Link href="/account/profile">Set Your Trees Target</Link>
-          </div>
-        )}
-        <br />
-        {user.targetPlastic ? (
-          <div className="w-full h-full py-4 -10 bg-gray-400/5 rounded-3xl flex gap-5 justify-start items-center px-5">
-            <div className="w-10 h-10 ">
-              <div className="bg-gray-700 w-10 h-10 text-xl flex justify-center items-center text-white rounded-xl">
-                <MdOutlineCo2 />
-              </div>
-            </div>
-            <div className="flex w-full justify-center text-xs font-semibold items-start gap-1 flex-col">
-              <h1>
-                {status.totalPlastic} of {user.targetPlastic} tons of Plastic
-              </h1>
-              <div className="flex justify-between w-full gap-6 items-center">
-                <div className="w-full relative">
-                  <Progress
-                    className="w-[100%] bg-gray-200"
-                    color="gray"
-                    value={(status.totalPlastic / +user.targetPlastic) * 100}
-                  />
-                </div>
-                <p className="text-nowrap">
-                  {((status.totalPlastic / +user.targetPlastic) * 100).toFixed(
-                    2
-                  )}{" "}
-                  %
-                </p>
-              </div>
-              {user.user_type == "ambassador" && (
-                <p className="text-[10px] font-normal">
-                  765.8 from your community
-                </p>
-              )}
-            </div>
-          </div>
-        ) : (
-          <div className="flex justify-center items-center">
-            <Link href="/account/profile">Set Your Plastic Target</Link>
-          </div>
-        )}
-      </div>
+      <TargetProgressBarCount user={user} />
 
       <div className="grid lg:grid-cols-2 gap-10 mt-10 pb-20">
         <div className="w-full h-[700px] bg-white overflow-hidden relative shadow-lg p-2 rounded-3xl ">
@@ -135,6 +62,13 @@ function TargetProgress({ user }: { user: UserItem }) {
             />
           </div>
           <div className="w-full h-[552px] overflow-auto p-2  rounded-b-3xl  bg-white">
+            {mydonation.length == 0 && (
+              <div className="flex justify-center items-center mt-10">
+                <p className="text-center text-xl font-bold text-primary">
+                  No Donation Found
+                </p>
+              </div>
+            )}
             {mydonation.map((e, i) => {
               return (
                 <ContributeCard key={e.id + i + "pay"} order={e} user={user} />
@@ -163,7 +97,7 @@ function TargetProgress({ user }: { user: UserItem }) {
                       value="quantity"
                       onClick={() => setSort("quantity")}
                     >
-                      Most trees
+                      Most Co2 Save
                     </TabsTrigger>
                   </TabsList>
                 </Tabs>
@@ -178,6 +112,13 @@ function TargetProgress({ user }: { user: UserItem }) {
             />
           </div>
           <div className="w-full h-[552px] overflow-auto   rounded-b-3xl text-sm font-semibold p-5  bg-white">
+            {community.length == 0 && (
+              <div className="flex justify-center items-center mt-10">
+                <p className="text-center text-xl font-bold text-primary">
+                  No Community Contribution Found
+                </p>
+              </div>
+            )}
             {community.map((e, i) => {
               return (
                 <div
@@ -185,9 +126,14 @@ function TargetProgress({ user }: { user: UserItem }) {
                   key={e.id + "commmunity"}
                 >
                   <p>
-                    {e.expand.user.first_name + " " + e.expand.user.last_name}
+                    {sort == "created"
+                      ? e.expand.user.first_name + " " + e.expand.user.last_name
+                      : "Example Project Type"}
                   </p>
-                  <p> {e.quantity} trees</p>
+                  <p>
+                    {" "}
+                    {e.quantity} {sort == "created" ? "trees" : "Co2 Saved"}
+                  </p>
                 </div>
               );
             })}

@@ -17,15 +17,16 @@ import {
 import Link from "next/link";
 import { genPbFiles } from "@/request/actions";
 import { Badge } from "@/components/ui/badge";
+import { montserrat } from "@/fonts/font";
 
 export const MyProgramsList = ({ data }: { data: Collection<FSLPItem> }) => {
   const cancel = data.items.filter((e) => e.status == "cancel");
   const pending = data.items.filter((e) => e.status == "pending");
   const approved = data.items.filter((e) => e.status == "approved");
-  const complete = data.items.filter((e) => e.status == "complete");
+  // const complete = data.items.filter((e) => e.status == "complete");
 
   const [selected, setSelected] = useState<FSLPItem[]>(pending);
-  const [activeTab, setActiveTab] = useState("pending");
+  const [activeTab, setActiveTab] = useState("all");
 
   return (
     <div className="grid md:grid-cols-3 gap-5">
@@ -58,16 +59,15 @@ export const MyProgramsList = ({ data }: { data: Collection<FSLPItem> }) => {
     </div> */}
       <div className="md:col-span-3">
         <Tabs
-          defaultValue="pending"
+          defaultValue="all"
           onValueChange={(e) => {
             setActiveTab(e);
             if (e == "pending") {
               setSelected(pending);
             } else if (e == "approved") {
               setSelected(approved);
-              // }
-              // else if (e == "complete") {
-              //   setSelected(complete);
+            } else if (e == "all") {
+              setSelected(data.items);
             } else if (e == "cancel") {
               setSelected(cancel);
             }
@@ -75,6 +75,7 @@ export const MyProgramsList = ({ data }: { data: Collection<FSLPItem> }) => {
           value={activeTab}
         >
           <TabsList>
+            <TabsTrigger value="all">All ({data.items.length})</TabsTrigger>
             <TabsTrigger value="pending">
               Pending ({pending.length})
             </TabsTrigger>
@@ -113,57 +114,13 @@ export const MyProgramsList = ({ data }: { data: Collection<FSLPItem> }) => {
                   <p className="text-sm font-semibold mt-4">
                     Date: {formatTimestampCustom(e.created)}
                   </p>
-                  <Sheet>
-                    <SheetTrigger>
-                      <Button className="shadow-none mt-4">View Details</Button>
-                    </SheetTrigger>
-                    <SheetContent>
-                      <SheetHeader>
-                        <SheetTitle>Program Details</SheetTitle>
-                      </SheetHeader>
-                      <p className="font-semibold mb-2 mt-7">
-                        The Future Sustainability Leaders Program
-                      </p>
-                      <ul className="flex flex-col gap-2">
-                        <li>
-                          Name:{" "}
-                          {e.application.firstName +
-                            " " +
-                            e.application.lastName}
-                        </li>
-                        <li>Email: {e.application.emailID}</li>
-                        <li>Mobile: {e.application.mobileNo}</li>
-                        <li>Address: {e.application.address}</li>
-                        <li>City: {e.application.city}</li>
-                        <li>Country: {e.application.country}</li>
-                        {/* <li>Post Code: {e.application.postCode}</li> */}
-                        <li>DOB: {e.application.dob}</li>
-                        <li>DOB: {e.application.dob}</li>
-                        <li>Gender: {e.application.gender}</li>
-                        <li>Nationality: {e.application.nationality}</li>
-                        <li>University Name: {e.application.universityName}</li>
-                        <li>Education State: {e.application.eduState}</li>
-                        <li>Sort Brief: {e.application.sortBreif}</li>
-                        <li>
-                          CV:{" "}
-                          <Link
-                            href={genPbFiles(e, e.cv)}
-                            className="text-primary"
-                          >
-                            View CV
-                          </Link>
-                        </li>
-                        <li>
-                          <Badge
-                            variant={"outline"}
-                            className="uppercase shadow-none"
-                          >
-                            {e.status}
-                          </Badge>
-                        </li>
-                      </ul>
-                    </SheetContent>
-                  </Sheet>
+
+                  <Link
+                    href={`/account/my-program/view/${e.id}`}
+                    className="mt-4"
+                  >
+                    <Button className="shadow-none mt-4">View Details</Button>
+                  </Link>
                 </CardContent>
               </Card>
             );

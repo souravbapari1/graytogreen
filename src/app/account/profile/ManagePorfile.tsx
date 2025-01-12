@@ -15,17 +15,31 @@ import { Textarea } from "@/components/ui/textarea";
 import { data } from "@/data/citycountry.json";
 import { UserItem } from "@/interface/user";
 import { client, extractErrors, genPbFiles } from "@/request/actions";
-import { Send } from "lucide-react";
+import { useMutation } from "@tanstack/react-query";
+import { LoaderCircle, Send } from "lucide-react";
 import { Session } from "next-auth";
 import { useSession } from "next-auth/react";
 import React, { useCallback, useState } from "react";
 import toast from "react-hot-toast";
+import { BiErrorCircle } from "react-icons/bi";
+const social_options = [
+  "Student",
+  "Graduated",
+  "Job Seeker",
+  "Private Sector Employee",
+  "Government Employee",
+  "Entrepreneur",
+  "other",
+];
+
 function ManageProfile({
   user,
   session,
+  ambassadorRequestState,
 }: {
   user: UserItem;
   session: Session;
+  ambassadorRequestState: "pending" | "approved" | "reject" | null;
 }) {
   const { update } = useSession();
   const [loading, setLoading] = useState(false);
@@ -44,6 +58,7 @@ function ManageProfile({
     dob: user.dob,
     socail_state: user.socail_state,
     breef: user.breef,
+    whyYouHere: user.whyYouHere,
     linkedin: user.linkedin,
     twitter: user.twitter,
     instagram: user.instagram,
@@ -51,6 +66,8 @@ function ManageProfile({
     targetTrees: user.targetTrees,
     targetPlastic: user.targetPlastic,
     location: user.location,
+    othersState: user.socail_state,
+    targetCo2Save: user.targetCo2Save,
   });
 
   const [selectedImage, setSelectedImage] = useState<File | null>(null);
@@ -80,6 +97,11 @@ function ManageProfile({
       "country",
       "city",
       "gender",
+      "socail_state",
+      "dob",
+
+      "targetTrees",
+      "targetPlastic",
     ];
 
     for (let field of requiredFields) {
@@ -127,6 +149,26 @@ function ManageProfile({
     }
   };
 
+  const sendAmbassadorRequest = useMutation({
+    mutationFn: async () => {
+      const res = await client
+        .post("/api/collections/ambassador_requests/records")
+        .json({
+          user: user.id,
+          status: "pending",
+        })
+        .send();
+      return res;
+    },
+    onSuccess: () => {
+      toast.success("Ambassador Request Sent Successfully");
+    },
+    onError: (error) => {
+      console.log(error);
+      toast.error("Error Sending Ambassador Request");
+    },
+  });
+
   return (
     <div className="flex justify-center flex-col items-center w-full max-w-[800px] h-full mx-auto">
       <div className="mx-auto">
@@ -153,25 +195,55 @@ function ManageProfile({
         </label>
       </div>
       <div className="flex gap-2 mt-8">
-        <Badge variant="secondary" className="shadow-none text-xs">
+        <Badge variant="secondary" className="shadow-none text-xs capitalize">
           Level: {user.level || "N/A"}
         </Badge>
 
-        <Badge variant="outline" className="shadow-none text-xs">
+        <Badge variant="outline" className="shadow-none text-xs capitalize">
           {user.user_type || "N/A"}
         </Badge>
       </div>
-      {user.user_type == "individual" && (
+      {/* ///////////////////////////// */}
+
+      {ambassadorRequestState == null && !sendAmbassadorRequest.data && (
         <Button
           size="sm"
           variant="default"
           className="flex gap-4 shadow-none mt-4"
+          onClick={() => sendAmbassadorRequest.mutate()}
+          disabled={sendAmbassadorRequest.isPending}
         >
-          <Send size={14} />
+          {sendAmbassadorRequest.isPending && (
+            <LoaderCircle size={15} className="mr-3 animate-spin" />
+          )}
+          {!sendAmbassadorRequest.isPending && <Send size={14} />}
           Request Ambassador
         </Button>
       )}
 
+      {ambassadorRequestState == "pending" && (
+        <Button
+          size="sm"
+          variant="secondary"
+          className="flex gap-4 shadow-none mt-4"
+          disabled
+        >
+          <Send size={14} />
+          Ambassador Request Pending
+        </Button>
+      )}
+      {ambassadorRequestState == "reject" && (
+        <Button
+          size="sm"
+          variant="destructive"
+          className="flex gap-4 shadow-none mt-4"
+          disabled
+        >
+          <BiErrorCircle size={14} />
+          Ambassador Request Rejected
+        </Button>
+      )}
+      {/* //////////////////////////////////// */}
       <div className="grid lg:grid-cols-2 mt-16 md:gap-8 gap-4 w-full">
         <div className="w-full">
           <Label>First Name</Label>
@@ -291,7 +363,7 @@ function ManageProfile({
         </div>
 
         <div className="w-full lg:col-span-2">
-          <Label>Social Stat:</Label>
+          <Label>Social State</Label>
 
           <Select
             name="socail_state"
@@ -304,25 +376,92 @@ function ManageProfile({
               <SelectValue placeholder="social state" />
             </SelectTrigger>
             <SelectContent>
-              <SelectItem value="student">Student</SelectItem>
-              <SelectItem value="graduated">Graduated</SelectItem>
-              <SelectItem value="job seeker">Job Seeker</SelectItem>
-              <SelectItem value="private sector employee">
-                Privet sector emolpyee
-              </SelectItem>
-              <SelectItem value="gov">gov</SelectItem>
+              {social_options.map((option) => (
+                <SelectItem key={option} value={option}>
+                  {option}
+                </SelectItem>
+              ))}
             </SelectContent>
           </Select>
         </div>
-
-        <div className="w-full lg:col-span-2">
-          <Label>Brief</Label>
-          <Textarea
-            name="breef"
-            value={state.breef}
-            onChange={handleChange}
-            className="w-full p-6 mt-2 shadow-none"
-          />
+        {!social_options.includes(state.socail_state) ||
+        state.socail_state === "other" ? (
+          <div className="w-full lg:col-span-2">
+            <Label>Enter Your Social State</Label>
+            <Input
+              name="othersState"
+              value={state.othersState}
+              onChange={(e) => {
+                setState({ ...state, othersState: e.target.value });
+              }}
+              className="w-full p-6 mt-2 shadow-none "
+            />
+          </div>
+        ) : null}
+        <div className="lg:col-span-2">
+          <div className="">
+            <Label>Breef</Label>
+            <Textarea
+              name="breef"
+              value={state.breef}
+              onChange={handleChange}
+              className="w-full p-6 mt-2 shadow-none"
+              placeholder="Breef"
+            />
+          </div>
+        </div>
+        <div className="lg:col-span-2">
+          <div className="">
+            <Label>How did you hear about the Grey to Green platform?</Label>
+            <Select
+              name="whyYouHere"
+              onValueChange={(e) => {
+                setState({ ...state, whyYouHere: e });
+              }}
+            >
+              <SelectTrigger className="w-full p-6 mt-2 shadow-none ">
+                <SelectValue placeholder="Select marketing source" />
+              </SelectTrigger>
+              <SelectContent>
+                <SelectItem value="Social media">
+                  Social Media (LinkedIn, Facebook, Instagram, etc.)
+                </SelectItem>
+                <SelectItem value="Search engine">
+                  Search Engine (Google, Bing, etc.)
+                </SelectItem>
+                <SelectItem value="Email newsletter">
+                  Email Newsletter
+                </SelectItem>
+                <SelectItem value="Online ads">
+                  Online Ads (Google Ads, Facebook Ads, etc.)
+                </SelectItem>
+                <SelectItem value="Blogs or articles">
+                  Blogs or Articles
+                </SelectItem>
+                <SelectItem value="Affiliate links">Affiliate Links</SelectItem>
+                <SelectItem value="Customer review sites">
+                  Customer Review Sites
+                </SelectItem>
+                <SelectItem value="Promotional videos">
+                  Promotional Videos
+                </SelectItem>
+                <SelectItem value="Television">Television</SelectItem>
+                <SelectItem value="Newspaper">Newspaper</SelectItem>
+                <SelectItem value="Podcast">Podcast</SelectItem>
+                <SelectItem value="Webinar">Webinar</SelectItem>
+                <SelectItem value="Corporate outing/social">
+                  Corporate Outing/Social
+                </SelectItem>
+                <SelectItem value="Networking event">
+                  Networking Event
+                </SelectItem>
+                <SelectItem value="Training seminar">
+                  Training Seminar
+                </SelectItem>
+                <SelectItem value="Ambassador">Ambassador</SelectItem>
+              </SelectContent>
+            </Select>
+          </div>
         </div>
 
         <div className="w-full lg:col-span-2">
@@ -375,26 +514,39 @@ function ManageProfile({
           </div>
         </div>
 
-        <div className="w-full">
-          <Label>Target Trees</Label>
-          <Input
-            type="number"
-            name="targetTrees"
-            value={state.targetTrees}
-            onChange={handleChange}
-            className="w-full p-6 mt-2 shadow-none"
-          />
-        </div>
+        <div className="lg:col-span-2 grid grid-cols-3 gap-5">
+          <div className="w-full">
+            <Label>Target Trees</Label>
+            <Input
+              type="number"
+              name="targetTrees"
+              value={state.targetTrees}
+              onChange={handleChange}
+              className="w-full p-6 mt-2 shadow-none"
+            />
+          </div>
 
-        <div className="w-full">
-          <Label>Target Plastic To be remove (kg)</Label>
-          <Input
-            type="number"
-            name="targetPlastic"
-            value={state.targetPlastic}
-            onChange={handleChange}
-            className="w-full p-6 mt-2 shadow-none"
-          />
+          <div className="w-full">
+            <Label>Target Plastic To be remove (kg)</Label>
+            <Input
+              type="number"
+              name="targetPlastic"
+              value={state.targetPlastic}
+              onChange={handleChange}
+              className="w-full p-6 mt-2 shadow-none"
+            />
+          </div>
+
+          <div className="w-full">
+            <Label>Target CO2 Save (kg)</Label>
+            <Input
+              type="number"
+              name="targetCo2Save"
+              value={state.targetCo2Save}
+              onChange={handleChange}
+              className="w-full p-6 mt-2 shadow-none"
+            />
+          </div>
         </div>
       </div>
       <Button
@@ -402,7 +554,8 @@ function ManageProfile({
         onClick={onSave}
         className="mt-10 w-full p-6 shadow-none mb-20"
       >
-        Save Profile
+        {loading && <LoaderCircle size={15} className="mr-3 animate-spin" />}
+        Saving Profile
       </Button>
     </div>
   );

@@ -7,6 +7,7 @@ import { client } from "@/request/actions";
 import { revalidatePath } from "next/cache";
 import { NextResponse } from "next/server";
 
+export const revalidate = 60;
 export async function GET(req: Request) {
   const params = new URL(req.url).searchParams;
   const id = params.get("id");
@@ -19,7 +20,6 @@ export async function GET(req: Request) {
     user = (await auth())?.user;
   }
 
-  revalidatePath("/api/account/donate");
   if (!user) {
     return NextResponse.json(
       {

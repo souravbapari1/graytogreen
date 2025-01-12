@@ -9,6 +9,7 @@ import { PaymentVerifyData } from "../../[id]/pymentVerify";
 import { NextResponse } from "next/server";
 import { addTransition, setUserMembership } from "@/request/worker/users";
 import { auth } from "@/auth";
+import { createOrderHistoryRequest } from "@/request/worker/account/ordersRequest";
 
 export const revalidate = 0;
 export async function GET(
@@ -45,6 +46,7 @@ export async function GET(
           status: "new",
         },
       });
+
       await addTransition({
         user: intent.user,
         amount: intent.amount * intent.qun,
@@ -53,6 +55,19 @@ export async function GET(
         reason: "Buy Membership - " + data.expand?.membership.name,
       });
       // 6. set the user membership
+      await createOrderHistoryRequest({
+        amount: intent.amount,
+        status: "Successful",
+        reason:
+          data.expand?.membership.name + " Membership" || "Buy Membership",
+        payment_type: "Credit/Debit Card",
+        pricing_sum: `${intent.amount * intent.qun}OMR x ${intent.qun} = ${intent.amount} OMR`,
+        quntity: intent.qun,
+        donat_unit: "membership",
+        ref_id: intent.id,
+        user: intent.user,
+        // certificate_Link: paymentIntent.certificate_Link,
+      });
 
       // 8. redirect to the thank you page
       return NextResponse.redirect(

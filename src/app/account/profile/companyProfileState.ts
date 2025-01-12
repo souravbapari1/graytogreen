@@ -21,6 +21,7 @@ interface ProfileState {
     youtube: string;
     targetTrees: string;
     targetPlastic: string;
+    targetCo2Save: string;
     companySize: string;
     companyName: string;
     industry: string;
@@ -45,6 +46,7 @@ interface ProfileState {
 export const useCompanyProfileState = create<ProfileState>((setState) => ({
   state: {
     file: null,
+    targetCo2Save: "",
     first_name: "",
     last_name: "",
     email: "",
@@ -212,6 +214,13 @@ export const useCompanyProfileState = create<ProfileState>((setState) => ({
     if (state.targetPlastic) {
       if (!isValidNumber(state.targetPlastic)) {
         toast.error("Target plastic is not valid.");
+        return false;
+      }
+    }
+
+    if (state.targetCo2Save) {
+      if (!isValidNumber(state.targetCo2Save)) {
+        toast.error("Target carbon is not valid.");
         return false;
       }
     }

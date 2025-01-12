@@ -15,6 +15,7 @@ import { useEffect } from "react";
 import Loading from "@/app/loading";
 import toast from "react-hot-toast";
 import { Button } from "@/components/ui/button";
+import { Facebook, Instagram, Linkedin, Twitter, Youtube } from "lucide-react";
 function MyForest({
   user,
   preview = false,
@@ -33,7 +34,7 @@ function MyForest({
   return (
     <div>
       <div className="grid lg:grid-cols-3 gap-10">
-        <div className="bg-green-50 rounded-2xl border-2 relative shadow-sm border-white h-96 overflow-hidden">
+        <div className="bg-green-50 rounded-2xl border-2 relative shadow-sm border-white  overflow-hidden">
           <Image
             src="/assets/auth-bg.jpg"
             width={1000}
@@ -58,12 +59,58 @@ function MyForest({
             {user.first_name} {user.last_name}
           </h1>
           {preview && (
-            <div className="flex justify-center items-center ">
+            <div className="flex justify-center items-center flex-col gap-5">
               <Link href={"/platform/?support=" + user.id}>
                 <Button className="shadow-none mt-5" size="sm">
-                  Support Me Now
+                  Support {user.first_name}
                 </Button>
               </Link>
+              <div className="flex justify-center items-center gap-5 pb-5">
+                <Link
+                  style={{
+                    opacity: user.linkedin ? 1 : 0.3,
+                  }}
+                  href={user.linkedin || "#"}
+                >
+                  <Linkedin
+                    size={17}
+                    className="text-gray-600 hover:text-primary transition-all"
+                  />
+                </Link>
+                <Link
+                  style={{
+                    opacity: user.instagram ? 1 : 0.3,
+                  }}
+                  href={user.instagram || "#"}
+                >
+                  <Instagram
+                    size={17}
+                    className="text-gray-600 hover:text-primary transition-all"
+                  />
+                </Link>
+                <Link
+                  style={{
+                    opacity: user.twitter ? 1 : 0.3,
+                  }}
+                  href={user.twitter || "#"}
+                >
+                  <Twitter
+                    size={17}
+                    className="text-gray-600 hover:text-primary transition-all"
+                  />
+                </Link>
+                <Link
+                  style={{
+                    opacity: user.youtube ? 1 : 0.3,
+                  }}
+                  href={user.youtube || "#"}
+                >
+                  <Youtube
+                    size={19}
+                    className="text-gray-600 hover:text-primary transition-all"
+                  />
+                </Link>
+              </div>
             </div>
           )}
           {!preview && (
@@ -113,6 +160,9 @@ function MyForest({
         </div>
       </div>
       {!loading && <TargetProgress user={user} />}
+      {loading && (
+        <div className="w-full h-96 rounded-xl bg-gray-100 mt-10"></div>
+      )}
     </div>
   );
 }

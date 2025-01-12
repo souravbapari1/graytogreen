@@ -13,3 +13,11 @@ export const getMyPrograms = async () => {
     .send<Collection<FSLPItem>>();
   return res;
 };
+
+export const getMyProgram = async (id: string) => {
+  const user = await auth();
+  const res = await client
+    .get("/api/collections/fslp/records/" + id)
+    .send<FSLPItem>();
+  return res;
+};

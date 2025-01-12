@@ -4,13 +4,17 @@ import { NextResponse } from "next/server";
 import { PaymentData } from "./payment";
 import { PaymentVerifyData } from "./pymentVerify";
 import { addTransition } from "@/request/worker/users";
+import { createOrderHistoryRequest } from "@/request/worker/account/ordersRequest";
+import { updateTargetStatus } from "@/request/worker/targetStatus";
 
 export const revalidate = 0;
+
 export async function GET(
   req: Request,
   { params }: { params: { id: string } }
 ) {
   revalidatePath(`/api/pay/${params.id}`);
+  let refId = "";
   try {
     // 1. get the payment intent
     const paymentIntent = await client
@@ -68,6 +72,18 @@ export async function GET(
             tree_order: orderId,
           })
           .send();
+        refId = orderId;
+        const forCarbon =
+          (paymentIntent.expand?.project.impactPerUnit || 0) *
+          paymentIntent.quantity;
+
+        await updateTargetStatus({
+          id: paymentIntent.user,
+          tree: paymentIntent.quantity,
+          support_tree: paymentIntent?.support ? paymentIntent.quantity : 0,
+          carbon: forCarbon,
+          support_carbon: paymentIntent?.support ? forCarbon : 0,
+        });
       } else {
         // 6. place the order
         const order = await client
@@ -90,6 +106,20 @@ export async function GET(
             other_order: orderId,
           })
           .send();
+        refId = orderId;
+
+        const plasticKg =
+          paymentIntent.amount / (paymentIntent.expand?.project.omr_unit || 0);
+        const forCarbon =
+          (paymentIntent.expand?.project.impactPerUnit || 0) * plasticKg;
+
+        await updateTargetStatus({
+          id: paymentIntent.user,
+          plastic: plasticKg,
+          support_plastic: paymentIntent?.support ? plasticKg : 0,
+          carbon: forCarbon,
+          support_carbon: paymentIntent?.support ? forCarbon : 0,
+        });
       }
       await addTransition({
         user: paymentIntent.user,
@@ -98,6 +128,19 @@ export async function GET(
         type: "DONATE",
         reason: "Donation " + paymentIntent.expand?.project.name,
       });
+      await createOrderHistoryRequest({
+        amount: paymentIntent.amount,
+        status: "Successful",
+        reason: paymentIntent.expand?.project.name || "Donate to Tree Planting",
+        payment_type: paymentIntent.donate,
+        pricing_sum: `${paymentIntent.quantity}`,
+        quntity: paymentIntent.quantity,
+        donat_unit: paymentIntent.donate as any,
+        ref_id: refId || paymentIntent.id,
+        user: paymentIntent.user,
+        // certificate_Link: paymentIntent.certificate_Link,
+      });
+
       // 8. redirect to the thank you page
       return NextResponse.redirect(
         new URL(
