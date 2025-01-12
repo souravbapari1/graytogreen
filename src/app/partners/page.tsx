@@ -78,8 +78,12 @@ async function page({ searchParams }: { searchParams?: any }) {
   const getData = () => {
     const language = searchParams.ln || "english";
     return (
-      data?.partenerWithUses.find((item) => item.language.name === language) ||
-      data?.partenerWithUses.find((item) => item.language.name === "english")
+      data?.partenerWithUses.find(
+        (item: any) => item.language.name === language
+      ) ||
+      data?.partenerWithUses.find(
+        (item: any) => item.language.name === "english"
+      )
     );
   };
 

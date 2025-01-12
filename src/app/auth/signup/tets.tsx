@@ -344,6 +344,8 @@ function CompanyApplicationForm({
               user_type: "partner",
               password: formData.password,
               passwordConfirm: formData.confirmPassword,
+              breef: "",
+              whyYouHere: "",
             });
 
             localStorage.setItem("user", JSON.stringify(user));
