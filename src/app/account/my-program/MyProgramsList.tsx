@@ -103,6 +103,12 @@ export const MyProgramsList = ({ data }: { data: Collection<FSLPItem> }) => {
                   <p className="font-semibold mb-2">
                     Program: The Future Sustainability Leaders Program
                   </p>
+                  <Badge className="shadow-none capitalize" variant="secondary">
+                    Status: {e.status}
+                  </Badge>
+                  <br />
+                  <br />
+
                   <ul>
                     <li>
                       Name:{" "}
