@@ -35,6 +35,7 @@ import { Terminal } from "lucide-react";
 import { UserItem } from "@/interface/user";
 import Link from "next/link";
 import ChartBar from "./ChartBar";
+import PartnerWallet from "./components/PartnerWallet";
 function MyBalance({ balance, user }: { balance: number; user: UserItem }) {
   const [start_date, setStart_date] = useState("");
   const [end_date, setEnd_date] = useState("");
@@ -97,7 +98,7 @@ function MyBalance({ balance, user }: { balance: number; user: UserItem }) {
             <Card x-chunk="dashboard-01-chunk-1">
               <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
                 <CardTitle className="text-sm font-medium flex justify-between items-center w-full">
-                  <p>My Donations (OMR)</p>
+                  <p>My Donations</p>
                   <p className="text-2xl text-gray-500">$</p>
                 </CardTitle>
               </CardHeader>
@@ -111,28 +112,7 @@ function MyBalance({ balance, user }: { balance: number; user: UserItem }) {
               </CardContent>
             </Card>
 
-            <Card x-chunk="dashboard-01-chunk-1">
-              <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-                <CardTitle className="text-sm font-medium flex justify-between items-center w-full">
-                  <p>My Wallet (OMR)</p>
-                  <p className="text-2xl text-gray-500">$</p>
-                </CardTitle>
-              </CardHeader>
-              <CardContent className="flex justify-between">
-                <div className="">
-                  <div className="text-2xl font-bold">00.00 OMR</div>
-                  <p className="text-xs text-muted-foreground">
-                    your wallet amount
-                  </p>
-                </div>
-                <Button
-                  className="mt-10 shadow-none hover:bg-primary hover:text-white "
-                  variant="outline"
-                >
-                  Refund
-                </Button>
-              </CardContent>
-            </Card>
+            <PartnerWallet user={user} balance={user.wallet} />
           </div>
 
           <div className="">
@@ -151,7 +131,23 @@ function MyBalance({ balance, user }: { balance: number; user: UserItem }) {
                     />
                   </div>
                   <div className="w-full">
-                    <Label className="text-xs">Date To</Label>
+                    <div className="flex justify-between items-center">
+                      <Label className="text-xs">Date To</Label>
+                      {end_date && start_date && (
+                        <p
+                          className="text-xs text-red-600 font-bold uppercase select-none cursor-pointer"
+                          onClick={() => {
+                            setEnd_date("");
+                            setStart_date("");
+                            setTimeout(() => {
+                              transactions.refetch();
+                            }, 100);
+                          }}
+                        >
+                          Clear
+                        </p>
+                      )}
+                    </div>
                     <Input
                       type="date"
                       className="block rounded-none border-b-0"
@@ -215,8 +211,8 @@ function MyBalance({ balance, user }: { balance: number; user: UserItem }) {
                             {e.type == "CREDIT"
                               ? "+"
                               : e.type == "DEBIT"
-                              ? "-"
-                              : ""}{" "}
+                                ? "-"
+                                : ""}{" "}
                             {e.amount.toFixed(2)} OMR
                           </TableCell>
                         </TableRow>
@@ -229,7 +225,7 @@ function MyBalance({ balance, user }: { balance: number; user: UserItem }) {
           </div>
         </div>
         <div className="flex justify-center items-start">
-          <ChartBar />
+          <ChartBar user={user} />
         </div>
       </div>
     </div>

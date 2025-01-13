@@ -5,7 +5,7 @@ import React from "react";
 import ReportView from "./ReportView";
 import WorkSpace from "@/app/account/components/workspace";
 
-export const revalidate = 60;
+export const revalidate = 0;
 async function page({ params }: { params: { week: string; id: string } }) {
   try {
     const { week, id } = params;

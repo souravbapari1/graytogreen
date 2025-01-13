@@ -24,7 +24,9 @@ async function page({ params }: { params: { id: string } }) {
 
           <div className="space-y-4">
             <div>
-              <h2 className="text-xl font-semibold mb-2">Applicant Details</h2>
+              <h2 className="text-xl font-semibold mb-2 underline">
+                Applicant Details
+              </h2>
               <ul className="space-y-2">
                 <li>
                   <span className="font-medium">Name:</span>{" "}
@@ -34,39 +36,50 @@ async function page({ params }: { params: { id: string } }) {
                   <span className="font-medium">Email:</span>{" "}
                   {fslp.application.emailID}
                 </li>
-                <li>
-                  <span className="font-medium">Mobile:</span>{" "}
-                  {fslp.application.mobileNo}
-                </li>
+
                 <li>
                   <span className="font-medium">Address:</span>{" "}
                   {fslp.application.address}
                 </li>
-                <li>
-                  <span className="font-medium">City:</span>{" "}
-                  {fslp.application.city}
-                </li>
-                <li>
-                  <span className="font-medium">Country:</span>{" "}
-                  {fslp.application.country}
-                </li>
-                <li>
-                  <span className="font-medium">Date of Birth:</span>{" "}
-                  {fslp.application.dob}
-                </li>
-                <li>
-                  <span className="font-medium">Gender:</span>{" "}
-                  {fslp.application.gender}
-                </li>
-                <li>
-                  <span className="font-medium">Nationality:</span>{" "}
-                  {fslp.application.nationality}
-                </li>
+
+                <div className="grid grid-cols-2 gap-10 w-full">
+                  <div className="">
+                    <li>
+                      <span className="font-medium">Country:</span>{" "}
+                      {fslp.application.country}
+                    </li>
+                    <li>
+                      <span className="font-medium">City:</span>{" "}
+                      {fslp.application.city}
+                    </li>
+
+                    <li>
+                      <span className="font-medium">Date of Birth:</span>{" "}
+                      {fslp.application.dob}
+                    </li>
+                  </div>
+                  <div className="">
+                    <li>
+                      <span className="font-medium">Mobile:</span>{" "}
+                      {fslp.application.mobileNo}
+                    </li>
+                    <li>
+                      <span className="font-medium">Gender:</span>{" "}
+                      {fslp.application.gender}
+                    </li>
+                    <li>
+                      <span className="font-medium">Nationality:</span>{" "}
+                      {fslp.application.nationality}
+                    </li>
+                  </div>
+                </div>
               </ul>
             </div>
 
             <div>
-              <h2 className="text-xl font-semibold mb-2">Education Details</h2>
+              <h2 className="text-xl font-semibold mb-2 underline">
+                Education Details
+              </h2>
               <ul className="space-y-2">
                 <li>
                   <span className="font-medium">University Name:</span>{" "}
@@ -84,7 +97,9 @@ async function page({ params }: { params: { id: string } }) {
             </div>
 
             <div>
-              <h2 className="text-xl font-semibold mb-2">Documents</h2>
+              <h2 className="text-xl font-semibold mb-2 underline">
+                Documents
+              </h2>
               <ul className="space-y-2">
                 <li>
                   <span className="font-medium">CV:</span>{" "}

@@ -8,11 +8,12 @@ import { File } from "lucide-react";
 import { useSession } from "next-auth/react";
 import dynamic from "next/dynamic";
 import { useRouter, useSearchParams } from "next/navigation";
-import { useState } from "react";
+import { ReactNode, useState } from "react";
 import toast from "react-hot-toast";
 import { FiPlusCircle } from "react-icons/fi";
 import { IoCloseCircle } from "react-icons/io5";
 import { useReportChallengeState, useReportEventState } from "./state";
+import Swal from "sweetalert2";
 
 const QuillEditor = dynamic(
   () => import("@/components/extension/quillEditor"),
@@ -59,7 +60,7 @@ function SubmitForm() {
       file: File;
       onUploaded: (file: FIleData) => void;
     }) => {
-      return await uploadFile(action.file, session.data?.user.id || "");
+      return await uploadFile(action.file, session?.data?.user?.id || "");
     },
     onSuccess: (data, variables) => {
       variables.onUploaded(data);
@@ -113,7 +114,7 @@ function SubmitForm() {
         year: title[0],
         month: title[1],
         report_key: title[0] + title[1],
-        user: session.data?.user.id || "",
+        user: session.data?.user?.id || "",
         [title[2].toLowerCase()]: {
           summery,
           events,
@@ -128,7 +129,16 @@ function SubmitForm() {
       resetChallenge();
       toast.dismiss();
       toast.success("Report submitted successfully");
-      router.back();
+
+      Swal.fire({
+        title: "Submitted!",
+        text: "Your Report Under Review By GTG Team.",
+        icon: "success",
+      });
+
+      setTimeout(() => {
+        router.back();
+      }, 2000);
     },
     onError: (error) => {
       toast.dismiss();
@@ -139,11 +149,11 @@ function SubmitForm() {
 
   const handelSubmit = async () => {
     if (validateEvents(events) && validateChallenge(challenges)) {
-      if (!nextStep.trim()) {
-        toast.error("Next step is required");
+      if (nextStep.trim().length <= 10) {
+        toast.error("Next Week Plan Content is required");
         return false;
       }
-      if (!summery.trim()) {
+      if (summery.trim().length <= 10) {
         toast.error("Summary is required");
         return false;
       }
@@ -351,7 +361,7 @@ function SubmitForm() {
                     />
                   </div>
 
-                  <div className="mt-3">
+                  {/* <div className="mt-3">
                     {e.file?.map((file) => (
                       <div
                         key={file.id}
@@ -370,9 +380,9 @@ function SubmitForm() {
                         />
                       </div>
                     ))}
-                  </div>
+                  </div> */}
 
-                  <div className="mt-3">
+                  {/* <div className="mt-3">
                     <label
                       htmlFor={"file-challenge-" + i}
                       className="bg-primary p-1 text-xs text-white rounded flex gap-4 mt-2 justify-center items-center cursor-pointer w-full"
@@ -397,7 +407,7 @@ function SubmitForm() {
                         }
                       }}
                     />
-                  </div>
+                  </div> */}
                 </div>
               );
             })}
@@ -412,17 +422,70 @@ function SubmitForm() {
             onChange={(e) => setNextStep(e)}
           />
         </div>
-
-        <Button
-          className="mb-20 p-4 mt-10 "
-          onClick={handelSubmit}
-          disabled={formSubmit.isPending}
-        >
-          Submit Report
-        </Button>
+        <SubmitAction submit={handelSubmit} loading={formSubmit.isPending}>
+          <Button
+            className="mb-20 p-4 mt-10 "
+            // onClick={handelSubmit}
+            disabled={formSubmit.isPending}
+          >
+            Submit Report
+          </Button>
+        </SubmitAction>
       </div>
     </div>
   );
 }
 
 export default SubmitForm;
+
+import {
+  Dialog,
+  DialogContent,
+  DialogDescription,
+  DialogHeader,
+  DialogTitle,
+  DialogTrigger,
+} from "@/components/ui/dialog";
+
+function SubmitAction({
+  children,
+  loading,
+  submit,
+}: {
+  children: ReactNode;
+  submit: Function;
+  loading: boolean;
+}) {
+  const [isOpen, setIsOpen] = useState(false);
+  return (
+    <Dialog open={isOpen} onOpenChange={setIsOpen}>
+      <DialogTrigger>{children}</DialogTrigger>
+      <DialogContent>
+        <DialogHeader>
+          <DialogTitle>Are you absolutely sure?</DialogTitle>
+          <DialogDescription>
+            You will not be able to edit your report once you confirm your
+            submission so pls double check from all information
+          </DialogDescription>
+        </DialogHeader>
+        <div className="flex gap-3">
+          <Button
+            disabled={loading}
+            className="shadow-none"
+            onClick={async () => {
+              await submit();
+              setIsOpen(false);
+            }}
+          >
+            {loading ? "Submitting..." : "Submit"}
+          </Button>
+          <DialogTrigger>
+            <Button className="shadow-none" variant="destructive">
+              Cancel
+            </Button>
+          </DialogTrigger>
+        </div>
+      </DialogContent>
+    </Dialog>
+  );
+}

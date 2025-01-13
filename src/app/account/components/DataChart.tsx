@@ -8,15 +8,28 @@ import {
   ChartTooltip,
   ChartTooltipContent,
 } from "@/components/ui/chart";
+import { useSession } from "next-auth/react";
+import { UserItem } from "@/interface/user";
 
 const chartConfig = {
   donate: {
     label: "Donate",
     color: "hsl(var(--chart-1))",
   },
+  fund: {
+    label: "Add Funds",
+    color: "hsl(var(--chart-2))",
+  },
 } satisfies ChartConfig;
 
-export function ChartViewComponent({ chartData }: { chartData: any }) {
+export function ChartViewComponent({
+  chartData,
+  user,
+}: {
+  chartData: any;
+  user: UserItem;
+}) {
+  const session = useSession();
   return (
     <ChartContainer config={chartConfig}>
       <LineChart
@@ -41,15 +54,17 @@ export function ChartViewComponent({ chartData }: { chartData: any }) {
           type="monotone"
           stroke="green"
           strokeWidth={2}
-          dot={false}
+          dot={true}
         />
-        {/* <Line
-          dataKey="donate"
-          type="monotone"
-          stroke="var(--color-mobile)"
-          strokeWidth={2}
-          dot={false}
-        /> */}
+        {user?.user_type == "partner" && (
+          <Line
+            dataKey="fund"
+            type="monotone"
+            stroke="orange"
+            strokeWidth={2}
+            dot={true}
+          />
+        )}
       </LineChart>
     </ChartContainer>
   );

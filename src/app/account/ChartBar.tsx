@@ -13,8 +13,9 @@ import { useSession } from "next-auth/react";
 import { FaSpinner } from "react-icons/fa";
 import { useQuery } from "@tanstack/react-query";
 import { client } from "@/request/actions";
+import { UserItem } from "@/interface/user";
 
-function ChartBar() {
+function ChartBar({ user }: { user: UserItem }) {
   const [year, setYear] = useState(new Date().getFullYear());
   const session = useSession();
   const data = useQuery({
@@ -59,7 +60,7 @@ function ChartBar() {
           </Select>
         </CardHeader>
         <CardContent className=" p-0 ">
-          <ChartViewComponent chartData={data.data} />
+          <ChartViewComponent chartData={data.data} user={user} />
         </CardContent>
       </Card>
     </div>

@@ -87,19 +87,23 @@ function ReportView({
               className="content mb-2"
               dangerouslySetInnerHTML={{ __html: e.whatYouDid || "" }}
             />
-            <p className="font-semibold">Media:</p>
-            <div className="flex flex-col gap-2">
-              {e.file?.map((file) => (
-                <Link
-                  className="text-main underline"
-                  href={file.url}
-                  key={file.id}
-                  target="_blank"
-                >
-                  {file.file.filename}
-                </Link>
-              ))}
-            </div>
+            {e.file && (
+              <div className="">
+                <p className="font-semibold">Media:</p>
+                <div className="flex flex-col gap-2">
+                  {e.file?.map((file) => (
+                    <Link
+                      className="text-main underline"
+                      href={file.url}
+                      key={file.id}
+                      target="_blank"
+                    >
+                      {file.file.filename}
+                    </Link>
+                  ))}
+                </div>
+              </div>
+            )}
           </div>
         ))}
       </div>

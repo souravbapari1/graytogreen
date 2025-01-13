@@ -1,6 +1,6 @@
 import { UserItem } from "@/interface/user";
 import { client } from "../actions";
-import { authUser } from "./auth";
+import { getUser } from "./auth";
 
 export const createUser = async (data: {
   email: string;
@@ -75,4 +75,18 @@ export const setLastLogin = async (id: string) => {
   } catch (error) {
     console.log(error);
   }
+};
+
+export const addFundsWallet = async (data: {
+  user: string;
+  amount: number;
+}) => {
+  const user = await getUser(data.user);
+  const updateUser = await client
+    .patch("/api/collections/users/records/" + user.id)
+    .json({
+      wallet: user.wallet + data.amount,
+    })
+    .send<UserItem>();
+  return updateUser;
 };

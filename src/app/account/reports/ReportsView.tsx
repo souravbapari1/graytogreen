@@ -15,7 +15,7 @@ import {
   getReports,
 } from "@/request/worker/reports/manageReports";
 import { useMutation, useQuery } from "@tanstack/react-query";
-import { BellDot, Eye, Trash } from "lucide-react";
+import { BellDot, Clock, Eye, Trash } from "lucide-react";
 import Link from "next/link";
 import { useEffect, useState } from "react";
 import toast from "react-hot-toast";
@@ -91,6 +91,39 @@ function ReportsView({ user }: { user: string }) {
       toast.error("Failed to delete request");
     },
   });
+  function getCurrentDateData(): { year: string; month: number } {
+    const currentDate = new Date();
+    const year = currentDate.getFullYear().toString();
+    const month = currentDate.getMonth();
+    return { year, month };
+  }
+
+  const weekData = (year: number, month: number) => {
+    return [
+      [new Date(year, month, 1), new Date(year, month, 7)], // Week 1
+      [new Date(year, month, 8), new Date(year, month, 14)], // Week 2
+      [new Date(year, month, 15), new Date(year, month, 21)], // Week 3
+      [new Date(year, month, 22), new Date(year, month, 28)], // Week 4
+    ];
+  };
+
+  function isPastOrCurrentWeek(
+    weekIndex: number,
+    year: number,
+    month: number
+  ): boolean {
+    const weeks = weekData(year, month);
+
+    if (weekIndex < 0 || weekIndex >= weeks.length) {
+      throw new Error("Invalid week index");
+    }
+
+    const [weekStart, weekEnd] = weeks[weekIndex];
+    const currentDate = new Date();
+
+    // Check if the current date is within the week range
+    return currentDate >= weekEnd;
+  }
 
   if (data.isLoading) return <p>Loading...</p>;
   if (data.isError) return <p>Error loading reports ! something went wrong</p>;
@@ -134,6 +167,7 @@ function ReportsView({ user }: { user: string }) {
                 <SelectValue placeholder={year} />
               </SelectTrigger>
               <SelectContent>
+                <SelectItem value="2024">2024</SelectItem>
                 <SelectItem value="2025">2025</SelectItem>
                 <SelectItem value="2026">2026</SelectItem>
               </SelectContent>
@@ -160,8 +194,19 @@ function ReportsView({ user }: { user: string }) {
         <div className="w-full">
           <div className="w-full grid grid-cols-2 gap-5">
             {["week1", "week2", "week3", "week4"].map((e, i) => {
+              console.log(
+                `Week ${1}: ${month} ${year}`,
+                isPastOrCurrentWeek(i, +year, month)
+              );
+
               return (
-                <div className="w-full h-32 flex justify-between items-center shadow px-6 py-2 rounded-2xl bg-white">
+                <div
+                  className={cn(
+                    "w-full h-32 flex justify-between items-center border border-gray-300/30 px-6 py-2 rounded-2xl bg-white",
+                    monthDataView?.data?.[e as keyof MonthlyReportItem] &&
+                      "bg-primary/10 shadow-none border-primary/5"
+                  )}
+                >
                   <div className="h-full flex justify-center flex-col items-start">
                     <h1 className="text-2xl font-bold mb-3">Week {i + 1}</h1>
                     <p>
@@ -170,21 +215,28 @@ function ReportsView({ user }: { user: string }) {
                   </div>
                   <div className="flex flex-col justify-end items-center">
                     {monthDataView?.data?.[e as keyof MonthlyReportItem] && (
-                      <h1 className="text-xl font-bold mb-3 text-primary">
-                        Submitted
+                      <h1 className="text-sm font-bold mb-3 text-primary">
+                        Reviewed By <br />
+                        GTG Team
                       </h1>
                     )}
 
                     {!monthDataView?.data?.[e as keyof MonthlyReportItem] ? (
-                      <Link
-                        href={
-                          "/account/reports/submit?id=" +
-                          `${year}-${months[month]}-WEEK${i + 1}`
-                        }
-                        className=""
-                      >
-                        <AiOutlinePlusCircle size={30} />
-                      </Link>
+                      isPastOrCurrentWeek(i, +year, month) ? (
+                        <Link
+                          href={
+                            "/account/reports/submit?id=" +
+                            `${year}-${months[month]}-WEEK${i + 1}`
+                          }
+                          className=""
+                        >
+                          <AiOutlinePlusCircle size={30} />
+                        </Link>
+                      ) : (
+                        <div className="w-full h-full  bg-gray-100 text-primary rounded-2xl flex justify-center items-center">
+                          <Clock size={30} />
+                        </div>
+                      )
                     ) : (
                       <Link
                         href={

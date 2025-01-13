@@ -150,11 +150,7 @@ export const useReportChallengeState = create<ChallengeState>((set) => ({
   },
 
   validateChallenge: (state: ChallengeState["challenges"]) => {
-    const requiredFields: Array<keyof Challenge> = [
-      "title",
-      "whatYouDid",
-      "file",
-    ];
+    const requiredFields: Array<keyof Challenge> = ["title", "whatYouDid"];
 
     for (const challenge of state) {
       for (const field of requiredFields) {
