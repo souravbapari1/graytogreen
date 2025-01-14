@@ -28,10 +28,12 @@ function UserImpactInfo({
   open,
   setOpen,
   onComplete,
+  isPartner,
 }: {
   open: boolean;
   setOpen: (open: boolean) => void;
   onComplete: (e: MAImpactItem) => void;
+  isPartner: boolean;
 }) {
   const data = useMicroActionState();
 
@@ -46,6 +48,7 @@ function UserImpactInfo({
           submit: data.data.impact || 0,
           impact: (data.data.impact || 0) * (data.selected?.kgPerUnit || 0),
           userData: JSON.stringify(data.data),
+          isPartner: isPartner,
           user: data.data.id || undefined,
           refer: params.get("refer") || undefined,
         });

@@ -155,6 +155,7 @@ function MicroActionView({ session }: { session: Session | null }) {
           submit: data.data.impact || 0,
           impact: (data.data.impact || 0) * (data.selected?.kgPerUnit || 0),
           userData: JSON.stringify(data.data),
+          isPartner: session.user.user_type == "partner",
           user: data.data.id || undefined,
           refer: params.get("refer") || undefined,
         });
@@ -197,6 +198,7 @@ function MicroActionView({ session }: { session: Session | null }) {
       <UserImpactInfo
         open={open}
         setOpen={setOpen}
+        isPartner={session?.user.user_type == "partner"}
         onComplete={() => {
           setThankYou(true);
           statusData.mutate();

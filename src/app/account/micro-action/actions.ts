@@ -26,6 +26,7 @@ export const createNewImpact = async (data: {
   submit: number;
   impact: number;
   userData: string;
+  isPartner: boolean;
   user?: string;
   refer?: string;
 }) => {
@@ -48,7 +49,11 @@ export const createNewImpact = async (data: {
 
   const action = await res.send<MAImpactItem>();
   if (data.user) {
-    await assignThis({ actionId: data.micro_action, user: data.user });
+    await assignThis({
+      actionId: data.micro_action,
+      user: data.user,
+      isPartner: data.isPartner,
+    });
   }
   const old = localStorage.getItem("microAction");
   const removeOld = JSON.parse(old || "[]").filter(
@@ -85,10 +90,15 @@ export const getImpactStatus = async (id: string, amb: string = "") => {
 export const assignThis = async ({
   actionId,
   user,
+  isPartner,
 }: {
   actionId: string;
   user: string;
+  isPartner: boolean;
 }) => {
+  if (isPartner) {
+    return;
+  }
   try {
     const res = await client
       .get("/api/collections/micro_actions/records/" + actionId)
