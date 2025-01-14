@@ -226,7 +226,7 @@ function MyProjectsList({ id }: { id: string }) {
                       (doc) => {
                         return (
                           <Link
-                            className="text-xs text-primary"
+                            className="text-xs text-primary "
                             href={genPbFiles(e.expand?.docs, doc)}
                             target="_blank"
                             key={doc}
@@ -237,7 +237,7 @@ function MyProjectsList({ id }: { id: string }) {
                       }
                     )}
                   </TableCell>
-                  <TableCell className="text-center">
+                  <TableCell className="text-center border-r">
                     {e.expand?.docs?.financial_report.map((doc) => {
                       return (
                         <Link
