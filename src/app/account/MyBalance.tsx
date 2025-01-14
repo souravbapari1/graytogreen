@@ -98,7 +98,7 @@ function MyBalance({ balance, user }: { balance: number; user: UserItem }) {
             <Card x-chunk="dashboard-01-chunk-1">
               <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
                 <CardTitle className="text-sm font-medium flex justify-between items-center w-full">
-                  <p>My Donations</p>
+                  <p>My Impacts Amount (OMR)</p>
                   <p className="text-2xl text-gray-500">$</p>
                 </CardTitle>
               </CardHeader>

@@ -1,7 +1,7 @@
 import { Collection } from "@/interface/collection";
 import { client } from "@/request/actions";
 
-type Category =
+export type OrderCategory =
   | "tree"
   | "plastic"
   | "membership"
@@ -16,7 +16,7 @@ export interface RequestOrderHistoryData {
   payment_type: string;
   pricing_sum: string;
   quntity: number;
-  donat_unit: Category;
+  donat_unit: OrderCategory;
   ref_id: string;
   user: string;
   certificate_Link?: string;
@@ -62,7 +62,7 @@ export const getUserOrderTreeHistoryRequest = async (
     .get("/api/collections/orders_history/records", {
       page: page,
       sort: "-created",
-      filter: `(payment_type='tree' && user='${data}')`,
+      filter: `(donat_unit='tree' && user='${data}')`,
     })
     .send<Collection<RequestOrderHistoryData>>();
   return req;
@@ -70,13 +70,14 @@ export const getUserOrderTreeHistoryRequest = async (
 
 export const getUserOrderOtherHistoryRequest = async (
   data: string,
-  page: number = 1
+  page: number = 1,
+  order: OrderCategory
 ) => {
   const req = await client
     .get("/api/collections/orders_history/records", {
       page: page,
       sort: "-created",
-      filter: `(payment_type!='tree' && user='${data}')`,
+      filter: `(donat_unit='${order}' && user='${data}')`,
     })
     .send<Collection<RequestOrderHistoryData>>();
   return req;

@@ -142,7 +142,6 @@ async function page({ searchParams }: { searchParams?: any }) {
     <div>
       <Navbar />
       <HomeHeaderSlide data={getData()?.banner} />
-
       <Suspense fallback={<HomePlatformLoading />}>
         <HomePlatform />
       </Suspense>

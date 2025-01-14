@@ -34,17 +34,19 @@ function CouminityCo2Save({ user }: { user: UserItem }) {
           </p>
         </div>
       )}
-      {community.data?.map((e, i) => {
-        return (
-          <div
-            className="flex justify-between items-center py-4 border-b"
-            key={e.name + "commmunity"}
-          >
-            <p>{e.name}</p>
-            <p>{e.impact} Co2 Saved</p>
-          </div>
-        );
-      })}
+      {community.data
+        ?.filter((e) => e.impact > 0)
+        .map((e) => {
+          return (
+            <div
+              className="flex justify-between items-center py-4 border-b"
+              key={e.name + "commmunity"}
+            >
+              <p>{e.name}</p>
+              <p>{e.impact.toFixed(2)} Co2 Saved</p>
+            </div>
+          );
+        })}
     </div>
   );
 }

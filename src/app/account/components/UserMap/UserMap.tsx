@@ -30,7 +30,7 @@ function UserMap() {
         zoom: 3,
       });
       mapRef.current.scrollZoom.disable();
-  
+
       // Listen for the `load` event to know when the map is fully loaded
       mapRef.current.on("load", () => {
         setMapLoaded(true); // Set the state to true when the map is loaded
@@ -52,7 +52,7 @@ function UserMap() {
   }, []);
   return (
     <div>
-      <div ref={mapContainerRef} style={{ height: " 20rem", width: "100%" }}>
+      <div ref={mapContainerRef} style={{ height: " 23rem", width: "100%" }}>
         {mapLoaded &&
           mydonation.map((marker, index) => (
             <CustomMarker

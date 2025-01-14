@@ -10,21 +10,23 @@ import {
 import {
   getUserOrderOtherHistoryRequest,
   getUserOrderTreeHistoryRequest,
+  OrderCategory,
 } from "@/request/worker/account/ordersRequest";
 import { useMutation } from "@tanstack/react-query";
 import { useSession } from "next-auth/react";
 import { useEffect, useState } from "react";
 import OrderCard from "./OrderCard";
 
-function UserOthersOrders() {
+function UserOthersOrders({ order }: { order: OrderCategory }) {
   const session = useSession();
   const [page, setPage] = useState(1);
   const loadAllOrders = useMutation({
-    mutationKey: ["user-others-orders", session.data?.user?.id, page],
+    mutationKey: ["user-others-orders", session.data?.user?.id, page, order],
     mutationFn: async () => {
       const data = await getUserOrderOtherHistoryRequest(
         session.data!.user!.id,
-        page
+        page,
+        order
       );
       return data;
     },
@@ -39,7 +41,7 @@ function UserOthersOrders() {
     if (session.data?.user?.id) {
       loadAllOrders.mutate();
     }
-  }, [session.data?.user?.id, page]);
+  }, [session.data?.user?.id, page, order]);
   if (loadAllOrders.isPending) {
     return <div>Loading...</div>;
   }
