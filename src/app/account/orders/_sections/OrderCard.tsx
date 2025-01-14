@@ -66,7 +66,7 @@ export default function OrderCard({ data }: { data: RequestOrderHistoryData }) {
             </div>
             <div className="">
               <h3 className="font-semibold">Project Name</h3>
-              <p>Support {data?.reason}</p>
+              <p> {data?.reason}</p>
             </div>
             <div>
               <h3 className="font-semibold">Price</h3>
