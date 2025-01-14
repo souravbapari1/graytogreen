@@ -25,8 +25,8 @@ const MicroActionMetrics = ({ statusData }: { statusData: any }) => (
       },
       {
         title: "Impact (ongoing micro-action)",
-        value: `${statusData.data?.current?.impact || 0} Kgs CO2e`,
-        sub: "(saved/year)",
+        value: `${statusData.data?.current?.impact || 0} Kg of Co2 `,
+        sub: "Eq Avoided Or Saved / Year",
       },
       {
         title: "Sustainability Warriors",
@@ -34,13 +34,13 @@ const MicroActionMetrics = ({ statusData }: { statusData: any }) => (
       },
       {
         title: "Total impact of ReThink",
-        value: `${statusData.data?.total?.impact || 0} Kgs CO2e`,
-        sub: "(saved/year)",
+        value: `${statusData.data?.total?.impact || 0} Kg of Co2 `,
+        sub: "Eq Avoided Or Saved / Year",
       },
     ].map((metric, index) => (
       <div
         key={index}
-        className="w-full h-36 border rounded-2xl bg-primary/5 flex flex-col justify-center items-center donateBtn border-white shadow p-5 text-center"
+        className="w-full h-36 border rounded-lg bg-primary/5 flex flex-col justify-center items-center donateBtn border-white shadow p-5 text-center"
       >
         <p className="font-medium text-white mb-3">{metric.title}</p>
         <h4 className="text-2xl text-white font-bold text-primary">
@@ -214,10 +214,10 @@ function MicroActionView({ session }: { session: Session | null }) {
           <MicroActionMetrics statusData={statusData} />
           {session?.user.user_type == "ambassador" && (
             <div className="w-full h-20 donateBtn rounded-2xl mt-5  shadow-none border-none flex text-xl justify-between items-center">
-              <h1>Impact By Ambassador</h1>
+              <h1> Total impact ( Through links + By Ambassador )</h1>
               <p>
                 {statusData.data?.ambassadorImpact.impact || 0} Kg co2 Save
-                <small>(saved/year)</small>
+                <small>Eq Avoided Or Saved / Year</small>
               </p>
             </div>
           )}
