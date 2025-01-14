@@ -14,7 +14,7 @@ export const metadata = {
   description: "Rethink",
 };
 async function page() {
-  const data = await getMicroActions();
+  const data = await getMicroActions({ all: true });
   const user = await auth();
 
   return (

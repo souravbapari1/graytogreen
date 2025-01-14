@@ -175,7 +175,10 @@ function MicroActionView({ session }: { session: Session | null }) {
   const statusData = useMutation({
     mutationKey: ["status", data.selected?.id],
     mutationFn: () =>
-      getImpactStatus(data.selected?.id || "", params.get("refer") || ""),
+      getImpactStatus(
+        data.selected?.id || "",
+        params.get("refer") || session?.user.id || ""
+      ),
   });
 
   useEffect(() => {
@@ -212,15 +215,20 @@ function MicroActionView({ session }: { session: Session | null }) {
         <h1 className="text-2xl font-bold text-center">Impact Statistics</h1>
         <div className="">
           <MicroActionMetrics statusData={statusData} />
-          {session?.user.user_type == "ambassador" && (
-            <div className="w-full h-20 donateBtn rounded-2xl mt-5  shadow-none border-none flex text-xl justify-between items-center">
-              <h1> Total impact ( Through links + By Ambassador )</h1>
-              <p>
+          <div className="grid md:grid-cols-2 gap-5 mt-6">
+            <div className="w-full h-36 border rounded-lg bg-primary/5 flex gap-2 flex-col justify-center items-center donateBtn border-white shadow p-5 text-center">
+              <h1>
+                {" "}
+                {session?.user.user_type == "ambassador"
+                  ? "Total impact ( Through links + By Ambassador )"
+                  : "Total impact Your Impact"}
+              </h1>
+              <p className="text-xl font-bold text-white">
                 {statusData.data?.ambassadorImpact.impact || 0} Kg co2 Save
-                <small>Eq Avoided Or Saved / Year</small>
               </p>
+              <small>Eq Avoided Or Saved / Year</small>
             </div>
-          )}
+          </div>
         </div>
       </div>
     </div>

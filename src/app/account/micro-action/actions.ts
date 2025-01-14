@@ -4,10 +4,10 @@ import { Collection } from "@/interface/collection";
 import { auth } from "@/auth";
 import { isTwentyFourHoursOlder } from "@/helper/dateTime";
 
-export const getMicroActions = async () => {
+export const getMicroActions = async ({ all }: { all: boolean }) => {
   const user = await auth();
   const userType = user?.user.user_type;
-  if (userType === "partner") {
+  if (!all) {
     const res = await client
       .get("/api/collections/micro_actions/records", {
         filter: `(partners~'${user?.user.id}')`,
@@ -47,6 +47,9 @@ export const createNewImpact = async (data: {
     .json(application);
 
   const action = await res.send<MAImpactItem>();
+  if (data.user) {
+    await assignThis({ actionId: data.micro_action, user: data.user });
+  }
   const old = localStorage.getItem("microAction");
   const removeOld = JSON.parse(old || "[]").filter(
     (item: MAImpactItem) => item.micro_action !== action.micro_action
@@ -65,6 +68,7 @@ export const isMAsubmitToday = (id: string) => {
 
   if (isSubmit) {
     const isOld = isTwentyFourHoursOlder(isSubmit.created);
+
     return isOld;
   } else {
     return true;
@@ -76,4 +80,30 @@ export const getImpactStatus = async (id: string, amb: string = "") => {
     .get("/maimpact/status", { id, amb })
     .send<ImpactCount>();
   return res;
+};
+
+export const assignThis = async ({
+  actionId,
+  user,
+}: {
+  actionId: string;
+  user: string;
+}) => {
+  try {
+    const res = await client
+      .get("/api/collections/micro_actions/records/" + actionId)
+      .send<MicroActionItem>();
+
+    const ifIserExist = res.partners.find((e) => e == user);
+    if (!ifIserExist) {
+      await client
+        .patch("/api/collections/micro_actions/records/" + actionId)
+        .json<Partial<MicroActionItem>>({
+          "partners+": user,
+        })
+        .send<MicroActionItem>();
+    }
+  } catch (error) {
+    console.log(error);
+  }
 };
