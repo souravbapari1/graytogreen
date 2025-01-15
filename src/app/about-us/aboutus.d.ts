@@ -135,24 +135,14 @@ export interface MissionAndVission {
   id: string;
   title: string;
   description: string;
-  images: Images2;
+  linkText: string;
+  linkUrl: string;
+  align: string;
+  image: Image5;
+  More_Links: any[];
 }
 
-export interface Images2 {
-  right: Right2;
-  left: Left2;
-  center: Center2;
-}
-
-export interface Right2 {
-  url: string;
-}
-
-export interface Left2 {
-  url: string;
-}
-
-export interface Center2 {
+export interface Image5 {
   url: string;
 }
 
@@ -167,12 +157,12 @@ export interface Member4 {
   id: string;
   name: string;
   about: string;
-  image: Image5;
+  image: Image6;
   linkdinProfile: string;
   position: string;
 }
 
-export interface Image5 {
+export interface Image6 {
   url: string;
 }
 
@@ -187,12 +177,12 @@ export interface Member5 {
   id: string;
   name: string;
   about: string;
-  image: Image6;
+  image: Image7;
   linkdinProfile: string;
   position: string;
 }
 
-export interface Image6 {
+export interface Image7 {
   url: string;
 }
 
@@ -212,12 +202,12 @@ export interface Member6 {
   id: string;
   name: string;
   about: string;
-  image: Image7;
+  image: Image8;
   linkdinProfile: string;
   position: string;
 }
 
-export interface Image7 {
+export interface Image8 {
   url: string;
 }
 
@@ -239,11 +229,11 @@ export interface Member8 {
   linkdinProfile: string;
   id: string;
   about: string;
-  image: Image8;
+  image: Image9;
   Other_Links: OtherLink[];
 }
 
-export interface Image8 {
+export interface Image9 {
   url: string;
 }
 

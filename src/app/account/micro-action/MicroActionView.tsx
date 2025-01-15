@@ -223,7 +223,7 @@ function MicroActionView({ session }: { session: Session | null }) {
                 {" "}
                 {session?.user.user_type == "ambassador"
                   ? "Total impact ( Through links + By Ambassador )"
-                  : "Total impact Your Impact"}
+                  : "Total Your Impact"}
               </h1>
               <p className="text-xl font-bold text-white">
                 {statusData.data?.ambassadorImpact.impact || 0} Kg co2 Save

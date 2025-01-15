@@ -114,16 +114,16 @@ const GQL = gql`
         id
         title
         description
-        images {
-          right {
-            url
-          }
-          left {
-            url
-          }
-          center {
-            url
-          }
+        linkText
+        linkUrl
+        align
+        image {
+          url
+        }
+        More_Links {
+          linkText
+          linkUrl
+          id
         }
       }
       parteners {

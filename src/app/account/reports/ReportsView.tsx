@@ -15,7 +15,7 @@ import {
   getReports,
 } from "@/request/worker/reports/manageReports";
 import { useMutation, useQuery } from "@tanstack/react-query";
-import { BellDot, Clock, Eye, Trash } from "lucide-react";
+import { BellDot, CheckCircle2, Clock, Eye, Trash } from "lucide-react";
 import Link from "next/link";
 import { useEffect, useState } from "react";
 import toast from "react-hot-toast";
@@ -58,21 +58,45 @@ function ReportsView({ user }: { user: string }) {
     setYear(year);
     setMonth(month);
   }, []);
+  function isCurrentMonthInPast(month: number, year: number): boolean {
+    // Validate input
+    if (month < 1 || month > 12) {
+      throw new Error(
+        "Invalid month. Please provide a value between 1 and 12."
+      );
+    }
 
+    const currentDate = new Date();
+    const currentYear = currentDate.getFullYear();
+    const currentMonth = currentDate.getMonth() + 1; // getMonth() returns 0-based month
+
+    // Compare year and month
+    if (year < currentYear) {
+      return true;
+    } else if (year === currentYear && month < currentMonth) {
+      return true;
+    }
+
+    return false;
+  }
   const monthData = (month: string) =>
     data.data?.items.find((e) => e.month == month);
 
-  const reportCount = (month: string) => {
+  const reportCount = (month: string, index: number) => {
     const data = monthData(month);
-    if (!data) return { count: 0, data };
+    if (!data)
+      return { count: 0, data, isOldMonth: isCurrentMonthInPast(index, +year) };
     const weeks = [data.week1, data.week2, data.week3, data.week4];
+    const count = weeks.reduce((count, week) => (week ? count + 1 : count), 0);
+
     return {
-      count: weeks.reduce((count, week) => (week ? count + 1 : count), 0),
+      count,
       data,
+      isOldMonth: isCurrentMonthInPast(index, +year),
     };
   };
 
-  const monthDataView = reportCount(months[month]);
+  const monthDataView = reportCount(months[month], month + 1);
 
   const requests = useQuery({
     queryKey: ["requests"],
@@ -174,18 +198,25 @@ function ReportsView({ user }: { user: string }) {
             </Select>
             <br />
             {months.map((e, i) => {
-              const currentData = reportCount(months[i]);
+              const currentData = reportCount(months[i], month + 1);
               return (
                 <div
                   key={e}
                   onClick={() => setMonth(i)}
                   className={cn(
                     "bg-white w-full select-none cursor-pointer hover:bg-green-50 flex justify-between items-center text-xs px-3 h-9 border-b",
-                    month == i && "bg-green-100"
+                    month == i && "bg-green-100",
+                    currentData.isOldMonth &&
+                      currentData.count != 4 &&
+                      " bg-red-400/10"
                   )}
                 >
                   <h1 className="font-semibold">{e.toUpperCase()}</h1>
-                  <p className="text-gray-400">{currentData?.count}/4</p>
+                  {currentData.count != 4 ? (
+                    <p className="text-gray-400">{currentData?.count}/4</p>
+                  ) : (
+                    <CheckCircle2 size={15} className="text-primary" />
+                  )}
                 </div>
               );
             })}
@@ -204,7 +235,10 @@ function ReportsView({ user }: { user: string }) {
                   className={cn(
                     "w-full h-32 flex justify-between items-center border border-gray-300/30 px-6 py-2 rounded-2xl bg-white",
                     monthDataView?.data?.[e as keyof MonthlyReportItem] &&
-                      "bg-primary/10 shadow-none border-primary/5"
+                      "bg-primary/10 shadow-none border-primary/5",
+                    isPastOrCurrentWeek(i, +year, month) &&
+                      !monthDataView?.data?.[e as keyof MonthlyReportItem] &&
+                      "bg-red-400/20"
                   )}
                 >
                   <div className="h-full flex justify-center flex-col items-start">
@@ -216,11 +250,9 @@ function ReportsView({ user }: { user: string }) {
                   <div className="flex flex-col justify-end items-center">
                     {monthDataView?.data?.[e as keyof MonthlyReportItem] && (
                       <h1 className="text-sm font-bold mb-3 text-primary">
-                        Reviewed By <br />
-                        GTG Team
+                        Reviewed
                       </h1>
                     )}
-
                     {!monthDataView?.data?.[e as keyof MonthlyReportItem] ? (
                       isPastOrCurrentWeek(i, +year, month) ? (
                         <Link

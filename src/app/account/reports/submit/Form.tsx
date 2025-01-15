@@ -166,9 +166,11 @@ function SubmitForm() {
       <h1 className="text-2xl font-bold text-center">{genPageTitle()}</h1>
       <div className="">
         <div className="mt-20">
-          <Label className="text-lg font-semibold">Summary Of This Week</Label>
+          <Label className="text-sm mb-2 block font-medium mt-5">
+            Summary Of This Week
+          </Label>
           <QuillEditor
-            className="shadow-none rounded-none mt-2 border h-auto w-full"
+            className="shadow-none rounded-md mt-2 border min-h-40 w-full"
             value={summery}
             onChange={(e) => setSummery(e)}
           />
@@ -176,9 +178,11 @@ function SubmitForm() {
 
         <div className="mt-20">
           <div className="flex justify-between items-center">
-            <Label className="text-lg font-semibold">Events List</Label>
+            <Label className="text-lg font-medium  block mb-1 ">
+              Events List
+            </Label>
             <div
-              className="flex justify-end cursor-pointer text-primary items-center gap-3 font-semibold"
+              className="flex justify-end cursor-pointer text-primary items-center gap-3 font-medium text-sm  mb-1 mt-5"
               onClick={addEvent}
             >
               <p>Add</p>
@@ -188,13 +192,12 @@ function SubmitForm() {
           <div className="mt-5 grid gap-6 md:grid-cols-2 lg:grid-cols-2">
             {events.map((e, i) => {
               return (
-                <div className="">
-                  <div
-                    key={i + "event"}
-                    className="border p-4 rounded-lg shadow-sm hover:shadow-lg"
-                  >
+                <div className="" key={i + "event"}>
+                  <div className="border p-4  rounded-md">
                     <div className="flex justify-between items-center">
-                      <h3 className="text-lg font-semibold">Event {i + 1}</h3>
+                      <h3 className="text-lg font-medium  block mb-1 ">
+                        Event {i + 1}
+                      </h3>
                       <IoCloseCircle
                         color="red"
                         className="cursor-pointer"
@@ -219,27 +222,33 @@ function SubmitForm() {
                     </div>
 
                     <div className="mt-2">
-                      <Label className="font-semibold">Event Title</Label>
+                      <Label className="font-medium text-sm block mb-1 mt-5">
+                        Event Title
+                      </Label>
                       <QuillEditor
-                        className="shadow-none rounded-none border"
+                        className="shadow-none rounded-md border"
                         value={e.title}
                         onChange={(e) => updateEvent(i, "title", e)}
                       />
                     </div>
 
                     <div className="mt-2">
-                      <Label className="font-semibold">Activates</Label>
+                      <Label className="font-medium text-sm block mb-1 mt-5">
+                        Activates
+                      </Label>
                       <QuillEditor
-                        className="shadow-none rounded-none border"
+                        className="shadow-none rounded-md border"
                         value={e.activates}
                         onChange={(e) => updateEvent(i, "activates", e)}
                       />
                     </div>
 
                     <div className="mt-2">
-                      <Label className="font-semibold">Outcomes</Label>
+                      <Label className="font-medium text-sm block mb-1 mt-5">
+                        Outcomes
+                      </Label>
                       <QuillEditor
-                        className="shadow-none rounded-none border"
+                        className="shadow-none rounded-md border"
                         value={e.outcomes}
                         onChange={(e) => updateEvent(i, "outcomes", e)}
                       />
@@ -277,7 +286,7 @@ function SubmitForm() {
                         id={"file-event-" + i}
                         type="file"
                         disabled={uploadFileQuery.isPending}
-                        className="shadow-none hidden rounded-none w-full pt-2 max-w-[300px]"
+                        className="shadow-none hidden rounded-md w-full pt-2 max-w-[300px]"
                         accept="image/*,video/*,.pdf"
                         onChange={(e) => {
                           if (e.target.files) {
@@ -301,12 +310,12 @@ function SubmitForm() {
 
         <div className="mt-20">
           <div className="flex justify-between items-center">
-            <Label className="text-lg font-semibold">
+            <Label className="text-lg font-medium  block mb-1 mt-5">
               Challenges you Faced How You Solved It
             </Label>
             <div
               onClick={addChallenge}
-              className="flex justify-end cursor-pointer text-primary items-center gap-3 font-semibold"
+              className="flex justify-end cursor-pointer text-primary items-center gap-3 font-medium text-sm  mb-1 mt-5"
             >
               <p>Add</p>
               <FiPlusCircle size={24} />
@@ -315,12 +324,11 @@ function SubmitForm() {
           <div className="mt-5 grid gap-6 md:grid-cols-2 lg:grid-cols-2">
             {challenges.map((e, i) => {
               return (
-                <div
-                  key={i}
-                  className="border p-4 rounded-lg shadow-sm hover:shadow-lg"
-                >
+                <div key={i} className="border p-4 rounded-md">
                   <div className="flex justify-between items-center">
-                    <h3 className="text-lg font-semibold">Challenge {i + 1}</h3>
+                    <h3 className=" font-bold text-sm block ">
+                      Challenge {i + 1}
+                    </h3>
                     <IoCloseCircle
                       color="red"
                       className="cursor-pointer"
@@ -344,24 +352,28 @@ function SubmitForm() {
                   </div>
 
                   <div className="mt-2">
-                    <Label className="font-semibold">Challenge Title</Label>
+                    <Label className="font-medium text-sm block mb-1 mt-5">
+                      Challenge Title
+                    </Label>
                     <QuillEditor
-                      className="shadow-none rounded-none border"
+                      className="shadow-none rounded-md border"
                       value={e.title}
                       onChange={(e) => updateChallenge(i, "title", e)}
                     />
                   </div>
 
                   <div className="mt-2">
-                    <Label className="font-semibold">What You Did</Label>
+                    <Label className="font-medium text-sm block mb-1 mt-5">
+                      What You Did
+                    </Label>
                     <QuillEditor
-                      className="shadow-none rounded-none border"
+                      className="shadow-none rounded-md border"
                       value={e.whatYouDid}
                       onChange={(e) => updateChallenge(i, "whatYouDid", e)}
                     />
                   </div>
 
-                  {/* <div className="mt-3">
+                  <div className="mt-3">
                     {e.file?.map((file) => (
                       <div
                         key={file.id}
@@ -380,9 +392,9 @@ function SubmitForm() {
                         />
                       </div>
                     ))}
-                  </div> */}
+                  </div>
 
-                  {/* <div className="mt-3">
+                  <div className="mt-3">
                     <label
                       htmlFor={"file-challenge-" + i}
                       className="bg-primary p-1 text-xs text-white rounded flex gap-4 mt-2 justify-center items-center cursor-pointer w-full"
@@ -393,7 +405,7 @@ function SubmitForm() {
                       id={"file-challenge-" + i}
                       type="file"
                       disabled={uploadFileQuery.isPending}
-                      className="shadow-none hidden rounded-none w-full pt-2 max-w-[300px]"
+                      className="shadow-none hidden rounded-md w-full pt-2 max-w-[300px]"
                       accept="image/*,video/*,.pdf"
                       onChange={(e) => {
                         if (e.target.files) {
@@ -407,7 +419,7 @@ function SubmitForm() {
                         }
                       }}
                     />
-                  </div> */}
+                  </div>
                 </div>
               );
             })}
@@ -415,9 +427,11 @@ function SubmitForm() {
         </div>
 
         <div className="mt-20">
-          <Label className="text-lg font-semibold">Plan For Next Week</Label>
+          <Label className="text-lg font-medium block mb-1 mt-5">
+            Plan For Next Week
+          </Label>
           <QuillEditor
-            className="shadow-none rounded-none mt-2 h-48 border"
+            className="shadow-none rounded-md mt-2 min-h-48 border"
             value={nextStep}
             onChange={(e) => setNextStep(e)}
           />

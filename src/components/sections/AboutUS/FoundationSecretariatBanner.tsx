@@ -25,7 +25,7 @@ function FoundationSecretariatBanner({
           <div className="relative md:p-10 flex justify-center items-center">
             <div className="w-[90%] h-48 md:h-[300px] bg-green-700/20 absolute -z-[1] lg:-mr-12 -mr-10 rounded-2xl mb-10"></div>
             <Image
-              src={strApi + seg?.image.url}
+              src={strApi + data.image.url}
               width={1200}
               height={1200}
               alt=""
@@ -42,9 +42,28 @@ function FoundationSecretariatBanner({
               dangerouslySetInnerHTML={{ __html: data.title || "" }}
             />
             <p
-              className=" lg:text-xl  mt-10 text-justify"
+              className={montserrat.className + "  mt-5 "}
               dangerouslySetInnerHTML={{ __html: data.description || "" }}
             />
+            <Link
+              href={data?.linkUrl || "#"}
+              className="uppercase font-bold mb-2 text-main mt-5 flex md:justify-start justify-center items-center"
+            >
+              {data?.linkText} <RiArrowDropRightLine size={35} />
+            </Link>
+
+            {data?.More_Links &&
+              data.More_Links.map((e) => {
+                return (
+                  <Link
+                    key={e.id}
+                    href={e.linkUrl || "#"}
+                    className="uppercase font-bold mb-2 text-main  flex md:justify-start justify-center items-center"
+                  >
+                    {e.linkText} <RiArrowDropRightLine size={35} />
+                  </Link>
+                );
+              })}
             <br />
           </div>
         </div>
@@ -75,7 +94,7 @@ function FoundationSecretariatBanner({
               dangerouslySetInnerHTML={{ __html: seg?.title || "" }}
             />
             <p
-              className={montserrat.className + "  mt-10 "}
+              className={montserrat.className + "  mt-5 "}
               dangerouslySetInnerHTML={{ __html: seg?.description || "" }}
             />
             <Link
