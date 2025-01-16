@@ -15,47 +15,106 @@ import UserImpactInfo from "./UserImpactInfo";
 import { useMicroActionState } from "./microActioonState";
 import Image from "next/image";
 import { Leaf } from "lucide-react";
+import { title } from "process";
+import { ImpactCount } from "./md";
+import { cn } from "@/lib/utils";
 
 const MicroActionMetrics = ({
   statusData,
+  session,
+  count,
 }: {
-  statusData: any;
+  statusData?: ImpactCount;
   count: number;
-}) => (
-  <div className="grid md:grid-cols-2 gap-6 mt-5">
-    {[
-      {
-        title: "Impacters from",
-        value: statusData.data?.totalCity + " locations",
-      },
-      {
-        title: "Impact (ongoing micro-action)",
-        value: `${statusData.data?.current?.impact || 0} Kg of Co2 `,
-        sub: "Eq Avoided Or Saved / Year",
-      },
-      {
-        title: "Sustainability Warriors",
-        value: statusData.data?.users.users || 0,
-      },
-      {
-        title: "Total impact of ReThink",
-        value: `${statusData.data?.total?.impact || 0} Kg of Co2 `,
-        sub: "Eq Avoided Or Saved / Year",
-      },
-    ].map((metric, index) => (
-      <div
-        key={index}
-        className="w-full h-36 border rounded-lg bg-primary/5 flex flex-col justify-center items-center donateBtn border-white shadow p-5 text-center"
-      >
-        <p className="font-medium text-white mb-3">{metric.title}</p>
-        <h4 className="text-2xl text-white font-bold text-primary">
-          {metric.value}
-          {metric.sub && <p className="text-xs"> {metric.sub}</p>}
-        </h4>
-      </div>
-    ))}
-  </div>
-);
+  session: Session | null;
+}) => {
+  const pathname = usePathname();
+  const isRethink = pathname.startsWith("/rethink");
+
+  const dataView = [
+    {
+      allow: ["partner", "ambassador", "individual"],
+      title: "No. Submitted Actions",
+      value: count || 0,
+      showRethink: false,
+    },
+    {
+      allow: ["partner", "ambassador"],
+      title: "Impacters from ( Number of Cites )",
+      value: (statusData?.totalCity || 0) + " locations",
+      showRethink: true,
+    },
+    {
+      allow: ["partner", "ambassador"],
+      title: "No. Impactors",
+      value: statusData?.users.users || 0,
+      showRethink: true,
+    },
+    {
+      allow: ["partner", "ambassador", "individual"],
+      title: "Impact (ongoing micro-action)",
+      value: `${statusData?.current?.impact || 0} Kg of Co2 `,
+      sub: "Eq Avoided Or Saved / Year",
+      showRethink: true,
+    },
+    {
+      allow: ["ambassador"],
+      title: "Total Impact through me",
+      value: `${statusData?.myImpact?.impact || 0} Kg of Co2 `,
+      sub: "Eq Avoided Or Saved / Year",
+      className: "bg-orange-500",
+      showRethink: false,
+    },
+    {
+      allow: ["ambassador"],
+      title: "Total impact ( Through links + By Ambassdor )",
+      value: `${statusData?.ambassadorImpact?.impact || 0} Kg of Co2 `,
+      sub: "Eq Avoided Or Saved / Year",
+      showRethink: false,
+    },
+    {
+      allow: ["individual"],
+      title: "Total Impact By Use",
+      value: `${statusData?.myImpact?.impact || 0} Kg of Co2 `,
+      sub: "Eq Avoided Or Saved / Year",
+      showRethink: false,
+    },
+    {
+      allow: [],
+      title: "Total impact of ReThink",
+      value: `${statusData?.total?.impact || 0} Kg of Co2 `,
+      sub: "Eq Avoided Or Saved / Year",
+      showRethink: true,
+    },
+  ];
+
+  return (
+    <>
+      {dataView
+        .filter((e) => {
+          if (isRethink) {
+            return e.showRethink;
+          }
+          return e.allow.includes(session?.user.user_type || "");
+        })
+        .map((metric, index) => (
+          <div
+            key={index}
+            className={cn(
+              "w-full h-36  rounded-lg bg-primary flex flex-col justify-center items-center   shadow p-5 text-center",
+              metric.className
+            )}
+          >
+            <p className="font-medium text-white mb-3">{metric.title}</p>
+            <h4 className="text-2xl text-white font-bold text-primary">
+              {metric.value}
+              {metric.sub && <p className="text-xs"> {metric.sub}</p>}
+            </h4>
+          </div>
+        ))}
+    </>
+  );
+};
 const MicroActionSubmission = ({ data, session, handelSubmit }: any) => (
   <div className="md:mt-5 mt-3 border-2 border-primary/10 relative bg-white rounded-md p-8 ">
     <div className="mb-5">
@@ -229,28 +288,13 @@ function MicroActionView({
       <div className="">
         <h1 className="text-2xl font-bold text-center">Impact Statistics</h1>
         <div className="">
-          <MicroActionMetrics statusData={statusData} count={count} />
-          {!path.startsWith("/rethink") && (
-            <div className="grid md:grid-cols-2 gap-5 mt-6">
-              <div className="w-full h-36 border rounded-lg bg-primary/5 flex gap-2 flex-col justify-center items-center donateBtn border-white shadow p-5 text-center">
-                <h1>
-                  {" "}
-                  {session?.user.user_type == "ambassador"
-                    ? "Total impact ( Through links + By Ambassador )"
-                    : "Total Your Impact"}
-                </h1>
-                <p className="text-xl font-bold text-white">
-                  {statusData.data?.ambassadorImpact.impact || 0} Kg co2 Save
-                </p>
-                <small>Eq Avoided Or Saved / Year</small>
-              </div>
-              {/* No. Submitted Actions  */}
-              <div className="w-full h-36 border rounded-lg bg-primary/5 flex gap-2 flex-col justify-center items-center donateBtn border-white shadow p-5 text-center">
-                <h1>No. Submitted Actions</h1>
-                <p className="text-xl font-bold text-white">{count || 0}</p>
-              </div>
-            </div>
-          )}
+          <div className="grid md:grid-cols-2 gap-5 mt-6">
+            <MicroActionMetrics
+              session={session}
+              statusData={statusData.data}
+              count={count}
+            />
+          </div>
         </div>
       </div>
     </div>

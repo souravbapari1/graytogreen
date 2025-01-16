@@ -7,11 +7,11 @@ import { getTargetStatus } from "@/request/worker/targetStatus";
 import { useQuery } from "@tanstack/react-query";
 import React from "react";
 
-function CouminityDonationList({ user }: { user: UserItem }) {
+function CouminityDonationList({ user }: { user?: UserItem }) {
   //   const [community, setCommunity] = useState<OrderPayItem[]>([]);
 
   const community = useQuery({
-    queryKey: ["community-contribution", user.id],
+    queryKey: ["community-contribution", user?.id],
     queryFn: async () => {
       const data = await client
         .get(`/api/collections/payments/records`, {

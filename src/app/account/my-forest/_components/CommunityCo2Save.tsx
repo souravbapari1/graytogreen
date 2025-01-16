@@ -7,11 +7,11 @@ import { getTargetStatus } from "@/request/worker/targetStatus";
 import { useQuery } from "@tanstack/react-query";
 import React from "react";
 
-function CouminityCo2Save({ user }: { user: UserItem }) {
+function CouminityCo2Save({ user }: { user?: UserItem }) {
   //   const [community, setCommunity] = useState<OrderPayItem[]>([]);
 
   const community = useQuery({
-    queryKey: ["co2-contribution", user.id],
+    queryKey: ["co2-contribution", user?.id],
     queryFn: async () => {
       const data = await client.get(`/forest/status`).send<
         {

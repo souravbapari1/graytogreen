@@ -41,6 +41,7 @@ export interface ImpactCount {
   totalCity: number;
   users: Users;
   ambassadorImpact: Current;
+  myImpact: Current;
 }
 
 export interface Current {

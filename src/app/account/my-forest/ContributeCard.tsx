@@ -3,6 +3,7 @@ import { formatTimestampCustom } from "@/helper/dateTime";
 import { Collection } from "@/interface/collection";
 import { OrderPayItem } from "@/interface/PaymentItem";
 import { UserItem } from "@/interface/user";
+import { cn } from "@/lib/utils";
 import { client, genPbFiles } from "@/request/actions";
 import { useMutation, useQuery } from "@tanstack/react-query";
 
@@ -22,6 +23,7 @@ function ContributeCard({
       .get(`/api/collections/payments/records`, {
         perPage: 2,
         filter: `(project='${order.expand.project.id}' && status='paid' && orderPlaced=true && user!='${user.id}')`,
+        expand: "support",
       })
       .send<Collection<OrderPayItem>>();
     return data;
@@ -32,7 +34,12 @@ function ContributeCard({
     queryFn: moreOrders,
   });
   return (
-    <div className="w-full bg-primary/5 h-auto mt-2 mb-5 rounded-xl flex justify-start flex-col items-start relative p-2">
+    <div
+      className={cn(
+        "w-full bg-primary/5 h-auto mt-2 mb-5 rounded-xl flex justify-start flex-col items-start relative p-2",
+        order?.support && "bg-orange-100"
+      )}
+    >
       <div className="md:flex justify-start w-full items-start relative">
         <div className="md:w-auto w-full">
           <div
@@ -61,6 +68,12 @@ function ContributeCard({
             <p className="text-xs mt-1">
               Date: {formatTimestampCustom(order.created)}
             </p>
+            {order.support && (
+              <p className="text-xs mt-1">
+                Supported by : {order?.expand?.support?.first_name}{" "}
+                {order?.expand?.support?.last_name}
+              </p>
+            )}
             <p className="text-xs mt-1">
               {order.quantity} {order.expand.project.unit_measurement} • of{" "}
               {order.expand.project.omr_unit} Omr

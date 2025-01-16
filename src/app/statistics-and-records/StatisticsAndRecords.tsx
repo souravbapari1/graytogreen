@@ -1,65 +1,44 @@
+"use client";
 import { montserrat } from "@/fonts/font";
 import Image from "next/image";
-import React from "react";
-export const donations = [
-  {
-    company: "PJM Investment Akademie GmbH",
-    trees: 1,
-  },
-  {
-    company: "Firma Waterkamp",
-    trees: 100,
-  },
-  {
-    company: "Albin Social",
-    trees: 616,
-  },
-  {
-    company: "Albin Social",
-    trees: 636,
-  },
-  {
-    company: "Albin Social",
-    trees: 640,
-  },
-  {
-    company: "PJM Investment Akademie GmbH",
-    trees: 1,
-  },
-  {
-    company: "PJM Investment Akademie GmbH",
-    trees: 3,
-  },
-  {
-    company: "PJM Investment Akademie GmbH",
-    trees: 1,
-  },
-  {
-    company: "PJM Investment Akademie GmbH",
-    trees: 3,
-  },
-  {
-    company: "PJM Investment Akademie GmbH",
-    trees: 3,
-  },
-];
+import React, { useState } from "react";
+import CouminityDonationList from "../account/my-forest/_components/CouminityDonationList";
+import { cn } from "@/lib/utils";
+import CouminityCo2Save from "../account/my-forest/_components/CommunityCo2Save";
 
 function StatisticsAndRecords() {
+  const [tab, settab] = useState(0);
   return (
     <div className="relative z-20">
-      <div className={`${montserrat.className} container py-20 z-10  pb-40`}>
+      <div
+        className={`${montserrat.className} container py-20 z-10  pb-40 select-none`}
+      >
         <h1 className="md:text-4xl text-2xl font-bold text-center">
           Statistics and Records
         </h1>
         <div className="flex justify-center mt-10 w-full items-center flex-col gap-6">
-          <div className="flex justify-center items-center gap-8 md:mb-4 font-semibold select-none">
-            <p className="border-b-2 border-main text-main cursor-pointer">
-              Plastic Activity
+          <div className="flex justify-center items-center gap-8 md:mb-2 font-semibold select-none">
+            <p
+              className={cn(
+                "border-b-2  cursor-pointer border-white",
+                tab === 0 && "border-b-2  border-main text-main"
+              )}
+              onClick={() => settab(0)}
+            >
+              Most recent
             </p>
-            <p className="cursor-pointer">Planting Trees</p>
+            <p
+              onClick={() => settab(1)}
+              className={cn(
+                "border-b-2  cursor-pointer border-white",
+                tab === 1 && "border-b-2  border-main text-main"
+              )}
+            >
+              Most Co2 Save
+            </p>
           </div>
           <div className="max-w-[600px] w-full">
-            {donations.map((e, i) => {
+            {/* {donations.map((e, i) => {
               return (
                 <div
                   className="flex justify-between items-center py-4 border-b md:text-base text-sm"
@@ -71,7 +50,9 @@ function StatisticsAndRecords() {
                   </p>
                 </div>
               );
-            })}
+            })} */}
+            {tab == 0 && <CouminityDonationList />}
+            {tab == 1 && <CouminityCo2Save />}
           </div>
         </div>
       </div>
