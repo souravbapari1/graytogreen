@@ -1,4 +1,3 @@
-import { donations } from "@/app/statistics-and-records/StatisticsAndRecords";
 import { montserrat } from "@/fonts/font";
 import Link from "next/link";
 import React from "react";
