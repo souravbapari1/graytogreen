@@ -31,7 +31,7 @@ async function page() {
 
   return (
     <WorkSpace>
-      <MicroActionView session={user} />
+      <MicroActionView session={user} count={data.items.length} />
       <MicroActionsList data={data.items} />
       {/* <MicroAbout /> */}
     </WorkSpace>

@@ -21,7 +21,7 @@ async function page() {
     <div>
       <Navbar />
       <div className="container mt-10">
-        <MicroActionView session={user} />
+        <MicroActionView session={user} count={0} />
         <MicroActionsList data={data.items} />
         {/* <MicroAbout /> */}
       </div>

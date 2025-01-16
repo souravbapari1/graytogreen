@@ -4,7 +4,7 @@ import { Input } from "@/components/ui/input";
 import { UserItem } from "@/interface/user";
 import { useMutation } from "@tanstack/react-query";
 import { Session } from "next-auth";
-import { useSearchParams } from "next/navigation";
+import { usePathname, useSearchParams } from "next/navigation";
 import { useEffect, useState } from "react";
 import toast from "react-hot-toast";
 import { TbCopyCheckFilled, TbScreenShare } from "react-icons/tb";
@@ -16,7 +16,12 @@ import { useMicroActionState } from "./microActioonState";
 import Image from "next/image";
 import { Leaf } from "lucide-react";
 
-const MicroActionMetrics = ({ statusData }: { statusData: any }) => (
+const MicroActionMetrics = ({
+  statusData,
+}: {
+  statusData: any;
+  count: number;
+}) => (
   <div className="grid md:grid-cols-2 gap-6 mt-5">
     {[
       {
@@ -113,7 +118,13 @@ const MicroActionSubmission = ({ data, session, handelSubmit }: any) => (
   </div>
 );
 
-function MicroActionView({ session }: { session: Session | null }) {
+function MicroActionView({
+  session,
+  count,
+}: {
+  session: Session | null;
+  count: number;
+}) {
   const data = useMicroActionState();
   const [thankyou, setThankYou] = useState(false);
   const [open, setOpen] = useState(false);
@@ -182,6 +193,8 @@ function MicroActionView({ session }: { session: Session | null }) {
       ),
   });
 
+  const path = usePathname();
+
   useEffect(() => {
     if (data.selected?.id) {
       statusData.mutate();
@@ -216,21 +229,28 @@ function MicroActionView({ session }: { session: Session | null }) {
       <div className="">
         <h1 className="text-2xl font-bold text-center">Impact Statistics</h1>
         <div className="">
-          <MicroActionMetrics statusData={statusData} />
-          <div className="grid md:grid-cols-2 gap-5 mt-6">
-            <div className="w-full h-36 border rounded-lg bg-primary/5 flex gap-2 flex-col justify-center items-center donateBtn border-white shadow p-5 text-center">
-              <h1>
-                {" "}
-                {session?.user.user_type == "ambassador"
-                  ? "Total impact ( Through links + By Ambassador )"
-                  : "Total Your Impact"}
-              </h1>
-              <p className="text-xl font-bold text-white">
-                {statusData.data?.ambassadorImpact.impact || 0} Kg co2 Save
-              </p>
-              <small>Eq Avoided Or Saved / Year</small>
+          <MicroActionMetrics statusData={statusData} count={count} />
+          {!path.startsWith("/rethink") && (
+            <div className="grid md:grid-cols-2 gap-5 mt-6">
+              <div className="w-full h-36 border rounded-lg bg-primary/5 flex gap-2 flex-col justify-center items-center donateBtn border-white shadow p-5 text-center">
+                <h1>
+                  {" "}
+                  {session?.user.user_type == "ambassador"
+                    ? "Total impact ( Through links + By Ambassador )"
+                    : "Total Your Impact"}
+                </h1>
+                <p className="text-xl font-bold text-white">
+                  {statusData.data?.ambassadorImpact.impact || 0} Kg co2 Save
+                </p>
+                <small>Eq Avoided Or Saved / Year</small>
+              </div>
+              {/* No. Submitted Actions  */}
+              <div className="w-full h-36 border rounded-lg bg-primary/5 flex gap-2 flex-col justify-center items-center donateBtn border-white shadow p-5 text-center">
+                <h1>No. Submitted Actions</h1>
+                <p className="text-xl font-bold text-white">{count || 0}</p>
+              </div>
             </div>
-          </div>
+          )}
         </div>
       </div>
     </div>
