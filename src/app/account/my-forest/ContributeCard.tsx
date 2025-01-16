@@ -49,17 +49,27 @@ function ContributeCard({
           <div className="flex flex-col  h-full w-full">
             <p className="flex justify-start items-center gap-2 text-xs text-primary font-semibold">
               <PiPlantFill size={16} />
-              {order.expand.project.sort_title}
+              {order.expand.project.expand?.type?.name}
             </p>
             <h1 className="text-lg mt-2 font-semibold">
               {order.expand.project.name}
             </h1>
+            <p className="text-xs">{order.expand.project.comment}</p>
             <p className="text-xs mt-1">
-              {order.expand.project.country} • By Gray To Green
+              {order.expand.project.country} • {order.expand.project.city}
+            </p>
+            <p className="text-xs mt-1">
+              Date: {formatTimestampCustom(order.created)}
+            </p>
+            <p className="text-xs mt-1">
+              {order.quantity} {order.expand.project.unit_measurement} • of{" "}
+              {order.expand.project.omr_unit} Omr
             </p>
           </div>
-          <div className="flex justify-between pt-8 items-center ">
-            <h1 className="font-bold  text-lg">{order.quantity} Trees</h1>
+          <div className="flex justify-between pt-0 items-center ">
+            <h1 className="font-bold  text-lg">
+              {order.quantity} {order.expand.project.unit_measurement}
+            </h1>
             <Link
               className="donateBtn text-sm py-2 rounded-xl text-white shadow-none"
               href={`/donate?by=project&id=${order.expand.project.id}&donate=${order.donate}`}

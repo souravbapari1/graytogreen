@@ -7,7 +7,7 @@ import { client } from "@/request/actions";
 import { revalidatePath } from "next/cache";
 import { NextResponse } from "next/server";
 
-export const revalidate = 60;
+export const revalidate = 160;
 export async function GET(req: Request) {
   const params = new URL(req.url).searchParams;
   const id = params.get("id");
@@ -38,44 +38,13 @@ export async function GET(req: Request) {
   );
   return NextResponse.json(data);
 }
-const allowList = [
-  "id",
-  "collectionId",
-  "collectionName",
-  "created",
-  "updated",
-  "preview_image",
-  "name",
-  "sort_title",
-  "type",
-  "number_of_target_unit",
-  "omr_unit",
-  "unit_types",
-  "start_date",
-  "end_date",
-  "country",
-  "city",
-  "marker",
-  "workareas",
-  "operated_by",
-  "assigned_by",
-  "top_project",
-  "allow",
-  "status",
-  "project_prefix",
-  "created_by",
-  "accredation_standars",
-]
-  .map((e) => `expand.project.${e}`)
-  .join(",");
+
 const getOrderProjects = async (page: number = 1, filter?: string) => {
   const req = await client
     .get("/api/collections/payments/records", {
       filter: filter || "(status='paid' && orderPlaced=true)",
-      expand: "project",
-      fields:
-        "id,status,amount,orderPlaced,donate,quantity,created,updated," +
-        allowList,
+      expand: "project,project.type",
+
       page: page,
     })
     .send<Collection<OrderPayItem>>();

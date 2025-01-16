@@ -106,12 +106,16 @@ const TreeMap = () => {
                 <p>3462</p>
               </div>
               <div className="flex justify-between items-center p-2 gap-5 w-full text-sm">
-                <h1>Tree ID</h1>
-                <p>3462</p>
+                <h1>Tree Name</h1>
+                <p>MMC</p>
               </div>
               <div className="flex justify-between items-center p-2 bg-primary/5 gap-5 w-full text-sm">
-                <h1>Order ID</h1>
-                <p>3462</p>
+                <h1>Project Name</h1>
+                <p>Beta</p>
+              </div>
+              <div className="flex justify-between items-center p-2 bg-primary/5 gap-5 w-full text-sm">
+                <h1>Tree State</h1>
+                <p>Beta</p>
               </div>
             </DialogDescription>
           </DialogHeader>

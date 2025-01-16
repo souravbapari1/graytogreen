@@ -11,10 +11,8 @@ async function page({ params }: { params: { id: string } }) {
 
   return (
     <WorkSpace>
-      <div className="container mx-auto px-4 sm:px-8">
-        <div
-          className={`${montserrat.className} max-w-3xl mx-auto bg-white p-6 rounded-lg shadow-md`}
-        >
+      <div className="container mx-auto px-4 sm:px-8 mb-24">
+        <div className={`${montserrat.className} `}>
           <h1 className="text-2xl font-bold text-gray-800 mb-4">
             Future Sustainability Leaders Program
           </h1>
@@ -29,47 +27,76 @@ async function page({ params }: { params: { id: string } }) {
               </h2>
               <ul className="space-y-2">
                 <li>
-                  <span className="font-medium">Name:</span>{" "}
-                  {fslp.application.firstName + " " + fslp.application.lastName}
+                  <span className="font-medium">Name</span>
+                  <br />
+                  <p className="border p-2 px-5 rounded-lg mt-1 mb-4">
+                    {fslp.application.firstName +
+                      " " +
+                      fslp.application.lastName}
+                  </p>
                 </li>
                 <li>
-                  <span className="font-medium">Email:</span>{" "}
-                  {fslp.application.emailID}
+                  <span className="font-medium">Email</span>
+                  <br />
+                  <p className="border p-2 px-5 rounded-lg mt-1 mb-4">
+                    {fslp.application.emailID}
+                  </p>
                 </li>
 
                 <li>
-                  <span className="font-medium">Address:</span>{" "}
-                  {fslp.application.address}
+                  <span className="font-medium">Address</span>
+                  <br />
+                  <p className="border p-2 px-5 rounded-lg mt-1 mb-4">
+                    {fslp.application.address}
+                  </p>
                 </li>
 
                 <div className="grid grid-cols-2 gap-10 w-full">
                   <div className="">
                     <li>
-                      <span className="font-medium">Country:</span>{" "}
-                      {fslp.application.country}
+                      <span className="font-medium">Country</span>
+                      <br />
+                      <p className="border p-2 px-5 rounded-lg mt-1 mb-4">
+                        {fslp.application.country}
+                      </p>
                     </li>
                     <li>
-                      <span className="font-medium">City:</span>{" "}
-                      {fslp.application.city}
+                      <span className="font-medium">City</span>
+                      <br />
+                      <p className="border p-2 px-5 rounded-lg mt-1 mb-4">
+                        {fslp.application.city}
+                      </p>
                     </li>
 
                     <li>
-                      <span className="font-medium">Date of Birth:</span>{" "}
-                      {fslp.application.dob}
+                      <span className="font-medium">Date of Birth</span>
+                      <br />
+                      <p className="border p-2 px-5 rounded-lg mt-1 mb-4">
+                        {fslp.application.dob}
+                      </p>
                     </li>
                   </div>
                   <div className="">
                     <li>
-                      <span className="font-medium">Mobile:</span>{" "}
-                      {fslp.application.mobileNo}
+                      <span className="font-medium">Mobile</span>
+                      <br />
+                      <p className="border p-2 px-5 rounded-lg mt-1 mb-4">
+                        {fslp.application.mobileNo}
+                      </p>
                     </li>
                     <li>
-                      <span className="font-medium">Gender:</span>{" "}
-                      {fslp.application.gender}
+                      <span className="font-medium">Gender</span>
+                      <br />
+                      <p className="border p-2 px-5 rounded-lg mt-1 mb-4">
+                        {fslp.application.gender}
+                      </p>
                     </li>
                     <li>
-                      <span className="font-medium">Nationality:</span>{" "}
-                      {fslp.application.nationality}
+                      <span className="font-medium">Nationality</span>
+                      <br />
+                      <p className="border p-2 px-5 rounded-lg mt-1 mb-4">
+                        {fslp.application.nationality}
+                      </p>
                     </li>
                   </div>
                 </div>
@@ -82,16 +109,25 @@ async function page({ params }: { params: { id: string } }) {
               </h2>
               <ul className="space-y-2">
                 <li>
-                  <span className="font-medium">University Name:</span>{" "}
-                  {fslp.application.universityName}
+                  <span className="font-medium">University Name</span>
+                  <br />
+                  <p className="border p-2 px-5 rounded-lg mt-1 mb-4">
+                    {fslp.application.universityName}
+                  </p>
                 </li>
                 <li>
-                  <span className="font-medium">Education State:</span>{" "}
-                  {fslp.application.eduState}
+                  <span className="font-medium">Education State</span>
+                  <br />
+                  <p className="border p-2 px-5 rounded-lg mt-1 mb-4">
+                    {fslp.application.eduState}
+                  </p>
                 </li>
                 <li>
-                  <span className="font-medium">Short Brief:</span>{" "}
-                  {fslp.application.sortBreif}
+                  <span className="font-medium">Short Brief</span>
+                  <br />
+                  <p className="border p-2 px-5 rounded-lg mt-1 mb-4">
+                    {fslp.application.sortBreif}
+                  </p>
                 </li>
               </ul>
             </div>
@@ -102,7 +138,8 @@ async function page({ params }: { params: { id: string } }) {
               </h2>
               <ul className="space-y-2">
                 <li>
-                  <span className="font-medium">CV:</span>{" "}
+                  <span className="font-medium">CV</span>
+                  <br />
                   <Link
                     href={genPbFiles(fslp, fslp.cv)}
                     className="text-primary font-semibold hover:underline"
