@@ -57,9 +57,9 @@ export default function OrderCard({ data }: { data: RequestOrderHistoryData }) {
               </Link>
             </div>
             {data.donat_unit == "academic" && (
-              <div className="">
+              <Link href={`/account/orders/academic/${data.ref_id}`}>
                 <Button>View Details</Button>
-              </div>
+              </Link>
             )}
             {data.donat_unit == "membership" && (
               <div className="">

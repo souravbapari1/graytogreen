@@ -86,6 +86,13 @@ const MicroActionMetrics = ({
       sub: "Eq Avoided Or Saved / Year",
       showRethink: true,
     },
+    {
+      allow: ["partner"],
+      title: "Total impact",
+      value: `${statusData?.total?.impact || 0} Kg of Co2 `,
+      sub: "Eq Avoided Or Saved / Year",
+      showRethink: true,
+    },
   ];
 
   return (
