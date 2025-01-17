@@ -23,6 +23,7 @@ export interface RequestOrderHistoryData {
   created?: string;
   updated?: string;
   id?: string;
+  unit?: string;
 }
 
 export const createOrderHistoryRequest = async (

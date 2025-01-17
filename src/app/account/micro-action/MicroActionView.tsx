@@ -122,67 +122,79 @@ const MicroActionMetrics = ({
     </>
   );
 };
-const MicroActionSubmission = ({ data, session, handelSubmit }: any) => (
-  <div className="md:mt-5 mt-3 border-2 border-primary/10 relative bg-white rounded-md p-8 ">
-    <div className="mb-5">
-      <Image
-        src="/assets/brand-shape.png"
-        width={40}
-        height={40}
-        alt=""
-        className="object-contain  absolute -top-3 h-28 "
-      />
-      <h1 className="font-bold text-2xl text-center">{data.selected.title}</h1>
-    </div>
-    <div>
-      <div className="flex flex-col md:flex-row gap-5 items-start md:items-center">
-        <div
-          className="text-sm text-left flex-1 leading-relaxed"
-          dangerouslySetInnerHTML={{ __html: data.selected?.description || "" }}
+const MicroActionSubmission = ({ data, session, handelSubmit }: any) => {
+  const path = usePathname();
+  const input = path.startsWith("/rethink");
+  return (
+    <div className="md:mt-5 mt-3 border-2 border-primary/10 relative bg-white rounded-md p-8 ">
+      <div className="mb-5">
+        <Image
+          src="/assets/brand-shape.png"
+          width={40}
+          height={40}
+          alt=""
+          className="object-contain  absolute -top-3 h-28 "
         />
+        <h1 className="font-bold text-2xl text-center">
+          {data.selected.title}
+        </h1>
       </div>
-      <div className="flex flex-col justify-center items-center mt-6">
-        <Input
-          disabled={!isMAsubmitToday(data.selected.id)}
-          placeholder="Enter Your Micro Impact Count."
-          className="shadow-none rounded-none bg-primary/15 p-6 border-none"
-          type="number"
-          value={data.data.impact}
-          onChange={(e) => data.setData("impact", +e.target.value)}
-        />
-        <div className="flex gap-5 mt-6">
-          {isMAsubmitToday(data.selected.id) ? (
-            <Button
-              onClick={handelSubmit}
-              className=" shadow-none text-white rounded px-6 py-3 "
-            >
-              <Leaf size={15} className="mr-3" /> Apply Your Impact
-            </Button>
-          ) : (
-            <></>
-          )}
-          {session?.user.user_type === "ambassador" && (
-            <Button
-              variant="outline"
-              className="shadow-none text-primary border-primary/20 rounded flex items-center gap-2"
-              onClick={() => {
-                navigator.clipboard.writeText(
-                  `https://gray-to-green.com/rethink?id=${data?.selected.id}&refer=${session?.user?.id}`
-                );
-                toast.success("Link Copy To clipboard");
-              }}
-            >
-              <TbCopyCheckFilled />
-            </Button>
-          )}
+      <div>
+        <div className="flex flex-col md:flex-row gap-5 items-start md:items-center">
+          <div
+            className="text-sm text-left flex-1 leading-relaxed"
+            dangerouslySetInnerHTML={{
+              __html: data.selected?.description || "",
+            }}
+          />
         </div>
-        {!isMAsubmitToday(data.selected.id) && (
-          <p className="text-gray-600 mt-8">You can submit only once per day</p>
+        {input && (
+          <div className="flex flex-col justify-center items-center mt-6">
+            <Input
+              disabled={!isMAsubmitToday(data.selected.id)}
+              placeholder="Enter Your Micro Impact Count."
+              className="shadow-none rounded-none bg-primary/15 p-6 border-none"
+              type="number"
+              value={data.data.impact}
+              onChange={(e) => data.setData("impact", +e.target.value)}
+            />
+            <div className="flex gap-5 mt-6">
+              {isMAsubmitToday(data.selected.id) ? (
+                <Button
+                  onClick={handelSubmit}
+                  className=" shadow-none text-white rounded px-6 py-3 "
+                >
+                  <Leaf size={15} className="mr-3" /> Apply Your Impact
+                </Button>
+              ) : (
+                <></>
+              )}
+              {session?.user.user_type === "ambassador" && (
+                <Button
+                  variant="outline"
+                  className="shadow-none text-primary border-primary/20 rounded flex items-center gap-2"
+                  onClick={() => {
+                    navigator.clipboard.writeText(
+                      `https://gray-to-green.com/rethink?id=${data?.selected.id}&refer=${session?.user?.id}`
+                    );
+                    toast.success("Link Copy To clipboard");
+                  }}
+                >
+                  <TbCopyCheckFilled />
+                </Button>
+              )}
+            </div>
+            {!isMAsubmitToday(data.selected.id) && (
+              <p className="text-gray-600 mt-8">
+                You can submit only once per day
+              </p>
+            )}
+          </div>
         )}
       </div>
     </div>
-  </div>
-);
+  );
+};
 
 function MicroActionView({
   session,

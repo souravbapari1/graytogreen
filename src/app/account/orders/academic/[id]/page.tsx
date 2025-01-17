@@ -11,8 +11,6 @@ export default async function page({ params }: { params: { id: string } }) {
 
   try {
     const data = await getAcademicData(id);
-
-    // Extracting relevant information
     const { academic, applicationData } = data;
     const {
       amount,
@@ -27,18 +25,19 @@ export default async function page({ params }: { params: { id: string } }) {
       location,
       locationType,
     } = academic;
-
     const { participants, parent, message, participantQuestion } =
       applicationData;
 
     return (
       <WorkSpace>
-        <div className="container mx-auto px-4 sm:px-8 mb-24">
-          <div className="space-y-8">
+        <div className="container mx-auto px-4 sm:px-6 mb-12 flex justify-center">
+          <div className="w-full max-w-4xl space-y-6 bg-white shadow-lg rounded-lg p-6">
             {/* Academic Info */}
-            <section className="space-y-6">
-              <h1 className="text-3xl font-bold text-gray-900 mb-6">{title}</h1>
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+            <section className="space-y-4">
+              <h1 className="text-2xl font-semibold text-gray-900 text-center">
+                {title}
+              </h1>
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                 <DetailRow label="Event" value={name} />
                 <DetailRow label="Start Date" value={startDate} />
                 <DetailRow label="End Date" value={endDate} />
@@ -52,48 +51,30 @@ export default async function page({ params }: { params: { id: string } }) {
             </section>
 
             {/* Application Info */}
-            <section className="space-y-6">
-              <h2 className="text-2xl font-semibold text-gray-800 mb-4 underline">
+            <section className="space-y-4">
+              <h2 className="text-xl font-semibold text-gray-800 text-center underline">
                 Application Details
               </h2>
 
               {/* Participant Information */}
-              <div className="space-y-6">
-                <h3 className="text-xl font-semibold">
+              <div className="space-y-4">
+                <h3 className="text-lg font-semibold text-gray-800">
                   Participant Information
                 </h3>
                 {participants.map((participant, index) => (
                   <div
                     key={index}
-                    className=" p-5 grid grid-cols-2 gap-5 bg-primary/5 rounded-md"
+                    className="p-4 grid grid-cols-1 sm:grid-cols-2 gap-4 bg-gray-50 rounded-md"
                   >
                     <DetailRow
-                      className="bg-white"
                       label="Name"
                       value={`${participant.firstName} ${participant.lastName}`}
                     />
+                    <DetailRow label="Gender" value={participant.gender} />
+                    <DetailRow label="Date of Birth" value={participant.dob} />
+                    <DetailRow label="School" value={participant.school} />
+                    <DetailRow label="Grade" value={participant.grade} />
                     <DetailRow
-                      className="bg-white"
-                      label="Gender"
-                      value={participant.gender}
-                    />
-                    <DetailRow
-                      className="bg-white"
-                      label="Date of Birth"
-                      value={participant.dob}
-                    />
-                    <DetailRow
-                      className="bg-white"
-                      label="School"
-                      value={participant.school}
-                    />
-                    <DetailRow
-                      className="bg-white"
-                      label="Grade"
-                      value={participant.grade}
-                    />
-                    <DetailRow
-                      className="bg-white"
                       label="T-Shirt Size"
                       value={participant.tshirtSize}
                     />
@@ -102,8 +83,10 @@ export default async function page({ params }: { params: { id: string } }) {
               </div>
 
               {/* Parent Information */}
-              <div className="space-y-6">
-                <h3 className="text-xl font-semibold">Parent Information</h3>
+              <div className="space-y-4">
+                <h3 className="text-lg font-semibold text-gray-800">
+                  Parent Information
+                </h3>
                 <DetailRow
                   label="Name"
                   value={`${parent.firstName} ${parent.lastName}`}
@@ -145,9 +128,14 @@ function DetailRow({
   className?: string;
 }) {
   return (
-    <div className="">
-      <span className="font-medium text-gray-800">{label}</span>
-      <div className={cn("px-4 py-3 mt-1 bg-primary/5 rounded-md", className)}>
+    <div className="flex justify-start gap-2 items-center space-x-4">
+      <span className="text-sm font-medium text-gray-700">{label}</span>
+      <div
+        className={cn(
+          "px-3 py-2 bg-gray-100 rounded-md text-sm text-gray-800",
+          className
+        )}
+      >
         {value}
       </div>
     </div>

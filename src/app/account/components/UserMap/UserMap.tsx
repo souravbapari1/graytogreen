@@ -52,7 +52,7 @@ function UserMap() {
   }, []);
   return (
     <div>
-      <div ref={mapContainerRef} style={{ height: " 23rem", width: "100%" }}>
+      <div ref={mapContainerRef} style={{ height: " 26rem", width: "100%" }}>
         {mapLoaded &&
           mydonation.map((marker, index) => (
             <CustomMarker

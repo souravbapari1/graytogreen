@@ -7,6 +7,14 @@ import React from "react";
 import { MdFileDownload } from "react-icons/md";
 
 export default function OrderCard({ data }: { data: RequestOrderHistoryData }) {
+  const showCertificate = () => {
+    const allow: RequestOrderHistoryData["donat_unit"][] = [
+      "plastic",
+      "tree",
+      "fund",
+    ];
+    return allow.includes(data.donat_unit);
+  };
   return (
     <Card key={data.id}>
       <CardHeader>
@@ -45,26 +53,28 @@ export default function OrderCard({ data }: { data: RequestOrderHistoryData }) {
                 </p>
               </div>
             )} */}
-            <div className="">
-              <h3 className="font-semibold">Downloads</h3>
-              <Link
-                href="/doc.pdf"
-                target="_blank"
-                className="font-semibold text-primary flex justify-normal items-center  gap-3"
-              >
-                <MdFileDownload />
-                Certificate
-              </Link>
-            </div>
+            {showCertificate() && (
+              <div className="">
+                <h3 className="font-semibold">Downloads</h3>
+                <Link
+                  href="/doc.pdf"
+                  target="_blank"
+                  className="font-semibold text-primary flex justify-normal items-center  gap-3"
+                >
+                  <MdFileDownload />
+                  Certificate
+                </Link>
+              </div>
+            )}
             {data.donat_unit == "academic" && (
               <Link href={`/account/orders/academic/${data.ref_id}`}>
                 <Button>View Details</Button>
               </Link>
             )}
             {data.donat_unit == "membership" && (
-              <div className="">
+              <Link href={`/account/orders/plans/${data.ref_id}`}>
                 <Button>View Plan Details</Button>
-              </div>
+              </Link>
             )}
           </div>
 
@@ -79,7 +89,9 @@ export default function OrderCard({ data }: { data: RequestOrderHistoryData }) {
             </div>
             <div className="">
               <h3 className="font-semibold">Quantity</h3>
-              <p className="uppercase">{data.quntity}</p>
+              <p className="uppercase">
+                {data.quntity} {data.unit}
+              </p>
             </div>
           </div>
           <div className="flex flex-col gap-5">

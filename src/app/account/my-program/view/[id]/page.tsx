@@ -12,8 +12,8 @@ async function page({ params }: { params: { id: string } }) {
   return (
     <WorkSpace>
       <div className="container mx-auto px-4 sm:px-8 mb-24">
-        <div className={`${montserrat.className} `}>
-          <h1 className="text-3xl font-bold text-gray-900 mb-6">
+        <div className={`${montserrat.className} text-center`}>
+          <h1 className="text-4xl font-bold text-gray-900 mb-10">
             Future Sustainability Leaders Program
           </h1>
           <p className="text-lg font-semibold uppercase text-primary mb-8">
@@ -21,48 +21,39 @@ async function page({ params }: { params: { id: string } }) {
             <span className="font-normal text-gray-700">{fslp.status}</span>
           </p>
 
-          <div className="space-y-8">
+          <div className="grid gap-12 lg:gap-16">
             {/* Applicant Details */}
             <div>
-              <h2 className="text-2xl font-semibold text-gray-800 mb-4 underline">
+              <h2 className="text-2xl font-semibold text-gray-800 mb-6 underline">
                 Applicant Details
               </h2>
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                <div>
-                  <DetailRow
-                    label="Name"
-                    value={
-                      fslp.application.firstName +
-                      " " +
-                      fslp.application.lastName
-                    }
-                  />
-                  <DetailRow label="Email" value={fslp.application.emailID} />
-                  <DetailRow label="Address" value={fslp.application.address} />
-                  <DetailRow label="Gender" value={fslp.application.gender} />
-                  <DetailRow
-                    label="Nationality"
-                    value={fslp.application.nationality}
-                  />
-                </div>
-                <div>
-                  <DetailRow label="Country" value={fslp.application.country} />
-                  <DetailRow label="City" value={fslp.application.city} />
-                  <DetailRow
-                    label="Date of Birth"
-                    value={fslp.application.dob}
-                  />
-                  <DetailRow label="Mobile" value={fslp.application.mobileNo} />
-                </div>
+              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <DetailRow
+                  label="Name"
+                  value={
+                    fslp.application.firstName + " " + fslp.application.lastName
+                  }
+                />
+                <DetailRow label="Email" value={fslp.application.emailID} />
+                <DetailRow label="Address" value={fslp.application.address} />
+                <DetailRow label="Gender" value={fslp.application.gender} />
+                <DetailRow
+                  label="Nationality"
+                  value={fslp.application.nationality}
+                />
+                <DetailRow label="Country" value={fslp.application.country} />
+                <DetailRow label="City" value={fslp.application.city} />
+                <DetailRow label="Date of Birth" value={fslp.application.dob} />
+                <DetailRow label="Mobile" value={fslp.application.mobileNo} />
               </div>
             </div>
 
             {/* Education Details */}
             <div>
-              <h2 className="text-2xl font-semibold text-gray-800 mb-4 underline">
+              <h2 className="text-2xl font-semibold text-gray-800 mb-6 underline">
                 Education Details
               </h2>
-              <div className="space-y-4">
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
                 <DetailRow
                   label="University Name"
                   value={fslp.application.universityName}
@@ -80,10 +71,10 @@ async function page({ params }: { params: { id: string } }) {
 
             {/* Documents Section */}
             <div>
-              <h2 className="text-2xl font-semibold text-gray-800 mb-4 underline">
+              <h2 className="text-2xl font-semibold text-gray-800 mb-6 underline">
                 Documents
               </h2>
-              <div className="space-y-4">
+              <div className="grid grid-cols-1 gap-8">
                 <DetailRow
                   label="CV"
                   value={
@@ -112,9 +103,9 @@ function DetailRow({
   value: React.ReactNode;
 }) {
   return (
-    <div className="flex flex-col mb-4">
-      <span className="font-medium text-gray-800">{label}</span>
-      <div className=" px-4 py-3 mt-2 bg-primary/5">{value}</div>
+    <div className="flex flex-col items-start text-left">
+      <span className="font-medium text-gray-800 mb-1">{label}:</span>
+      <div className="px-4 py-3 bg-primary/5 rounded-lg w-full">{value}</div>
     </div>
   );
 }

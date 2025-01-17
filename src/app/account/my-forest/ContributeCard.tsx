@@ -6,9 +6,11 @@ import { UserItem } from "@/interface/user";
 import { cn } from "@/lib/utils";
 import { client, genPbFiles } from "@/request/actions";
 import { useMutation, useQuery } from "@tanstack/react-query";
+import { CalendarHeart } from "lucide-react";
 
 import Link from "next/link";
 import React, { useEffect } from "react";
+import { FaLocationDot } from "react-icons/fa6";
 import { PiPlantFill } from "react-icons/pi";
 
 function ContributeCard({
@@ -36,7 +38,7 @@ function ContributeCard({
   return (
     <div
       className={cn(
-        "w-full bg-primary/5 h-auto mt-2 mb-5 rounded-xl flex justify-start flex-col items-start relative p-2",
+        "w-full bg-primary/5 h-auto mt-2 rounded-xl flex justify-start flex-col items-start relative p-2",
         order?.support && "bg-orange-100"
       )}
     >
@@ -52,7 +54,7 @@ function ContributeCard({
             className={`md:w-40 w-full h-40 rounded-xl bg-white bg-cover bg-center`}
           ></div>
         </div>
-        <div className="p-4 w-full flex-col h-full justify-between">
+        <div className="px-4 w-full flex-col h-full justify-between">
           <div className="flex flex-col  h-full w-full">
             <p className="flex justify-start items-center gap-2 text-xs text-primary font-semibold">
               <PiPlantFill size={16} />
@@ -62,12 +64,16 @@ function ContributeCard({
               {order.expand.project.name}
             </h1>
             <p className="text-xs">{order.expand.project.comment}</p>
-            <p className="text-xs mt-1">
-              {order.expand.project.country} • {order.expand.project.city}
-            </p>
-            <p className="text-xs mt-1">
-              Date: {formatTimestampCustom(order.created)}
-            </p>
+            <div className="flex justify-start items-center gap-5">
+              <p className="text-xs mt-1 flex justify-start items-center gap-1">
+                <FaLocationDot size={12} /> {order.expand.project.country} •{" "}
+                {order.expand.project.city}
+              </p>
+              <p className="text-xs mt-1 flex float-start items-center gap-1">
+                <CalendarHeart size={12} />{" "}
+                {formatTimestampCustom(order.created)}
+              </p>
+            </div>
             {order.support && (
               <p className="text-xs mt-1">
                 Supported by : {order?.expand?.support?.first_name}{" "}
@@ -84,7 +90,7 @@ function ContributeCard({
               {order.quantity} {order.expand.project.unit_measurement}
             </h1>
             <Link
-              className="donateBtn text-sm py-2 rounded-xl text-white shadow-none"
+              className="donateBtn text-sm -mt-4 py-2 rounded-xl text-white shadow-none"
               href={`/donate?by=project&id=${order.expand.project.id}&donate=${order.donate}`}
             >
               Donate
@@ -92,30 +98,6 @@ function ContributeCard({
           </div>
         </div>
       </div>
-      {!isLoading && !isError && (
-        <div className="w-full grid md:grid-cols-3 gap-3">
-          {data?.items?.map((order) => (
-            <div
-              className="w-full h-8 rounded-lg bg-white flex justify-between items-center px-4"
-              key={order.id}
-            >
-              <p className="flex justify-start items-center gap-2 text-xs text-green-900 font-semibold">
-                <PiPlantFill size={16} />
-                {order.quantity} Tree
-              </p>
-              <p className="text-[9px]">
-                {formatTimestampCustom(order.created)}
-              </p>
-            </div>
-          ))}
-
-          {(data?.totalItems || 0) > 2 && (
-            <div className="w-full h-8 rounded-lg bg-primary/10 text-xs font-bold text-primary flex justify-center items-center">
-              +{(data?.totalItems || 0) - 2} contributions
-            </div>
-          )}
-        </div>
-      )}
     </div>
   );
 }

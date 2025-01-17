@@ -140,11 +140,11 @@ function MyForest({
             </div>
           )}
         </div>
-        <div className=" rounded-2xl lg:col-span-2 overflow-hidden shadow-sm object-cover w-full bg-primary/5">
-          <div className="h-96 relative">
+        <div className=" rounded-2xl  lg:col-span-2 overflow-hidden shadow-sm object-cover w-full bg-primary/5">
+          <div className=" relative">
             <UserMap />
           </div>
-          <div className="h-16 text-start text-green-950 text-sm flex justify-center items-center gap-8 w-full ">
+          <div className="pt-2  text-start text-green-950 text-sm flex justify-center items-center gap-8 w-full ">
             <div className="flex justify-center items-center gap-3">
               <div className="w-5 h-5 flex justify-center items-center text-white rounded-3xl bg-primary">
                 <MdOutlineFlag />

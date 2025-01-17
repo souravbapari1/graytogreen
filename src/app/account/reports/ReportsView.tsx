@@ -130,23 +130,64 @@ function ReportsView({ user }: { user: string }) {
       [new Date(year, month, 22), new Date(year, month, 28)], // Week 4
     ];
   };
-
+  const weekFutWeekData = (year: number, month: number) => {
+    return [
+      [new Date(year, month, 8), new Date(year, month, 14)], // Week 2
+      [new Date(year, month, 15), new Date(year, month, 21)], // Week 3
+      [new Date(year, month, 22), new Date(year, month, 28)], // Week 4
+      [new Date(year, month, 22), new Date(year, month, 28)], // Week 4
+    ];
+  };
   function isPastOrCurrentWeek(
     weekIndex: number,
     year: number,
-    month: number
-  ): boolean {
+    month: number,
+    isSubmit?: boolean
+  ): {
+    className: string;
+    isPastOrCurrentWeek: boolean;
+  } {
     const weeks = weekData(year, month);
+    const weeksFut = weekFutWeekData(year, month);
 
     if (weekIndex < 0 || weekIndex >= weeks.length) {
       throw new Error("Invalid week index");
     }
 
     const [weekStart, weekEnd] = weeks[weekIndex];
+    const [weekFutureStart, weekFutureEnd] = weeksFut[weekIndex];
     const currentDate = new Date();
 
     // Check if the current date is within the week range
-    return currentDate >= weekEnd;
+    if (isSubmit) {
+      return {
+        className: "bg-green-400/20",
+        isPastOrCurrentWeek: false,
+      };
+    }
+    if (currentDate >= weekEnd) {
+      if (isSubmit) {
+        return {
+          className: "bg-green-400/20",
+          isPastOrCurrentWeek: false,
+        };
+      }
+      if (currentDate <= weekFutureEnd) {
+        return {
+          className: "bg-orange-400/20",
+          isPastOrCurrentWeek: true,
+        };
+      }
+      return {
+        className: "bg-red-400/20",
+        isPastOrCurrentWeek: true,
+      };
+    } else {
+      return {
+        className: "bg-white",
+        isPastOrCurrentWeek: false,
+      };
+    }
   }
 
   if (data.isLoading) return <p>Loading...</p>;
@@ -227,7 +268,7 @@ function ReportsView({ user }: { user: string }) {
             {["week1", "week2", "week3", "week4"].map((e, i) => {
               console.log(
                 `Week ${1}: ${month} ${year}`,
-                isPastOrCurrentWeek(i, +year, month)
+                isPastOrCurrentWeek(i, +year, month).isPastOrCurrentWeek
               );
 
               return (
@@ -236,9 +277,19 @@ function ReportsView({ user }: { user: string }) {
                     "w-full h-32 flex justify-between items-center border border-gray-300/30 px-6 py-2 rounded-2xl bg-white",
                     monthDataView?.data?.[e as keyof MonthlyReportItem] &&
                       "bg-primary/10 shadow-none border-primary/5",
-                    isPastOrCurrentWeek(i, +year, month) &&
-                      !monthDataView?.data?.[e as keyof MonthlyReportItem] &&
-                      "bg-red-400/20"
+
+                    isPastOrCurrentWeek(
+                      i,
+                      +year,
+                      month,
+                      !!monthDataView?.data?.[e as keyof MonthlyReportItem]
+                    ).className
+                    // &&
+                    //   !monthDataView?.data?.[e as keyof MonthlyReportItem] &&
+                    //   "bg-red-400/20",
+                    // isCurrentWekPastOrCurrentWeek(i, +year, month) &&
+                    //   !monthDataView?.data?.[e as keyof MonthlyReportItem] &&
+                    //   "bg-blue-400/20"
                   )}
                 >
                   <div className="h-full flex justify-center flex-col items-start">
@@ -254,7 +305,8 @@ function ReportsView({ user }: { user: string }) {
                       </h1>
                     )}
                     {!monthDataView?.data?.[e as keyof MonthlyReportItem] ? (
-                      isPastOrCurrentWeek(i, +year, month) ? (
+                      isPastOrCurrentWeek(i, +year, month)
+                        .isPastOrCurrentWeek ? (
                         <Link
                           href={
                             "/account/reports/submit?id=" +

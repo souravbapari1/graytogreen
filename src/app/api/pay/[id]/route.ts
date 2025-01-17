@@ -138,6 +138,7 @@ export async function GET(
         donat_unit: paymentIntent.donate as any,
         ref_id: refId || paymentIntent.id,
         user: paymentIntent.user,
+        unit: paymentIntent.expand?.project.unit_measurement,
         // certificate_Link: paymentIntent.certificate_Link,
       });
 
