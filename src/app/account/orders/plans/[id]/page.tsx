@@ -22,10 +22,10 @@ export default async function page({ params }: { params: { id: string } }) {
   return (
     <WorkSpace>
       <div className="container mx-auto px-4 sm:px-6 mb-12">
-        <div className="bg-white shadow-lg rounded-lg p-6">
+        <div className="bg-white max-w-3xl mx-auto w-full shadow-lg rounded-lg p-6 border-t-4 border-primary">
           {/* Title */}
-          <h1 className="text-2xl font-semibold text-center text-gray-900 mb-4">
-            Payment Details
+          <h1 className="text-2xl font-semibold text-center text-gray-900 mb-6 mt-4">
+            Payment Details for {membership.name}
           </h1>
 
           {/* Payment Information */}
@@ -117,9 +117,11 @@ function DetailRow({
   className?: string;
 }) {
   return (
-    <div className={cn(`flex justify-start items-center gap-4`, className)}>
-      <span className="text-sm font-medium text-gray-700">{label}</span>
-      <div className="px-3 py-2 bg-gray-100 rounded-md text-sm text-gray-800">
+    <div
+      className={cn(`flex justify-start items-start flex-col gap-1`, className)}
+    >
+      <p className="text-sm font-medium text-gray-700">{label}</p>
+      <div className="px-3 w-full py-2 bg-gray-100 rounded-md text-sm text-gray-800">
         {value}
       </div>
     </div>
