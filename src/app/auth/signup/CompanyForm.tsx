@@ -157,6 +157,8 @@ function CompanyApplicationForm({
     city: "",
     branch: "",
     whyYouHere: "",
+    categories: [] as string[],
+    budget: "",
   });
 
   const validateFields = () => {
@@ -699,17 +701,229 @@ function CompanyApplicationForm({
             name="reasons"
           />
         </div>
+        {/* Categories that the Company consider  */}
+        <div className="md:col-span-3">
+          <label className="font-medium">
+            What are the most categories you are looking to consider ?
+          </label>
+          <MultiSelect
+            defaultValue={formData.categories}
+            options={[
+              {
+                label: "Forestry and land use",
+                value: "Forestry and land use",
+              },
+              {
+                label: "Renewable energy",
+                value: "Renewable energy",
+              },
+              {
+                label: "Household & community devices",
+                value: "Household & community devices",
+              },
+              {
+                label: "Blue carbon",
+                value: "Blue carbon",
+              },
+              {
+                label: "Waste management and reduce waste",
+                value: "Waste management and reduce waste",
+              },
+              {
+                label: "Agricultural land management",
+                value: "Agricultural land management",
+              },
+              {
+                label: "Transportation",
+                value: "Transportation",
+              },
+              {
+                label: "Environmental and Social Awareness",
+                value: "Environmental and Social Awareness",
+              },
+              {
+                label: "Climate Risk Management",
+                value: "Climate Risk Management",
+              },
+              {
+                label: "Circular Economy",
+                value: "Circular Economy",
+              },
+              {
+                label: "The capture and destruction of high-potency GHGs",
+                value: "The capture and destruction of high-potency GHGs",
+              },
+              {
+                label: "Climate change innovation",
+                value: "Climate change innovation",
+              },
+              {
+                label: "Community benefits",
+                value: "Community benefits",
+              },
+              {
+                label: "Community Initiatives",
+                value: "Community Initiatives",
+              },
+              {
+                label: "Environmental and Community Initiatives",
+                value: "Environmental and Community Initiatives",
+              },
+              {
+                label: "Other",
+                value: "Other",
+              },
+            ]}
+            onValueChange={(value) =>
+              setFormData({ ...formData, categories: value })
+            }
+            maxCount={10}
+            className="py-3 rounded-none shadow-none mt-2"
+            name="reasons"
+          />
+        </div>
+{/* Budget of the Company Sponsorship */}
+        <div className="">
+          <label className="font-medium">
+            Annual budget for sponsorships (Environmental/Social/Commercial)
+          </label>
+          <Select
+            name="branch"
+            value={formData.budget}
+            onValueChange={(value) =>
+              setFormData({ ...formData, budget: value })
+            }
+          >
+            <SelectTrigger className="w-full p-6 rounded-none shadow-none mt-2">
+              <SelectValue placeholder="Select Budget" />
+            </SelectTrigger>
+            <SelectContent>
+              {[
+                {
+                  label: "Less than 5,000 OMR",
+                  value: "Less than 5,000 OMR",
+                },
+                {
+                  label: "5,000 - 15,000 OMR",
+                  value: "5,000 - 15,000 OMR",
+                },
+                {
+                  label: "15,000 - 25,000 OMR",
+                  value: "15,000 - 25,000 OMR",
+                },
+                {
+                  label: "25,000 - 50,000 OMR",
+                  value: "25,000 - 50,000 OMR",
+                },
+                {
+                  label: "50,000 - 100,000 OMR",
+                  value: "50,000 - 100,000 OMR",
+                },
+                {
+                  label: "100,000 - 200,000 OMR",
+                  value: "100,000 - 200,000 OMR",
+                },
+                {
+                  label: "Above 200,000 OMR",
+                  value: "Above 200,000 OMR",
+                },
+              ].map((value, index) => (
+                <SelectItem key={index} value={value.value}>
+                  {value.label}
+                </SelectItem>
+              ))}
+            </SelectContent>
+          </Select>
+        </div>
       </div>
 
       <div className="mt-4">
         <label className="font-medium">From where you heard about us *</label>
-        <Textarea
-          className="p-6 rounded-none shadow-none mt-2"
-          name="heardFrom"
+        {<Select
+          name="HeardFrom"
           value={formData.heardFrom}
-          onChange={handleChange}
-          required
-        />
+          onValueChange={(value) =>
+            setFormData({ ...formData, heardFrom: value })
+          }
+        >
+          <SelectTrigger className="w-full p-6 rounded-none shadow-none mt-2">
+            <SelectValue placeholder="From where you heard about us" />
+          </SelectTrigger>
+          <SelectContent>
+            {[
+              {
+                label:
+                  "Social media (e.g., LinkedIn, Facebook, Instagram, X, YouTube, WhatsApp, Snapchat, TikTok, etc.)",
+                value: "Social media",
+              },
+              {
+                label: "Search engine (e.g., Google, Bing)",
+                value: "Search engine",
+              },
+              {
+                label: "Email newsletter",
+                value: "Email newsletter",
+              },
+              {
+                label: "Online ads (e.g., Google Ads, Facebook Ads, etc.)",
+                value: "Online ads",
+              },
+              {
+                label: "Blogs or articles",
+                value: "Blogs or articles",
+              },
+              {
+                label: "Affiliate links",
+                value: "Affiliate links",
+              },
+              {
+                label: "Customer review sites",
+                value: "Customer review sites",
+              },
+              {
+                label: "Promotional videos",
+                value: "Promotional videos",
+              },
+              {
+                label: "Television",
+                value: "Television",
+              },
+              {
+                label: "Newspaper",
+                value: "Newspaper",
+              },
+              {
+                label: "Podcast",
+                value: "Podcast",
+              },
+              {
+                label: "Webinar",
+                value: "Webinar",
+              },
+              {
+                label: "Corporate outing/social",
+                value: "Corporate outing/social",
+              },
+              {
+                label: "Networking event",
+                value: "Networking event",
+              },
+              {
+                label: "Training seminar",
+                value: "Training seminar",
+              },
+              {
+                label: "Ambassador",
+                value: "Ambassador",
+              },
+            ].map((value, index) => (
+              <SelectItem key={index} value={value.value}>
+                {value.label}
+              </SelectItem>
+            ))}
+          </SelectContent>
+        </Select>}
+       
       </div>
       <div className="mt-6 grid grid-cols-2 gap-6">
         <div className="">
