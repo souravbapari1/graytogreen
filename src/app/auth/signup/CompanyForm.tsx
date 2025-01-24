@@ -159,6 +159,7 @@ function CompanyApplicationForm({
     whyYouHere: "",
     categories: [] as string[],
     budget: "",
+    companytype: "",
   });
 
   const validateFields = () => {
@@ -583,29 +584,50 @@ function CompanyApplicationForm({
           <label className="font-medium">Org/ Company Type</label>
           <Select
             name="branch"
-            value={formData.branch}
+            value={formData.companytype}
             onValueChange={(value) =>
-              setFormData({ ...formData, branch: value })
+              setFormData({ ...formData, companytype: value })
             }
           >
             <SelectTrigger className="w-full p-6 rounded-none shadow-none mt-2">
-              <SelectValue placeholder="Select Branches" />
+              <SelectValue placeholder="Select Org/ Company Type" />
             </SelectTrigger>
             <SelectContent>
+              {/* Will change the data for this  */}
               {[
-                { label: "One Branch", value: "One Branch" },
                 {
-                  label: "Multiple Branches within Oman Only",
-                  value: "Multiple Branches within Oman Only",
+                  label: "Government Company / Org",
+                  value: "Government Company / Org",
                 },
                 {
-                  label: "Multiple Branches Outside Oman Only",
-                  value: "Multiple Branches Outside Oman Only",
+                  label: "Private Company / Org",
+                  value: "Private Company / Org",
                 },
                 {
-                  label: "Multiple Branches within Oman and Outside Oman",
-                  value: "Multiple Branches within Oman and Outside Oman",
+                  label: "Public Company / Org",
+                  value: "Public Company / Org",
                 },
+                {
+                  label: "Holding and Subsidiary Company / Org",
+                  value: "Holding and Subsidiary Company / Org",
+                },
+                {
+                  label: "One Person Company / Org",
+                  value: "One Person Company / Org",
+                },
+                {
+                  label: "Foreign Company / Org",
+                  value: "Foreign Company / Org",
+                },
+                {
+                  label: "Not-Profit Company / Org",
+                  value: "Not-Profit Company / Org",
+                },
+                {
+                  label: "Startup Company / Org",
+                  value: "Startup Company / Org",
+                },
+                { label: "Other", value: "Other" },
               ].map((value, index) => (
                 <SelectItem key={index} value={value.value}>
                   {value.label}
@@ -782,8 +804,8 @@ function CompanyApplicationForm({
             name="reasons"
           />
         </div>
-{/* Budget of the Company Sponsorship */}
-        <div className="">
+        {/* Budget of the Company Sponsorship */}
+        <div className="col-span-3">
           <label className="font-medium">
             Annual budget for sponsorships (Environmental/Social/Commercial)
           </label>
@@ -839,91 +861,92 @@ function CompanyApplicationForm({
 
       <div className="mt-4">
         <label className="font-medium">From where you heard about us *</label>
-        {<Select
-          name="HeardFrom"
-          value={formData.heardFrom}
-          onValueChange={(value) =>
-            setFormData({ ...formData, heardFrom: value })
-          }
-        >
-          <SelectTrigger className="w-full p-6 rounded-none shadow-none mt-2">
-            <SelectValue placeholder="From where you heard about us" />
-          </SelectTrigger>
-          <SelectContent>
-            {[
-              {
-                label:
-                  "Social media (e.g., LinkedIn, Facebook, Instagram, X, YouTube, WhatsApp, Snapchat, TikTok, etc.)",
-                value: "Social media",
-              },
-              {
-                label: "Search engine (e.g., Google, Bing)",
-                value: "Search engine",
-              },
-              {
-                label: "Email newsletter",
-                value: "Email newsletter",
-              },
-              {
-                label: "Online ads (e.g., Google Ads, Facebook Ads, etc.)",
-                value: "Online ads",
-              },
-              {
-                label: "Blogs or articles",
-                value: "Blogs or articles",
-              },
-              {
-                label: "Affiliate links",
-                value: "Affiliate links",
-              },
-              {
-                label: "Customer review sites",
-                value: "Customer review sites",
-              },
-              {
-                label: "Promotional videos",
-                value: "Promotional videos",
-              },
-              {
-                label: "Television",
-                value: "Television",
-              },
-              {
-                label: "Newspaper",
-                value: "Newspaper",
-              },
-              {
-                label: "Podcast",
-                value: "Podcast",
-              },
-              {
-                label: "Webinar",
-                value: "Webinar",
-              },
-              {
-                label: "Corporate outing/social",
-                value: "Corporate outing/social",
-              },
-              {
-                label: "Networking event",
-                value: "Networking event",
-              },
-              {
-                label: "Training seminar",
-                value: "Training seminar",
-              },
-              {
-                label: "Ambassador",
-                value: "Ambassador",
-              },
-            ].map((value, index) => (
-              <SelectItem key={index} value={value.value}>
-                {value.label}
-              </SelectItem>
-            ))}
-          </SelectContent>
-        </Select>}
-       
+        {
+          <Select
+            name="HeardFrom"
+            value={formData.heardFrom}
+            onValueChange={(value) =>
+              setFormData({ ...formData, heardFrom: value })
+            }
+          >
+            <SelectTrigger className="w-full p-6 rounded-none shadow-none mt-2">
+              <SelectValue placeholder="From where you heard about us" />
+            </SelectTrigger>
+            <SelectContent>
+              {[
+                {
+                  label:
+                    "Social media (e.g., LinkedIn, Facebook, Instagram, X, YouTube, WhatsApp, Snapchat, TikTok, etc.)",
+                  value: "Social media",
+                },
+                {
+                  label: "Search engine (e.g., Google, Bing)",
+                  value: "Search engine",
+                },
+                {
+                  label: "Email newsletter",
+                  value: "Email newsletter",
+                },
+                {
+                  label: "Online ads (e.g., Google Ads, Facebook Ads, etc.)",
+                  value: "Online ads",
+                },
+                {
+                  label: "Blogs or articles",
+                  value: "Blogs or articles",
+                },
+                {
+                  label: "Affiliate links",
+                  value: "Affiliate links",
+                },
+                {
+                  label: "Customer review sites",
+                  value: "Customer review sites",
+                },
+                {
+                  label: "Promotional videos",
+                  value: "Promotional videos",
+                },
+                {
+                  label: "Television",
+                  value: "Television",
+                },
+                {
+                  label: "Newspaper",
+                  value: "Newspaper",
+                },
+                {
+                  label: "Podcast",
+                  value: "Podcast",
+                },
+                {
+                  label: "Webinar",
+                  value: "Webinar",
+                },
+                {
+                  label: "Corporate outing/social",
+                  value: "Corporate outing/social",
+                },
+                {
+                  label: "Networking event",
+                  value: "Networking event",
+                },
+                {
+                  label: "Training seminar",
+                  value: "Training seminar",
+                },
+                {
+                  label: "Ambassador",
+                  value: "Ambassador",
+                },
+              ].map((value, index) => (
+                <SelectItem key={index} value={value.value}>
+                  {value.label}
+                </SelectItem>
+              ))}
+            </SelectContent>
+          </Select>
+        }
       </div>
       <div className="mt-6 grid grid-cols-2 gap-6">
         <div className="">
