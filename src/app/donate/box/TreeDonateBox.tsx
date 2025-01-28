@@ -76,6 +76,7 @@ function TreeDonateBox({ data }: { data: ProjectItem }) {
         <h3 className="text-sm font-semibold text-gray-700 mb-3">
           Choose a donation Trees
         </h3>
+
         <div className="grid grid-cols-2 gap-2 ">
           {[5, 20, 25, 50].map((e, i) => (
             <div
