@@ -30,7 +30,6 @@ function DonateBox({ project, by }: { project: ProjectItem; by?: string }) {
         <div className="w-full flex justify-center items-center">
           <SupportBox />
         </div>
-        +
       </div>
       <div className="flex md:flex-row flex-col justify-center ite++ms-center relative">
         <div className="w-80 md:h-96 h-52  rounded-xl  py-3  md:-mr-10 overflow-hidden md:mb-0 -mb-8 relative ">

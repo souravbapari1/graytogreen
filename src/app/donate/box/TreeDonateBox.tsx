@@ -70,6 +70,15 @@ function TreeDonateBox({ data }: { data: ProjectItem }) {
     },
   });
 
+  const impactText = () => {
+    const perunit = data.impactPerUnit;
+    if (perunit === 0) {
+      return "";
+    }
+
+    return `to Save ${(perunit || 0) * trees}.kg Co2`;
+  };
+
   return (
     <div className="w-full h-full bg-white rounded-xl  flex flex-col justify-between items-center">
       <div className="w-full">
@@ -169,7 +178,7 @@ function TreeDonateBox({ data }: { data: ProjectItem }) {
           {mutateSubmit.isPending && (
             <FaSpinner className="animate-spin mr-4" />
           )}
-          Continue
+          Continue {impactText()}
         </Button>
       </div>
     </div>

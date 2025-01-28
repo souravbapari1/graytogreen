@@ -19,7 +19,7 @@ import { ImSortAmountAsc } from "react-icons/im";
 
 function AmountDonateBox({ data }: { data: ProjectItem }) {
   const session = useSession();
-  const [amount, setAmount] = useState<number>(5);
+  const [amount, setAmount] = useState<number>(50);
   const [custom, setCustom] = useState<boolean>(false);
   const [terms, setTerms] = useState(true);
   const isSelect = () => {
@@ -69,6 +69,20 @@ function AmountDonateBox({ data }: { data: ProjectItem }) {
       toast.error("Something went wrong");
     },
   });
+
+  const impactText = () => {
+    const perunit = data.impactPerUnit;
+    if (perunit === 0) {
+      return "";
+    }
+    if (amount === 0) {
+      return "";
+    }
+
+    return `to Save ${
+      (perunit || 0) * +(amount / data.omr_unit).toFixed(1)
+    }.kg Co2`;
+  };
 
   return (
     <div className="w-full h-full bg-white rounded-xl  flex flex-col justify-between items-center">
@@ -169,7 +183,7 @@ function AmountDonateBox({ data }: { data: ProjectItem }) {
           {mutateSubmit.isPending && (
             <FaSpinner className="animate-spin mr-4" />
           )}
-          Continue
+          Continue {impactText()}
         </Button>
       </div>
     </div>
