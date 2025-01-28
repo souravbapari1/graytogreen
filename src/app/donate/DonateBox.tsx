@@ -1,195 +1,162 @@
 "use client";
+
+import SupportBox from "@/components/GMapBox/SupportBox";
 import { Button } from "@/components/ui/button";
+import {
+  Dialog,
+  DialogContent,
+  DialogHeader,
+  DialogTitle,
+  DialogTrigger,
+} from "@/components/ui/dialog";
 import { Input } from "@/components/ui/input";
+import { Label } from "@/components/ui/label";
+import { Textarea } from "@/components/ui/textarea";
 import { montserrat } from "@/fonts/font";
+import { cn } from "@/lib/utils";
+import { genPbFiles } from "@/request/actions";
+import { Gift } from "lucide-react";
+import Image from "next/image";
+import { ReactNode, useState } from "react";
+import AmountDonateBox from "./box/AmountDonateBox";
+import TreeDonateBox from "./box/TreeDonateBox";
 import { ProjectItem } from "@/interface/project";
-import { localClient } from "@/request/actions";
-import { Flower2 } from "lucide-react";
-import { useSession } from "next-auth/react";
-import { useSearchParams } from "next/navigation";
-import React, { useEffect, useState, useCallback } from "react";
-import toast from "react-hot-toast";
 
-const donateOptions = [5, 10, 15, 20];
-// Helper functions
-const calculateAmount = (
-  projectPrefix: string,
-  unit: number,
-  selected: number,
-  custom: boolean,
-  customValue: number | undefined
-): number => {
-  const presetAmounts = donateOptions;
-  if (projectPrefix === "tree") {
-    return custom ? (customValue || 0) * unit : presetAmounts[selected] * unit;
-  }
-  return custom ? customValue || 0 : presetAmounts[selected] * unit;
-};
-
-const calculateQuantity = (
-  projectPrefix: string,
-  selected: number,
-  customValue: number | undefined
-): number => {
-  return projectPrefix === "tree" ? customValue || donateOptions[selected] : 1;
-};
-
-// Reusable component for donation options
-const DonationOption = ({
-  isSelected,
-  amount,
-  displayText,
-  onClick,
-  showCustom = false,
-}: {
-  isSelected: boolean;
-  amount: number;
-  displayText: JSX.Element | string;
-  onClick: () => void;
-  showCustom?: boolean;
-}) => (
-  <div
-    className={`w-full h-16 bg-gray-100 cursor-pointer flex gap-2 justify-center items-center border-2 text-gray-600 rounded-xl text-lg font-bold ${
-      isSelected ? "bg-main text-white border-green-100/30 shadow-md " : ""
-    }`}
-    onClick={onClick}
-  >
-    {displayText}
-    {showCustom && <p className="font-light text-xs">﷼ {amount}</p>}
-  </div>
-);
-
-function DonateBox({ project }: { project: ProjectItem }) {
-  const { data } = useSession();
-  const [selected, setSelected] = useState(0);
-  const [custom, setCustom] = useState(false);
-  const [customValue, setCustomValue] = useState<number>();
-  const [amount, setAmount] = useState(0);
-  const [loading, setLoading] = useState(false);
-  const params = useSearchParams();
-  // Donation action
-  const createDonation = useCallback(async () => {
-    if (project.project_prefix === "tree") {
-      if (custom) {
-        if (customValue && customValue > 100 && customValue < 1) {
-          toast.error("Trees count should not exceed 100");
-          return;
-        }
-      }
-    }
-    setLoading(true);
-
-    try {
-      const req = await localClient
-        .post("/api/pay")
-        .json({
-          amount:
-            project.project_prefix != "tree" ? amount : project.omr_unit * 1000,
-          projectId: project.id,
-          donate: project.project_prefix,
-          projectName: project.name,
-          quantity: calculateQuantity(
-            project.project_prefix,
-            selected,
-            customValue
-          ),
-          userId: data?.user.id,
-          support: params?.get("support"),
-        })
-        .send<any>();
-
-      window.location.replace(req.payUrl);
-    } catch (error) {
-      console.error("Donation error:", error);
-      toast.error("Something went wrong, please try again");
-      setLoading(false);
-    }
-  }, [amount, data, project, selected, customValue]);
-
-  useEffect(() => {
-    setAmount(project.omr_unit * donateOptions[selected] * 1000);
-  }, [selected]);
-
+function DonateBox({ project, by }: { project: ProjectItem; by?: string }) {
+  const [name, setName] = useState("");
   return (
-    <div>
-      <p
-        className={`text-xl font-semibold text-gray-700 mt-8 ${montserrat.className}`}
-      >
-        Choose a donation amount
-      </p>
-      <div className={`mt-6 ${montserrat.className}`}>
-        <div className="grid grid-cols-2 gap-4">
-          {!custom &&
-            donateOptions.map((value, index) => (
-              <DonationOption
-                key={index}
-                isSelected={selected === index}
-                amount={value * (project.omr_unit || 1)}
-                showCustom={project.project_prefix === "tree"}
-                displayText={
-                  project.project_prefix === "tree" ? (
-                    <>
-                      <div className="flex items-center justify-center gap-2">
-                        <Flower2 size={20} /> {value}{" "}
-                        <small className="font-normal">
-                          {project.unit_measurement}
-                        </small>
-                      </div>
-                    </>
-                  ) : (
-                    `﷼ ${value * (project.omr_unit || 1)}`
-                  )
-                }
-                onClick={() => setSelected(index)}
-              />
-            ))}
-          {custom && (
-            <div className="col-span-2">
-              <Input
-                type="number"
-                value={customValue}
-                max={100}
-                min={1}
-                minLength={1}
-                maxLength={100}
-                onChange={(e) => setCustomValue(Number(e.target.value))}
-                placeholder={
-                  project.project_prefix === "tree"
-                    ? "Enter Trees Count (max 100)"
-                    : "Enter Amount"
-                }
-                className="w-full h-16 focus:outline-none focus-visible:ring-0 focus-visible:border-2 focus-visible:border-green-500 bg-gray-100 text-gray-600 rounded-xl text-lg font-bold text-center"
-              />
-              {project.project_prefix === "tree" && (customValue || 0) >= 1 && (
-                <p className="font-bold text-green-900 text-md text-center mt-5">
-                  ({customValue} Trees X {project.omr_unit}﷼ /Tree) ={" "}
-                  {(customValue || 0) * (project.omr_unit || 1)} ﷼
-                </p>
+    <div className="w-full min-h-screen h-full flex justify-center items-center bg-gray-100 select-none">
+      <div className="fixed top-4 left-0 right-0 mx-auto">
+        <div className="w-full flex justify-center items-center">
+          <SupportBox />
+        </div>
+        +
+      </div>
+      <div className="flex md:flex-row flex-col justify-center ite++ms-center relative">
+        <div className="w-80 md:h-96 h-52  rounded-xl  py-3  md:-mr-10 overflow-hidden md:mb-0 -mb-8 relative ">
+          <div
+            className="w-full h-full bg-primary shadow-md   rounded-xl bg-cover bg-center bg-no-repeat relative overflow-hidden"
+            style={{
+              backgroundImage: `url(${genPbFiles(
+                project,
+                project.preview_image
+              )})`,
+            }}
+          >
+            <div
+              className={cn(
+                "w-full h-full p-5 bg-gradient-to-t from-black to-transparent absolute top-0 left-0 right-0 bottom-0 flex flex-col justify-end items-end",
+                montserrat.className
               )}
+            >
+              <div className="flex flex-col justify-start items-start w-full">
+                <div className="flex justify-start items-start">
+                  <div className="text-white/90 text-xl font-semibold md:pr-9">
+                    {project.name}
+                  </div>
+                </div>
+                <p className="text-[10px] text-white/80 mt-2 md:pr-9 md:mb-0 mb-4 ">
+                  With your donation, you help us expand our global network,
+                  train children at our academies to become Climate Justice
+                  Ambassadors, and plant more trees. Even with small
+                  contributions we can achieve a lot - and every donation brings
+                  us a little closer to our goals. Thank you for your
+                  contribution!
+                </p>
+              </div>
             </div>
+          </div>
+        </div>
+        <div
+          className={cn(
+            "w-80 md:h-96 bg-white z-20 p-5 rounded-xl shadow-md shadow-gray-400/20 relative flex justify-center ic ",
+            montserrat.className
+          )}
+        >
+          {by && (
+            <GiftSomeOne onClose={(name) => setName(name)}>
+              <div className="w-40 h-8 bg-primary rounded-3xl  mx-auto  cursor-pointer absolute -top-8 right-0 left-0 rounded-b-none flex justify-center items-center">
+                <p className="text-white font-bold text-xs mt-0.5 flex justify-center items-center gap-2">
+                  <Gift size={15} /> Gift {name || "Someone"}
+                </p>
+              </div>
+            </GiftSomeOne>
+          )}
+          {project.project_prefix == "tree" ? (
+            <TreeDonateBox data={project} />
+          ) : (
+            <AmountDonateBox data={project} />
           )}
         </div>
+        <Image
+          alt=""
+          src="/assets/brand-shape.png"
+          width={1040}
+          height={1040}
+          className="absolute -top-8 md:block hidden -right-16 h-16 w-16 object-contain "
+        />
       </div>
-      <p
-        className={`${montserrat.className} cursor-pointer mt-10 text-main underline`}
-        onClick={() => setCustom(!custom)}
-      >
-        {custom ? "Cancel custom donation" : "Enter a custom donation"}
-      </p>
-      <p className={`${montserrat.className} text-xs mt-5`}>
-        Lorem ipsum dolor sit amet consectetur adipisicing elit. Repellat
-        pariatur nam tenetur deserunt quis laboriosam illum tempora nemo cum ab
-        alias mollitia dolorem odit dolores, fugiat animi nobis numquam! Fuga?
-      </p>
-      <Button
-        disabled={loading}
-        onClick={createDonation}
-        className={`w-full h-14 donateBtn border-none shadow-none mt-8 ${montserrat.className} font-bold`}
-      >
-        Send {project.project_prefix === "tree" && "Trees"} Donation
-      </Button>
     </div>
   );
 }
 
 export default DonateBox;
+
+function GiftSomeOne({
+  children,
+  onClose,
+}: {
+  children: ReactNode;
+  onClose?: (e: string) => void;
+}) {
+  const [open, setOpen] = useState<boolean>(false);
+  const [name, setName] = useState("");
+
+  return (
+    <Dialog open={open} onOpenChange={setOpen}>
+      <DialogTrigger>{children}</DialogTrigger>
+      <DialogContent className={montserrat.className}>
+        <DialogHeader>
+          <DialogTitle>Gift To Someone</DialogTitle>
+        </DialogHeader>
+        <div className="">
+          <Label className="text-xs" htmlFor="terms">
+            Name
+          </Label>
+          <Input
+            className="shadow-none"
+            placeholder="Enter name..."
+            onChange={(e) => setName(e.target.value)}
+            value={name}
+          />
+        </div>
+
+        <div className="">
+          <Label className="text-xs" htmlFor="terms">
+            Email ID
+          </Label>
+          <Input className="shadow-none" placeholder="Email ID..." />
+        </div>
+        <div className="">
+          <Label className="text-xs" htmlFor="terms">
+            Message
+          </Label>
+          <Textarea className="shadow-none" placeholder="Message..." />
+        </div>
+        <br />
+        <Button
+          className="w-full shadow-none donateBtn py-6"
+          onClick={() => {
+            setOpen(false);
+            console.log(name);
+            if (onClose) {
+              onClose(name.trim().split(" ")[0]);
+            }
+          }}
+        >
+          Send Gift Donation
+        </Button>
+      </DialogContent>
+    </Dialog>
+  );
+}
