@@ -249,7 +249,7 @@ export const navData: NavDataSet[] = [
   },
   {
     title: "Clubs",
-    href: "/soon",
+    href: "https://clubs-graytogreen.vercel.app/",
     isSubmenu: false,
   },
   {
